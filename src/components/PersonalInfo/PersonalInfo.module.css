@@ -1,0 +1,25 @@
+.fullName {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.personalInfo {
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}
+
+.details {
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.details > li {
+    font-size: 21px;
+}

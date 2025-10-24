@@ -1,0 +1,32 @@
+.experienceContainer {
+    margin-bottom: 20px;
+}
+
+.companyName {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.startEndDate {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.jobTitle {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.workLocation {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.subResponsibility {
+    list-style: circle;
+    margin-left: 50px;
+}
+
+.subResponsibility > li::marker {
+    font-size: 22px;
+}
