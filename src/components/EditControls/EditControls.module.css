@@ -1,0 +1,12 @@
+.editControls {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 105px 1fr;
+    grid-template-areas: 
+    "sideControls topControls"
+    "sideControls mainControls";
+    gap: 24px;
+    flex: 1;
+    max-width: 750px;
+    background-color: pink;
+}

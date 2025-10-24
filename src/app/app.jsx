@@ -1,13 +1,19 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import CV from '../components/CV.jsx'
+import CV from '../components/CV/CV.jsx'
+import EditControls from '../components/EditControls/EditControls.jsx'
 
 import '../styles/reset.css'
 import '../styles/globals.css'
+import '../styles/typography.css'
+import styles from './app.module.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CV />
+    <div className={styles.app}>
+      <EditControls />
+      <CV />
+    </div>
   </StrictMode>,
 )

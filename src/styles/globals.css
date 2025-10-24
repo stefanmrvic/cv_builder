@@ -1,5 +1,8 @@
-body {
-    padding: 50px;
+:root {
+    --main-bg-color: #f3f4f6;
+    --secondary-bg-color: #ffffff;
+    --input-bg-color: rgba(14, 55, 78, .07);
+    --cv-container-box-shadow: 
 }
 
 i {
@@ -33,7 +36,7 @@ li::marker {
     font-size: 18px;
     font-weight: bold;
     padding-bottom: 3px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     border-bottom: 2px solid black;
 }
 

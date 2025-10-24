@@ -1,0 +1,45 @@
+button {
+    background-color: var(--secondary-bg-color);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+button > span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.active {
+    background-color: var(--main-bg-color);
+}
+
+.sideControls {
+    display: flex;
+    flex-direction: column;
+    grid-area: sideControls;
+    border: none;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 8px;
+    background-color: var(--secondary-bg-color);
+    border-radius: 12px;
+    gap: 3px;
+}
+
+.customizeBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 4px;
+}
+
+.contentBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 4px;
+}
