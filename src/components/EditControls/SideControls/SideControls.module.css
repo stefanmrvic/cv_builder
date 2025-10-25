@@ -5,11 +5,6 @@ button {
     cursor: pointer;
 }
 
-button > span {
-    font-size: 15px;
-    font-weight: bold;
-}
-
 .active {
     background-color: var(--main-bg-color);
 }
@@ -28,6 +23,14 @@ button > span {
     background-color: var(--secondary-bg-color);
     border-radius: 12px;
     gap: 3px;
+}
+
+.sidebar > button {
+    font-weight: 600;
+}
+
+.sidebar > button > span:first-child {
+    font-size: 20px;
 }
 
 .customizeBtn {
