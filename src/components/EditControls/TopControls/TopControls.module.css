@@ -7,7 +7,6 @@ button {
 
 .topControls {
     min-width: 251px;
-    max-width: 504px;
     grid-area: topControls;
     background-color: var(--secondary-bg-color);
     border-radius: 12px;
