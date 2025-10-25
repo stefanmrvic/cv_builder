@@ -1,3 +1,40 @@
+button {
+    padding: 6px;
+    border-radius: 4px;
+    flex: 1;
+}
+
 .topControls {
+    min-width: 251px;
+    max-width: 504px;
     grid-area: topControls;
+    background-color: var(--secondary-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 7px 29px 0 hsla(240, 5%, 41%, .2);
+}
+
+.topNavbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    padding: 12px;
+}
+
+.clearResume {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-weight: bold;
+}
+
+.clearResume > span:first-child {
+    margin: 4px;
+    font-size: 20px;
+}
+
+.loadExample {
+    font-weight: bold;
+    background-color: var(--main-bg-color);
 }
