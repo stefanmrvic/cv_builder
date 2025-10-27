@@ -65,9 +65,14 @@
 }
 
 .btnContainer {
-    display: flex;
+    display: flex;    
     flex-direction: column;
     gap: 6px;
+    animation: slideDown .25s forwards;
+}
+
+.btnContainer.closing {
+    animation: slideUp .25s forwards;
 }
 
 .btn {
@@ -95,12 +100,31 @@ span.btnIcon {
     align-items: center;
     padding: 24px;
     margin-bottom: 6px;
+    border-radius: 12px;
+}
+
+.toggleBtn.active {
     border-radius: 12px 12px 0 0;
 }
 
 /* Selects arrow up on the right side of the "Education" button toggler */
-.toggleBtn span:last-child {
+.arrowDown {
     margin-left: auto;
+    transition: transform .3s;
+}
+
+.arrowDown.active {
+    transform: rotate(180deg);
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-25px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-25px); opacity: 0; }
 }
 
 .showTextBtnContainer {

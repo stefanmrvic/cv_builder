@@ -9,7 +9,6 @@ export default function MainControls() {
         <div className={styles.mainControls}>
             <PersonalDetails />
             <Education />
-            <Experience />
         </div>
     )
 }
