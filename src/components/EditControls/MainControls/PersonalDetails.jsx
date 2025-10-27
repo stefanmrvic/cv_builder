@@ -6,16 +6,16 @@ export default function PersonalDetails() {
             <form className={styles.personalDetailsForm} action="">
                 <h2 className={styles.personalDataHeadline}>Personal Details</h2>
 
-                <label for="name">Full name</label>
+                <label htmlFor="name">Full name</label>
                 <input type="text" id="name" />
 
-                <label for="email">Email <span className={styles.recommendedText}>recommended</span></label>
+                <label htmlFor="email">Email <span className={styles.recommendedText}>recommended</span></label>
                 <input type="email" id="email" />
 
-                <label for="number">Phone number <span className={styles.recommendedText}>recommended</span></label>
+                <label htmlFor="number">Phone number <span className={styles.recommendedText}>recommended</span></label>
                 <input type="tel" id="number" />
 
-                <label for="address">Address <span className={styles.recommendedText}>recommended</span></label>
+                <label htmlFor="address">Address <span className={styles.recommendedText}>recommended</span></label>
                 <input type="text" id="address" />
             </form>
         </div>
