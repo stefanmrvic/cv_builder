@@ -26,7 +26,7 @@ export default function Education() {
             <button className={`${styles.toggleBtn} ${isOpen ? styles.active : ''}`} onClick={toggleCollapsingAnimation}>
                 <span className={`${styles.btnIcon} material-symbols-outlined`}>school</span>
                 <span className={styles.educationHeadline}>Education</span>
-                <span className={`material-symbols-outlined ${styles.arrowDown} ${isOpen ? styles.active : ''}`} ref={arrowDownRef}>keyboard_arrow_down</span>
+                <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
 
             {isOpen &&
