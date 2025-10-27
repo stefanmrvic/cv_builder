@@ -28,8 +28,11 @@ button {
 
 .sidebar > button {
     font-weight: 600;
+    transition: background-color .15s ease-in-out, transform .15s;
+}
+
+.sidebar > button:active {
     transform: scale(0.9);
-    transition: background-color .15s ease-in-out;
 }
 
 /* Selecting the icons inside of <button> elements */
