@@ -1,8 +1,8 @@
 import styles from './SideControls.module.css'
 
-export default function Customize() {
+export default function Customize({className, onClick}) {
     return (
-        <button className={styles.customizeBtn}>
+        <button className={`${className} ${styles.contentBtn}`} onClick={onClick}>
             <span className="material-symbols-outlined">design_services</span>
             <span>Customize</span>
         </button>
