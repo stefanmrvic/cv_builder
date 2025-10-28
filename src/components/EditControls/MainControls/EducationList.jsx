@@ -13,7 +13,7 @@ export default function EducationList({className, onClick, ref}) {
                     education='Masters University' />
 
                 <div className={styles.addBtnContainer}>
-                    <button className={`${styles.addBtn} ${styles.btn}`}>
+                    <button className={`${styles.addBtn} ${styles.btn}`} onClick={onClick}>
                         <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
                         <span>Education</span>
                     </button>

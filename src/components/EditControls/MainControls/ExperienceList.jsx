@@ -13,7 +13,7 @@ export default function ExperienceList({className, onClick, ref}) {
                     experience='Black Mesa Labs' />
 
                 <div className={styles.addBtnContainer}>
-                    <button className={`${styles.addBtn} ${styles.btn}`}>
+                    <button className={`${styles.addBtn} ${styles.btn}`} onClick={onClick}>
                         <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
                         <span>Experience</span>
                     </button>
