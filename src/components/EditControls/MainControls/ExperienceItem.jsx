@@ -1,8 +1,8 @@
 import styles from './MainControls.module.css';
 
-export default function ExperienceItem({experience}) {
+export default function ExperienceItem({onClick, experience}) {
     return (
-        <button className={styles.btn}>
+        <button onClick={onClick} className={styles.btn}>
             <span className={styles.btnText}>{experience}</span>
             <div className={styles.showTextBtnContainer}>
                 <span className={`${styles.showTextBtnIcon} material-icons`}>delete</span>

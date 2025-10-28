@@ -2,9 +2,9 @@ import ExperienceItem from './ExperienceItem.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function ExperienceList({onClick, ref}) {
+export default function ExperienceList({className, onClick, ref}) {
     return (
-        <div className={`${styles.btnContainer} ${styles.opening}`} ref={ref}>
+        <div className={`${className} ${styles.btnContainer}`} ref={ref}>
                 <ExperienceItem 
                     onClick={onClick}
                     experience='Netflix' />

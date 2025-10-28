@@ -51,9 +51,102 @@
 }
 /* Personal Details Section End */
 
+/* Form for adding experience/education Start */
+.formContainer {
+    padding: 22px 18px;
+    border-radius: 0 0 12px 12px;
+    background-color: var(--secondary-bg-color);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+    
+    label {
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    input,
+    textarea {
+        font-size: 13.3px;
+        background-color: var(--main-bg-color);
+        border: 2px solid transparent;
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 12px;
+        transition: border .25s, box-shadow .25s;
+    }  
+
+    textarea {
+        height: 90px;
+    }
+
+    input:focus,
+    input:focus-visible {
+        border-color: #3b83f6;
+        box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
+        outline: none;
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formGroupDate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.formBtnDelete {
+    font-size: 13.3px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 1px solid grey;
+}
+
+.formBtnContainer {
+    display: flex;
+    gap: 17px;
+}
+
+.formBtnContainer > button {
+    max-width: 92px;
+}
+
+span.formBtnDeleteIcon {
+    font-size: 20px;
+}
+
+.formBtnCancel {
+    font-size: 13.3px;
+    color: grey;
+    outline: 1px solid grey;
+    padding: 8px 16px;
+    margin-left: auto;
+}
+
+.formBtnSave {
+    font-size: 13.3px;
+    background-color: #187ff5;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+/* Form for adding experience/education End */
+
 /* Education Section Start */
 .educationContainer,
 .experienceContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
 }
@@ -69,6 +162,11 @@
     flex-direction: column;
     gap: 6px;
     animation: slideDown .25s forwards;
+}
+
+.btnContainer.hidden {
+    visibility: hidden;
+    position: absolute;
 }
 
 .btnContainer.closing {
@@ -105,6 +203,10 @@ span.btnIcon {
 
 .toggleBtn.active {
     border-radius: 12px 12px 0 0;
+}
+
+.toggleBtn.formOpened {
+    margin-bottom: -5px;
 }
 
 /* Selects arrow up on the right side of the "Education" button toggler */

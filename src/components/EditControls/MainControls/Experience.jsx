@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 
 import ExperienceList from './ExperienceList.jsx';
-import ExperienceItem from './ExperienceItem.jsx';
 import ExperienceForm from './ExperienceForm.jsx';
 
 import styles from './MainControls.module.css';
@@ -13,11 +12,13 @@ export default function Experience() {
     const btnContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
 
-    function toggleCollapsingAnimation() {
+    function toggleCollapsing() {
         arrowDownRef.current.classList.toggle(`${styles.active}`);
 
+        if (isFormOpen) setIsFormOpen(!isFormOpen);
         if (isExpanded) handleCloseAnimation();
-        else setIsExpanded(!isExpanded);
+        
+        setIsExpanded(!isExpanded);
     }
 
     function handleCloseAnimation() {
@@ -27,19 +28,19 @@ export default function Experience() {
 
     return (
         <div className={styles.experienceContainer}>
-            <button className={`${styles.toggleBtn} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsingAnimation}>
+            <button className={`${styles.toggleBtn} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
                 <span className={styles.experienceHeadline}>Experience</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
 
             {isFormOpen &&
-
-                <ExperienceForm />
+                <ExperienceForm onClick={() => setIsFormOpen(!isFormOpen)}/>
             }
 
-            {(!isFormOpen && isExpanded) &&
+            {isExpanded &&
                 <ExperienceList 
+                    className={`${isFormOpen ? styles.hidden : ''}`}
                     onClick={() => setIsFormOpen(!isFormOpen)} 
                     ref={btnContainerRef} 
                 /> 
