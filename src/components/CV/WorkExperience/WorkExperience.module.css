@@ -1,3 +1,9 @@
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
 .experienceContainer {
     margin-bottom: 20px;
 }

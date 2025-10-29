@@ -9,7 +9,7 @@ import styles from './WorkExperience.module.css'
 export default function Experience(props) {
     return (
         <div className={styles.experienceContainer}>
-            <div className='flexContainer'>
+            <div className={styles.flexContainer}>
                 <CompanyName 
                     className={styles.companyName}
                     name={props.name} 
@@ -19,7 +19,7 @@ export default function Experience(props) {
                     date={props.date} 
                 />
             </div>
-            <div className='flexContainer'>
+            <div className={styles.flexContainer}>
                 <JobTitle 
                     className={styles.jobTitle}
                     title={props.title} 

@@ -1,3 +1,16 @@
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.educationContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
 .schoolName {
     font-size: 18px;
 }
