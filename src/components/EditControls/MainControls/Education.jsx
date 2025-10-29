@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-import EducationList from './EducationList.jsx';
+import EducationItem from './EducationItem.jsx';
 import EducationForm from './EducationForm.jsx';
 
 import styles from './MainControls.module.css';
@@ -39,11 +39,21 @@ export default function Education({setCVData}) {
             }
 
             {isExpanded &&
-                <EducationList 
-                    className={`${isFormOpen ? styles.hidden : ''}`}
-                    onClick={() => setIsFormOpen(!isFormOpen)} 
-                    ref={btnContainerRef} 
-                /> 
+                <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
+                    <EducationItem 
+                        onClick={onClick}
+                        education='University of Barkeley' />
+                    <EducationItem 
+                        onClick={onClick}
+                        education='Masters University' />
+
+                    <div className={styles.addBtnContainer}>
+                        <button className={`${styles.addBtn} ${styles.btn}`} onClick={onClick}>
+                            <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
+                            <span>Education</span>
+                        </button>
+                    </div>
+                </div>
             }
         </div>
     )
