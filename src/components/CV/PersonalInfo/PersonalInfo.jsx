@@ -18,7 +18,7 @@ export default function PersonalInfo({data}) {
 
             <ul className={styles.details}>
                 {personalInfo.map((item, index) => {
-                    return <li><p>{item} {index !== lastInfoItem ? " ❖ " : ''} </p></li>
+                    return <li key={index}><p>{item} {index !== lastInfoItem ? " ❖ " : ''} </p></li>
                 })}
 
                 {data.personalInfo.linkedin.trim() && 
