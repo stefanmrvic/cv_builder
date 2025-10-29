@@ -7,6 +7,12 @@ export default function PersonalDetails({data, setCVData}) {
         })
     }
 
+    const handleBirthDayChange = (e) => {
+        setCVData(draft => {
+            draft.personalInfo.birthDay = e.target.value;
+        })
+    }
+
     const handleEmailChange = (e) => {
         setCVData(draft => {
             draft.personalInfo.email = e.target.value;
@@ -39,6 +45,11 @@ export default function PersonalDetails({data, setCVData}) {
                 <div className={styles.flexContainer}>
                     <label htmlFor="name">Full name</label>
                     <input type="text" id="name" value={data.personalInfo.fullName} onChange={handleNameChange}/>
+                </div>
+
+                <div className={styles.flexContainer}>
+                    <label htmlFor="birthDay">Date of birth</label>
+                    <input type="text" id="birthDay" value={data.personalInfo.birthDay} onChange={handleBirthDayChange}/>
                 </div>
 
                 <div className={styles.flexContainer}>
