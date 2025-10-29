@@ -1,12 +1,11 @@
 const defaultCV = {
     personalInfo: {
         fullName: 'Mike Smith',
-        details: [
-            'March 14, 1996', 
-            'example@gmail.com', 
-            '(310) 555-0198', 'California, US', 
-            'https://linkedin.com'
-        ]
+        birthDay: 'March 14, 1996', 
+        email: 'example@gmail.com', 
+        phone: '(310) 555-0198', 
+        location: 'California, US', 
+        linkedin: 'https://linkedin.com/'
     },
     workExperience: [
         {
