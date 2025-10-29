@@ -22,6 +22,11 @@ button {
     padding: 12px;
 }
 
+.topNavbar > button:active {
+    transform: scale(.9);
+    transition: transform .15s;
+}
+
 .clearResume {
     display: flex;
     align-items: center;
