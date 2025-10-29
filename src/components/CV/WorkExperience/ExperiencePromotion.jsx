@@ -7,7 +7,7 @@ import styles from './WorkExperience.module.css'
 export default function ExperiencePromotion(props) {
     return (
         <div className={styles.experienceContainer}>
-            <div className='flexContainer'>
+            <div className={styles.flexContainer}>
                 <JobTitle 
                     className={styles.jobTitle}
                     title={props.title} 
