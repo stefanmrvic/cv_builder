@@ -5,7 +5,7 @@ import EducationForm from './EducationForm.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function Education() {
+export default function Education({setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
 

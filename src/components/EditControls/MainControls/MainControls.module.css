@@ -1,3 +1,8 @@
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .mainControls {
     display: flex;
     flex-direction: column;

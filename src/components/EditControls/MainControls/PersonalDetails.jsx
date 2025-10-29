@@ -1,22 +1,65 @@
 import styles from './MainControls.module.css';
 
-export default function PersonalDetails() {
+export default function PersonalDetails({data, setCVData}) {
+    const handleNameChange = (e) => {
+        setCVData(draft => {
+            draft.personalInfo.fullName = e.target.value;
+        })
+    }
+
+    const handleEmailChange = (e) => {
+        setCVData(draft => {
+            draft.personalInfo.email = e.target.value;
+        })
+    }
+
+    const handlePhoneChange = (e) => {
+        setCVData(draft => {
+            draft.personalInfo.phone = e.target.value;
+        })
+    }
+
+    const handleLocationChange = (e) => {
+        setCVData(draft => {
+            draft.personalInfo.location = e.target.value;
+        })
+    }
+    
+    const handleLinkedInChange = (e) => {
+        setCVData(draft => {
+            draft.personalInfo.linkedin = e.target.value;
+        })
+    }
+
     return (
         <div className={styles.personalDetails}>
             <form className={styles.personalDetailsForm} action="">
                 <h2 className={styles.personalDataHeadline}>Personal Details</h2>
 
-                <label htmlFor="name">Full name</label>
-                <input type="text" id="name" />
+                <div className={styles.flexContainer}>
+                    <label htmlFor="name">Full name</label>
+                    <input type="text" id="name" value={data.personalInfo.fullName} onChange={handleNameChange}/>
+                </div>
 
-                <label htmlFor="email">Email <span className={styles.recommendedText}>recommended</span></label>
-                <input type="email" id="email" />
+                <div className={styles.flexContainer}>
+                    <label htmlFor="email">Email <span className={styles.recommendedText}>recommended</span></label>
+                    <input type="email" id="email" value={data.personalInfo.email} onChange={handleEmailChange} />
+                </div>
 
-                <label htmlFor="number">Phone number <span className={styles.recommendedText}>recommended</span></label>
-                <input type="tel" id="number" />
+                <div className={styles.flexContainer}>
+                    <label htmlFor="number">Phone number <span className={styles.recommendedText}>recommended</span></label>
+                    <input type="tel" id="number" value={data.personalInfo.phone} onChange={handlePhoneChange} />
+                </div>
 
-                <label htmlFor="address">Address <span className={styles.recommendedText}>recommended</span></label>
-                <input type="text" id="address" />
+                <div className={styles.flexContainer}>
+                    <label htmlFor="address">Address <span className={styles.recommendedText}>recommended</span></label>
+                    <input type="text" id="address" value={data.personalInfo.location} onChange={handleLocationChange} />
+                </div>
+
+                <div className={styles.flexContainer}>
+                    <label htmlFor="linkedin">LinkedIn <span className={styles.recommendedText}>recommended</span></label>
+                    <input type="text" id="linkedin" value={data.personalInfo.linkedin} onChange={handleLinkedInChange} />
+                </div>
             </form>
         </div>
     )

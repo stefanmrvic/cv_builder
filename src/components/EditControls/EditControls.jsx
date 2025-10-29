@@ -4,12 +4,12 @@ import MainControls from './MainControls/MainControls.jsx'
 
 import styles from './EditControls.module.css';
 
-export default function EditControls() {
+export default function EditControls({data, setCVData}) {
     return (
         <div className={styles.editControls}>
-            <SideControls />
-            <TopControls />
-            <MainControls />
+            <SideControls data={data} />
+            <TopControls data={data} setCVData={setCVData}/>
+            <MainControls data={data} setCVData={setCVData}/>
         </div>
     )
 }
