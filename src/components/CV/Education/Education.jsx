@@ -2,18 +2,23 @@ import EducationItem from './EducationItem.jsx'
 
 import styles from './Education.module.css';
 
-export default function Education() {
+export default function Education({data}) {
+    const educationList = data.education.map(item => {
+        return <EducationItem 
+            key={item.id}
+            schoolName={item.schoolName}
+            graduationDate={item.graduationDate}
+            qualification={item.qualification}
+            schoolLocation={item.schoolLocation}
+        />
+    })
+
     return (
         <div className='sectionBottomMargin'>
             <h1 className='headline'>EDUCATION</h1>
 
             <div className={styles.educationContainer}>
-                <EducationItem 
-                    schoolName='UC Berkeley'
-                    graduationDate='Oct. 2024'
-                    qualification='Masters in Computer Science'
-                    schoolLocation='California, US'
-                />
+                {educationList}
             </div>
         </div>
     )

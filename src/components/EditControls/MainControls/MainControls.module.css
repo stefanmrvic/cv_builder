@@ -121,6 +121,7 @@
 .formBtnContainer {
     display: flex;
     gap: 17px;
+    margin-top: 13px;
 }
 
 .formBtnContainer > button {

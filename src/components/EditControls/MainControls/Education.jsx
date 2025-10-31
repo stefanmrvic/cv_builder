@@ -5,14 +5,22 @@ import EducationForm from './EducationForm.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function Education({setCVData}) {
+export default function Education({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [isNew, setIsNew] = useState(false)
+    const [formData, setFormData] = useState({
+        id: '',
+        schoolName: '',
+        graduationDate: '',
+        qualification: '',
+        schoolLocation: ''
+    })
 
     const btnContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
 
-    function toggleCollapsing() {
+    const toggleCollapsing = () => {
         arrowDownRef.current.classList.toggle(`${styles.active}`);
 
         if (isFormOpen) setIsFormOpen(!isFormOpen);
@@ -21,10 +29,51 @@ export default function Education({setCVData}) {
         setIsExpanded(!isExpanded);
     }
 
-    function handleCloseAnimation() {
+    const handleCloseAnimation = () => {
         btnContainerRef.current.setAttribute("class", `${styles.btnContainer} ${styles.closing}`)
         btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
+
+    const populateForm = (id) => {
+        const item = data.education.find(item => item.id === id)
+
+        if (!item) return;
+
+        setFormData({
+            id: item.id, 
+            schoolName: item.schoolName,
+            graduationDate: item.graduationDate,
+            qualification: item.qualification,
+            schoolLocation: item.schoolLocation
+        })
+    }
+
+    const handleAddBtnClick = () => {
+        const createEducationItem = {
+            id: crypto.randomUUID(),
+            schoolName: '',
+            graduationDate: '',
+            qualification: '',
+            schoolLocation: ''
+        }
+
+        setIsNew(true)
+        setCVData(draft => {
+            draft.education.push(createEducationItem)
+        })
+        setIsFormOpen(!isFormOpen);
+    }
+
+    const educationList = data.education.map(item => {
+        return  <EducationItem 
+            key={item.id}
+            onClick={() => {
+                populateForm(item.id)
+                setIsFormOpen(!isFormOpen)}
+            }
+            education={item.schoolName}
+        />
+    });
 
     return (
         <div className={styles.educationContainer}>
@@ -35,20 +84,29 @@ export default function Education({setCVData}) {
             </button>
 
             {isFormOpen &&
-                <EducationForm onClick={() => setIsFormOpen(!isFormOpen)}/>
+                <EducationForm 
+                    isNew={isNew}
+                    setIsNew={setIsNew}
+                    isFormOpen={isFormOpen}
+                    setIsFormOpen={setIsFormOpen}
+                    formData={formData} 
+                    setFormData={setFormData} 
+                    cvData={data} 
+                    setCVData={setCVData} 
+                />
             }
 
             {isExpanded &&
+                // hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
-                    <EducationItem 
-                        onClick={onClick}
-                        education='University of Barkeley' />
-                    <EducationItem 
-                        onClick={onClick}
-                        education='Masters University' />
+
+                    {educationList}
 
                     <div className={styles.addBtnContainer}>
-                        <button className={`${styles.addBtn} ${styles.btn}`} onClick={onClick}>
+                        <button 
+                            className={`${styles.addBtn} ${styles.btn}`} 
+                            onClick={() => { handleAddBtnClick() }}
+                        >
                             <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Education</span>
                         </button>
