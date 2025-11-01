@@ -96,6 +96,10 @@
     }
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .formGroup {
     display: flex;
     flex-direction: column;

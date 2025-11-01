@@ -8,6 +8,13 @@
     margin-bottom: 20px;
 }
 
+.experienceContainer.hidden {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .companyName {
     font-size: 18px;
     font-weight: bold;

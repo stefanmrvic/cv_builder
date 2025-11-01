@@ -5,13 +5,13 @@ import Education from './Education/Education.jsx'
 
 import styles from './CV.module.css'
 
-export default function CV({data}) {
+export default function CV({cvData}) {
     return (
         <div className={styles.cvContainer}>
-          <PersonalInfo data={data} />
-          <WorkExperience data={data} />
-          <SkillsToolsInterests data={data} />
-          <Education data={data} />
+          <PersonalInfo cvData={cvData} />
+          <WorkExperience cvData={cvData} />
+          <SkillsToolsInterests cvData={cvData} />
+          <Education cvData={cvData} />
         </div>
     )
 }

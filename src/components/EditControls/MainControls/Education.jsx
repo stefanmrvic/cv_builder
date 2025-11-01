@@ -5,12 +5,13 @@ import EducationForm from './EducationForm.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function Education({data, setCVData}) {
+export default function Education({cvData, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isNew, setIsNew] = useState(false)
     const [formData, setFormData] = useState({
         id: '',
+        isVisible: '',
         schoolName: '',
         graduationDate: '',
         qualification: '',
@@ -35,12 +36,13 @@ export default function Education({data, setCVData}) {
     }
 
     const populateForm = (id) => {
-        const item = data.education.find(item => item.id === id)
+        const item = cvData.education.find(item => item.id === id)
 
         if (!item) return;
 
         setFormData({
-            id: item.id, 
+            id: item.id,
+            isVisible: item.isVisibile,
             schoolName: item.schoolName,
             graduationDate: item.graduationDate,
             qualification: item.qualification,
@@ -51,6 +53,7 @@ export default function Education({data, setCVData}) {
     const handleAddBtnClick = () => {
         const createEducationItem = {
             id: crypto.randomUUID(),
+            isVisible: true, 
             schoolName: '',
             graduationDate: '',
             qualification: '',
@@ -61,16 +64,21 @@ export default function Education({data, setCVData}) {
         setCVData(draft => {
             draft.education.push(createEducationItem)
         })
-        setIsFormOpen(!isFormOpen);
+        setFormData(createEducationItem);
+        setIsFormOpen(true);
     }
 
-    const educationList = data.education.map(item => {
+    const visibleEducationitems = cvData.education.filter(item => item.isVisible === true);
+
+    const educationList = visibleEducationitems.education.map(item => {
         return  <EducationItem 
             key={item.id}
             onClick={() => {
                 populateForm(item.id)
-                setIsFormOpen(!isFormOpen)}
+                setIsFormOpen(true)}
             }
+            setCVData={setCVData}
+            formData={formData}
             education={item.schoolName}
         />
     });
@@ -91,7 +99,7 @@ export default function Education({data, setCVData}) {
                     setIsFormOpen={setIsFormOpen}
                     formData={formData} 
                     setFormData={setFormData} 
-                    cvData={data} 
+                    cvData={cvData} 
                     setCVData={setCVData} 
                 />
             }

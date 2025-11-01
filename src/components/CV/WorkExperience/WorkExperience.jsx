@@ -1,7 +1,7 @@
 import Experience from './Experience.jsx'
 import ExperiencePromotion from './ExperiencePromotion.jsx'
 
-export default function WorkExperience() {
+export default function WorkExperience(cvData) {
     return (
         <div className='sectionBottomMargin'>
             <h1 className='headline'>WORK EXPERIENCE</h1>
@@ -23,6 +23,7 @@ export default function WorkExperience() {
                    { primary: "Developed CI/CD pipelines using GitHub Actions and Docker, ensuring reliable and automated deployments." },
                    { primary: "Mentored junior developers on best coding practices and performance optimization." }
                 ]}
+                cvData={cvData}
             />
 
             <ExperiencePromotion 

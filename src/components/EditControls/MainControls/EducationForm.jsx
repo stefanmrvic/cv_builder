@@ -1,40 +1,47 @@
 import styles from './MainControls.module.css'
 
-export default function EducationForm({isNew, setIsNew, isFormOpen, setIsFormOpen, formData, cvData, setCVData}) {
+export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData, cvData, setCVData}) {
+    const handleDeleteItem = () => {
+        if (!formData.id) throw new Error('formData.id is undefined!');
+
+        setCVData(draft => {
+            const itemIndex = draft.education.findIndex(item => item.id === formData.id);
+            
+            if (!itemIndex) throw new Error('Item not found!');
+
+            draft.education.splice(itemIndex, 1);
+        });
+    }
+
     const revertChanges = () => {
-        if (!formData.id) return;
-
-        if (isNew) {
-            setCVData(draft => {
-                const item = draft.education.find(item => item.id === formData.id);
-
-                if (!item) return;
-
-                const itemIndex = draft.education.findIndex(item => item.id === formData.id)
-                draft.education.splice(itemIndex, 1);
-
-                setIsNew(false);
-                return;
-            })
-        }
-
+        if (!formData.id) throw new Error('formData.id is undefined!');
+        
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
 
-            if (!item) return;
+            if (!item) throw new Error('Item not found!');
 
-            item.schoolName = formData.schoolName;
-            item.graduationDate = formData.graduationDate;
-            item.qualification = formData.qualification;
-            item.schoolLocation = formData.schoolLocation;
-        })
+            if (isNew) {
+                const itemIndex = draft.education.findIndex(item => item.id === formData.id);
+                draft.education.splice(itemIndex, 1);
+            } else {
+                item.isVisibile = formData.isVisibile;
+                item.schoolName = formData.schoolName;
+                item.graduationDate = formData.graduationDate;
+                item.qualification = formData.qualification;
+                item.schoolLocation = formData.schoolLocation;
+            }
+        });
+
+        setIsNew(false);  
+        setIsFormOpen(false);
     }
 
     const handleSchoolName = (e) => {
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
 
-            if (!item) return;
+            if (!item) throw new Error('Item not found!');
 
             item.schoolName = e.target.value;
         });
@@ -44,7 +51,7 @@ export default function EducationForm({isNew, setIsNew, isFormOpen, setIsFormOpe
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
 
-            if (!item) return;
+            if (!item) throw new Error('Item not found!');
 
             item.graduationDate = e.target.value;
         });
@@ -54,7 +61,7 @@ export default function EducationForm({isNew, setIsNew, isFormOpen, setIsFormOpe
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
 
-            if (!item) return;
+            if (!item) throw new Error('Item not found!');
 
             item.qualification = e.target.value;
         });
@@ -64,7 +71,7 @@ export default function EducationForm({isNew, setIsNew, isFormOpen, setIsFormOpe
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
 
-            if (!item) return;
+            if (!item) throw new Error('Item not found!');
 
             item.schoolLocation = e.target.value;
         });
@@ -73,18 +80,7 @@ export default function EducationForm({isNew, setIsNew, isFormOpen, setIsFormOpe
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setCVData(draft => {
-            const item = draft.education.find(item => item.id === formData.id);
-
-            if (!item) return;
-
-            item.schoolName = formData.schoolName;
-            item.graduationDate = formData.graduationDate;
-            item.qualification = formData.qualification;
-            item.schoolLocation = formData.schoolLocation;
-        });
-
-        setIsFormOpen(!isFormOpen);
+        setIsFormOpen(false);
     }
 
     const item = cvData.education.find(item => item.id === formData.id);
@@ -112,15 +108,15 @@ export default function EducationForm({isNew, setIsNew, isFormOpen, setIsFormOpe
                     <input type="text" name="location" id="location" onChange={handleSchoolLocation} value={item?.schoolLocation || ''} placeholder="Enter Location" />
                 </div>
 
+            </form>
                 <div className={styles.formBtnContainer}>
-                    <button className={styles.formBtnDelete}>
+                    <button className={styles.formBtnDelete} onClick={handleDeleteItem}>
                         <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
                         <span>Delete</span>
                     </button>
                     <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
-                    <button className={styles.formBtnSave} type="submit">Save</button>
+                    <button className={styles.formBtnSave} onClick={() => setIsFormOpen(false)}>Save</button>
                 </div>
-            </form>
         </div>
     )
 }

@@ -10,6 +10,7 @@ const defaultCV = {
     workExperience: [
         {    
             id: '62ac48f3-6bd7-40b6-8d47-fed41f651862',
+            isVisible: true,
             company: 'Netflix',
             location: 'Los Angeles, US',
             positions: [
@@ -46,6 +47,7 @@ const defaultCV = {
         },
         {
             id: 'ff66a212-98ba-4a62-a666-e18c580415e2',
+            isVisible: true,
             company: 'Black Mesa Labs',
             location: 'Berlin, Germany',
             positions: [
@@ -81,6 +83,7 @@ const defaultCV = {
     education: [
         {
             id: 'fde42bfd-e25d-43c1-81fd-f981c7cd30c7',
+            isVisible: true,
             schoolName: 'UC Berkeley',
             graduationDate: 'Oct. 2024',
             qualification: 'Masters in Computer Science',

@@ -1,6 +1,6 @@
 import styles from './MainControls.module.css';
 
-export default function PersonalDetails({data, setCVData}) {
+export default function PersonalDetails({cvData, setCVData}) {
     const handleNameChange = (e) => {
         setCVData(draft => {
             draft.personalInfo.fullName = e.target.value;
@@ -44,32 +44,32 @@ export default function PersonalDetails({data, setCVData}) {
 
                 <div className={styles.flexContainer}>
                     <label htmlFor="name">Full name</label>
-                    <input type="text" id="name" value={data.personalInfo.fullName} onChange={handleNameChange}/>
+                    <input type="text" id="name" value={cvData.personalInfo.fullName} onChange={handleNameChange}/>
                 </div>
 
                 <div className={styles.flexContainer}>
                     <label htmlFor="birthDay">Date of birth</label>
-                    <input type="text" id="birthDay" value={data.personalInfo.birthDay} onChange={handleBirthDayChange}/>
+                    <input type="text" id="birthDay" value={cvData.personalInfo.birthDay} onChange={handleBirthDayChange}/>
                 </div>
 
                 <div className={styles.flexContainer}>
                     <label htmlFor="email">Email <span className={styles.recommendedText}>recommended</span></label>
-                    <input type="email" id="email" value={data.personalInfo.email} onChange={handleEmailChange} />
+                    <input type="email" id="email" value={cvData.personalInfo.email} onChange={handleEmailChange} />
                 </div>
 
                 <div className={styles.flexContainer}>
                     <label htmlFor="number">Phone number <span className={styles.recommendedText}>recommended</span></label>
-                    <input type="tel" id="number" value={data.personalInfo.phone} onChange={handlePhoneChange} />
+                    <input type="tel" id="number" value={cvData.personalInfo.phone} onChange={handlePhoneChange} />
                 </div>
 
                 <div className={styles.flexContainer}>
                     <label htmlFor="address">Address <span className={styles.recommendedText}>recommended</span></label>
-                    <input type="text" id="address" value={data.personalInfo.location} onChange={handleLocationChange} />
+                    <input type="text" id="address" value={cvData.personalInfo.location} onChange={handleLocationChange} />
                 </div>
 
                 <div className={styles.flexContainer}>
                     <label htmlFor="linkedin">LinkedIn <span className={styles.recommendedText}>recommended</span></label>
-                    <input type="text" id="linkedin" value={data.personalInfo.linkedin} onChange={handleLinkedInChange} />
+                    <input type="text" id="linkedin" value={cvData.personalInfo.linkedin} onChange={handleLinkedInChange} />
                 </div>
             </form>
         </div>

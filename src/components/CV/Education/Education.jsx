@@ -2,10 +2,11 @@ import EducationItem from './EducationItem.jsx'
 
 import styles from './Education.module.css';
 
-export default function Education({data}) {
-    const educationList = data.education.map(item => {
+export default function Education({cvData}) {
+    const educationList = cvData.education.map(item => {
         return <EducationItem 
             key={item.id}
+            isVisibile={item.isVisible}
             schoolName={item.schoolName}
             graduationDate={item.graduationDate}
             qualification={item.qualification}
