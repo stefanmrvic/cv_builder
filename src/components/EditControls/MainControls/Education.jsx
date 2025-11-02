@@ -68,21 +68,6 @@ export default function Education({cvData, setCVData}) {
         setIsFormOpen(true);
     }
 
-    const visibleEducationitems = cvData.education.filter(item => item.isVisible === true);
-
-    const educationList = visibleEducationitems.education.map(item => {
-        return  <EducationItem 
-            key={item.id}
-            onClick={() => {
-                populateForm(item.id)
-                setIsFormOpen(true)}
-            }
-            setCVData={setCVData}
-            formData={formData}
-            education={item.schoolName}
-        />
-    });
-
     return (
         <div className={styles.educationContainer}>
             <button className={`${styles.toggleBtn} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
@@ -108,7 +93,18 @@ export default function Education({cvData, setCVData}) {
                 // hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
-                    {educationList}
+                    {cvData.education.map(item => {
+                        return  <EducationItem 
+                            key={item.id}
+                            itemID={item.id}
+                            onClick={() => {
+                                populateForm(item.id)
+                                setIsFormOpen(true)}
+                            }
+                            setCVData={setCVData}
+                            education={item.schoolName}
+                        />
+                    })}
 
                     <div className={styles.addBtnContainer}>
                         <button 

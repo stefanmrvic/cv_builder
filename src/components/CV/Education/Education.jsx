@@ -3,23 +3,24 @@ import EducationItem from './EducationItem.jsx'
 import styles from './Education.module.css';
 
 export default function Education({cvData}) {
-    const educationList = cvData.education.map(item => {
-        return <EducationItem 
-            key={item.id}
-            isVisibile={item.isVisible}
-            schoolName={item.schoolName}
-            graduationDate={item.graduationDate}
-            qualification={item.qualification}
-            schoolLocation={item.schoolLocation}
-        />
-    })
+    const visibleEducationItems = cvData.education.filter(item => item.isVisible);
+    // Early exit if there no education items, meaning that it will remove EDUCATION headline as well
+    if (visibleEducationItems.length === 0) return null;
 
     return (
         <div className='sectionBottomMargin'>
             <h1 className='headline'>EDUCATION</h1>
 
             <div className={styles.educationContainer}>
-                {educationList}
+                {cvData.education
+                    .filter(item => item.isVisible)
+                    .map(item => {
+                        return <EducationItem 
+                            key={item.id}
+                            education={item}
+                        />
+                    })
+                }     
             </div>
         </div>
     )

@@ -2,12 +2,14 @@ import { useRef } from 'react';
 
 import styles from './MainControls.module.css';
 
-export default function EducationItem({setCVData, formData, onClick, education}) {
+export default function EducationItem({itemID, setCVData, onClick, education}) {
+    const aRef = useRef(null);
+
     const handleDeleteItem = () => {
-        if (!formData.id) throw new Error('formData.id is undefined!');
+        if (!itemID) throw new Error('itemID is undefined!');
 
         setCVData(draft => {
-            const itemIndex = draft.education.findIndex(item => item.id === formData.id);
+            const itemIndex = draft.education.findIndex(item => item.id === itemID);
 
             if (!itemIndex) throw new Error('Item not found!');
 
@@ -18,19 +20,19 @@ export default function EducationItem({setCVData, formData, onClick, education})
     const handleVisibility = (e) => {
         e.stopPropagation();
 
-        if (!formData.id) throw new Error('formData.id not found!');
+        if (!itemID) throw new Error('itemID is undefined!');
 
-        setCVData(draft => {
-            const item = draft.education.find(item => item.id === formData.id);
+       setCVData(draft => {
+        const item = draft.education.find(item => item.id === itemID);
 
-            if (!item) throw new Error('Item not found!');
+        if (!item) throw new Error('Item not found!');
 
-            item.isVisible = !item.isVisible;
-        })
+        item.isVisible = !item.isVisible;
+       })
     }
 
     return (
-        <a  onClick={onClick} className={styles.btn}>
+        <a  onClick={onClick} className={styles.btn} ref={aRef}>
             <span className={styles.btnText}>{education}</span>
             <div className={styles.showTextBtnContainer}>
                 <button onClick={handleDeleteItem}>
