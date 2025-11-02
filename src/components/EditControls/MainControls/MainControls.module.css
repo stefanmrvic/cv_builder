@@ -101,10 +101,6 @@
     }
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 .formGroup {
     display: flex;
     flex-direction: column;
@@ -170,6 +166,24 @@ span.formBtnDeleteIcon {
 .experienceHeadline {
     font-size: 20px;
     font-weight: bold;
+}
+
+.educationBtnContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Icons under Education & Experience responsible for deleting and hiding the text on CV */
+span.deleteBtnIcon {
+    color: rgb(46, 46, 46);
+    font-size: 21px;
+}
+
+span.visibilityBtnIcon {
+    color: rgb(46, 46, 46);
+    font-size: 23px;
+    margin-left: 15px;
 }
 
 .btnContainer {
@@ -242,16 +256,6 @@ span.btnIcon {
 @keyframes slideUp {
     0% { transform: translateY(0); opacity: 1; max-height: 1000px}
     100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-}
-
-.showTextBtnContainer {
-    padding: 10px;
-}
-
-/* Icons under Education & Experience responsible for deleting and hiding the text on CV */
-span.showTextBtnIcon {
-    font-size: 20px;
-    margin-left: 15px;
 }
 
 .addBtnContainer {

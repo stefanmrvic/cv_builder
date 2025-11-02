@@ -97,6 +97,7 @@ export default function Education({cvData, setCVData}) {
                         return  <EducationItem 
                             key={item.id}
                             itemID={item.id}
+                            isVisible={item.isVisible}
                             onClick={() => {
                                 populateForm(item.id)
                                 setIsFormOpen(true)}
