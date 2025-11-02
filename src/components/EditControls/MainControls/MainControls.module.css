@@ -11,6 +11,11 @@
     margin-top: 4px;
 }
 
+.educationItem {
+    background-color: var(--secondary-bg-color);
+    cursor: pointer;
+}
+
 .personalDataHeadline {
     font-size: 24px;
     font-weight: bold;
