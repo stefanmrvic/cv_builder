@@ -11,8 +11,8 @@ const defaultCV = {
         {    
             id: '62ac48f3-6bd7-40b6-8d47-fed41f651862',
             isVisible: true,
-            company: 'Netflix',
-            location: 'Los Angeles, US',
+            companyName: 'Netflix',
+            location: 'Remote EMEA',
             positions: [
                 {
                     id: '7ea45a71-884d-4604-9c4e-c1348835ad59',
@@ -20,16 +20,16 @@ const defaultCV = {
                     startDate: 'Apr. 2023',
                     endDate: 'Present',
                     responsibilities: [
-                        { text: "Netflix is a global streaming platform that delivers entertainment to over 260 million subscribers worldwide." },
-                        { text: "As a Full-Stack Software Engineer, I design, develop, and optimize scalable web applications and internal tools.",
-                            subPoints: [
-                                "Built a content analytics dashboard using React, Node.js, and TypeScript, improving internal reporting speed by 40%.",
-                                "Implemented real-time synchronization features using WebSockets and Redis for collaborative content editing.",
-                                "Reduced server response times by 35% through API optimization and migration to a microservice architecture.",
-                                "Collaborated with product and design teams to improve UI accessibility and user experience across internal apps."
+                        { point: "Netflix is a global streaming platform that delivers entertainment to over 260 million subscribers worldwide." },
+                        { point: "As a Full-Stack Software Engineer, I design, develop, and optimize scalable web applications and internal tools.",
+                          subPoints: [
+                            "Built a content analytics dashboard using React, Node.js, and TypeScript, improving internal reporting speed by 40%.",
+                            "Implemented real-time synchronization features using WebSockets and Redis for collaborative content editing.",
+                            "Reduced server response times by 35% through API optimization and migration to a microservice architecture.",
+                            "Collaborated with product and design teams to improve UI accessibility and user experience across internal apps."
                         ]},
-                        { text: "Developed CI/CD pipelines using GitHub Actions and Docker, ensuring reliable and automated deployments." },
-                        { text: "Mentored junior developers on best coding practices and performance optimization." }
+                        { point: "Developed CI/CD pipelines using GitHub Actions and Docker, ensuring reliable and automated deployments." },
+                        { point: "Mentored junior developers on best coding practices and performance optimization." }
                     ]
                 },
                 {
@@ -38,9 +38,9 @@ const defaultCV = {
                     startDate: 'Jun. 2021',
                     endDate: 'Mar. 2023',
                     responsibilities: [
-                        { text: "Developed reusable, scalable React components for internal tools and dashboards at Google." },
-                        { text: "Integrated REST and GraphQL APIs to streamline data flow between frontend and backend teams." },
-                        { text: "Led code reviews and implemented testing automation with Jest and Cypress to ensure high-quality releases." },
+                        { point: "Developed reusable, scalable React components for internal tools and dashboards at Google." },
+                        { point: "Integrated REST and GraphQL APIs to streamline data flow between frontend and backend teams." },
+                        { point: "Led code reviews and implemented testing automation with Jest and Cypress to ensure high-quality releases." },
                     ]
                 }
             ]
@@ -48,7 +48,7 @@ const defaultCV = {
         {
             id: 'ff66a212-98ba-4a62-a666-e18c580415e2',
             isVisible: true,
-            company: 'Black Mesa Labs',
+            companyName: 'Black Mesa Labs',
             location: 'Berlin, Germany',
             positions: [
                 {
@@ -57,9 +57,9 @@ const defaultCV = {
                     startDate: 'Apr. 2019',
                     endDate: 'May. 2021',
                     responsibilities: [
-                        { text: "Developed responsive and accessible web interfaces for research and development teams." },
-                        { text: "Migrated legacy jQuery projects to React, improving maintainability and reducing technical debt by 60%." },
-                        { text: "Worked closely with UX researchers to implement prototypes and conduct usability testing." },
+                        { point: "Developed responsive and accessible web interfaces for research and development teams." },
+                        { point: "Migrated legacy jQuery projects to React, improving maintainability and reducing technical debt by 60%." },
+                        { point: "Worked closely with UX researchers to implement prototypes and conduct usability testing." },
                     ]
                 },
                 {
@@ -68,8 +68,8 @@ const defaultCV = {
                     startDate: 'Jan. 2018',
                     endDate: 'Apr. 2019',
                     responsibilities: [
-                        { text: "Assisted in building client-side interfaces using HTML, CSS, and JavaScript for internal tools." },
-                        { text: "Contributed to early-stage feature prototyping and documentation for the frontend development team." },
+                        { point: "Assisted in building client-side interfaces using HTML, CSS, and JavaScript for internal tools." },
+                        { point: "Contributed to early-stage feature prototyping and documentation for the frontend development team." },
                     ]
                 },
             ]    

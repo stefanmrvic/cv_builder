@@ -28,7 +28,6 @@ export default function TopControls({cvData, setCVData}) {
     }
 
     const handleLoadDefaultCV = () => {
-
         setCVData(draft => {
             return defaultCV;
         })
