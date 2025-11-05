@@ -9,7 +9,7 @@ export default function Position({isFirst, companyName, location, position}) {
                 {isFirst ? (
                     <>
                         <div className={styles.flexContainer}>
-                            <p>{companyName}</p>
+                            <p className={styles.companyName}>{companyName}</p>
                             <p className={styles.startEndDate}>{position.startDate} - {position.endDate}</p>
                         </div>
                         <div className={styles.flexContainer}>
@@ -19,7 +19,7 @@ export default function Position({isFirst, companyName, location, position}) {
                     </>
                 ) : (
                         <div className={styles.flexContainer}>
-                            <p>{position.title}</p>
+                            <p className={styles.jobTitle}>{position.title}</p>
                             <p className={styles.startEndDate}>{position.startDate} - {position.endDate}</p>
                         </div>
                     )
