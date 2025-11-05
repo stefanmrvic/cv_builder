@@ -15,8 +15,8 @@ export default function App() {
 
   return (
       <div className={styles.app}>
-        <EditControls cvData={cvData} setCVData={setCVData}/>
-        <CV cvData={cvData} />
+        <EditControls data={cvData} setCVData={setCVData} />
+        <CV data={cvData} />
       </div>
   )
 }

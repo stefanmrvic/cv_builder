@@ -5,7 +5,7 @@ import EducationForm from './EducationForm.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function Education({cvData, setCVData}) {
+export default function Education({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isNew, setIsNew] = useState(false)
@@ -36,7 +36,7 @@ export default function Education({cvData, setCVData}) {
     }
 
     const populateForm = (id) => {
-        const item = cvData.education.find(item => item.id === id)
+        const item = data.find(item => item.id === id)
 
         if (!item) return;
 
@@ -84,7 +84,7 @@ export default function Education({cvData, setCVData}) {
                     setIsFormOpen={setIsFormOpen}
                     formData={formData} 
                     setFormData={setFormData} 
-                    cvData={cvData} 
+                    data={data} 
                     setCVData={setCVData} 
                 />
             }
@@ -93,7 +93,8 @@ export default function Education({cvData, setCVData}) {
                 // hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
-                    {cvData.education.map(item => {
+                    {console.log(data)}
+                    {data.map(item => {
                         return  <EducationItem 
                             key={item.id}
                             itemID={item.id}

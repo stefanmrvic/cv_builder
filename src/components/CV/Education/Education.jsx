@@ -2,11 +2,11 @@ import EducationItem from './EducationItem.jsx'
 
 import styles from './Education.module.css';
 
-export default function Education({cvData}) {
+export default function Education({data}) {
     // Exits if there are no items in education object
-    if (!cvData.education) return null;
+    if (!data) return null;
 
-    const visibleEducationItems = cvData.education.filter(item => item.isVisible);
+    const visibleEducationItems = data.filter(item => item.isVisible);
 
     // Exits if there are no visible education items
     if (visibleEducationItems.length === 0) return null;
@@ -16,7 +16,7 @@ export default function Education({cvData}) {
             <h1 className='headline'>EDUCATION</h1>
 
             <div className={styles.educationContainer}>
-                {cvData.education
+                {data
                     .filter(item => item.isVisible)
                     .map(item => {
                         return <EducationItem 

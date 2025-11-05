@@ -4,12 +4,12 @@ import Experience from './Experience.jsx'
 
 import styles from './MainControls.module.css';
 
-export default function MainControls({cvData, setCVData}) {
+export default function MainControls({data, setCVData}) {
     return (
         <div className={styles.mainControls}>
-            <PersonalDetails cvData={cvData} setCVData={setCVData}/>
-            <Education cvData={cvData} setCVData={setCVData}/>
-            <Experience cvData={cvData} setCVData={setCVData}/>
+            <PersonalDetails data={data.personalInfo} setCVData={setCVData}/>
+            <Education data={data.education} setCVData={setCVData}/>
+            <Experience data={data.workExperience} setCVData={setCVData}/>
         </div>
     )
 }

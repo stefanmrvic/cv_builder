@@ -76,9 +76,9 @@ const defaultCV = {
         }
     ],
     skillsToolsInterests: {
-        skills: 'Fluent English (written & spoken); full-stack web development; JavaScript (ES6+); React; Node.js; RESTful APIs; technical troubleshooting; remote team collaboration',
-        tools: 'VS Code; Git & GitHub; Linux (Arch btw); Postman; cPanel; WHM; Figma; Photoshop',
-        interests: 'Boxing; strength training; running; meditation; minimalist design; traveling; Charles Bukowski'
+        skills: ['Fluent English (written & spoken)', 'full-stack web development', 'JavaScript (ES6+)', 'React', 'Node.js', 'RESTful APIs', 'technical troubleshooting', 'remote team collaboration'],
+        tools: ['VS Code', 'Git & GitHub', 'Linux (Arch btw)', 'Postman', 'cPanel', 'WHM', 'Figma', 'Photoshop'],
+        interests: ['Boxing', 'strength training', 'running', 'meditation', 'minimalist design', 'traveling', 'Charles Bukowski']
     },
     education: [
         {

@@ -1,5 +1,5 @@
-export default function Tools() {
+export default function Tools({data}) {
     return (
-        <p><b>Tools: </b>VS Code; Git & GitHub; Linux (Arch btw); Postman; cPanel; WHM; Figma; Photoshop</p>
+        <p><b>Tools: </b>{data.join('; ')}</p>
     )
 }

@@ -1,6 +1,6 @@
 import styles from './MainControls.module.css'
 
-export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData, cvData, setCVData}) {
+export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData, data, setCVData}) {
     const handleDeleteItem = () => {
         if (!formData.id) throw new Error('formData.id is undefined!');
 
@@ -83,7 +83,7 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
         setIsFormOpen(false);
     }
 
-    const item = cvData.education.find(item => item.id === formData.id);
+    const item = data.find(item => item.id === formData.id);
 
     return (
         <div className={styles.formContainer}>

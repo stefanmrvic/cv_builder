@@ -2,7 +2,7 @@ import defaultCV from '../../../data/defaultCV.js'
 
 import styles from './TopControls.module.css'
 
-export default function TopControls({cvData, setCVData}) {
+export default function TopControls({setCVData}) {
     const handleCVRemoval = () => {
         const emptyCV = {
             personalInfo: {

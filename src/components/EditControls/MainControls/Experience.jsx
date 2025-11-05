@@ -5,7 +5,7 @@ import ExperienceForm from './ExperienceForm.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function Experience({setCVData}) {
+export default function Experience() {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
 

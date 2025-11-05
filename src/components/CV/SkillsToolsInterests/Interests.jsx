@@ -1,5 +1,5 @@
-export default function Interests() {
+export default function Interests({data}) {
     return (
-        <p><b>Interests: </b>Boxing; strength training; running; meditation; minimalist design; traveling; Charles Bukowski</p>
+        <p><b>Interests: </b>{data.join('; ')}</p>
     )
 }
