@@ -4,7 +4,7 @@ import styles from './WorkExperience.module.css';
 // in the CV
 export default function Responsibility({responsibilities}) {
     return (
-        <ul>
+        <ul className={styles.responsibilities}>
             {responsibilities.length > 0 && responsibilities.map((responsibility, index) => (
                 <li key={index}>
                     <p>{responsibility.point}</p>

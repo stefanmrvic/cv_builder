@@ -1,43 +1,41 @@
 .flexContainer {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
-.experienceContainer {
+.positionContainer {
     margin-bottom: 20px;
 }
 
-.experienceContainer.hidden {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .companyName {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
 }
 
 .startEndDate {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
 }
 
 .jobTitle {
-    font-size: 18px;
+    font-size: 19px;
     font-style: italic;
 }
 
 .workLocation {
-    font-size: 18px;
+    font-size: 19px;
     font-style: italic;
+}
+
+.responsibilities {
+    margin-left: 19px;
 }
 
 .subPoints {
     list-style: circle;
     margin-left: 50px;
+    margin-bottom: 5px;
 }
 
 .subPoints > li::marker {

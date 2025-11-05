@@ -3,6 +3,7 @@ body {
 }
 
 .cvContainer {
+    font-family: 'Times New Roman', Times, serif;
     width: 21cm;
     min-height: 29.7cm;
     padding: 40px;
