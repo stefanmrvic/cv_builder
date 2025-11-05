@@ -4,7 +4,9 @@ import Interests from './Interests.jsx'
 
 import styles from './SkillsToolsInterests.module.css'
 
-export default function SkillsToolsInterests() {
+export default function SkillsToolsInterests({cvData}) {
+    if (!cvData.skillsToolsInterests) return null;
+
     return (
         <div className='sectionBottomMargin'>
             <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>

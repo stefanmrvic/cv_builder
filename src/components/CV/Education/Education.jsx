@@ -3,8 +3,12 @@ import EducationItem from './EducationItem.jsx'
 import styles from './Education.module.css';
 
 export default function Education({cvData}) {
+    // Exits if there are no items in education object
+    if (!cvData.education) return null;
+
     const visibleEducationItems = cvData.education.filter(item => item.isVisible);
-    // Early exit if there no education items, meaning that it will remove EDUCATION headline as well
+
+    // Exits if there are no visible education items
     if (visibleEducationItems.length === 0) return null;
 
     return (

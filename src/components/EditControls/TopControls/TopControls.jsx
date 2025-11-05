@@ -13,13 +13,9 @@ export default function TopControls({cvData, setCVData}) {
                 location: '', 
                 linkedin: ''
             },
-            workExperience: [],
-            skillsToolsInterests: {
-                skills: '',
-                tools: '',
-                interests: ''
-            },
-            education: []
+            workExperience: null,
+            skillsToolsInterests: null,
+            education: null
         }
 
         setCVData(draft => {
