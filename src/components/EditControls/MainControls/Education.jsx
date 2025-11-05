@@ -93,7 +93,6 @@ export default function Education({data, setCVData}) {
                 // hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
-                    {console.log(data)}
                     {data.map(item => {
                         return  <EducationItem 
                             key={item.id}

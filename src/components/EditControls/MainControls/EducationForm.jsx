@@ -7,10 +7,12 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
         setCVData(draft => {
             const itemIndex = draft.education.findIndex(item => item.id === formData.id);
             
-            if (!itemIndex) throw new Error('Item not found!');
+            if (itemIndex === undefined) throw new Error('Item not found!');
 
             draft.education.splice(itemIndex, 1);
         });
+
+        setIsFormOpen(false);
     }
 
     const revertChanges = () => {
