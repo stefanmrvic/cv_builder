@@ -1,6 +1,6 @@
 import ExperienceItem from './ExperienceItem.jsx';
 
-import styles from './MainControls.module.css';
+import styles from '../MainControls.module.css';
 
 export default function ExperienceList({className, onClick, ref}) {
     return (

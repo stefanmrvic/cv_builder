@@ -1,6 +1,6 @@
-import PersonalDetails from './PersonalDetails.jsx';
-import Education from './Education.jsx';
-import Experience from './Experience.jsx'
+import PersonalDetails from './PersonalDetails/PersonalDetails.jsx';
+import Education from './Education/Education.jsx';
+import Experience from './Experience/Experience.jsx'
 
 import styles from './MainControls.module.css';
 

@@ -1,4 +1,4 @@
-import styles from './MainControls.module.css'
+import styles from '../MainControls.module.css'
 
 export default function ExperienceForm({onClick}) {
     return (

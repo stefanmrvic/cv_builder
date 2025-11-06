@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import EducationItem from './EducationItem.jsx';
 import EducationForm from './EducationForm.jsx';
 
-import styles from './MainControls.module.css';
+import styles from '../MainControls.module.css';
 
 export default function Education({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -24,7 +24,6 @@ export default function Education({data, setCVData}) {
     const toggleCollapsing = () => {
         arrowDownRef.current.classList.toggle(`${styles.active}`);
 
-        if (isFormOpen) setIsFormOpen(!isFormOpen);
         if (isExpanded) handleCloseAnimation();
 
         setIsExpanded(!isExpanded);
@@ -76,7 +75,7 @@ export default function Education({data, setCVData}) {
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
 
-            {isFormOpen &&
+            {(isExpanded && isFormOpen) && (
                 <EducationForm 
                     isNew={isNew}
                     setIsNew={setIsNew}
@@ -87,9 +86,9 @@ export default function Education({data, setCVData}) {
                     data={data} 
                     setCVData={setCVData} 
                 />
-            }
+            )}
 
-            {isExpanded &&
+            {isExpanded && (
                 // hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
@@ -110,14 +109,14 @@ export default function Education({data, setCVData}) {
                     <div className={styles.addBtnContainer}>
                         <button 
                             className={`${styles.addBtn} ${styles.btn}`} 
-                            onClick={() => { handleAddBtnClick() }}
+                            onClick={handleAddBtnClick}
                         >
                             <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Education</span>
                         </button>
                     </div>
                 </div>
-            }
+            )}
         </div>
     )
 }

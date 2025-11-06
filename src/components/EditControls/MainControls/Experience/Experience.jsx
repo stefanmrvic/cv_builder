@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import ExperienceList from './ExperienceList.jsx';
 import ExperienceForm from './ExperienceForm.jsx';
 
-import styles from './MainControls.module.css';
+import styles from '../MainControls.module.css';
 
 export default function Experience() {
     const [isExpanded, setIsExpanded] = useState(false);

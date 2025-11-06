@@ -1,4 +1,4 @@
-import styles from './MainControls.module.css';
+import styles from '../MainControls.module.css';
 
 export default function EducationItem({itemID, isVisible,setCVData, onClick, education}) {
     const handleDeleteItem = (e) => {
