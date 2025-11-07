@@ -30,7 +30,7 @@ export default function Company({itemID, isVisible, setCVData, onClick, company}
     }
 
     return (
-        <a  onClick={onClick} className={`${styles.btn} ${styles.company}`}>
+        <a onClick={onClick} className={`${styles.btn} ${styles.company}`}>
             <span className={styles.btnText}>{company}</span>
             <div className={styles.companyBtnContainer}>
                 <button onClick={handleDeleteItem}>

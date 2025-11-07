@@ -176,6 +176,7 @@ span.formBtnDeleteIcon {
     font-weight: bold;
 }
 
+.companyBtnContainer,
 .educationBtnContainer {
     display: flex;
     align-items: center;
