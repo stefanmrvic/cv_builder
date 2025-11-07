@@ -68,7 +68,7 @@ export default function Experience({data, setCVData}) {
     return (
         <div className={styles.experienceContainer}>
             <button className={`${styles.toggleBtn} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
-                <span className={`${styles.btnIcon} material-symbols-outlined`}>school</span>
+                <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
                 <span className={styles.experienceHeadline}>Experience</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
