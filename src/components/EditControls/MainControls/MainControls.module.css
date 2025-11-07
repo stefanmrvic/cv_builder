@@ -93,6 +93,8 @@
         height: 90px;
     }
 
+    textarea:focus,
+    textarea:focus-visible,
     input:focus,
     input:focus-visible {
         border-color: #3b83f6;
@@ -111,6 +113,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 20px;
+}
+
+.formGroupCompany {
+    display: flex;
     gap: 20px;
 }
 

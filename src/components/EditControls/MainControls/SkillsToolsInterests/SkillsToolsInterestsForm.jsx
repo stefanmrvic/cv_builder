@@ -1,15 +1,15 @@
 import styles from '../MainControls.module.css'
 
-export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData, data, setCVData}) {
+export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData, data, setCVData}) {
     const handleDeleteItem = () => {
         if (!formData.id) throw new Error('formData.id is undefined!');
 
         setCVData(draft => {
-            const itemIndex = draft.workExperience.findIndex(item => item.id === formData.id);
+            const itemIndex = draft.education.findIndex(item => item.id === formData.id);
             
             if (itemIndex === undefined) throw new Error('Item not found!');
 
-            draft.workExperience.splice(itemIndex, 1);
+            draft.education.splice(itemIndex, 1);
         });
 
         setIsFormOpen(false);
@@ -19,13 +19,13 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
         if (!formData.id) throw new Error('formData.id is undefined!');
         
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.education.find(item => item.id === formData.id);
 
             if (!item) throw new Error('Item not found!');
 
             if (isNew) {
-                const itemIndex = draft.workExperience.findIndex(item => item.id === formData.id);
-                draft.workExperience.splice(itemIndex, 1);
+                const itemIndex = draft.education.findIndex(item => item.id === formData.id);
+                draft.education.splice(itemIndex, 1);
             } else {
                 item.isVisibile = formData.isVisibile;
                 item.schoolName = formData.schoolName;
@@ -41,7 +41,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleSchoolName = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.education.find(item => item.id === formData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -51,7 +51,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleGraduationDate = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.education.find(item => item.id === formData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -61,7 +61,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleQualification = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.education.find(item => item.id === formData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -71,7 +71,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleSchoolLocation = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.education.find(item => item.id === formData.id);
 
             if (!item) throw new Error('Item not found!');
 

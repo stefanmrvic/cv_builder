@@ -88,10 +88,10 @@ export default function Education({data, setCVData}) {
                 />
             )}
 
-            {/* It doesn't render conditionally container div on purpose with checks (isExpanded && !isFormOpen) to avoid jumping 
-                of Education items when form opens / closes. Insteads, it only checks if Education menu has been expanded. */}
+            {/* It purposely doesn't render div container conditionally with checks (isExpanded && !isFormOpen) to avoid jumping 
+                of Education items when form opens / closes. Instead, it only checks if Education menu has been expanded. */}
             {isExpanded && (
-                // hides the button elements if the form is opened
+                // Hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
                     {data?.map(item => {

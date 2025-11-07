@@ -1,16 +1,16 @@
-import ExperienceItem from './ExperienceItem.jsx';
+import Company from './Company.jsx';
 
 import styles from '../MainControls.module.css';
 
 export default function ExperienceList({className, onClick, ref}) {
     return (
         <div className={`${className} ${styles.btnContainer}`} ref={ref}>
-                <ExperienceItem 
+                <Company 
                     onClick={onClick}
-                    experience='Netflix' />
-                <ExperienceItem 
+                    company='Netflix' />
+                <Company 
                     onClick={onClick}
-                    experience='Black Mesa Labs' />
+                    company='Black Mesa Labs' />
 
                 <div className={styles.addBtnContainer}>
                     <button className={`${styles.addBtn} ${styles.btn}`} onClick={onClick}>
