@@ -1,6 +1,6 @@
 import styles from './Education.module.css';
 
-export default function EducationItem({itemID, isVisible,setCVData, onClick, education}) {
+export default function EducationItem({itemID, isVisible, setCVData, onClick, education}) {
     const handleDeleteItem = (e) => {
         e.stopPropagation();
 

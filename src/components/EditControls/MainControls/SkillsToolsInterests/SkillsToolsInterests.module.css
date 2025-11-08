@@ -1,6 +1,3 @@
-/* ============================================
-   LAYOUT & CONTAINERS
-   ============================================ */
 .flexContainer {
     display: flex;
     flex-direction: column;
@@ -17,9 +14,6 @@
     font-weight: bold;
 }
 
-/* ============================================
-   TOGGLE & COLLAPSE
-   ============================================ */
 /* Selects arrow up on the right side of the "Education" button toggler */
 .arrowDown {
     margin-left: auto;
@@ -30,9 +24,6 @@
     transform: rotate(180deg);
 }
 
-/* ============================================
-   EDUCATION ITEM
-   ============================================ */
 .educationItem {
     background-color: var(--secondary-bg-color);
     cursor: pointer;
@@ -60,9 +51,16 @@
     animation: slideUp .25s forwards;
 }
 
-/* ============================================
-   BUTTONS & ACTIONS
-   ============================================ */
+@keyframes slideDown {
+    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
+    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
+    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
+}
+
 .btn {
     display: flex;
     justify-content: space-between;
@@ -115,9 +113,6 @@ span.addBtnIcon {
     margin-bottom: -5px;
 }
 
-/* ============================================
-   ICONS
-   ============================================ */
 span.btnIcon {
     font-size: 28px;
     font-variation-settings:
@@ -141,9 +136,7 @@ span.addBtnIcon {
     margin-right: 7px;
 }
 
-/* ============================================
-   FORM STYLES
-   ============================================ */
+/* Form for adding Education Start */
 .formContainer {
     padding: 22px 18px;
     border-radius: 0 0 12px 12px;
@@ -203,9 +196,6 @@ span.addBtnIcon {
     gap: 20px;
 }
 
-/* ============================================
-   FORM BUTTONS
-   ============================================ */
 .formBtnDelete {
     font-size: 13.3px;
     color: grey;
@@ -244,16 +234,4 @@ span.formBtnDeleteIcon {
     font-weight: bold;
     padding: 8px 16px;
 }
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-@keyframes slideDown {
-    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
-}
-
-@keyframes slideUp {
-    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
-    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-}
+/* Form for adding Education End */

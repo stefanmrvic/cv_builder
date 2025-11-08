@@ -35,12 +35,11 @@ export default function Company({itemID, isVisible, data, setCVData, setIsExperi
 
        setCVData(draft => {
             const item = draft.workExperience.find(item => item.id === itemID);
-
+            
             if (!item) throw new Error('Item not found!');
-
-            item.isVisibile = !item.isVisibile;
+            
+            item.isVisible = !item.isVisible;
        })
-       
     }
 
     const handleEdit = (e) => {
@@ -57,16 +56,16 @@ export default function Company({itemID, isVisible, data, setCVData, setIsExperi
         <a onClick={onClick} className={`${styles.btn} ${styles.company}`}>
             <span className={styles.btnText}>{company}</span>
             <div className={styles.companyBtnContainer}>
-                <button onClick={handleDelete}>
+                <button className={styles.deleteBtn} onClick={handleDelete}>
                     <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
-                <button onClick={handleVisibility}>
+                <button className={styles.visibilityBtn} onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                         {isVisible ? 'visibility' : 'visibility_off'}
                     </span>
                 </button>
-                <button onClick={handleEdit}>
-                    <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>edit_square</span>
+                <button className={styles.editBtn} onClick={handleEdit}>
+                    <span className={`${styles.editBtnIcon} material-symbols-outlined`}>edit_square</span>
                 </button>
             </div>
         </a>

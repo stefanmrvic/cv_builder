@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import EducationItem from './SkillsToolsInterestsItem.jsx';
 import EducationForm from './SkillsToolsInterestsForm.jsx';
 
-import styles from '../MainControls.module.css';
+import styles from './SkillsToolsInterests.module.css';
 
 export default function Education({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);

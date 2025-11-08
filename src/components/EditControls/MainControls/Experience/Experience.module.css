@@ -1,3 +1,6 @@
+/* ============================================
+   LAYOUT & CONTAINERS
+   ============================================ */
 .flexContainer {
     display: flex;
     flex-direction: column;
@@ -14,10 +17,11 @@
     font-weight: bold;
 }
 
-/* Company Component Styling Start */
+/* ============================================
+   COMPANY ITEMS
+   ============================================ */
 .company {
     background-color: var(--secondary-bg-color);
-    cursor: pointer;
 }
 
 .companyBtnContainer {
@@ -25,9 +29,11 @@
     align-items: center;
     padding: 10px;
 }
-/* Company Component Styling End */
 
-/* Selects arrow up on the right side of the "Education" button toggler */
+/* ============================================
+   TOGGLE & COLLAPSE
+   ============================================ */
+/* Selects arrow up on the right side of the "Experience" button toggler */
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
@@ -53,16 +59,9 @@
     animation: slideUp .25s forwards;
 }
 
-@keyframes slideDown {
-    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
-}
-
-@keyframes slideUp {
-    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
-    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-}
-
+/* ============================================
+   BUTTONS & ACTIONS
+   ============================================ */
 .btn {
     display: flex;
     justify-content: space-between;
@@ -115,6 +114,9 @@ span.addBtnIcon {
     margin-bottom: -5px;
 }
 
+/* ============================================
+   ICONS
+   ============================================ */
 span.btnIcon {
     font-size: 28px;
     font-variation-settings:
@@ -127,9 +129,23 @@ span.deleteBtnIcon {
     font-size: 21px;
 }
 
+.visibilityBtn {
+    margin-bottom: -3px;
+}
+
 span.visibilityBtnIcon {
     color: rgb(46, 46, 46);
     font-size: 23px;
+    margin-left: 5px;
+}
+
+.editBtn {
+    margin-bottom: -3px;
+}
+
+span.editBtnIcon {
+    color: rgb(46, 46, 46);
+    font-size: 22px;
     margin-left: 5px;
 }
 
@@ -138,7 +154,9 @@ span.addBtnIcon {
     margin-right: 7px;
 }
 
-/* Form for adding Experience Start */
+/* ============================================
+   FORM STYLES
+   ============================================ */
 .formContainer {
     padding: 22px 18px;
     border-radius: 0 0 12px 12px;
@@ -198,6 +216,9 @@ span.addBtnIcon {
     gap: 20px;
 }
 
+/* ============================================
+   FORM BUTTONS
+   ============================================ */
 .formBtnDelete {
     font-size: 13.3px;
     color: grey;
@@ -236,4 +257,16 @@ span.formBtnDeleteIcon {
     font-weight: bold;
     padding: 8px 16px;
 }
-/* Form for adding Experience End */
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes slideDown {
+    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
+    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
+    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
+}
