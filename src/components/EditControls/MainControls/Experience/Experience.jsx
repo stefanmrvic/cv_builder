@@ -3,13 +3,14 @@ import { useState, useRef } from 'react';
 import Company from './Company.jsx';
 import ExperienceForm from './ExperienceForm.jsx';
 
-import styles from '../MainControls.module.css';
+import styles from './Experience.module.css';
 
 export default function Experience({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
+    const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
     const [isNew, setIsNew] = useState(false)
-    const [formData, setFormData] = useState({
+    const [experienceFormData, setExperienceFormData] = useState({
         id: '',
         isVisible: '',
         companyName: '',
@@ -22,30 +23,14 @@ export default function Experience({data, setCVData}) {
 
     const toggleCollapsing = () => {
         arrowDownRef.current.classList.toggle(`${styles.active}`);
-
+        
         if (isExpanded) handleCloseAnimation();
-
         setIsExpanded(!isExpanded);
     }
 
     const handleCloseAnimation = () => {
         btnContainerRef.current.setAttribute("class", `${styles.btnContainer} ${styles.closing}`)
         btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
-    }
-
-    const populateForm = (id) => {
-        const item = data.find(item => item.id === id)
-
-        if (!item) return;
-
-        setFormData({
-            id: item.id,
-            isVisible: item.isVisibile,
-            schoolName: item.schoolName,
-            graduationDate: item.graduationDate,
-            qualification: item.qualification,
-            schoolLocation: item.schoolLocation
-        })
     }
 
     const handleAddBtnClick = () => {
@@ -61,47 +46,46 @@ export default function Experience({data, setCVData}) {
         setCVData(draft => {
             draft.workExperience.push(createExperienceItem)
         })
-        setFormData(createExperienceItem);
-        setIsFormOpen(true);
+        setExperienceFormData(createExperienceItem);
+        setIsExperienceFormOpen(true);
     }
 
     return (
         <div className={styles.experienceContainer}>
-            <button className={`${styles.toggleBtn} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+            <button className={`${styles.toggleBtn} ${isExperienceFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
                 <span className={styles.experienceHeadline}>Experience</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
 
-            {(isExpanded && isFormOpen) && (
+            {(isExpanded && isExperienceFormOpen) && (
                 <ExperienceForm 
                     isNew={isNew}
                     setIsNew={setIsNew}
-                    isFormOpen={isFormOpen}
-                    setIsFormOpen={setIsFormOpen}
-                    formData={formData} 
-                    setFormData={setFormData} 
+                    isExperienceFormOpen={isExperienceFormOpen}
+                    setIsExperienceFormOpen={setIsExperienceFormOpen}
+                    experienceFormData={experienceFormData} 
+                    setExperienceFormData={setExperienceFormData} 
                     data={data} 
                     setCVData={setCVData} 
                 />
             )}
 
-            {/* It purposely doesn't render div container conditionally with checks (isExpanded && !isFormOpen) to avoid jumping 
+            {/* It purposely doesn't render div container conditionally with checks (isExpanded && !isExperienceFormOpen) to avoid jumping 
                 of Experience items when form opens / closes. Instead, it only checks if Experience menu has been expanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
-                <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
+                <div className={`${styles.btnContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
                     {data?.map(item => {
                         return  <Company 
                             key={item.id}
                             itemID={item.id}
                             isVisible={item.isVisible}
-                            onClick={() => {
-                                populateForm(item.id)
-                                setIsFormOpen(true)}
-                            }
+                            data={data}
                             setCVData={setCVData}
+                            setExperienceFormData={setExperienceFormData}
+                            setIsExperienceFormOpen={setIsExperienceFormOpen}
                             company={item.companyName}
                         />
                     })}

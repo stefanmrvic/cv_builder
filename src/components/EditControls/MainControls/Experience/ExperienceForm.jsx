@@ -1,47 +1,45 @@
-import styles from '../MainControls.module.css'
+import Position from './Position.jsx';
 
-export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData, data, setCVData}) {
+import styles from './Experience.module.css';
+
+export default function ExperienceForm({isNew, setIsNew, setIsExperienceFormOpen, experienceFormData, data, setCVData}) {
     const handleDeleteItem = () => {
-        if (!formData.id) throw new Error('formData.id is undefined!');
+        if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
 
         setCVData(draft => {
-            const itemIndex = draft.workExperience.findIndex(item => item.id === formData.id);
+            const itemIndex = draft.workExperience.findIndex(item => item.id === experienceFormData.id);
             
             if (itemIndex === undefined) throw new Error('Item not found!');
 
             draft.workExperience.splice(itemIndex, 1);
         });
 
-        setIsFormOpen(false);
+        setIsExperienceFormOpen(false);
     }
 
     const revertChanges = () => {
-        if (!formData.id) throw new Error('formData.id is undefined!');
+        if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
         
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
 
             if (!item) throw new Error('Item not found!');
 
             if (isNew) {
-                const itemIndex = draft.workExperience.findIndex(item => item.id === formData.id);
+                const itemIndex = draft.workExperience.findIndex(item => item.id === experienceFormData.id);
                 draft.workExperience.splice(itemIndex, 1);
             } else {
-                item.isVisibile = formData.isVisibile;
-                item.schoolName = formData.schoolName;
-                item.graduationDate = formData.graduationDate;
-                item.qualification = formData.qualification;
-                item.schoolLocation = formData.schoolLocation;
+                console.log('kurcinaa')
             }
         });
 
         setIsNew(false);  
-        setIsFormOpen(false);
+        setIsExperienceFormOpen(false);
     }
 
     const handleSchoolName = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -51,7 +49,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleGraduationDate = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -61,7 +59,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleQualification = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -71,7 +69,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
 
     const handleSchoolLocation = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === formData.id);
+            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
 
             if (!item) throw new Error('Item not found!');
 
@@ -82,33 +80,25 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setIsFormOpen(false);
+        setIsExperienceFormOpen(false);
     }
 
-    const item = data.find(item => item.id === formData.id);
+    const item = data.find(item => item.id === experienceFormData.id);
 
     return (
         <div className={styles.formContainer}>
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
-                    <label htmlFor="school">School</label>
-                    <input type="text" name="school" id="school" onChange={handleSchoolName} value={item?.schoolName || ''} placeholder="Enter School / University" />
-                </div>
-
-                <div className={styles.formGroup}>
-                    <label htmlFor="degree">Degree</label>
-                    <input type="text" name="degree" id="degree" onChange={handleQualification} value={item?.qualification || ''} placeholder="Enter Degree / Field of study" />
-                </div>
-                                
-                <div className={styles.formGroup}>
-                    <label htmlFor="graduationDate">Graduation Date</label>
-                    <input type="text" name="graduationDate" id="graduationDate" onChange={handleGraduationDate} value={item?.graduationDate || ''} placeholder="Enter Graduation Date" />
-                </div>
+                    <label htmlFor="company">Company Name</label>
+                    <input type="text" name="company" id="company" placeholder="Enter Company Name" />
+                </div>              
 
                 <div className={styles.formGroup}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" name="location" id="location" onChange={handleSchoolLocation} value={item?.schoolLocation || ''} placeholder="Enter Location" />
+                    <input type="text" name="location" id="location" placeholder="Enter Location" />
                 </div>
+
+                <Position />
 
             </form>
                 <div className={styles.formBtnContainer}>
@@ -117,7 +107,7 @@ export default function ExperienceForm({isNew, setIsNew, setIsFormOpen, formData
                         <span>Delete</span>
                     </button>
                     <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
-                    <button className={styles.formBtnSave} onClick={() => setIsFormOpen(false)}>Save</button>
+                    <button className={styles.formBtnSave} onClick={() => setIsExperienceFormOpen(false)}>Save</button>
                 </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import styles from '../MainControls.module.css';
+import styles from './PersonalDetails.module.css';
 
 export default function PersonalDetails({data, setCVData}) {
     const handleNameChange = (e) => {

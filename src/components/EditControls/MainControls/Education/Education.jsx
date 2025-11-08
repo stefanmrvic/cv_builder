@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import EducationItem from './EducationItem.jsx';
 import EducationForm from './EducationForm.jsx';
 
-import styles from '../MainControls.module.css';
+import styles from './Education.module.css';
 
 export default function Education({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
