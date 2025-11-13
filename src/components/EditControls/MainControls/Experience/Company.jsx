@@ -8,7 +8,7 @@ export default function Company({itemID, isVisible, data, setCVData, setIsExperi
 
         setExperienceFormData({
             id: item.id,
-            isVisible: item.isVisibile,
+            isVisible: item.isVisible,
             companyName: item.companyName,
             location: item.location,
             positions: item.positions
