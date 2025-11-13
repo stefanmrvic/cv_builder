@@ -7,7 +7,7 @@ export default function Company({data}) {
         <div className={styles.companyContainer}>
             {data.positions.map((position, index) => (
                 <Position 
-                    key={index}
+                    key={position.id}
                     isFirst={index === 0 ? true : false} 
                     companyName={data.companyName}
                     location={data.location}

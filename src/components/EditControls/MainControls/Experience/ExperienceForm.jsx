@@ -29,7 +29,11 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
                 const itemIndex = draft.workExperience.findIndex(item => item.id === experienceFormData.id);
                 draft.workExperience.splice(itemIndex, 1);
             } else {
-                console.log('kurcinaa')
+                item.id = experienceFormData.id;
+                item.isVisible = experienceFormData.isVisible;
+                item.companyName = experienceFormData.companyName;
+                item.location = experienceFormData.location;
+                item.positions = experienceFormData.positions;
             }
         });
 
