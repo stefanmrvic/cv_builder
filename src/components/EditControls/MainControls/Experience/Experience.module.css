@@ -202,6 +202,7 @@ span.addBtnIcon {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .formGroupCompany {
@@ -232,6 +233,7 @@ span.addBtnIcon {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .positionFormGroup > label {
@@ -271,7 +273,6 @@ span.addBtnIcon {
 .positionFormGroupDate {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 24px;
 }
@@ -291,6 +292,8 @@ span.addBtnIcon {
 .currentlyEmployed {
     display: flex;
     align-items: center;
+    margin-top: 14px;
+    margin-left: 1px;
 }
 
 .currentlyEmployed .checkbox {

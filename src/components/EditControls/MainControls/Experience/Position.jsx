@@ -4,24 +4,40 @@ import Responsibility from './Responsibility.jsx';
 
 import styles from './Experience.module.css';
 
-export default function Position({itemID, data, index = 1}) {
+export default function Position({data, setCVData, index, companyID}) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
+
+    const handleDelete = (e) => {
+        e.stopPropagation(); 
+
+        if (!data.id) throw new Error('experienceFormData.id is undefined!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === -1) throw new Error('Company not found!');
+
+            const positionIndex = company.positions.findIndex(position => position.id === data.id);
+            if (positionIndex === -1) throw new Error('Position index not found!');
+
+            company.positions.splice(positionIndex, 1);
+        });
+    }
 
     const handleVisibility = (e) => {
         e.stopPropagation();
-
-        if (!itemID) throw new Error('itemID is undefined!');
+        
+        if (isExpanded) setIsExpanded(!isExpanded);
+        
+        if (!data.id) throw new Error('data.id is undefined!');
 
        setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === itemID);
+            const company = draft.workExperience.find(company => company.id === companyID);
+            const position = company.positions.find(position => position.id === data.id)
             
-            if (!item) throw new Error('Item not found!');
+            if (!position) throw new Error('position not found!');
             
-            item.isVisible = !item.isVisible;
+            position.isVisible = !position.isVisible;
        })
-
-       setIsVisible(!isVisible);
     }
 
     const handlePositionTitle = (e) => {
@@ -36,21 +52,21 @@ export default function Position({itemID, data, index = 1}) {
 
     return (
         <div className={styles.positionContainer}>
-            <div className={styles.positionHeadlineContainer} onClick={() => {setIsExpanded(!isExpanded)}}>
+            <div className={styles.positionHeadlineContainer} onClick={() => setIsExpanded(!isExpanded)}>
                 <span className={`${styles.expandArrowIcon} material-icons`}>
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                 </span>
 
-                <span className={styles.positionHeadline}>{data ? data.title : 'Position #' + index}</span>
+                <span className={styles.positionHeadline}>{data ? data.title : 'Position #' + (index +1)}</span>
 
                 <div className={styles.positionBtnContainer}>
-                    <button className={styles.deleteBtn} >
+                    <button className={styles.deleteBtn} onClick={handleDelete}>
                         <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                     </button>
 
                     <button className={styles.visibilityBtn} onClick={handleVisibility}>
                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
-                            {isVisible ? 'visibility' : 'visibility_off'}
+                            {data.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
                     </button>
                 </div>
@@ -81,7 +97,7 @@ export default function Position({itemID, data, index = 1}) {
                         <h3 className={styles.responsibilitiesHeadline}>Responsibilities</h3>
                         
                         {data.responsibilities?.map((responsibility, index) => (
-                            <Responsibility key={index} index={index} data={responsibility} />
+                            <Responsibility key={responsibility.id} index={index} data={responsibility} />
                         ))}
                     </div>
                 </div>

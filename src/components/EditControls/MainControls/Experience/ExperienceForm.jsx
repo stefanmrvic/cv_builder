@@ -3,13 +3,13 @@ import Position from './Position.jsx';
 import styles from './Experience.module.css';
 
 export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsExperienceFormOpen, experienceFormData}) {
-    const handleDeleteItem = () => {
+    const handleDelete = () => {
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
 
         setCVData(draft => {
-            const itemIndex = draft.workExperience.findIndex(item => item.id === experienceFormData.id);
+            const itemIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
             
-            if (itemIndex === undefined) throw new Error('Item not found!');
+            if (itemIndex === undefined) throw new Error('Company not found!');
 
             draft.workExperience.splice(itemIndex, 1);
         });
@@ -21,19 +21,19 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
         
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
+            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
 
-            if (!item) throw new Error('Item not found!');
+            if (!company) throw new Error('Company not found!');
 
             if (isNew) {
-                const itemIndex = draft.workExperience.findIndex(item => item.id === experienceFormData.id);
-                draft.workExperience.splice(itemIndex, 1);
+                const companyIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
+                draft.workExperience.splice(companyIndex, 1);
             } else {
-                item.id = experienceFormData.id;
-                item.isVisible = experienceFormData.isVisible;
-                item.companyName = experienceFormData.companyName;
-                item.location = experienceFormData.location;
-                item.positions = experienceFormData.positions;
+                company.id = experienceFormData.id;
+                company.isVisible = experienceFormData.isVisible;
+                company.companyName = experienceFormData.companyName;
+                company.location = experienceFormData.location;
+                company.positions = experienceFormData.positions;
             }
         });
 
@@ -43,71 +43,75 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
 
     const handleCompanyName = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
+            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
 
-            if (!item) throw new Error('Item not found!');
+            if (!company) throw new Error('Company not found!');
 
-            item.companyName = e.target.value;
+            company.companyName = e.target.value;
         });
     }
 
     const handleLocation = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
+            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
 
-            if (!item) throw new Error('Item not found!');
+            if (!company) throw new Error('Company not found!');
 
-            item.location = e.target.value;
+            company.location = e.target.value;
         });
     }
 
     const handleQualification = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
+            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
 
-            if (!item) throw new Error('Item not found!');
+            if (!company) throw new Error('Company not found!');
 
-            item.qualification = e.target.value;
+            company.qualification = e.target.value;
         });
     }
 
     const handleSchoolLocation = (e) => {
         setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === experienceFormData.id);
+            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
 
-            if (!item) throw new Error('Item not found!');
+            if (!company) throw new Error('Company not found!');
 
-            item.schoolLocation = e.target.value;
+            company.schoolLocation = e.target.value;
         });
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        setIsExperienceFormOpen(false);
     }
 
-    const item = data.find(item => item.id === experienceFormData.id);
+    const company = data.find(company => company.id === experienceFormData.id);
 
     return (
         <div className={styles.formContainer}>
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
-                    <input type="text" name="company" id="company" value={item.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" />
+                    <input type="text" name="company" id="company" value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" />
                 </div>              
 
-                <div className={styles.formGroup}>
+                <div className={`${styles.formGroup} ${styles.location}`}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" name="location" id="location" value={item.location} onChange={handleLocation} placeholder="Enter Location" />
+                    <input type="text" name="location" id="location" value={company.location} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
 
                 {/* Render empty position field if no positions exist */}
                 {!experienceFormData.positions && <Position />}
 
                 {/* Render each position in the company */}
-                {experienceFormData.positions?.map(position => (
-                    <Position key={position.id} data={position} />
+                {company.positions?.map((position, index) => (
+                    <Position 
+                        key={position.id} 
+                        index={index} 
+                        data={position} 
+                        setCVData={setCVData} 
+                        companyID={experienceFormData.id} 
+                    />
                 ))}
 
                 <div className={styles.addBtnContainer}>
@@ -122,7 +126,7 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
             </form>
 
             <div className={styles.formBtnContainer}>
-                <button className={styles.formBtnDelete} onClick={handleDeleteItem}>
+                <button className={styles.formBtnDelete} onClick={handleDelete}>
                     <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
                     <span>Delete</span>
                 </button>

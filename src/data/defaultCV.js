@@ -71,7 +71,7 @@ const defaultCV = {
                 {
                     id: 'c76cbc1e-4508-418b-9bc9-55eb3e07310d',
                     isVisible: true,
-                    title: 'Software Engineer (Frontend)',
+                    title: 'Software Engineer (Front-end)',
                     startDate: 'Jun. 2021',
                     endDate: 'Mar. 2023',
                     responsibilities: [
