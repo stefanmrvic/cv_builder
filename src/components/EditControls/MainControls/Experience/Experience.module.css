@@ -177,8 +177,8 @@ span.addBtnIcon {
     textarea {
         font-size: 13.3px;
         background-color: var(--main-bg-color);
-        border: 2px solid transparent;
-        border-radius: 12px;
+        border: var(--input-border);
+        border-radius: 7px;
         padding: 10px;
         margin-bottom: 12px;
         transition: border .25s, box-shadow .25s;
@@ -204,16 +204,116 @@ span.addBtnIcon {
     width: 100%;
 }
 
-.formGroupDate {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-}
-
 .formGroupCompany {
     display: flex;
     gap: 20px;
+}
+
+/* ============================================
+   POSITION FORM STYLES
+   ============================================ */
+.positionContainer {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: var(--main-bg-color);
+    margin-bottom: 24px;
+}
+
+.positionFormContainer {
+    padding: 0 16px;
+}
+
+.positionFormContainer input,
+.positionFormContainer textarea {
+    background-color: var(--secondary-bg-color);
+}
+
+.positionFormGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.positionFormGroup > label {
+    font-size: 14px;
+}
+
+.positionFormGroupCompany {
+    display: flex;
+    gap: 20px;
+}
+
+.positionHeadlineContainer {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.positionHeadlineContainer > span.expandArrowIcon {
+    font-size: 19px;
+    margin-left: -6px;
+}
+
+.positionHeadline {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.expandArrowIcon {
+    margin-right: 5px;
+}
+
+.positionBtnContainer {
+    margin-left: auto;
+}
+
+.positionFormGroupDate {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.positionFormGroupDate .startDate,
+.positionFormGroupDate .endDate {
+    display: flex;
+    flex-direction: column;
+    min-width: 176px;
+    width: 198px;
+}
+
+.positionFormGroupDate .startDate label,
+.positionFormGroupDate .endDate label {
+    font-size: 14px;
+}
+.currentlyEmployed {
+    display: flex;
+    align-items: center;
+}
+
+.currentlyEmployed .checkbox {
+    width: 15px;
+    height: 15px;
+    margin: 0 9px 0 0;
+    cursor: pointer;
+}
+
+.currentlyEmployed .label {
+    margin-bottom: 11px;
+    color: #6b7280;
+    font-weight: 400;
+    font-family: 'Noto Sans';
+    font-size: 14px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.responsibilities {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
 /* ============================================

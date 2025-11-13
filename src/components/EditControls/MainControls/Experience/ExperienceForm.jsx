@@ -98,7 +98,11 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
                     <input type="text" name="location" id="location" value={item.location} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
 
-                {data.positions?.map(position => (
+                {/* Render empty position field if no positions exist */}
+                {!experienceFormData.positions && <Position />}
+
+                {/* Render each position in the company */}
+                {experienceFormData.positions?.map(position => (
                     <Position key={position.id} data={position} />
                 ))}
 

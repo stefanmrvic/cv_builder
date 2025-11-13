@@ -1,8 +1,10 @@
 :root {
-    --main-bg-color: #f3f4f6;
+    --main-bg-color: #fafafa;
+    /* old --main-bg-color: #f3f4f6; */
     --secondary-bg-color: #ffffff;
     --input-bg-color: rgba(14, 55, 78, .07);
-    --cv-container-box-shadow: 
+    --input-border: 1px solid #e5e7eb;
+    /* --cv-container-box-shadow: ; */
 }
 
 i {

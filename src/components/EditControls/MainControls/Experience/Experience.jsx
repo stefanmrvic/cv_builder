@@ -60,14 +60,14 @@ export default function Experience({data, setCVData}) {
 
             {(isExpanded && isExperienceFormOpen) && (
                 <ExperienceForm 
+                    data={data} 
+                    setCVData={setCVData} 
                     isNew={isNew}
                     setIsNew={setIsNew}
                     isExperienceFormOpen={isExperienceFormOpen}
                     setIsExperienceFormOpen={setIsExperienceFormOpen}
                     experienceFormData={experienceFormData} 
                     setExperienceFormData={setExperienceFormData} 
-                    data={data} 
-                    setCVData={setCVData} 
                 />
             )}
 
@@ -77,8 +77,8 @@ export default function Experience({data, setCVData}) {
                 // Hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
-                    {data?.map(item => {
-                        return  <Company 
+                    {data?.map(item => (
+                        <Company 
                             key={item.id}
                             itemID={item.id}
                             isVisible={item.isVisible}
@@ -88,7 +88,7 @@ export default function Experience({data, setCVData}) {
                             setIsExperienceFormOpen={setIsExperienceFormOpen}
                             company={item.companyName}
                         />
-                    })}
+                    ))}
 
                     <div className={styles.addBtnContainer}>
                         <button 

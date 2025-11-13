@@ -5,18 +5,19 @@ import styles from './WorkExperience.module.css';
 export default function Responsibility({responsibilities}) {
     return (
         <ul className={styles.responsibilities}>
-            {responsibilities.length > 0 && responsibilities.map((responsibility, index) => (
-                <li key={index}>
-                    <p>{responsibility.point}</p>
-                    {responsibility.subPoints && (
-                        <ul className={styles.subPoints}>
-                            {responsibility.subPoints.map((subPoint, index) => (
-                                <li key={index}>{subPoint}</li>
-                            ))}
-                        </ul>
-                    )}
-                </li>
-            ))}
+            {responsibilities.length > 0 && (
+                responsibilities.map(responsibility => (
+                    <li key={responsibility.id}>
+                        <p>{responsibility.point}</p>
+                            {responsibility.subPoints.length > 0 && (
+                                <ul className={styles.subPoints}>
+                                    {responsibility.subPoints.map(subResponsibility => (
+                                        <li key={subResponsibility.id}>{subResponsibility.subPoint}</li>
+                                    ))}
+                                </ul>
+                            )}
+                    </li>
+            )))}
         </ul>
     )
 }
