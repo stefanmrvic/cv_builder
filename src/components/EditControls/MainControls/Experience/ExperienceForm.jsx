@@ -95,7 +95,7 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
                     <input type="text" name="company" id="company" value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" />
                 </div>              
 
-                <div className={`${styles.formGroup} ${styles.location}`}>
+                <div className={styles.formGroup}>
                     <label htmlFor="location">Location</label>
                     <input type="text" name="location" id="location" value={company.location} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
@@ -114,13 +114,10 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
                     />
                 ))}
 
-                <div className={styles.addBtnContainer}>
-                    <button 
-                        className={`${styles.addBtn} ${styles.btn}`} 
-                        // place for onClick={onClick handler}
-                    >
-                        <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
-                        <span>Position</span>
+                <div className={styles.addPositionBtnContainer}>
+                    <button className={styles.addPositionBtn}>
+                        <span className={`${styles.addPositionBtnIcon} material-symbols-outlined`}>add</span>
+                        <span>Add Position</span>
                     </button>
                 </div>
             </form>

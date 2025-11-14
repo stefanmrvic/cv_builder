@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Responsibility from './Responsibility.jsx';
+import Point from './Point.jsx';
 
 import styles from './Experience.module.css';
 
@@ -93,12 +93,24 @@ export default function Position({data, setCVData, index, companyID}) {
                         </div>
                     </div>
 
-                    <div className="responsibilitiesContainer">
+                    <div className={styles.responsibilitiesContainer}>
                         <h3 className={styles.responsibilitiesHeadline}>Responsibilities</h3>
                         
-                        {data.responsibilities?.map((responsibility, index) => (
-                            <Responsibility key={responsibility.id} index={index} data={responsibility} />
+                        {data.responsibilities?.map((point, index) => (
+                            <Point 
+                                key={point.id} 
+                                index={index} 
+                                data={point}
+                                setCVData={setCVData} 
+                            />
                         ))}
+                    </div>
+
+                    <div className={styles.addPointBtnContainer}>
+                        <button className={styles.addPointBtn}>
+                            <span className={`${styles.addPointBtnIcon} material-symbols-outlined`}>add</span>
+                            <span>Add Point</span>
+                        </button>
                     </div>
                 </div>
             )}
