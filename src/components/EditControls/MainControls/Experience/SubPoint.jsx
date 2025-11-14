@@ -36,30 +36,30 @@ export default function SubPoint({data, index}) {
     return (
         <div className={styles.responsibilitiesFormContainer}>
             <div className={styles.responsibilitiesFormGroup}>
-                <div className={styles.positionContainer}>
-                            <div className={styles.positionHeadlineContainer} onClick={() => {setIsExpanded(!isExpanded)}}>
+                <div className={styles.subPointContainer}>
+                            <div className={styles.subPointHeadlineContainer} onClick={() => {setIsExpanded(!isExpanded)}}>
                                 <span className={`${styles.expandArrowIcon} material-icons`}>
                                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                                 </span>
                 
-                                <span className={styles.positionHeadline}>{'Sub-Point #' + (index +1)}</span>
+                                <span className={styles.subPointHeadline}>{'Sub-Point #' + (index +1)}</span>
                 
-                                <div className={styles.pointBtnContainer}>
-                                    <button className={styles.deleteBtn} >
-                                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                                    </button>
-                
+                                <div className={styles.subPointBtnContainer}>
                                     <button className={styles.visibilityBtn} >
                                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                                             {isVisible ? 'visibility' : 'visibility_off'}
                                         </span>
                                     </button>
+
+                                    <button className={styles.deleteBtn} >
+                                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
+                                    </button>
                                 </div>
                             </div>
                 
                             {isExpanded && (
-                                <div className={styles.pointFormContainer}>
-                                    <div className={styles.pointFormGroup}>
+                                <div className={styles.subPointFormContainer}>
+                                    <div className={styles.subPointFormGroup}>
                                         <label htmlFor="sub-point">Description</label>
                                         <input type="text" name="sub-point" id="sub-point" value={data?.subPoint || ''} onChange={handleDescription} placeholder="Enter sub-point description..." />
                                     </div>

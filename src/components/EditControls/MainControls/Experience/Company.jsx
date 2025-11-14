@@ -56,14 +56,16 @@ export default function Company({itemID, isVisible, data, setCVData, setIsExperi
         <a onClick={onClick} className={`${styles.btn} ${styles.company}`}>
             <span className={styles.btnText}>{company}</span>
             <div className={styles.companyBtnContainer}>
-                <button className={styles.deleteBtn} onClick={handleDelete}>
-                    <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                </button>
                 <button className={styles.visibilityBtn} onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                         {isVisible ? 'visibility' : 'visibility_off'}
                     </span>
                 </button>
+
+                <button className={styles.deleteBtn} onClick={handleDelete}>
+                    <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
+                </button>
+
                 <button className={styles.editBtn} onClick={handleEdit}>
                     <span className={`${styles.editBtnIcon} material-symbols-outlined`}>edit_square</span>
                 </button>

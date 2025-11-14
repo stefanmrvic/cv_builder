@@ -4,7 +4,7 @@ import SubPoint from './SubPoint.jsx';
 
 import styles from './Experience.module.css';
 
-export default function Point({data, setCVData, index}) {
+export default function Point({data, setCVData, index, companyID, positionID}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
 
@@ -15,12 +15,15 @@ export default function Point({data, setCVData, index}) {
 
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
-            if (company === -1) throw new Error('Company not found!');
+            if (company === undefined) throw new Error('Company not found!');
 
-            const positionIndex = company.positions.findIndex(position => position.id === data.id);
-            if (positionIndex === -1) throw new Error('Position index not found!');
+            const position = company.positions.find(position => position.id === positionID);
+            if (position === undefined) throw new Error('Position  not found!');     
 
-            company.positions.splice(positionIndex, 1);
+            const pointIndex = position.responsibilities.findIndex(point => point.id === data.id);
+            if (pointIndex === -1) throw new Error('Point index not found!');
+
+            position.responsibilities.splice(pointIndex, 1);
         });
     }
 
@@ -28,17 +31,23 @@ export default function Point({data, setCVData, index}) {
         e.stopPropagation();
         
         if (isExpanded) setIsExpanded(!isExpanded);
-        
-        if (!data.id) throw new Error('data.id is undefined!');
 
-       setCVData(draft => {
+        if (!data.id) throw new Error('experienceFormData.id is undefined!');
+
+        setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
-            const position = company.positions.find(position => position.id === data.id)
-            
-            if (!position) throw new Error('position not found!');
-            
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === positionID);
+            if (position === undefined) throw new Error('Position  not found!');     
+
+            const point = position.responsibilities.find(point => point.id === data.id);
+            if (point === undefined) throw new Error('Point not found!');
+
             point.isVisible = !point.isVisible;
-       })
+        });
+        
+        setIsVisible(prevState => !prevState);
     }
 
     const handleDescription = (e) => {
@@ -58,14 +67,14 @@ export default function Point({data, setCVData, index}) {
                 <span className={styles.positionHeadline}>{'Point #' + (index +1)}</span>
 
                 <div className={styles.pointBtnContainer}>
-                    <button className={styles.deleteBtn} >
-                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                    </button>
-
-                    <button className={styles.visibilityBtn} >
+                    <button className={styles.visibilityBtn} onClick={handleVisibility}>
                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                             {isVisible ? 'visibility' : 'visibility_off'}
                         </span>
+                    </button>
+
+                    <button className={styles.deleteBtn} onClick={handleDelete}>
+                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                     </button>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import styles from './Experience.module.css';
 
 export default function Position({data, setCVData, index, companyID}) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [currentlyEmployed, setCurrentlyEmployed] = useState(false);
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -41,13 +42,61 @@ export default function Position({data, setCVData, index, companyID}) {
     }
 
     const handlePositionTitle = (e) => {
-        e.stopPropagation();
-
-        if (!data) return;
+        if (!data) throw new Error('data not found!');
 
         setCVData(draft => {
-            draft.title = e.target.value;
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === data.id);
+            if (position === undefined) throw new Error('Position index not found!');
+
+            position.title = e.target.value;
         });
+    }
+
+    const handleStartDate = (e) => {
+        if (!data) throw new Error('data not found!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === data.id);
+            if (position === undefined) throw new Error('Position index not found!');
+
+            position.startDate = e.target.value;
+        });
+    }
+
+    const handleEndDate = (e) => {
+        if (!data) throw new Error('data not found!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === data.id);
+            if (position === undefined) throw new Error('Position index not found!');
+
+            position.endDate = e.target.value;
+        });
+    }
+
+        const handleCurrentlyEmployed = (e) => {
+        if (!data) throw new Error('data not found!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === data.id);
+            if (position === undefined) throw new Error('Position index not found!');
+
+            position.currentlyEmployed = !currentlyEmployed;
+        });
+
+        setCurrentlyEmployed(prevState => !prevState);
     }
 
     return (
@@ -60,14 +109,14 @@ export default function Position({data, setCVData, index, companyID}) {
                 <span className={styles.positionHeadline}>{data ? data.title : 'Position #' + (index +1)}</span>
 
                 <div className={styles.positionBtnContainer}>
-                    <button className={styles.deleteBtn} onClick={handleDelete}>
-                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                    </button>
-
                     <button className={styles.visibilityBtn} onClick={handleVisibility}>
                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                             {data.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
+                    </button>
+
+                    <button className={styles.deleteBtn} onClick={handleDelete}>
+                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                     </button>
                 </div>
             </div>
@@ -81,14 +130,14 @@ export default function Position({data, setCVData, index, companyID}) {
                     <div className={styles.positionFormGroupDate}>
                         <div className={styles.startDate}>
                             <label htmlFor="startDate">Start Date</label>
-                            <input type="text" name="startDate" id="startDate" value={data?.startDate || ''} placeholder="Enter Start Date" />
+                            <input type="text" name="startDate" id="startDate" value={data?.startDate || ''} onChange={handleStartDate} placeholder="Enter Start Date" />
                         </div>
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
-                            <input type="text" name="endDate" id="endDate" value={data?.endDate || ''} placeholder="Enter End Date" />
+                            <input type="text" name="endDate" id="endDate" disabled={currentlyEmployed ? true : false} value={currentlyEmployed ? 'Present' : data?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" />
                         </div>
                         <div className={styles.currentlyEmployed}>
-                            <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" />
+                            <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" onChange={handleCurrentlyEmployed}/>
                             <label className={styles.label} htmlFor="currentlyEmployed">Currently working here</label>
                         </div>
                     </div>
@@ -101,7 +150,9 @@ export default function Position({data, setCVData, index, companyID}) {
                                 key={point.id} 
                                 index={index} 
                                 data={point}
-                                setCVData={setCVData} 
+                                setCVData={setCVData}
+                                companyID={companyID}
+                                positionID={data.id}
                             />
                         ))}
                     </div>

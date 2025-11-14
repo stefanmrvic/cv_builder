@@ -15,12 +15,12 @@ export default function WorkExperience({data}) {
 
             {data
                 .filter(company => company.isVisible)
-                .map((company, index) => {
-                    return <Company 
-                        key={index}
-                        data={company}
+                .map(company => (
+                    <Company 
+                        key={company.id}
+                        company={company}
                     />
-                })
+                ))
             }  
         </div>    
     )

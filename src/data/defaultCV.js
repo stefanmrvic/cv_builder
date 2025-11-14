@@ -20,6 +20,7 @@ const defaultCV = {
                     title: 'Full-Stack Software Engineer',
                     startDate: 'Apr. 2023',
                     endDate: 'Present',
+                    currentlyEmployed: true,
                     responsibilities: [
                         {   
                             id: '90f9913c-eded-4ace-a84c-3b8fda46fc18',
@@ -74,6 +75,7 @@ const defaultCV = {
                     title: 'Software Engineer (Front-end)',
                     startDate: 'Jun. 2021',
                     endDate: 'Mar. 2023',
+                    currentlyEmployed: false,
                     responsibilities: [
                         {
                             id: '0a040ef3-62e0-416f-86e9-3136ff4fef0e',
@@ -109,6 +111,7 @@ const defaultCV = {
                     title: 'Frontend Developer',
                     startDate: 'Apr. 2019',
                     endDate: 'May. 2021',
+                    currentlyEmployed: false,
                     responsibilities: [
                         {
                             id: '5d48db69-510c-4c2d-811e-e3f16a125556',
@@ -136,6 +139,7 @@ const defaultCV = {
                     title: 'Junior Web Developer',
                     startDate: 'Jan. 2018',
                     endDate: 'Apr. 2019',
+                    currentlyEmployed: false,
                     responsibilities: [
                         {
                             id: '2a417c70-49ba-487f-b808-4a2efeab5fa0',

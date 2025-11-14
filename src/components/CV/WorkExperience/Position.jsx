@@ -1,7 +1,9 @@
-import Responsibility from './Responsibility.jsx'
+import Responsibilities from './Responsibilities.jsx'
 
 import styles from './WorkExperience.module.css';
 
+// Passes companyName and location so the first position can display company details above the job title,
+// since Position objects don't have access to their parent company's properties.
 export default function Position({isFirst, companyName, location, position}) {
     return (
         <>
@@ -12,7 +14,7 @@ export default function Position({isFirst, companyName, location, position}) {
                         <>
                             <div className={styles.flexContainer}>
                                 <p className={styles.companyName}>{companyName}</p>
-                                <p className={styles.startEndDate}>{position.startDate} - {position.endDate}</p>
+                                <p className={styles.startEndDate}>{position.startDate} - {position.currentlyEmployed ? 'Present' : position.endDate}</p>
                             </div>
                             <div className={styles.flexContainer}>
                                 <p className={styles.jobTitle}>{position.title}</p>
@@ -22,12 +24,12 @@ export default function Position({isFirst, companyName, location, position}) {
                     ) : (
                             <div className={styles.flexContainer}>
                                 <p className={styles.jobTitle}>{position.title}</p>
-                                <p className={styles.startEndDate}>{position.startDate} - {position.endDate}</p>
+                                <p className={styles.startEndDate}>{position.startDate} - {position.currentlyEmployed ? 'Present' : position.endDate}</p>
                             </div>
                         )
                     }
                 </div>
-                <Responsibility responsibilities={position.responsibilities} />
+                <Responsibilities responsibilities={position.responsibilities} />
             </div>
         )}
         </>
