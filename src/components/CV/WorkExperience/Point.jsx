@@ -8,12 +8,13 @@ export default function Point({point}) {
             <p>{point.point}</p>
             
             <ul className={styles.subPoints}>
-                {point.subPoints.length > 0 && point.subPoints.map(subPoint => ( 
-                    <SubPoint 
-                        key={subPoint.id}
-                        subPoint={subPoint}
-                    />
-                ))} 
+                {point.subPoints.length > 0 && 
+                    point.subPoints
+                        .filter(subPoint => subPoint.isVisible)
+                        .map(subPoint => ( 
+                            <SubPoint key={subPoint.id} subPoint={subPoint} />
+                        ))
+                } 
             </ul>
         </li>
     )

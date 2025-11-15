@@ -145,12 +145,13 @@ export default function Position({data, setCVData, index, companyID}) {
                     <div className={styles.responsibilitiesContainer}>
                         <h3 className={styles.responsibilitiesHeadline}>Responsibilities</h3>
                         
-                        {data.responsibilities?.map((point, index) => (
+                        {data.responsibilities.length > 0 && data.responsibilities.map((point, index) => (
                             <Point 
                                 key={point.id} 
                                 index={index} 
                                 data={point}
                                 setCVData={setCVData}
+                                // TO-DO: Reformat later with Context
                                 companyID={companyID}
                                 positionID={data.id}
                             />

@@ -51,10 +51,20 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
     }
 
     const handleDescription = (e) => {
+        if (!data.id) throw new Error('experienceFormData.id is undefined!');
 
-        // setCVData(draft => {
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
 
-        // })
+            const position = company.positions.find(position => position.id === positionID);
+            if (position === undefined) throw new Error('Position  not found!');     
+
+            const point = position.responsibilities.find(point => point.id === data.id);
+            if (point === undefined) throw new Error('Point not found!');
+
+            point.point = e.target.value;
+        });
     }
 
     return (
@@ -89,8 +99,17 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
                     <div className="subResponsibilitiesContainer">
                         <h3 className={styles.subResponsibilitiesHeadline}>Sub-points</h3>
                         
-                        {data.subPoints?.map((subPoint, index) => (
-                            <SubPoint key={subPoint.id} index={index} data={subPoint} />
+                        {data.subPoints.length > 0 && data.subPoints.map((subPoint, index) => (
+                            <SubPoint 
+                                key={subPoint.id} 
+                                index={index} 
+                                data={subPoint}
+                                setCVData={setCVData}
+                                // TO-DO: Reformat later with Context
+                                companyID={companyID}
+                                positionID={positionID}
+                                pointID={data.id} 
+                            />
                         ))}
                     </div>
 

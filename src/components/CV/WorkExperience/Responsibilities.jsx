@@ -2,7 +2,7 @@ import Point from './Point.jsx';
 
 import styles from './WorkExperience.module.css';
 
-// Displays filtered visible responsibilities as bullet points
+// Displays filtered visible responsibility points as bullet points
 export default function Responsibilities({responsibilities}) {
     return (
         <ul className={styles.responsibilities}>

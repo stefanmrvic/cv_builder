@@ -2,35 +2,76 @@ import { useState } from 'react';
 
 import styles from './Experience.module.css';
 
-export default function SubPoint({data, index}) {
+export default function SubPoint({data, setCVData, index, companyID, positionID, pointID}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
 
     const handleDelete = (e) => {
-        e.stopPropagation();
+        e.stopPropagation(); 
+
+        if (!data.id) throw new Error('subPoint.id is undefined!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === positionID);
+            if (position === undefined) throw new Error('Position  not found!');    
+            
+            const point = position.responsibilities.find(point => point.id === pointID);
+            if (point === undefined) throw new Error('Point not found!');
+
+            const subPointIndex = point.subPoints.findIndex(subPoint => subPoint.id === data.id);
+            if (subPointIndex === -1) throw new Error('Sub-Point not found!');
+
+            point.subPoints.splice(subPointIndex, 1);
+        });
     }
 
     const handleVisibility = (e) => {
         e.stopPropagation();
+        
+        if (isExpanded) setIsExpanded(!isExpanded);
 
-        if (!itemID) throw new Error('itemID is undefined!');
+        if (!data.id) throw new Error('subPoint.id is undefined!');
 
-       setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === itemID);
-            
-            if (!item) throw new Error('Item not found!');
-            
-            item.isVisible = !item.isVisible;
-       })
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
 
-       setIsVisible(!isVisible);
+            const position = company.positions.find(position => position.id === positionID);
+            if (position === undefined) throw new Error('Position  not found!');     
+
+            const point = position.responsibilities.find(point => point.id === pointID);
+            if (point === undefined) throw new Error('Point not found!');
+
+            const subPoint = point.subPoints.find(subPoint => subPoint.id === data.id);
+            if (subPoint === undefined) throw new Error('Sub-Point not found!');
+
+            subPoint.isVisible = !subPoint.isVisible;
+        });
+        
+        setIsVisible(prevState => !prevState);
     }
 
     const handleDescription = (e) => {
+        if (!data.id) throw new Error('subPoint.id is undefined!');
 
-        // setCVData(draft => {
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
 
-        // })
+            const position = company.positions.find(position => position.id === positionID);
+            if (position === undefined) throw new Error('Position  not found!');     
+
+            const point = position.responsibilities.find(point => point.id === pointID);
+            if (point === undefined) throw new Error('Point not found!');
+
+            const subPoint = point.subPoints.find(subPoint => subPoint.id === data.id);
+            if (subPoint === undefined) throw new Error('Sub-Point not found!');
+
+            subPoint.subPoint = e.target.value;
+        });
     }
 
     return (
@@ -45,13 +86,13 @@ export default function SubPoint({data, index}) {
                                 <span className={styles.subPointHeadline}>{'Sub-Point #' + (index +1)}</span>
                 
                                 <div className={styles.subPointBtnContainer}>
-                                    <button className={styles.visibilityBtn} >
+                                    <button className={styles.visibilityBtn} onClick={handleVisibility}>
                                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                                             {isVisible ? 'visibility' : 'visibility_off'}
                                         </span>
                                     </button>
 
-                                    <button className={styles.deleteBtn} >
+                                    <button className={styles.deleteBtn} onClick={handleDelete}>
                                         <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                                     </button>
                                 </div>
