@@ -1,60 +1,60 @@
 import styles from './Experience.module.css';
 
-export default function Company({itemID, isVisible, data, setCVData, setIsExperienceFormOpen, setExperienceFormData, onClick, company}) {
+export default function Company({data, setCVData, companyID, companyName, isVisible, setIsExperienceFormOpen, setExperienceFormData, onClick}) {
     const populateForm = (id) => {
-        const item = data.find(item => item.id === id);
-
-        if (!item) return;
+        const company = data.find(company => company.id === id);
+        if (!company) throw new Error('Company not found!');
 
         setExperienceFormData({
-            id: item.id,
-            isVisible: item.isVisible,
-            companyName: item.companyName,
-            location: item.location,
-            positions: item.positions
+            id: company.id,
+            isVisible: company.isVisible,
+            companyName: company.companyName,
+            location: company.location,
+            positions: company.positions
         })
     }
     
     const handleDelete = (e) => {
         e.stopPropagation();
 
-        if (!itemID) throw new Error('itemID is undefined!');
+        const company = data.find(company => company.id === companyID);
+        if (!company) throw new Error('Company not found!');
 
         setCVData(draft => {
-            const itemIndex = draft.workExperience.findIndex(item => item.id === itemID);
+            const companyIndex = draft.workExperience.findIndex(company => company.id === companyID);
+            if (companyIndex === undefined) throw new Error('Company not found!');
 
-            if (itemIndex === undefined) throw new Error('Item not found!');
-            draft.workExperience.splice(itemIndex, 1);
+            draft.workExperience.splice(companyIndex, 1);
         })
     }
 
     const handleVisibility = (e) => {
         e.stopPropagation();
 
-        if (!itemID) throw new Error('itemID is undefined!');
+        const company = data.find(company => company.id === companyID);
+        if (!company) throw new Error('Company not found!');
 
        setCVData(draft => {
-            const item = draft.workExperience.find(item => item.id === itemID);
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (!company) throw new Error('Company not found!');
             
-            if (!item) throw new Error('Item not found!');
-            
-            item.isVisible = !item.isVisible;
+            company.isVisible = !company.isVisible;
        })
     }
 
     const handleEdit = (e) => {
         e.stopPropagation();
 
-        if (!itemID) throw new Error('itemID is undefined!');
-        const item = data.find(item => item.id === itemID);
+        const company = data.find(company => company.id === companyID);
+        if (!company) throw new Error('Company not found!');
 
-        populateForm(item.id);
+        populateForm(companyID);
         setIsExperienceFormOpen(true);
     }
 
     return (
         <a onClick={onClick} className={`${styles.btn} ${styles.company}`}>
-            <span className={styles.btnText}>{company}</span>
+            <span className={styles.btnText}>{companyName}</span>
             <div className={styles.companyBtnContainer}>
                 <button className={styles.visibilityBtn} onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>

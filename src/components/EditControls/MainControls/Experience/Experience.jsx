@@ -71,22 +71,21 @@ export default function Experience({data, setCVData}) {
                 />
             )}
 
-            {/* It purposely doesn't render div container conditionally with checks (isExpanded && !isExperienceFormOpen) to avoid jumping 
-                of Experience items when form opens / closes. Instead, it only checks if Experience menu has been expanded. */}
+{           /* Always renders the container to avoid layout shift. Content visibility is controlled by isExpanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
 
-                    {data?.map(item => (
+                    {data?.map(company => (
                         <Company 
-                            key={item.id}
-                            itemID={item.id}
-                            isVisible={item.isVisible}
+                            key={company.id}
                             data={data}
                             setCVData={setCVData}
+                            companyID={company.id}
+                            companyName={company.companyName}
+                            isVisible={company.isVisible}
                             setExperienceFormData={setExperienceFormData}
                             setIsExperienceFormOpen={setIsExperienceFormOpen}
-                            company={item.companyName}
                         />
                     ))}
 
