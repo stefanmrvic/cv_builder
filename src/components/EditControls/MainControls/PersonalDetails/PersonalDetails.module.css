@@ -18,7 +18,7 @@ span.arrowUp {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 22px;
+    padding: 24px 23px;
     border-radius: 12px;
 }
 
@@ -29,7 +29,7 @@ span.arrowUp {
 .personalDetailsHeadline {
     font-size: 24px;
     font-weight: bold;
-    /* margin-bottom: 20px; */
+    padding-left: 2px;
 }
 
 .personalDetailsForm {
