@@ -9,7 +9,7 @@ export default function Experience({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
     const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
-    const [isNew, setIsNew] = useState(false)
+    const [isNewExperience, setIsNewExperience] = useState(false)
     const [experienceFormData, setExperienceFormData] = useState({
         id: '',
         isVisible: '',
@@ -33,8 +33,8 @@ export default function Experience({data, setCVData}) {
         btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
-    const handleAddBtnClick = () => {
-        const createExperienceItem = {
+    const handleAddExperience = () => {
+        const newExperience = {
             id: crypto.randomUUID(),
             isVisible: true,
             companyName: '',
@@ -42,11 +42,11 @@ export default function Experience({data, setCVData}) {
             positions: []
         }
 
-        setIsNew(true)
+        setIsNewExperience(true)
         setCVData(draft => {
-            draft.workExperience.push(createExperienceItem)
+            draft.workExperience.push(newExperience)
         })
-        setExperienceFormData(createExperienceItem);
+        setExperienceFormData(newExperience);
         setIsExperienceFormOpen(true);
     }
 
@@ -62,8 +62,8 @@ export default function Experience({data, setCVData}) {
                 <ExperienceForm 
                     data={data} 
                     setCVData={setCVData} 
-                    isNew={isNew}
-                    setIsNew={setIsNew}
+                    isNewExperience={isNewExperience}
+                    setIsNewExperience={setIsNewExperience}
                     isExperienceFormOpen={isExperienceFormOpen}
                     setIsExperienceFormOpen={setIsExperienceFormOpen}
                     experienceFormData={experienceFormData} 
@@ -92,7 +92,7 @@ export default function Experience({data, setCVData}) {
                     <div className={styles.addBtnContainer}>
                         <button 
                             className={`${styles.addBtn} ${styles.btn}`} 
-                            onClick={handleAddBtnClick}
+                            onClick={handleAddExperience}
                         >
                             <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Experience</span>

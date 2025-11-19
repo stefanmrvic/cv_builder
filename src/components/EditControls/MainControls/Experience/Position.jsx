@@ -4,14 +4,14 @@ import Point from './Point.jsx';
 
 import styles from './Experience.module.css';
 
-export default function Position({data, setCVData, index, companyID}) {
+export default function Position({data, setCVData, isNewPosition, index, companyID}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [currentlyEmployed, setCurrentlyEmployed] = useState(false);
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
 
-        if (!data.id) throw new Error('experienceFormData.id is undefined!');
+        if (!data.id) throw new Error('data.id is undefined!');
 
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
@@ -33,70 +33,92 @@ export default function Position({data, setCVData, index, companyID}) {
 
        setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
             const position = company.positions.find(position => position.id === data.id)
-            
-            if (!position) throw new Error('position not found!');
+            if (!position) throw new Error('Position not found!');
             
             position.isVisible = !position.isVisible;
        })
     }
 
     const handlePositionTitle = (e) => {
-        if (!data) throw new Error('data not found!');
+        if (!data) throw new Error('Data not found!');
 
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
             const position = company.positions.find(position => position.id === data.id);
-            if (position === undefined) throw new Error('Position index not found!');
+            if (position === undefined) throw new Error('Position not found!');
 
             position.title = e.target.value;
         });
     }
 
     const handleStartDate = (e) => {
-        if (!data) throw new Error('data not found!');
+        if (!data) throw new Error('Data not found!');
 
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
             const position = company.positions.find(position => position.id === data.id);
-            if (position === undefined) throw new Error('Position index not found!');
+            if (position === undefined) throw new Error('Position not found!');
 
             position.startDate = e.target.value;
         });
     }
 
     const handleEndDate = (e) => {
-        if (!data) throw new Error('data not found!');
+        if (!data) throw new Error('Data not found!');
 
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
             const position = company.positions.find(position => position.id === data.id);
-            if (position === undefined) throw new Error('Position index not found!');
+            if (position === undefined) throw new Error('Position not found!');
 
             position.endDate = e.target.value;
         });
     }
 
-        const handleCurrentlyEmployed = (e) => {
-        if (!data) throw new Error('data not found!');
+    const handleCurrentlyEmployed = (e) => {
+        if (!data) throw new Error('Data not found!');
 
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
             const position = company.positions.find(position => position.id === data.id);
-            if (position === undefined) throw new Error('Position index not found!');
+            if (position === undefined) throw new Error('Position not found!');
 
             position.currentlyEmployed = !currentlyEmployed;
         });
 
         setCurrentlyEmployed(prevState => !prevState);
+    }
+
+    const handleAddPoint = (e) => {
+        if (!data) throw new Error('Data not found!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === data.id)
+            if (position === undefined) throw new Error('Position not found!');
+
+            const newPoint = {
+                id: crypto.randomUUID(),
+                isVisible: true,
+                point: '',
+                subPoints: []
+            }
+
+            position.responsibilities.push(newPoint);
+        });
     }
 
     return (
@@ -121,7 +143,7 @@ export default function Position({data, setCVData, index, companyID}) {
                 </div>
             </div>
 
-            {isExpanded && (
+            {isExpanded || isNewPosition && (
                 <div className={styles.positionFormContainer}>
                     <div className={styles.positionFormGroup}>
                         <label htmlFor="title">Position Title</label>
@@ -159,7 +181,7 @@ export default function Position({data, setCVData, index, companyID}) {
                     </div>
 
                     <div className={styles.addPointBtnContainer}>
-                        <button className={styles.addPointBtn}>
+                        <button className={styles.addPointBtn} onClick={handleAddPoint}>
                             <span className={`${styles.addPointBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Add Point</span>
                         </button>

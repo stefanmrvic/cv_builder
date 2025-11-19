@@ -1,8 +1,12 @@
+import { useState } from 'react';
+
 import Position from './Position.jsx';
 
 import styles from './Experience.module.css';
 
-export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsExperienceFormOpen, experienceFormData}) {
+export default function ExperienceForm({data, setCVData, isNewExperience, setIsNewExperience, setIsExperienceFormOpen, experienceFormData}) {    
+    const [isNewPosition, setIsNewPosition] = useState(false);
+
     const handleDelete = () => {
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
 
@@ -25,7 +29,7 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
 
             if (!company) throw new Error('Company not found!');
 
-            if (isNew) {
+            if (isNewExperience) {
                 const companyIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
                 draft.workExperience.splice(companyIndex, 1);
             } else {
@@ -37,7 +41,7 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
             }
         });
 
-        setIsNew(false);  
+        setIsNewExperience(false);  
         setIsExperienceFormOpen(false);
     }
 
@@ -61,24 +65,28 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
         });
     }
 
-    const handleQualification = (e) => {
+    const handleAddPosition = (e) => {
+
+        if (!data) throw new Error('data not found!');
+
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === experienceFormData.id);
+            if (company === undefined) throw new Error('Company not found!');
 
-            if (!company) throw new Error('Company not found!');
+            const newPosition = {
+                id: crypto.randomUUID(),
+                isVisible: true,
+                title: '',
+                startDate: '',
+                endDate: '',
+                currentlyEmployed: '',
+                responsibilities: []
+            }
 
-            company.qualification = e.target.value;
+            company.positions.push(newPosition)
         });
-    }
 
-    const handleSchoolLocation = (e) => {
-        setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
-
-            if (!company) throw new Error('Company not found!');
-
-            company.schoolLocation = e.target.value;
-        });
+        setIsNewPosition(true);
     }
 
     const handleSubmit = (e) => {
@@ -101,7 +109,7 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
                 </div>
 
                 {/* Render empty position field if no positions exist */}
-                {!experienceFormData.positions && <Position />}
+                {!experienceFormData.positions && <Position isNewPosition={true}/>}
 
                 {/* Render each position in the company */}
                 {company.positions?.map((position, index) => (
@@ -116,7 +124,7 @@ export default function ExperienceForm({data, setCVData, isNew, setIsNew, setIsE
                 ))}
 
                 <div className={styles.addPositionBtnContainer}>
-                    <button className={styles.addPositionBtn}>
+                    <button className={styles.addPositionBtn} onClick={handleAddPosition}>
                         <span className={`${styles.addPositionBtnIcon} material-symbols-outlined`}>add</span>
                         <span>Add Position</span>
                     </button>

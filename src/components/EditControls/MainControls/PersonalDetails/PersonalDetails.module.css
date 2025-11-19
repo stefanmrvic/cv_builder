@@ -3,10 +3,33 @@
     flex-direction: column;
 }
 
-.personalDataHeadline {
+span.arrowUp {
+    font-size: 26px;
+    margin-left: auto;
+    transition: transform .3s;
+}
+
+.arrowUp.active {
+    transform: rotate(180deg);
+}
+
+.toggleBtn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 22px;
+    border-radius: 12px;
+}
+
+.toggleBtn.active {
+    border-radius: 12px 12px 0 0;
+}
+
+.personalDetailsHeadline {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .personalDetailsForm {
@@ -15,6 +38,7 @@
     background-color: var(--secondary-bg-color);
     padding: 22px 18px;
     border-radius: 12px;
+    animation: slideDown .25s forwards;
     
     label {
         font-weight: 600;
@@ -44,4 +68,21 @@
         box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
         outline: none;
     }
+}
+
+.personalDetailsForm.closing {
+    animation: slideUp .25s forwards;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes slideDown {
+    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
+    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
+    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
 }

@@ -67,6 +67,29 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
         });
     }
 
+    const handleAddSubPoint = (e) => {
+        if (!data) throw new Error('data not found!');
+
+        setCVData(draft => {
+            const company = draft.workExperience.find(company => company.id === companyID);
+            if (company === undefined) throw new Error('Company not found!');
+
+            const position = company.positions.find(position => position.id === positionID)
+            if (position === undefined) throw new Error('Position not found!');
+
+            const point = position.responsibilities.find(point => point.id === data.id);
+            if (point === undefined) throw new Error('Point not found!');
+
+            const newSubPoint = {
+                id: crypto.randomUUID(),
+                isVisible: true,
+                subPoint: '',
+            }
+
+            point.subPoints.push(newSubPoint)
+        });
+    }
+
     return (
         <div className={styles.pointContainer}>
             <div className={styles.pointHeadlineContainer} onClick={() => {setIsExpanded(!isExpanded)}}>
@@ -114,7 +137,7 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
                     </div>
 
                     <div className={styles.addSubPointBtnContainer}>
-                        <button className={styles.addSubPointBtn}>
+                        <button className={styles.addSubPointBtn} onClick={handleAddSubPoint}>
                             <span className={`${styles.addSubPointBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Add Sub-Point</span>
                         </button>
