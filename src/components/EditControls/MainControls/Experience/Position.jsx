@@ -147,14 +147,14 @@ export default function Position({data, setCVData, isNewPosition, setIsNewPositi
                 <span className={styles.positionHeadline}>{data ? data.title : 'Position #' + (index +1)}</span>
 
                 <div className={styles.positionBtnContainer}>
-                    <button className={styles.visibilityBtn} onClick={handleVisibility}>
-                        <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
+                    <button className={styles.positionVisibilityBtn} onClick={handleVisibility}>
+                        <span className={`${styles.positionVisibilityBtnIcon} material-symbols-outlined`}>
                             {data.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
                     </button>
 
-                    <button className={styles.deleteBtn} onClick={handleDelete}>
-                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
+                    <button className={styles.positionDeleteBtn} onClick={handleDelete}>
+                        <span className={`${styles.positionDeleteBtnIcon} material-icons`}>delete</span>
                     </button>
                 </div>
             </div>
@@ -181,8 +181,6 @@ export default function Position({data, setCVData, isNewPosition, setIsNewPositi
                     </div>
 
                     <div className={styles.responsibilitiesContainer}>
-                        <h3 className={styles.responsibilitiesHeadline}>Responsibilities</h3>
-                        
                         {data.responsibilities.length > 0 && (
                             data.responsibilities.map((point, index) => {
                                 const isNew = isNewPoint && index === data.responsibilities.length - 1;

@@ -86,38 +86,39 @@ export default function SubPoint({data, setCVData, index, companyID, positionID,
     }
 
     return (
-        <div className={styles.responsibilitiesFormContainer}>
-            <div className={styles.responsibilitiesFormGroup}>
-                <div className={styles.subPointContainer}>
-                            <div className={styles.subPointHeadlineContainer} onClick={handleCollapsing}>
-                                <span className={`${styles.expandArrowIcon} material-icons`}>
-                                    {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
-                                </span>
-                
-                                <span className={styles.subPointHeadline}>{'Sub-Point #' + (index +1)}</span>
-                
-                                <div className={styles.subPointBtnContainer}>
-                                    <button className={styles.visibilityBtn} onClick={handleVisibility}>
-                                        <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
-                                            {isVisible ? 'visibility' : 'visibility_off'}
-                                        </span>
-                                    </button>
+        <div className={styles.subPointContainer}>
+            <span className={styles.subPointHeadline}>{`Sub-Point #${index +1}`}</span>
 
-                                    <button className={styles.deleteBtn} onClick={handleDelete}>
-                                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                                    </button>
-                                </div>
-                            </div>
-                
-                            {isExpanded && (
-                                <div className={styles.subPointFormContainer}>
-                                    <div className={styles.subPointFormGroup}>
-                                        <label htmlFor="sub-point">Description</label>
-                                        <input type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={data?.subPoint || ''} onChange={handleDescription} placeholder="Enter sub-point description..." />
-                                    </div>
-                                </div>
-                            )}
+            <div className={styles.subPointCardContainer}>
+                <div className={styles.subPointHeaderContainer} onClick={handleCollapsing}>
+                    <span className={`${styles.expandArrowIcon} material-icons`}>
+                        {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
+                    </span>
+
+                    <span className={styles.subPointDescription}>{data.subPoint}</span>
+
+
+                    <div className={styles.subPointBtnContainer}>
+                        <button className={styles.subPointVisibilityBtn} onClick={handleVisibility}>
+                            <span className={`${styles.subPointVisibilityBtnIcon} material-symbols-outlined`}>
+                                {isVisible ? 'visibility' : 'visibility_off'}
+                            </span>
+                        </button>
+
+                        <button className={styles.subPointDeleteBtn} onClick={handleDelete}>
+                            <span className={`${styles.subPointDeleteBtnIcon} material-icons`}>delete</span>
+                        </button>
+                    </div>
+                </div>
+
+                {isExpanded && (
+                    <div className={styles.subPointFormContainer}>
+                        <div className={styles.subPointFormGroup}>
+                            <label htmlFor="sub-point">Description</label>
+                            <textarea type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={data?.subPoint || ''} onChange={handleDescription} placeholder="Enter sub-point description..." />
                         </div>
+                    </div>
+                )}
             </div>
         </div>
     )

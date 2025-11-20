@@ -125,7 +125,7 @@ span.btnIcon {
 
 /* Icon under Experience responsible for deleting and hiding the text on CV */
 span.deleteBtnIcon {
-    color: rgb(46, 46, 46);
+    color: var(--icon-color);
     font-size: 21px;
 }
 
@@ -134,7 +134,7 @@ span.deleteBtnIcon {
 }
 
 span.visibilityBtnIcon {
-    color: rgb(46, 46, 46);
+    color: var(--icon-color);
     font-size: 23px;
     margin-left: 5px;
 }
@@ -144,7 +144,7 @@ span.visibilityBtnIcon {
 }
 
 span.editBtnIcon {
-    color: rgb(46, 46, 46);
+    color: var(--icon-color);
     font-size: 22px;
     margin-left: 5px;
 }
@@ -176,6 +176,7 @@ span.addBtnIcon {
     input,
     textarea {
         font-size: 13.3px;
+        color: var(--input-color);
         background-color: var(--main-bg-color);
         border: var(--input-border);
         border-radius: 7px;
@@ -272,6 +273,7 @@ span.addPositionBtnIcon {
 }
 
 .positionFormGroup > label {
+    color: var(--label-color);
     font-size: 14px;
 }
 
@@ -280,14 +282,14 @@ span.addPositionBtnIcon {
     gap: 20px;
 }
 
-.positionHeadlineContainer {
+.positionHeaderContainer {
     display: flex;
     align-items: center;
     padding: 16px;
     cursor: pointer;
 }
 
-.positionHeadlineContainer > span.expandArrowIcon {
+.positionHeaderContainer > span.expandArrowIcon {
     font-size: 19px;
     margin-left: -6px;
 }
@@ -322,6 +324,7 @@ span.addPositionBtnIcon {
 
 .positionFormGroupDate .startDate label,
 .positionFormGroupDate .endDate label {
+    color: var(--label-color);
     font-size: 14px;
 }
 .currentlyEmployed {
@@ -332,9 +335,9 @@ span.addPositionBtnIcon {
 }
 
 .currentlyEmployed .checkbox {
-    width: 15px;
-    height: 15px;
-    margin: 0 9px 0 0;
+    width: 14.5px;
+    height: 14.5px;
+    margin: 0 7px 0 0;
     cursor: pointer;
 }
 
@@ -343,7 +346,7 @@ span.addPositionBtnIcon {
     color: #6b7280;
     font-weight: 400;
     font-family: 'Noto Sans';
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 0;
     cursor: pointer;
 }
@@ -352,7 +355,30 @@ span.addPositionBtnIcon {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 12px;
+} 
+
+.positionBtnContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 }
+
+/* Buttons on the right side of the Point text for Delete / Visibility */
+.positionDeleteBtn,
+.positionVisibilityBtn {
+    background: none;
+}
+
+/* Icons on the right side of the Point text for Delete / Visibility */
+span.positionDeleteBtnIcon {
+    color: var(--icon-color);
+    font-size: 20px;
+}
+
+span.positionVisibilityBtnIcon {
+    color: var(--icon-color);
+    font-size: 22px;
+} 
 
 /* ============================================
    POINT FORM STYLES
@@ -389,10 +415,23 @@ span.addPointBtnIcon {
 }
 
 .pointContainer {
+
+}
+
+.pointCardContainer {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     background-color: var(--secondary-bg-color);
-    margin-bottom: 12px;
+    margin-bottom: 11px;
+}
+
+.pointHeadline {
+    display: inline-block;
+    color: #9ca3af;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 3px;
+    margin-bottom: 5px;
 }
 
 .pointFormContainer {
@@ -411,7 +450,8 @@ span.addPointBtnIcon {
 }
 
 .pointFormGroup > label {
-    font-size: 14px;
+    color: var(--label-color);
+    font-size: 13.5px;
 }
 
 .pointFormGroup > textarea {
@@ -424,21 +464,27 @@ span.addPointBtnIcon {
     gap: 20px;
 }
 
-.pointHeadlineContainer {
+.pointHeaderContainer {
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 11px 16px;
     cursor: pointer;
 }
 
-.pointHeadlineContainer > span.expandArrowIcon {
+.pointHeaderContainer > span.expandArrowIcon {
     font-size: 19px;
     margin-left: -6px;
 }
 
-.pointHeadline {
-    font-size: 15px;
-    font-weight: bold;
+.pointDescription {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 308px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: normal;
 }
 
 .expandArrowIcon {
@@ -446,23 +492,49 @@ span.addPointBtnIcon {
 }
 
 .pointBtnContainer {
+    display: flex;
+    align-items: center;
     margin-left: auto;
+}
+
+/* Buttons on the right side of the Point text for Delete / Visibility */
+.pointDeleteBtn,
+.pointVisibilityBtn {
+    background: none;
+}
+
+/* Icons on the right side of the Point text for Delete / Visibility */
+span.pointDeleteBtnIcon {
+    color: var(--icon-color);
+    font-size: 20px;
+}
+
+span.pointVisibilityBtnIcon {
+    color: var(--icon-color);
+    font-size: 22px;
 }
 
 /* ============================================
    SUBPOINT FORM STYLES
    ============================================ */
 .subPointContainer {
+
+}
+
+.subPointCardContainer {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     background-color: var(--main-bg-color);
-    margin-bottom: 12px;
+    margin-bottom: 11px;
 }
 
-.subResponsibilitiesHeadline {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 12px;
+.subPointHeadline {
+    display: inline-block;
+    color: #9ca3af;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 3px;
+    margin-bottom: 5px;
 }
 
 .addSubPointBtnContainer {
@@ -512,19 +584,26 @@ span.addSubPointBtnIcon {
 }
 
 .subPointFormGroup > label {
-    font-size: 14px;
+    color: var(--label-color);
+    font-size: 13.5px;
 }
 
-.subPointHeadlineContainer {
+.subPointHeaderContainer {
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 11px 16px;
     cursor: pointer;
 }
 
-.subPointHeadline {
-    font-size: 15px;
-    font-weight: bold;
+.subPointDescription {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 308px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: normal;
 }
 
 .expandArrowIcon {
@@ -534,7 +613,26 @@ span.addSubPointBtnIcon {
 }
 
 .subPointBtnContainer {
+    display: flex;
+    align-items: center;
     margin-left: auto;
+}
+
+/* Buttons on the right side of the Point text for Delete / Visibility */
+.subPointDeleteBtn,
+.subPointVisibilityBtn {
+    background: none;
+}
+
+/* Icons on the right side of the Point text for Delete / Visibility */
+span.subPointDeleteBtnIcon {
+    color: var(--icon-color);
+    font-size: 20px;
+}
+
+span.subPointVisibilityBtnIcon {
+    color: var(--icon-color);
+    font-size: 22px;
 }
 
 /* ============================================

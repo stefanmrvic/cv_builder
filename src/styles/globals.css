@@ -1,10 +1,11 @@
 :root {
     --main-bg-color: #fafafa;
-    /* old --main-bg-color: #f3f4f6; */
     --secondary-bg-color: #ffffff;
+    --label-color: #374151;
+    --input-color: #2f3338;
     --input-bg-color: rgba(14, 55, 78, .07);
     --input-border: 1px solid #e5e7eb;
-    /* --cv-container-box-shadow: ; */
+    --icon-color: rgb(46, 46, 46);
 }
 
 i {

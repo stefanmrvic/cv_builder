@@ -106,64 +106,66 @@ export default function Point({data, setCVData, index, companyID, positionID, is
 
     return (
         <div className={styles.pointContainer}>
-            <div className={styles.pointHeadlineContainer} onClick={handleCollapsing}>
-                <span className={`${styles.expandArrowIcon} material-icons`}>
-                    {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
-                </span>
+            <span className={styles.pointHeadline}>{`Point #${index +1}`}</span>
 
-                <span className={styles.positionHeadline}>{'Point #' + (index +1)}</span>
+            <div className={styles.pointCardContainer}>
+                <div className={styles.pointHeaderContainer} onClick={handleCollapsing}>
+                    <span className={`${styles.expandArrowIcon} material-icons`}>
+                        {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
+                    </span>
 
-                <div className={styles.pointBtnContainer}>
-                    <button className={styles.visibilityBtn} onClick={handleVisibility}>
-                        <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
-                            {isVisible ? 'visibility' : 'visibility_off'}
-                        </span>
-                    </button>
+                    <span className={styles.pointDescription}>{data.point}</span>
 
-                    <button className={styles.deleteBtn} onClick={handleDelete}>
-                        <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                    </button>
-                </div>
-            </div>
+                    <div className={styles.pointBtnContainer}>
+                        <button className={styles.pointVisibilityBtn} onClick={handleVisibility}>
+                            <span className={`${styles.pointVisibilityBtnIcon} material-symbols-outlined`}>
+                                {isVisible ? 'visibility' : 'visibility_off'}
+                            </span>
+                        </button>
 
-            {isExpanded && (
-                <div className={styles.pointFormContainer}>
-                    <div className={styles.pointFormGroup}>
-                        <label htmlFor="point">Description</label>
-                        <textarea name="point" id="point" autoFocus={isNewPoint} value={data?.point || ''} onChange={handleDescription} placeholder="Enter responsibility description..." />
-                    </div>
-
-                    <div className="subResponsibilitiesContainer">
-                        <h3 className={styles.subResponsibilitiesHeadline}>Sub-points</h3>
-                        
-                        {data.subPoints.length > 0 && (
-                            data.subPoints.map((subPoint, index) => {
-                                const isNew = isNewSubPoint && index == data.subPoints.length - 1;
-
-                                return <SubPoint 
-                                    key={subPoint.id} 
-                                    index={index} 
-                                    data={subPoint}
-                                    setCVData={setCVData}
-                                    // TO-DO: Reformat later with Context
-                                    companyID={companyID}
-                                    positionID={positionID}
-                                    pointID={data.id} 
-                                    isNewSubPoint={isNew}
-                                    setIsNewSubPoint={setIsNewSubPoint}
-                                />
-                            })
-                        )}
-                    </div>
-
-                    <div className={styles.addSubPointBtnContainer}>
-                        <button className={styles.addSubPointBtn} onClick={handleAddSubPoint}>
-                            <span className={`${styles.addSubPointBtnIcon} material-symbols-outlined`}>add</span>
-                            <span>Add Sub-Point</span>
+                        <button className={styles.pointDeleteBtn} onClick={handleDelete}>
+                            <span className={`${styles.pointDeleteBtnIcon} material-icons`}>delete</span>
                         </button>
                     </div>
                 </div>
-            )}
+
+                {isExpanded && (
+                    <div className={styles.pointFormContainer}>
+                        <div className={styles.pointFormGroup}>
+                            <label htmlFor="point">Description</label>
+                            <textarea name="point" id="point" autoFocus={isNewPoint} value={data?.point || ''} onChange={handleDescription} placeholder="Enter responsibility description..." />
+                        </div>
+
+                        <div className={styles.subResponsibilitiesContainer}>
+                            {data.subPoints.length > 0 && (
+                                data.subPoints.map((subPoint, index) => {
+                                    const isNew = isNewSubPoint && index == data.subPoints.length - 1;
+
+                                    return <SubPoint 
+                                        key={subPoint.id} 
+                                        index={index} 
+                                        data={subPoint}
+                                        setCVData={setCVData}
+                                        // TO-DO: Reformat later with Context
+                                        companyID={companyID}
+                                        positionID={positionID}
+                                        pointID={data.id} 
+                                        isNewSubPoint={isNew}
+                                        setIsNewSubPoint={setIsNewSubPoint}
+                                    />
+                                })
+                            )}
+                        </div>
+
+                        <div className={styles.addSubPointBtnContainer}>
+                            <button className={styles.addSubPointBtn} onClick={handleAddSubPoint}>
+                                <span className={`${styles.addSubPointBtnIcon} material-symbols-outlined`}>add</span>
+                                <span>Add Sub-Point</span>
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
