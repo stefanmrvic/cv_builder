@@ -66,7 +66,6 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
     }
 
     const handleAddPosition = (e) => {
-
         if (!data) throw new Error('data not found!');
 
         setCVData(draft => {
@@ -76,7 +75,7 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
             const newPosition = {
                 id: crypto.randomUUID(),
                 isVisible: true,
-                title: '',
+                title: `Position #${experienceFormData.positions.length +1}`,
                 startDate: '',
                 endDate: '',
                 currentlyEmployed: '',
@@ -100,7 +99,7 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
-                    <input type="text" name="company" id="company" value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" />
+                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" />
                 </div>              
 
                 <div className={styles.formGroup}>
@@ -108,20 +107,24 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
                     <input type="text" name="location" id="location" value={company.location} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
 
-                {/* Render empty position field if no positions exist */}
-                {!experienceFormData.positions && <Position isNewPosition={true}/>}
-
                 {/* Render each position in the company */}
-                {company.positions?.map((position, index) => (
-                    <Position 
-                        key={position.id} 
-                        index={index} 
-                        data={position} 
-                        setCVData={setCVData} 
-                        // TO-DO: Reformat later with Context
-                        companyID={experienceFormData.id} 
-                    />
-                ))}
+                {company.positions.length > 0 && (
+                    company.positions.map((position, index) => {
+                        const isNew = isNewPosition && index === company.positions.length - 1;
+
+                        return <Position 
+                            key={position.id} 
+                            index={index} 
+                            data={position} 
+                            setCVData={setCVData} 
+                            // TO-DO: Reformat later with Context
+                            companyID={experienceFormData.id}
+                            isNewPosition={isNew}
+                            setIsNewPosition={setIsNewPosition}
+                            positionCount={experienceFormData.positions.length}
+                        />
+                    })
+                )}
 
                 <div className={styles.addPositionBtnContainer}>
                     <button className={styles.addPositionBtn} onClick={handleAddPosition}>

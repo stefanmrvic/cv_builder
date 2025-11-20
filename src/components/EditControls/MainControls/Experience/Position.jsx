@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Point from './Point.jsx';
 
 import styles from './Experience.module.css';
 
-export default function Position({data, setCVData, isNewPosition, index, companyID}) {
+export default function Position({data, setCVData, isNewPosition, setIsNewPosition, index, companyID, positionCount}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [currentlyEmployed, setCurrentlyEmployed] = useState(false);
+    const [isNewPoint, setIsNewPoint] = useState(false);
+
+    // Using useEffect Hook here to automatically expand the Posiiton card if the user created new Position.
+    useEffect(() => {
+        if (isNewPosition) setIsExpanded(true);
+    }, [])
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -100,6 +106,12 @@ export default function Position({data, setCVData, isNewPosition, index, company
         setCurrentlyEmployed(prevState => !prevState);
     }
 
+    const handleCollapsing = () => {
+        setIsExpanded(prevState => !prevState);
+
+        if (isNewPosition) setIsNewPosition(false);
+    }
+
     const handleAddPoint = (e) => {
         if (!data) throw new Error('Data not found!');
 
@@ -119,11 +131,15 @@ export default function Position({data, setCVData, isNewPosition, index, company
 
             position.responsibilities.push(newPoint);
         });
+
+        setIsNewPoint(true);
     }
+
+    const isPlaceholderTitle = data.title.toLowerCase().includes('position');
 
     return (
         <div className={styles.positionContainer}>
-            <div className={styles.positionHeadlineContainer} onClick={() => setIsExpanded(!isExpanded)}>
+            <div className={styles.positionHeadlineContainer} onClick={handleCollapsing}>
                 <span className={`${styles.expandArrowIcon} material-icons`}>
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                 </span>
@@ -143,11 +159,11 @@ export default function Position({data, setCVData, isNewPosition, index, company
                 </div>
             </div>
 
-            {isExpanded || isNewPosition && (
+            {isExpanded && (
                 <div className={styles.positionFormContainer}>
                     <div className={styles.positionFormGroup}>
                         <label htmlFor="title">Position Title</label>
-                        <input type="text" name="title" id="title" value={data?.title || ''} onChange={handlePositionTitle} placeholder="Enter Position Title" />
+                        <input autoFocus={isNewPosition} type="text" name="title" id="title" value={(isNewPosition && isPlaceholderTitle) ? '' : (data?.title || '')} onChange={handlePositionTitle} placeholder="Enter Position Title" />
                     </div>
                     <div className={styles.positionFormGroupDate}>
                         <div className={styles.startDate}>
@@ -167,17 +183,23 @@ export default function Position({data, setCVData, isNewPosition, index, company
                     <div className={styles.responsibilitiesContainer}>
                         <h3 className={styles.responsibilitiesHeadline}>Responsibilities</h3>
                         
-                        {data.responsibilities.length > 0 && data.responsibilities.map((point, index) => (
-                            <Point 
-                                key={point.id} 
-                                index={index} 
-                                data={point}
-                                setCVData={setCVData}
-                                // TO-DO: Reformat later with Context
-                                companyID={companyID}
-                                positionID={data.id}
-                            />
-                        ))}
+                        {data.responsibilities.length > 0 && (
+                            data.responsibilities.map((point, index) => {
+                                const isNew = isNewPoint && index === data.responsibilities.length - 1;
+
+                                return <Point 
+                                    key={point.id} 
+                                    index={index} 
+                                    data={point}
+                                    setCVData={setCVData}
+                                    // TO-DO: Reformat later with Context
+                                    companyID={companyID}
+                                    positionID={data.id}
+                                    isNewPoint={isNew}
+                                    setIsNewPoint={setIsNewPoint}
+                                />
+                            })
+                        )}
                     </div>
 
                     <div className={styles.addPointBtnContainer}>

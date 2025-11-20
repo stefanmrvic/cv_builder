@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import styles from './Experience.module.css';
 
-export default function SubPoint({data, setCVData, index, companyID, positionID, pointID}) {
+export default function SubPoint({data, setCVData, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
+
+    // Using useEffect Hook here to automatically expand the SubPoint card if the user created new SubPoint.
+    useEffect(() => {
+        if (isNewSubPoint) setIsExpanded(true);
+    }, [])
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -74,11 +79,17 @@ export default function SubPoint({data, setCVData, index, companyID, positionID,
         });
     }
 
+    const handleCollapsing = () => {
+        setIsExpanded(prevState => !prevState);
+
+        if (isNewSubPoint) setIsNewSubPoint(false);
+    }
+
     return (
         <div className={styles.responsibilitiesFormContainer}>
             <div className={styles.responsibilitiesFormGroup}>
                 <div className={styles.subPointContainer}>
-                            <div className={styles.subPointHeadlineContainer} onClick={() => {setIsExpanded(!isExpanded)}}>
+                            <div className={styles.subPointHeadlineContainer} onClick={handleCollapsing}>
                                 <span className={`${styles.expandArrowIcon} material-icons`}>
                                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                                 </span>
@@ -102,7 +113,7 @@ export default function SubPoint({data, setCVData, index, companyID, positionID,
                                 <div className={styles.subPointFormContainer}>
                                     <div className={styles.subPointFormGroup}>
                                         <label htmlFor="sub-point">Description</label>
-                                        <input type="text" name="sub-point" id="sub-point" value={data?.subPoint || ''} onChange={handleDescription} placeholder="Enter sub-point description..." />
+                                        <input type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={data?.subPoint || ''} onChange={handleDescription} placeholder="Enter sub-point description..." />
                                     </div>
                                 </div>
                             )}

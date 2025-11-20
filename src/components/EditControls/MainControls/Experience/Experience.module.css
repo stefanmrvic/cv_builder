@@ -182,7 +182,15 @@ span.addBtnIcon {
         padding: 10px;
         margin-bottom: 12px;
         transition: border .25s, box-shadow .25s;
-    }  
+        line-height: normal;
+    } 
+    
+    input:disabled {
+        background-color: #f7f7f7;
+        color: #6b7280;
+        border: 1px solid #d1d5db;
+        cursor: not-allowed;
+    }
 
     textarea {
         height: 90px;
@@ -213,10 +221,6 @@ span.addBtnIcon {
 /* ============================================
    POSITION FORM STYLES
    ============================================ */
-.addPositionBtnContainer {
-
-}
-
 .addPositionBtn {
     display: inline-flex;
     align-items: center;

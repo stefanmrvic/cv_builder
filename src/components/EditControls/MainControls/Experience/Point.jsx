@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import SubPoint from './SubPoint.jsx';
 
 import styles from './Experience.module.css';
 
-export default function Point({data, setCVData, index, companyID, positionID}) {
+export default function Point({data, setCVData, index, companyID, positionID, isNewPoint, setIsNewPoint}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
+    const [isNewSubPoint, setIsNewSubPoint] = useState(false);
+
+    // Using useEffect Hook here to automatically expand the Point card if the user created new Point.
+    useEffect(() => {
+        if (isNewPoint) setIsExpanded(true);
+    }, [])
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -67,6 +73,12 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
         });
     }
 
+    const handleCollapsing = () => {
+        setIsExpanded(prevState => !prevState);
+
+        if (isNewPoint) setIsNewPoint(false);
+    }
+
     const handleAddSubPoint = (e) => {
         if (!data) throw new Error('data not found!');
 
@@ -88,11 +100,13 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
 
             point.subPoints.push(newSubPoint)
         });
+
+        setIsNewSubPoint(true);
     }
 
     return (
         <div className={styles.pointContainer}>
-            <div className={styles.pointHeadlineContainer} onClick={() => {setIsExpanded(!isExpanded)}}>
+            <div className={styles.pointHeadlineContainer} onClick={handleCollapsing}>
                 <span className={`${styles.expandArrowIcon} material-icons`}>
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                 </span>
@@ -116,24 +130,30 @@ export default function Point({data, setCVData, index, companyID, positionID}) {
                 <div className={styles.pointFormContainer}>
                     <div className={styles.pointFormGroup}>
                         <label htmlFor="point">Description</label>
-                        <textarea name="point" id="point" value={data?.point || ''} onChange={handleDescription} placeholder="Enter responsibility description..." />
+                        <textarea name="point" id="point" autoFocus={isNewPoint} value={data?.point || ''} onChange={handleDescription} placeholder="Enter responsibility description..." />
                     </div>
 
                     <div className="subResponsibilitiesContainer">
                         <h3 className={styles.subResponsibilitiesHeadline}>Sub-points</h3>
                         
-                        {data.subPoints.length > 0 && data.subPoints.map((subPoint, index) => (
-                            <SubPoint 
-                                key={subPoint.id} 
-                                index={index} 
-                                data={subPoint}
-                                setCVData={setCVData}
-                                // TO-DO: Reformat later with Context
-                                companyID={companyID}
-                                positionID={positionID}
-                                pointID={data.id} 
-                            />
-                        ))}
+                        {data.subPoints.length > 0 && (
+                            data.subPoints.map((subPoint, index) => {
+                                const isNew = isNewSubPoint && index == data.subPoints.length - 1;
+
+                                return <SubPoint 
+                                    key={subPoint.id} 
+                                    index={index} 
+                                    data={subPoint}
+                                    setCVData={setCVData}
+                                    // TO-DO: Reformat later with Context
+                                    companyID={companyID}
+                                    positionID={positionID}
+                                    pointID={data.id} 
+                                    isNewSubPoint={isNew}
+                                    setIsNewSubPoint={setIsNewSubPoint}
+                                />
+                            })
+                        )}
                     </div>
 
                     <div className={styles.addSubPointBtnContainer}>
