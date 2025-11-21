@@ -58,7 +58,7 @@ export default function PersonalDetails({data, setCVData}) {
 
     return (
         <div className={styles.personalDetailsContainer}>
-            <button className={`${styles.toggleBtn} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+            <button className={`${styles.personalDetailsHeader} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={styles.personalDetailsHeadline}>Personal Details</span>
                 <span className={`${styles.arrowUp} material-symbols-outlined`} ref={arrowUpRef}>keyboard_arrow_up</span>
             </button>

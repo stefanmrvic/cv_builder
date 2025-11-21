@@ -10,6 +10,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
 }
 
 .experienceHeadline {
@@ -37,6 +39,7 @@
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
+    margin-bottom: -4px;
 }
 
 .arrowDown.active {
@@ -46,7 +49,6 @@
 .btnContainer {
     display: flex;    
     flex-direction: column;
-    gap: 6px;
     animation: slideDown .25s forwards;
 }
 
@@ -68,6 +70,7 @@
     align-items: center;
     padding: 12px 14px 12px 24px;
     border-radius: 0px;
+    border-top: 1px solid #e5e7eb;
 }
 
 .btnText {
@@ -78,6 +81,7 @@
 .addBtnContainer {
     background-color: var(--secondary-bg-color);
     border-radius: 0 0 12px 12px;
+    border-top: 1px solid #e5e7eb;
 }
 
 .addBtn {
@@ -88,7 +92,7 @@
     align-items: center;
     padding: 8px 18px;
     margin: 15px auto;
-    border: 4px solid #eef0f4;
+    border: 1px solid #dddddd;
     border-radius: 100px;
 }
 
@@ -97,20 +101,19 @@ span.addBtnIcon {
     margin-right: 7px;
 }
 
-.toggleBtn {
+.experienceHeaderContainer {
     display: flex;
     gap: 11px;
     align-items: center;
-    padding: 24px;
-    margin-bottom: 6px;
+    padding: 26px 24px;
     border-radius: 12px;
 }
 
-.toggleBtn.active {
+.experienceHeaderContainer.active {
     border-radius: 12px 12px 0 0;
 }
 
-.toggleBtn.formOpened {
+.experienceHeaderContainer.formOpened {
     margin-bottom: -5px;
 }
 
@@ -158,7 +161,6 @@ span.addBtnIcon {
    FORM STYLES
    ============================================ */
 .formContainer {
-    padding: 22px 18px;
     border-radius: 0 0 12px 12px;
     background-color: var(--secondary-bg-color);
 }
@@ -166,6 +168,7 @@ span.addBtnIcon {
 .form {
     display: flex;
     flex-direction: column;
+    padding: 22px 18px;
     margin-bottom: 13px;
     
     label {
@@ -207,6 +210,10 @@ span.addBtnIcon {
     }
 }
 
+.formBtnContainer {
+    border-top: 1px solid #e5e7eb;
+}
+
 .formGroup {
     display: flex;
     flex-direction: column;
@@ -225,13 +232,13 @@ span.addBtnIcon {
 .addPositionBtn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 9px 12px;
+    gap: 5px;
+    padding: 9px 10px;
     background: white;
     border: 1px dashed #d1d5db;
     border-radius: 6px;
     color: #6b7280;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
@@ -239,7 +246,7 @@ span.addBtnIcon {
 }
 
 span.addPositionBtnIcon {
-    font-size: 24px;
+    font-size: 21.5px;
     margin-bottom: -1px;
 }
 
@@ -390,13 +397,13 @@ span.positionVisibilityBtnIcon {
 .addPointBtn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
+    gap: 4px;
+    padding: 8px 7px;
     background: white;
     border: 1px dashed #d1d5db;
     border-radius: 6px;
     color: #6b7280;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
@@ -404,7 +411,7 @@ span.positionVisibilityBtnIcon {
 }
 
 span.addPointBtnIcon {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: -1px;
 }
 
@@ -414,9 +421,9 @@ span.addPointBtnIcon {
     background: #eff6ff;
 }
 
-.pointContainer {
+/* .pointContainer {
 
-}
+} */
 
 .pointCardContainer {
     border: 1px solid #e5e7eb;
@@ -517,9 +524,9 @@ span.pointVisibilityBtnIcon {
 /* ============================================
    SUBPOINT FORM STYLES
    ============================================ */
-.subPointContainer {
+/* .subPointContainer {
 
-}
+} */
 
 .subPointCardContainer {
     border: 1px solid #e5e7eb;
@@ -545,7 +552,7 @@ span.pointVisibilityBtnIcon {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 8px 7px;
+    padding: 8px 6px;
     background: white;
     border: 1px dashed #d1d5db;
     border-radius: 6px;
@@ -558,7 +565,7 @@ span.pointVisibilityBtnIcon {
 }
 
 span.addSubPointBtnIcon {
-    font-size: 21px;
+    font-size: 20px;
     margin-left: -3px;
 }
 
@@ -572,9 +579,6 @@ span.addSubPointBtnIcon {
     padding: 0 16px;
 }
 
-.subPointFormContainer input {
-    background-color: var(--secondary-bg-color);
-}
 
 .subPointFormGroup {
     display: flex;
@@ -583,9 +587,14 @@ span.addSubPointBtnIcon {
     margin-bottom: 10px;
 }
 
+
 .subPointFormGroup > label {
     color: var(--label-color);
     font-size: 13.5px;
+}
+
+.subPointFormGroup > textarea {
+    background-color: var(--secondary-bg-color);
 }
 
 .subPointHeaderContainer {
@@ -638,21 +647,14 @@ span.subPointVisibilityBtnIcon {
 /* ============================================
    FORM BUTTONS
    ============================================ */
-.formBtnDelete {
-    font-size: 13.3px;
-    color: grey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: 1px solid grey;
-}
-
 .formBtnContainer {
     display: flex;
     justify-content: space-between;
     padding: 20px 32px;
     border-top: 1px solid #e5e7eb;
     background: #fafafa;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .formBtnContainer > button {
@@ -663,12 +665,21 @@ span.formBtnDeleteIcon {
     font-size: 20px;
 }
 
+.formBtnDelete {
+    font-size: 13.3px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+}
+
 .formBtnCancel {
     font-size: 13.3px;
     color: grey;
-    outline: 1px solid grey;
     padding: 8px 16px;
     margin-left: auto;
+    border: 1px solid #e5e7eb;
 }
 
 .formBtnSave {
@@ -677,6 +688,7 @@ span.formBtnDeleteIcon {
     color: #fff;
     font-weight: bold;
     padding: 8px 16px;
+    margin-left: 12px;
 }
 
 /* ============================================

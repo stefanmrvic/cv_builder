@@ -95,7 +95,7 @@ export default function Point({data, setCVData, index, companyID, positionID, is
             const newSubPoint = {
                 id: crypto.randomUUID(),
                 isVisible: true,
-                subPoint: '',
+                subPoint: `SubPoint #${data.subPoints.length +1}`,
             }
 
             point.subPoints.push(newSubPoint)
@@ -103,6 +103,8 @@ export default function Point({data, setCVData, index, companyID, positionID, is
 
         setIsNewSubPoint(true);
     }
+
+    const isPlaceholderTitle = data.point.toLowerCase().includes('point');
 
     return (
         <div className={styles.pointContainer}>
@@ -133,7 +135,7 @@ export default function Point({data, setCVData, index, companyID, positionID, is
                     <div className={styles.pointFormContainer}>
                         <div className={styles.pointFormGroup}>
                             <label htmlFor="point">Description</label>
-                            <textarea name="point" id="point" autoFocus={isNewPoint} value={data?.point || ''} onChange={handleDescription} placeholder="Enter responsibility description..." />
+                            <textarea name="point" id="point" autoFocus={isNewPoint} value={(isNewPoint && isPlaceholderTitle) ? '' : (data?.point || '')} onChange={handleDescription} placeholder="Enter responsibility description..." />
                         </div>
 
                         <div className={styles.subResponsibilitiesContainer}>

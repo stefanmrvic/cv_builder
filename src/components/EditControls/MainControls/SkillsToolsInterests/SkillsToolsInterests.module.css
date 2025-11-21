@@ -3,6 +3,11 @@
     flex-direction: column;
 }
 
+.skillsToolsInterestsContainer {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
 .educationContainer {
     position: relative;
     display: flex;
@@ -18,6 +23,7 @@
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
+    margin-bottom: -4px;
 }
 
 .arrowDown.active {
@@ -96,20 +102,20 @@ span.addBtnIcon {
     margin-right: 7px;
 }
 
-.toggleBtn {
+.skillsToolsInterestsHeader {
     display: flex;
     gap: 11px;
     align-items: center;
-    padding: 24px;
-    margin-bottom: 6px;
+    padding: 26px 24px;
     border-radius: 12px;
+    width: 100%;
 }
 
-.toggleBtn.active {
+.skillsToolsInterestsHeader.active {
     border-radius: 12px 12px 0 0;
 }
 
-.toggleBtn.formOpened {
+.skillsToolsInterestsHeader.formOpened {
     margin-bottom: -5px;
 }
 

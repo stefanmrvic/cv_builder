@@ -125,7 +125,7 @@ export default function Position({data, setCVData, isNewPosition, setIsNewPositi
             const newPoint = {
                 id: crypto.randomUUID(),
                 isVisible: true,
-                point: '',
+                point: `Point #${data.responsibilities.length +1}`,
                 subPoints: []
             }
 
@@ -139,7 +139,7 @@ export default function Position({data, setCVData, isNewPosition, setIsNewPositi
 
     return (
         <div className={styles.positionContainer}>
-            <div className={styles.positionHeadlineContainer} onClick={handleCollapsing}>
+            <div className={styles.positionHeaderContainer} onClick={handleCollapsing}>
                 <span className={`${styles.expandArrowIcon} material-icons`}>
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                 </span>

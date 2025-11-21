@@ -33,13 +33,14 @@ export default function EducationItem({itemID, isVisible, setCVData, onClick, ed
         <a  onClick={onClick} className={`${styles.btn} ${styles.educationItem}`}>
             <span className={styles.btnText}>{education}</span>
             <div className={styles.educationBtnContainer}>
-                <button onClick={handleDeleteItem}>
-                    <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
-                </button>
                 <button onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                         {isVisible ? 'visibility' : 'visibility_off'}
                     </span>
+                </button>
+                
+                <button onClick={handleDeleteItem}>
+                    <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
             </div>
         </a>

@@ -85,6 +85,8 @@ export default function SubPoint({data, setCVData, index, companyID, positionID,
         if (isNewSubPoint) setIsNewSubPoint(false);
     }
 
+    const isPlaceholderTitle = data.subPoint.toLowerCase().includes('subpoint');
+
     return (
         <div className={styles.subPointContainer}>
             <span className={styles.subPointHeadline}>{`Sub-Point #${index +1}`}</span>
@@ -115,7 +117,7 @@ export default function SubPoint({data, setCVData, index, companyID, positionID,
                     <div className={styles.subPointFormContainer}>
                         <div className={styles.subPointFormGroup}>
                             <label htmlFor="sub-point">Description</label>
-                            <textarea type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={data?.subPoint || ''} onChange={handleDescription} placeholder="Enter sub-point description..." />
+                            <textarea type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={(isNewSubPoint && isPlaceholderTitle) ? '' : (data?.subPoint || '')} onChange={handleDescription} placeholder="Enter sub-point description..." />
                         </div>
                     </div>
                 )}

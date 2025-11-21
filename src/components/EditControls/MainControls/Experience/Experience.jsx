@@ -52,7 +52,7 @@ export default function Experience({data, setCVData}) {
 
     return (
         <div className={styles.experienceContainer}>
-            <button className={`${styles.toggleBtn} ${isExperienceFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+            <button className={`${styles.experienceHeaderContainer} ${isExperienceFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
                 <span className={styles.experienceHeadline}>Experience</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
@@ -71,11 +71,10 @@ export default function Experience({data, setCVData}) {
                 />
             )}
 
-{           /* Always renders the container to avoid layout shift. Content visibility is controlled by isExpanded. */}
+            {/* Always renders the container to avoid layout shift. Content visibility is controlled by isExpanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
                 <div className={`${styles.btnContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
-
                     {data?.map(company => (
                         <Company 
                             key={company.id}

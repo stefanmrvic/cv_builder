@@ -22,8 +22,9 @@ button {
     flex-direction: column;
     padding: 14px 8px;
     background-color: var(--secondary-bg-color);
-    border-radius: 12px;
     gap: 3px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
 }
 
 .sidebar > button {

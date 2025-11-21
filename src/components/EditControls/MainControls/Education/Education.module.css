@@ -10,6 +10,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
 }
 
 .educationHeadline {
@@ -24,6 +26,7 @@
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
+    margin-bottom: -4px;
 }
 
 .arrowDown.active {
@@ -47,7 +50,6 @@
 .btnContainer {
     display: flex;    
     flex-direction: column;
-    gap: 6px;
     animation: slideDown .25s forwards;
 }
 
@@ -69,6 +71,7 @@
     align-items: center;
     padding: 12px 14px 12px 24px;
     border-radius: 0px;
+    border-top: 1px solid #e5e7eb;
 }
 
 .btnText {
@@ -79,6 +82,7 @@
 .addBtnContainer {
     background-color: var(--secondary-bg-color);
     border-radius: 0 0 12px 12px;
+    border-top: 1px solid #e5e7eb;
 }
 
 .addBtn {
@@ -89,7 +93,7 @@
     align-items: center;
     padding: 8px 18px;
     margin: 15px auto;
-    border: 4px solid #eef0f4;
+    border: 1px solid #dddddd;
     border-radius: 100px;
 }
 
@@ -98,20 +102,19 @@ span.addBtnIcon {
     margin-right: 7px;
 }
 
-.toggleBtn {
+.educationHeader {
     display: flex;
     gap: 11px;
     align-items: center;
-    padding: 24px;
-    margin-bottom: 6px;
+    padding: 26px 24px;
     border-radius: 12px;
 }
 
-.toggleBtn.active {
+.educationHeader.active {
     border-radius: 12px 12px 0 0;
 }
 
-.toggleBtn.formOpened {
+.educationHeader.formOpened {
     margin-bottom: -5px;
 }
 

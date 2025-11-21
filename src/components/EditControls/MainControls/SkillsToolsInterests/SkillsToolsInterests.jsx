@@ -68,8 +68,8 @@ export default function Education({data, setCVData}) {
     }
 
     return (
-        <div className={styles.educationContainer}>
-            <button className={`${styles.toggleBtn} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+        <div className={styles.skillsToolsInterestsContainer}>
+            <button className={`${styles.skillsToolsInterestsHeader} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={`${styles.btnIcon} material-icons`}>settings</span>
                 <span className={styles.educationHeadline}>Skills, Tools & Interests</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
