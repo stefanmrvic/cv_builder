@@ -18,7 +18,7 @@ export default function Experience({data, setCVData}) {
         positions: []
     })
 
-    const btnContainerRef = useRef(null);
+    const companyContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
 
     const toggleCollapsing = () => {
@@ -29,8 +29,8 @@ export default function Experience({data, setCVData}) {
     }
 
     const handleCloseAnimation = () => {
-        btnContainerRef.current.setAttribute("class", `${styles.btnContainer} ${styles.closing}`)
-        btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        companyContainerRef.current.setAttribute("class", `${styles.companyContainer} ${styles.closing}`)
+        companyContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
     const handleAddExperience = () => {
@@ -74,15 +74,12 @@ export default function Experience({data, setCVData}) {
             {/* Always renders the container to avoid layout shift. Content visibility is controlled by isExpanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
-                <div className={`${styles.btnContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
+                <div className={`${styles.companyContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={companyContainerRef}>
                     {data?.map(company => (
                         <Company 
                             key={company.id}
-                            data={data}
+                            data={company}
                             setCVData={setCVData}
-                            companyID={company.id}
-                            companyName={company.companyName}
-                            isVisible={company.isVisible}
                             setExperienceFormData={setExperienceFormData}
                             setIsExperienceFormOpen={setIsExperienceFormOpen}
                         />

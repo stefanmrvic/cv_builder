@@ -27,7 +27,7 @@
     background-color: var(--secondary-bg-color);
 }
 
-.companyBtnContainer {
+.companyContainer {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -47,34 +47,35 @@
     transform: rotate(180deg);
 }
 
-.btnContainer {
+.companyContainer {
     display: flex;    
     flex-direction: column;
     animation: slideDown .25s forwards;
 }
 
-.btnContainer.hidden {
+.companyContainer.hidden {
     visibility: hidden;
     position: absolute;
 }
 
-.btnContainer.closing {
+.companyContainer.closing {
     animation: slideUp .25s forwards;
 }
 
 /* ============================================
    BUTTONS & ACTIONS
    ============================================ */
-.btn {
+.companyHeaderContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 14px 12px 24px;
     border-radius: 0px;
     border-top: 1px solid #e5e7eb;
+    width: 100%;
 }
 
-.btnText {
+.companyHeadline {
     font-size: 17px;
     font-weight: 600;
 }
