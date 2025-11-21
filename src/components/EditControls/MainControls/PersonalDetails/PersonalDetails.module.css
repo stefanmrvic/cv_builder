@@ -6,6 +6,7 @@
 .personalDetailsContainer {
     border: 1px solid #e5e7eb;
     border-radius: 12px;
+    box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
 }
 
 span.arrowUp {

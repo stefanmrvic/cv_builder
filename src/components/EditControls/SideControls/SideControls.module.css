@@ -25,6 +25,7 @@ button {
     gap: 3px;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
+    box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
 }
 
 .sidebar > button {
