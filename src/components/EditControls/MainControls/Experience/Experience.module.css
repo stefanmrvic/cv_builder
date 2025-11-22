@@ -23,33 +23,14 @@
 /* ============================================
    COMPANY ITEMS
    ============================================ */
-.company {
-    background-color: var(--secondary-bg-color);
-}
-
-.companyContainer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-/* ============================================
-   TOGGLE & COLLAPSE
-   ============================================ */
-/* Selects arrow up on the right side of the "Experience" button toggler */
-.arrowDown {
-    margin-left: auto;
-    transition: transform .3s;
-    margin-bottom: -4px;
-}
-
-.arrowDown.active {
-    transform: rotate(180deg);
+.companyCard {
+    width: 100%;    
 }
 
 .companyContainer {
     display: flex;    
     flex-direction: column;
+    align-items: center;
     animation: slideDown .25s forwards;
 }
 
@@ -62,17 +43,21 @@
     animation: slideUp .25s forwards;
 }
 
-/* ============================================
-   BUTTONS & ACTIONS
-   ============================================ */
 .companyHeaderContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 12px 14px 12px 24px;
     border-radius: 0px;
     border-top: 1px solid #e5e7eb;
-    width: 100%;
+    background-color: var(--secondary-bg-color);
+    cursor: pointer;
+}
+
+.companyHeadlineContainer {
+    display: flex;
+    align-items: center;
 }
 
 .companyHeadline {
@@ -80,10 +65,29 @@
     font-weight: 600;
 }
 
+/* ============================================
+   TOGGLE & COLLAPSE
+   ============================================ */
+/* Selects arrow up on the right side of the "Experience" button toggler */
+.arrowDown {
+    margin-left: auto;
+    transition: transform .3s;
+    margin-bottom: -4px;
+    margin-right: 4px;
+}
+
+.arrowDown.active {
+    transform: rotate(180deg);
+}
+
+/* ============================================
+   BUTTONS & ACTIONS
+   ============================================ */
 .addBtnContainer {
     background-color: var(--secondary-bg-color);
     border-radius: 0 0 12px 12px;
     border-top: 1px solid #e5e7eb;
+    width: 100%;
 }
 
 .addBtn {

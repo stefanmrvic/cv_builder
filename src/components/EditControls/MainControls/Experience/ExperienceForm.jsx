@@ -6,16 +6,22 @@ import styles from './Experience.module.css';
 
 export default function ExperienceForm({data, setCVData, isNewExperience, setIsNewExperience, setIsExperienceFormOpen, experienceFormData}) {    
     const [isNewPosition, setIsNewPosition] = useState(false);
+    const [currentFormDetails, setCurrentFormDetails] = useState({
+        id: '',
+        isVisible: '',
+        companyName: '',
+        location: '',
+        positions: []
+    })
 
     const handleDelete = () => {
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
 
         setCVData(draft => {
-            const itemIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
-            
-            if (itemIndex === undefined) throw new Error('Company not found!');
+            const companyIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
+            if (companyIndex === undefined) throw new Error('Company not found!');
 
-            draft.workExperience.splice(itemIndex, 1);
+            draft.workExperience.splice(companyIndex, 1);
         });
 
         setIsExperienceFormOpen(false);
@@ -41,6 +47,14 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
             }
         });
 
+        setCurrentFormDetails({
+            id: '',
+            isVisible: '',
+            companyName: '',
+            location: '',
+            positions: []
+        })
+
         setIsNewExperience(false);  
         setIsExperienceFormOpen(false);
     }
@@ -48,48 +62,72 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
     const handleCompanyName = (e) => {
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === experienceFormData.id);
-
             if (!company) throw new Error('Company not found!');
 
             company.companyName = e.target.value;
         });
+
+        setCurrentFormDetails({
+            ...currentFormDetails, 
+            companyName: e.target.value
+        })
     }
 
     const handleLocation = (e) => {
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === experienceFormData.id);
-
             if (!company) throw new Error('Company not found!');
 
             company.location = e.target.value;
         });
+
+        setCurrentFormDetails({
+            ...currentFormDetails, 
+            location: e.target.value
+        })
     }
 
     const handleAddPosition = (e) => {
         if (!data) throw new Error('data not found!');
 
+        const newPosition = {
+            id: crypto.randomUUID(),
+            isVisible: true,
+            title: `Position #${experienceFormData.positions.length +1}`,
+            startDate: '',
+            endDate: '',
+            currentlyEmployed: '',
+            responsibilities: []
+        }
+
         setCVData(draft => {
             const company = draft.workExperience.find(company => company.id === experienceFormData.id);
             if (company === undefined) throw new Error('Company not found!');
 
-            const newPosition = {
-                id: crypto.randomUUID(),
-                isVisible: true,
-                title: `Position #${experienceFormData.positions.length +1}`,
-                startDate: '',
-                endDate: '',
-                currentlyEmployed: '',
-                responsibilities: []
-            }
-
             company.positions.push(newPosition)
         });
 
+        setCurrentFormDetails({
+            ...currentFormDetails, 
+            positions: [...currentFormDetails.positions, newPosition]
+        })
+        
         setIsNewPosition(true);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setCurrentFormDetails({
+            ...currentFormDetails, 
+            id: crypto.randomUUID()
+        });
+
+        if (!currentFormDetails.id) throw new Error('currentFormDetails.id is undefined!');
+
+        setCVData(draft => {
+            draft.workExperience.push(currentFormDetails);
+        });
     }
 
     const company = data.find(company => company.id === experienceFormData.id);

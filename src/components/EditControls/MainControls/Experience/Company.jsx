@@ -44,7 +44,7 @@ export default function Company({data, setCVData, setIsExperienceFormOpen, setEx
 
     return (
         <div className={styles.companyCard}>
-            <div onClick={onClick} className={`${styles.companyHeaderContainer} ${styles.company}`} role='button'>
+            <div onClick={onClick} className={styles.companyHeaderContainer} role='button'>
                 <div className={styles.companyHeadlineContainer}>
                     {/* Display an arrow icon if there are positions under given Company. */}
                     {data.positions.length > 0 && (
@@ -71,6 +71,7 @@ export default function Company({data, setCVData, setIsExperienceFormOpen, setEx
             </div>
 
             {/* Expose this section if there are job positions under the given Company. */}
+            
         </div>
     )
 }
