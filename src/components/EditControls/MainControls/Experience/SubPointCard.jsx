@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import styles from './Experience.module.css';
 
-export default function SubPoint({data, setCVData, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint}) {
+export default function SubPointCard({data, setCVData, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
 

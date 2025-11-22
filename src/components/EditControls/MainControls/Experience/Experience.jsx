@@ -8,7 +8,6 @@ import styles from './Experience.module.css';
 export default function Experience({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
-    const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
     const [isNewExperience, setIsNewExperience] = useState(false)
     const [experienceFormData, setExperienceFormData] = useState({
         id: '',

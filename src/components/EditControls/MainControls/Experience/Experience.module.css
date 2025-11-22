@@ -72,13 +72,45 @@
 }
 
 /* ============================================
+   POSITION ITEMS
+   ============================================ */
+.positionHeaderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 14px 8px 60px;
+    border-radius: 0px;
+    border-top: 1px solid #e5e7eb;
+    background-color: var(--secondary-bg-color);
+    cursor: pointer;
+}
+
+.positionHeaderBtnContainer {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+}
+
+.positionHeadline {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.positionsContainer {
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ============================================
    TOGGLE & COLLAPSE
    ============================================ */
 /* Selects arrow up on the right side of the "Experience" button toggler */
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
-    margin: -2px 6px -4px 0;
+    margin: -2px 6px -4px auto;
 }
 
 .arrowDown.active {
@@ -300,19 +332,19 @@ span.addPositionBtnIcon {
     gap: 20px;
 }
 
-.positionHeaderContainer {
+.positionCardContainer {
     display: flex;
     align-items: center;
     padding: 16px;
     cursor: pointer;
 }
 
-.positionHeaderContainer > span.expandArrowIcon {
+.positionCardContainer > span.expandArrowIcon {
     font-size: 19px;
     margin-left: -6px;
 }
 
-.positionHeadline {
+.positionCardHeadline {
     font-size: 15px;
     font-weight: bold;
 }
@@ -707,10 +739,10 @@ span.formBtnDeleteIcon {
    ============================================ */
 @keyframes slideDown {
     0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
+    100% { transform: translateY(0); opacity: 1; max-height: 1000px;}
 }
 
 @keyframes slideUp {
-    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
+    0% { transform: translateY(0); opacity: 1; max-height: 1000px;}
     100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
 }

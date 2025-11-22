@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import SubPoint from './SubPoint.jsx';
+import SubPointCard from './SubPointCard.jsx';
 
 import styles from './Experience.module.css';
 
-export default function Point({data, setCVData, index, companyID, positionID, isNewPoint, setIsNewPoint}) {
+export default function PointCard({data, setCVData, index, companyID, positionID, isNewPoint, setIsNewPoint}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [isNewSubPoint, setIsNewSubPoint] = useState(false);
@@ -143,7 +143,7 @@ export default function Point({data, setCVData, index, companyID, positionID, is
                                 data.subPoints.map((subPoint, index) => {
                                     const isNew = isNewSubPoint && index == data.subPoints.length - 1;
 
-                                    return <SubPoint 
+                                    return <SubPointCard 
                                         key={subPoint.id} 
                                         index={index} 
                                         data={subPoint}

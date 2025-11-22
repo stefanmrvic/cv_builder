@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Position from './Position.jsx';
+import PositionCard from './PositionCard.jsx';
 
 import styles from './Experience.module.css';
 
@@ -150,7 +150,7 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
                     company.positions.map((position, index) => {
                         const isNew = isNewPosition && index === company.positions.length - 1;
 
-                        return <Position 
+                        return <PositionCard 
                             key={position.id} 
                             index={index} 
                             data={position} 

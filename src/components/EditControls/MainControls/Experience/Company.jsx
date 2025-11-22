@@ -1,6 +1,15 @@
+import { useState, useRef } from 'react';
+
+import Position from './Position.jsx';
+
 import styles from './Experience.module.css';
 
-export default function Company({data, setCVData, setIsExperienceFormOpen, setExperienceFormData, onClick}) {
+export default function Company({data, setCVData, setIsExperienceFormOpen, setExperienceFormData}) {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const positionsContainerRef = useRef(null);
+    const arrowDownRef = useRef(null);
+
     const handleDelete = (e) => {
         e.stopPropagation();
         
@@ -42,13 +51,25 @@ export default function Company({data, setCVData, setIsExperienceFormOpen, setEx
         setIsExperienceFormOpen(true);
     }
 
+    const toggleCollapsing = () => {
+        arrowDownRef.current.classList.toggle(`${styles.active}`);
+        
+        if (isExpanded) handleCloseAnimation();
+        setIsExpanded(!isExpanded);
+    }
+    
+    const handleCloseAnimation = () => {
+        positionsContainerRef.current.setAttribute("class", `${styles.positionsContainer} ${styles.closing}`)
+        positionsContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+    }
+
     return (
         <div className={styles.companyCard}>
-            <div onClick={onClick} className={styles.companyHeaderContainer} role='button'>
+            <div onClick={toggleCollapsing} className={styles.companyHeaderContainer} role='button'>
                 <div className={styles.companyHeadlineContainer}>
                     {/* Display an arrow icon if there are positions under given Company. */}
                     {data.positions.length > 0 && (
-                        <span className={`${styles.arrowDown} material-symbols-outlined`} >keyboard_arrow_down</span>
+                        <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
                     )}
                     <span className={styles.companyHeadline}>{data.companyName}</span>
                 </div>
@@ -71,7 +92,18 @@ export default function Company({data, setCVData, setIsExperienceFormOpen, setEx
             </div>
 
             {/* Expose this section if there are job positions under the given Company. */}
-            
+            {isExpanded && (
+                <div className={styles.positionsContainer} ref={positionsContainerRef}>
+                    {data.positions.map(position => (
+                        <Position
+                            key={position.id}
+                            data={position}
+                            setCVData={setCVData}
+                            companyID={data.id}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
