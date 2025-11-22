@@ -65,6 +65,12 @@
     font-weight: 600;
 }
 
+.companyHeaderBtnContainer {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+}
+
 /* ============================================
    TOGGLE & COLLAPSE
    ============================================ */
@@ -72,8 +78,7 @@
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
-    margin-bottom: -4px;
-    margin-right: 4px;
+    margin: -2px 6px -4px 0;
 }
 
 .arrowDown.active {
