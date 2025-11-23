@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import styles from './Experience.module.css';
+import styles from './ExperienceForm.module.css';
 
 export default function SubPointCard({data, setCVData, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint}) {
     const [isExpanded, setIsExpanded] = useState(false);

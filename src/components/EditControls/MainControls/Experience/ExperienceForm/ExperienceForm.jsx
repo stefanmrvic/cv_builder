@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import PositionCard from './PositionCard.jsx';
 
-import styles from './Experience.module.css';
+import styles from './ExperienceForm.module.css';
 
 export default function ExperienceForm({data, setCVData, isNewExperience, setIsNewExperience, setIsExperienceFormOpen, experienceFormData}) {    
     const [isNewPosition, setIsNewPosition] = useState(false);

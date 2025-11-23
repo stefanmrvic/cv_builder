@@ -1,0 +1,429 @@
+/* ============================================
+   FORM STYLES
+   ============================================ */
+.formContainer {
+    border-radius: 0 0 12px 12px;
+    padding: 0 16px;
+    background-color: var(--secondary-bg-color);
+}
+
+.formContainer input,
+.formContainer textarea {
+    background-color: var(--secondary-bg-color);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 18px;
+    margin-bottom: 13px;
+    
+    label {
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    input,
+    textarea {
+        font-size: 13.3px;
+        color: var(--input-color);
+        background-color: var(--main-bg-color);
+        border: var(--input-border);
+        border-radius: 7px;
+        padding: 10px;
+        margin-bottom: 12px;
+        transition: border .25s, box-shadow .25s;
+        line-height: normal;
+    } 
+    
+    input:disabled {
+        background-color: #f7f7f7;
+        color: #6b7280;
+        border: 1px solid #d1d5db;
+        cursor: not-allowed;
+    }
+
+    textarea {
+        height: 90px;
+    }
+
+    textarea:focus,
+    textarea:focus-visible,
+    input:focus,
+    input:focus-visible {
+        border-color: #3b83f6;
+        box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
+        outline: none;
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.formGroup > label {
+    color: var(--label-color);
+    font-size: 14px;
+}
+
+.expandArrowIcon {
+    margin-right: 5px;
+}
+
+.formGroupDate {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.formGroupDate .startDate,
+.formGroupDate .endDate {
+    display: flex;
+    flex-direction: column;
+    min-width: 176px;
+    width: 198px;
+}
+
+.formGroupDate .startDate label,
+.formGroupDate .endDate label {
+    color: var(--label-color);
+    font-size: 14px;
+}
+
+.currentlyEmployed {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    margin-left: 1px;
+}
+
+.currentlyEmployed .checkbox {
+    width: 14.5px;
+    height: 14.5px;
+    margin: 0 7px 0 0;
+    cursor: pointer;
+}
+
+.currentlyEmployed .label {
+    margin-bottom: 11px;
+    color: #6b7280;
+    font-weight: 400;
+    font-family: 'Noto Sans';
+    font-size: 13px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.responsibilitiesHeadline {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+} 
+
+/* ============================================
+   POINT FORM STYLES
+   ============================================ */
+.addPointBtnContainer {
+    margin-bottom: 16px;
+}
+
+.addPointBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 7px;
+    background: white;
+    border: 1px dashed #d1d5db;
+    border-radius: 6px;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+span.addPointBtnIcon {
+    font-size: 20px;
+    margin-bottom: -1px;
+}
+
+.addPointBtn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+/* .pointContainer {
+
+} */
+
+.pointCardContainer {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: var(--secondary-bg-color);
+    margin-bottom: 11px;
+}
+
+.pointHeadline {
+    display: inline-block;
+    color: #9ca3af;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 3px;
+    margin-bottom: 5px;
+}
+
+.pointFormContainer {
+    padding: 0 16px;
+}
+
+.pointFormContainer textarea {
+    background-color: var(--main-bg-color);
+}
+
+.pointFormGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.pointFormGroup > label {
+    color: var(--label-color);
+    font-size: 13.5px;
+}
+
+.pointFormGroup > textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.pointFormGroupCompany {
+    display: flex;
+    gap: 20px;
+}
+
+.pointHeaderContainer {
+    display: flex;
+    align-items: center;
+    padding: 11px 16px;
+    cursor: pointer;
+}
+
+.pointHeaderContainer > span.expandArrowIcon {
+    font-size: 19px;
+    margin-left: -6px;
+}
+
+.pointDescription {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 308px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: normal;
+}
+
+.expandArrowIcon {
+    margin-right: 5px;
+}
+
+.pointBtnContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Buttons on the right side of the Point text for Delete / Visibility */
+.pointDeleteBtn,
+.pointVisibilityBtn {
+    background: none;
+}
+
+/* Icons on the right side of the Point text for Delete / Visibility */
+span.pointDeleteBtnIcon {
+    color: var(--icon-color);
+    font-size: 20px;
+}
+
+span.pointVisibilityBtnIcon {
+    color: var(--icon-color);
+    font-size: 22px;
+}
+
+/* ============================================
+   SUBPOINT FORM STYLES
+   ============================================ */
+/* .subPointContainer {
+
+} */
+
+.subPointCardContainer {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: var(--main-bg-color);
+    margin-bottom: 11px;
+}
+
+.subPointHeadline {
+    display: inline-block;
+    color: #9ca3af;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 3px;
+    margin-bottom: 5px;
+}
+
+.addSubPointBtnContainer {
+    margin-bottom: 16px;
+}
+
+.addSubPointBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 6px;
+    background: white;
+    border: 1px dashed #d1d5db;
+    border-radius: 6px;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+span.addSubPointBtnIcon {
+    font-size: 20px;
+    margin-left: -3px;
+}
+
+.addSubPointBtn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.subPointFormContainer {
+    padding: 0 16px;
+}
+
+
+.subPointFormGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+.subPointFormGroup > label {
+    color: var(--label-color);
+    font-size: 13.5px;
+}
+
+.subPointFormGroup > textarea {
+    background-color: var(--secondary-bg-color);
+}
+
+.subPointHeaderContainer {
+    display: flex;
+    align-items: center;
+    padding: 11px 16px;
+    cursor: pointer;
+}
+
+.subPointDescription {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 308px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: normal;
+}
+
+.expandArrowIcon {
+    margin-right: 5px;
+    font-size: 19px;
+    margin-left: -6px;
+}
+
+.subPointBtnContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Buttons on the right side of the Point text for Delete / Visibility */
+.subPointDeleteBtn,
+.subPointVisibilityBtn {
+    background: none;
+}
+
+/* Icons on the right side of the Point text for Delete / Visibility */
+span.subPointDeleteBtnIcon {
+    color: var(--icon-color);
+    font-size: 20px;
+}
+
+span.subPointVisibilityBtnIcon {
+    color: var(--icon-color);
+    font-size: 22px;
+}
+
+/* ============================================
+   FORM BUTTONS
+   ============================================ */
+.formBtnContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 32px;
+    border-top: 1px solid #e5e7eb;
+    background: #fafafa;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.formBtnContainer > button {
+    max-width: 92px;
+}
+
+span.formBtnDeleteIcon {
+    font-size: 20px;
+}
+
+.formBtnDelete {
+    font-size: 13.3px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+}
+
+.formBtnCancel {
+    font-size: 13.3px;
+    color: grey;
+    padding: 8px 16px;
+    margin-left: auto;
+    border: 1px solid #e5e7eb;
+}
+
+.formBtnSave {
+    font-size: 13.3px;
+    background-color: #187ff5;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 16px;
+    margin-left: 12px;
+}

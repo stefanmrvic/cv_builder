@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import PointCard from './PointCard.jsx';
 
-import styles from './Experience.module.css';
+import styles from './ExperienceForm.module.css';
 
 export default function PositionCard({data, setCVData, isNewPosition, setIsNewPosition, index, companyID, positionCount}) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -144,7 +144,7 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                 </span>
 
-                <span className={styles.positionCardHeadline}>{data ? data.title : 'Position #' + (index +1)}</span>
+                <span className={styles.positionHeadline}>{data ? data.title : 'Position #' + (index +1)}</span>
 
                 <div className={styles.positionBtnContainer}>
                     <button className={styles.positionVisibilityBtn} onClick={handleVisibility}>

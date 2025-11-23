@@ -1,12 +1,14 @@
 import { useState, useRef } from 'react';
 
 import Company from './Company.jsx';
-import ExperienceForm from './ExperienceForm.jsx';
+import PositionForm from './PositionForm/PositionForm.jsx';
+import ExperienceForm from './ExperienceForm/ExperienceForm.jsx';
 
 import styles from './Experience.module.css';
 
 export default function Experience({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
     const [isNewExperience, setIsNewExperience] = useState(false)
     const [experienceFormData, setExperienceFormData] = useState({
@@ -67,6 +69,15 @@ export default function Experience({data, setCVData}) {
                     setIsExperienceFormOpen={setIsExperienceFormOpen}
                     experienceFormData={experienceFormData} 
                     setExperienceFormData={setExperienceFormData} 
+                />
+            )}
+
+            {(isExpanded && isPositionFormOpen) && (
+                <PositionForm 
+                    data={data} 
+                    setCVData={setCVData} 
+                    isPositionFormOpen={isPositionFormOpen}
+                    setIsPositionFormOpen={setIsPositionFormOpen}
                 />
             )}
 

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import PositionForm from './PositionForm/PositionForm.jsx';
+
 import styles from './Experience.module.css';
 
 export default function Position({data, setCVData, companyID}) {
@@ -78,6 +80,14 @@ export default function Position({data, setCVData, companyID}) {
                     <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
             </div>
+
+            {isPositionFormOpen && (
+                <PositionForm 
+                    data={data} 
+                    setCVData={setCVData}
+                    companyID={companyID}
+                />
+            )}
         </div>
     )
 }
