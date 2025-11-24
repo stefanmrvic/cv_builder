@@ -34,9 +34,13 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
     }
 
     const handleVisibility = (e) => {
-        e.stopPropagation();
+        // Stops bubbling to parent <div> with onClick handler
+        e.stopPropagation()
         
-        if (isExpanded) setIsExpanded(prevState => !prevState);
+        // Stop default form submit behavior
+        e.preventDefault();
+        
+        if (isExpanded && data.isVisible) setIsExpanded(prevState => !prevState);
 
         if (!data.id) throw new Error('subPoint.id is undefined!');
 

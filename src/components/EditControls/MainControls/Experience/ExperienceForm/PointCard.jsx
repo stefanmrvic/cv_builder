@@ -6,7 +6,6 @@ import styles from './ExperienceForm.module.css';
 
 export default function PointCard({data, setCVData, index, companyID, positionID, isNewPoint, setIsNewPoint}) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
     const [isNewSubPoint, setIsNewSubPoint] = useState(false);
 
     // Using useEffect Hook here to automatically expand the Point card if the user created new Point.
@@ -40,7 +39,7 @@ export default function PointCard({data, setCVData, index, companyID, positionID
         // Stop default form submit behavior
         e.preventDefault();
         
-        if (isExpanded) setIsExpanded(prevState => !prevState);
+        if (isExpanded && data.isVisible) setIsExpanded(prevState => !prevState);
 
         if (!data.id) throw new Error('experienceFormData.id is undefined!');
 
@@ -56,8 +55,6 @@ export default function PointCard({data, setCVData, index, companyID, positionID
 
             point.isVisible = !point.isVisible;
         });
-        
-        setIsVisible(prevState => !prevState);
     }
 
     const handleDescription = (e) => {
@@ -125,7 +122,7 @@ export default function PointCard({data, setCVData, index, companyID, positionID
                     <div className={styles.pointBtnContainer}>
                         <button className={styles.pointVisibilityBtn} onClick={handleVisibility}>
                             <span className={`${styles.pointVisibilityBtnIcon} material-symbols-outlined`}>
-                                {isVisible ? 'visibility' : 'visibility_off'}
+                                {data.isVisible ? 'visibility' : 'visibility_off'}
                             </span>
                         </button>
 

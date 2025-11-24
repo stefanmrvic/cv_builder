@@ -30,9 +30,10 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleVisibility = (e) => {
+        e.preventDefault();
         e.stopPropagation();
         
-        if (isExpanded) setIsExpanded(!isExpanded);
+        if (isExpanded && data.isVisible) setIsExpanded(!isExpanded);
         
         if (!data.id) throw new Error('data.id is undefined!');
 
