@@ -1,21 +1,8 @@
 import { useState } from 'react';
 
-import PositionForm from './PositionForm/PositionForm.jsx';
-
 import styles from './Experience.module.css';
 
-export default function Position({data, setCVData, companyID}) {
-    const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
-    const [positionFormData, setPositionFormData] = useState({
-        id: '',
-        isVisible: '',
-        title: '',
-        startDate: '',
-        endDate: '',
-        currentlyEmployed: '',
-        responsibilities: []
-    })
-
+export default function Position({data, setCVData, setIsPositionFormOpen, setPositionFormData, companyID}) {
     const handleDelete = (e) => {
         e.stopPropagation();
         
@@ -54,6 +41,7 @@ export default function Position({data, setCVData, companyID}) {
 
         setPositionFormData({
             id: data.id,
+            companyID: companyID,
             isVisible: data.isVisible,
             title: data.title,
             startDate: data.startDatet,
@@ -80,14 +68,6 @@ export default function Position({data, setCVData, companyID}) {
                     <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
             </div>
-
-            {isPositionFormOpen && (
-                <PositionForm 
-                    data={data} 
-                    setCVData={setCVData}
-                    companyID={companyID}
-                />
-            )}
         </div>
     )
 }

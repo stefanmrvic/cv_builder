@@ -270,7 +270,7 @@ span.addPointBtnIcon {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     background-color: var(--secondary-bg-color);
-    margin-bottom: 11px;
+    margin-bottom: 9px;
 }
 
 .pointHeadline {
@@ -373,7 +373,7 @@ span.pointVisibilityBtnIcon {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     background-color: var(--main-bg-color);
-    margin-bottom: 11px;
+    margin-bottom: 9px;
 }
 
 .subPointHeadline {

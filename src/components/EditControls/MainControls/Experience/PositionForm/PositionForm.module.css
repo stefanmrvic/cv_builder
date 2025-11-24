@@ -3,7 +3,6 @@
    ============================================ */
 .formContainer {
     border-radius: 0 0 12px 12px;
-    padding: 0 16px;
     background-color: var(--secondary-bg-color);
 }
 
@@ -15,7 +14,7 @@
 .form {
     display: flex;
     flex-direction: column;
-    padding: 22px 18px;
+    padding: 15px 22px;
     margin-bottom: 13px;
     
     label {

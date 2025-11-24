@@ -36,7 +36,7 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
     const handleVisibility = (e) => {
         e.stopPropagation();
         
-        if (isExpanded) setIsExpanded(!isExpanded);
+        if (isExpanded) setIsExpanded(prevState => !prevState);
 
         if (!data.id) throw new Error('subPoint.id is undefined!');
 

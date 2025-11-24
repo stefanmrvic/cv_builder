@@ -65,6 +65,10 @@
     font-weight: 600;
 }
 
+.companyHeadline.alone {
+    padding-left: 6px;
+}
+
 .companyHeaderBtnContainer {
     display: flex;
     align-items: center;

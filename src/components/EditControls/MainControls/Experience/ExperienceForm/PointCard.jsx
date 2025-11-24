@@ -34,9 +34,13 @@ export default function PointCard({data, setCVData, index, companyID, positionID
     }
 
     const handleVisibility = (e) => {
-        e.stopPropagation();
+        // Stops bubbling to parent <div> with onClick handler
+        e.stopPropagation()
         
-        if (isExpanded) setIsExpanded(!isExpanded);
+        // Stop default form submit behavior
+        e.preventDefault();
+        
+        if (isExpanded) setIsExpanded(prevState => !prevState);
 
         if (!data.id) throw new Error('experienceFormData.id is undefined!');
 
@@ -148,7 +152,7 @@ export default function PointCard({data, setCVData, index, companyID, positionID
                                         index={index} 
                                         data={subPoint}
                                         setCVData={setCVData}
-                                        // TO-DO: Reformat later with Context
+                                        // TO-DO: Refactor later with Context API
                                         companyID={companyID}
                                         positionID={positionID}
                                         pointID={data.id} 

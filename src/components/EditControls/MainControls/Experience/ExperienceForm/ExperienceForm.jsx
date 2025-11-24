@@ -4,15 +4,8 @@ import PositionCard from './PositionCard.jsx';
 
 import styles from './ExperienceForm.module.css';
 
-export default function ExperienceForm({data, setCVData, isNewExperience, setIsNewExperience, setIsExperienceFormOpen, experienceFormData}) {    
+export default function ExperienceForm({data, setCVData, experienceFormData, isNewExperience, setIsNewExperience, setIsExperienceFormOpen}) {    
     const [isNewPosition, setIsNewPosition] = useState(false);
-    const [currentFormDetails, setCurrentFormDetails] = useState({
-        id: '',
-        isVisible: '',
-        companyName: '',
-        location: '',
-        positions: []
-    })
 
     const handleDelete = () => {
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
@@ -37,6 +30,8 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
 
             if (isNewExperience) {
                 const companyIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
+                if (companyIndex === -1) throw new Error('CompanyIndex not found!');
+
                 draft.workExperience.splice(companyIndex, 1);
             } else {
                 company.id = experienceFormData.id;
@@ -46,14 +41,6 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
                 company.positions = experienceFormData.positions;
             }
         });
-
-        setCurrentFormDetails({
-            id: '',
-            isVisible: '',
-            companyName: '',
-            location: '',
-            positions: []
-        })
 
         setIsNewExperience(false);  
         setIsExperienceFormOpen(false);
@@ -66,11 +53,6 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
 
             company.companyName = e.target.value;
         });
-
-        setCurrentFormDetails({
-            ...currentFormDetails, 
-            companyName: e.target.value
-        })
     }
 
     const handleLocation = (e) => {
@@ -80,14 +62,11 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
 
             company.location = e.target.value;
         });
-
-        setCurrentFormDetails({
-            ...currentFormDetails, 
-            location: e.target.value
-        })
     }
 
     const handleAddPosition = (e) => {
+        e.preventDefault()
+
         if (!data) throw new Error('data not found!');
 
         const newPosition = {
@@ -106,11 +85,6 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
 
             company.positions.push(newPosition)
         });
-
-        setCurrentFormDetails({
-            ...currentFormDetails, 
-            positions: [...currentFormDetails.positions, newPosition]
-        })
         
         setIsNewPosition(true);
     }
@@ -118,16 +92,8 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setCurrentFormDetails({
-            ...currentFormDetails, 
-            id: crypto.randomUUID()
-        });
-
-        if (!currentFormDetails.id) throw new Error('currentFormDetails.id is undefined!');
-
-        setCVData(draft => {
-            draft.workExperience.push(currentFormDetails);
-        });
+        setIsExperienceFormOpen(false);
+        if (isNewExperience) setIsNewExperience(false);
     }
 
     const company = data.find(company => company.id === experienceFormData.id);
@@ -178,7 +144,7 @@ export default function ExperienceForm({data, setCVData, isNewExperience, setIsN
                     <span>Delete</span>
                 </button>
                 <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
-                <button className={styles.formBtnSave} onClick={() => setIsExperienceFormOpen(false)}>Save</button>
+                <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
             </div>
         </div>
     )

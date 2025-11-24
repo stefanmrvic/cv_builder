@@ -4,9 +4,8 @@ import PointCard from './PointCard.jsx';
 
 import styles from './ExperienceForm.module.css';
 
-export default function PositionCard({data, setCVData, isNewPosition, setIsNewPosition, index, companyID, positionCount}) {
+export default function PositionCard({data, setCVData, isNewPosition, setIsNewPosition, index, companyID}) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [currentlyEmployed, setCurrentlyEmployed] = useState(false);
     const [isNewPoint, setIsNewPoint] = useState(false);
 
     // Using useEffect Hook here to automatically expand the Posiiton card if the user created new Position.
@@ -100,10 +99,8 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
             const position = company.positions.find(position => position.id === data.id);
             if (position === undefined) throw new Error('Position not found!');
 
-            position.currentlyEmployed = !currentlyEmployed;
+            position.currentlyEmployed = !position.currentlyEmployed;
         });
-
-        setCurrentlyEmployed(prevState => !prevState);
     }
 
     const handleCollapsing = () => {
@@ -172,10 +169,10 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
                         </div>
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
-                            <input type="text" name="endDate" id="endDate" disabled={currentlyEmployed ? true : false} value={currentlyEmployed ? 'Present' : data?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" />
+                            <input type="text" name="endDate" id="endDate" disabled={data?.currentlyEmployed} value={data?.currentlyEmployed ? 'Present' : data?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" />
                         </div>
                         <div className={styles.currentlyEmployed}>
-                            <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" onChange={handleCurrentlyEmployed}/>
+                            <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={data?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>
                             <label className={styles.label} htmlFor="currentlyEmployed">Currently working here</label>
                         </div>
                     </div>

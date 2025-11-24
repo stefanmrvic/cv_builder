@@ -11,12 +11,26 @@ export default function Experience({data, setCVData}) {
     const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
     const [isNewExperience, setIsNewExperience] = useState(false)
+
+    // Created with purpose of tracking the original state of the Experience Form Data in case user wants to discard the made changes by clicking "Cancel" button.
     const [experienceFormData, setExperienceFormData] = useState({
         id: '',
         isVisible: '',
         companyName: '',
         location: '',
         positions: []
+    })
+
+    // Created with purpose of tracking the original state of the Posiiton Form Data in case user wants to discard the made changes by clicking "Cancel" button.
+    const [positionFormData, setPositionFormData] = useState({
+        id: '',
+        companyID: '',
+        isVisible: '',
+        title: '',
+        startDate: '',
+        endDate: '',
+        currentlyEmployed: '',
+        responsibilities: []
     })
 
     const companyContainerRef = useRef(null);
@@ -76,7 +90,8 @@ export default function Experience({data, setCVData}) {
                 <PositionForm 
                     data={data} 
                     setCVData={setCVData} 
-                    isPositionFormOpen={isPositionFormOpen}
+                    positionFormData={positionFormData}
+                    setPositionFormData={setPositionFormData}
                     setIsPositionFormOpen={setIsPositionFormOpen}
                 />
             )}
@@ -84,7 +99,7 @@ export default function Experience({data, setCVData}) {
             {/* Always renders the container to avoid layout shift. Content visibility is controlled by isExpanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
-                <div className={`${styles.companyContainer} ${isExperienceFormOpen ? styles.hidden : ''}`} ref={companyContainerRef}>
+                <div className={`${styles.companyContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.hidden : ''}`} ref={companyContainerRef}>
                     {data?.map(company => (
                         <Company 
                             key={company.id}
@@ -92,6 +107,8 @@ export default function Experience({data, setCVData}) {
                             setCVData={setCVData}
                             setExperienceFormData={setExperienceFormData}
                             setIsExperienceFormOpen={setIsExperienceFormOpen}
+                            setPositionFormData={setPositionFormData}
+                            setIsPositionFormOpen={setIsPositionFormOpen}
                         />
                     ))}
 
