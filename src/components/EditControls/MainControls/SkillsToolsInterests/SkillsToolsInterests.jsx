@@ -21,7 +21,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
     // State for tracking the original state of the Skills database, in case user wants to discard the made changes by clicking "Cancel" button.
     const [skillsFormData, setSkillsFormData] = useState({
-        
+
     })
 
     // State for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
@@ -38,7 +38,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
     })
 
-    const btnContainerRef = useRef(null);
+    const skillsToolsInterestsContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
 
     const toggleCollapsing = () => {
@@ -50,15 +50,15 @@ export default function SkillsToolsInterests({data, setCVData}) {
     }
 
     const handleCloseAnimation = () => {
-        btnContainerRef.current.setAttribute("class", `${styles.btnContainer} ${styles.closing}`)
-        btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        skillsToolsInterestsContainerRef.current.setAttribute("class", `${styles.skillsToolsInterestsContainer} ${styles.closing}`)
+        skillsToolsInterestsContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
     return (
         <div className={styles.skillsToolsInterestsContainer}>
-            <button className={`${styles.skillsToolsInterestsHeader} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+            <button className={`${styles.skillsToolsInterestsHeader} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={`${styles.btnIcon} material-icons`}>settings</span>
-                <span className={styles.educationHeadline}>Skills, Tools & Interests</span>
+                <span className={styles.skillsToolsInterestsHeadline}>Skills, Tools & Interests</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
 
@@ -96,10 +96,22 @@ export default function SkillsToolsInterests({data, setCVData}) {
             )}
 
             {isExpanded && (
-                <div className={`${styles.btnContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={btnContainerRef}>
-                    <Skills />
-                    <Tools />
-                    <Interests />
+                <div className={`${styles.skillsToolsInterestsContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsContainerRef}>
+                    <Skills
+                        data={data}
+                        setCVData={setCVData} 
+                        setIsSkillsFormOpen={setIsSkillsFormOpen}
+                    />
+                    <Tools
+                        data={data}
+                        setCVData={setCVData} 
+                        setIsToolsFormOpen={setIsToolsFormOpen}
+                    />
+                    <Interests
+                        data={data}
+                        setCVData={setCVData} 
+                        setIsInterestsFormOpen={setIsInterestsFormOpen}
+                    />
                 </div>
             )}
         </div>

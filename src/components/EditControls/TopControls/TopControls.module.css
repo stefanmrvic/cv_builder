@@ -1,4 +1,4 @@
-button {
+.btn {
     font-size: 30px;
     padding: 6px;
     border-radius: 4px;
@@ -23,7 +23,7 @@ button {
     padding: 12px;
 }
 
-.topNavbar > button:active {
+.topNavbar > .btn:active {
     transform: scale(.9);
     transition: transform .15s;
 }
@@ -46,6 +46,8 @@ button {
 }
 
 .loadExample {
+    display: flex;
+    justify-content: center;
     font-weight: bold;
     background-color: var(--main-bg-color);
 }

@@ -1,26 +1,13 @@
-.flexContainer {
-    display: flex;
-    flex-direction: column;
+/* ============================================
+   SKILLS,TOOLS & INTERESTS HEADER
+   ============================================ */
+span.btnIcon {
+    font-size: 28px;
+    font-variation-settings:
+    'FILL' 1;
 }
 
-.skillsToolsInterestsContainer {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
-}
-
-.educationContainer {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.educationHeadline {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Selects arrow up on the right side of the "Education" button toggler */
+/* Selects arrow up on the right side of the "Skills,Tools & Interests" button toggler */
 .arrowDown {
     margin-left: auto;
     transition: transform .3s;
@@ -31,30 +18,19 @@
     transform: rotate(180deg);
 }
 
-.educationItem {
-    background-color: var(--secondary-bg-color);
-    cursor: pointer;
-}
-
-.educationBtnContainer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.btnContainer {
+.skillsToolsInterestsContainer {
     display: flex;    
     flex-direction: column;
     gap: 6px;
     animation: slideDown .25s forwards;
 }
 
-.btnContainer.hidden {
+.skillsToolsInterestsContainer.hidden {
     visibility: hidden;
     position: absolute;
 }
 
-.btnContainer.closing {
+.skillsToolsInterestsContainer.closing {
     animation: slideUp .25s forwards;
 }
 
@@ -66,24 +42,6 @@
 @keyframes slideUp {
     0% { transform: translateY(0); opacity: 1; max-height: 1000px}
     100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-}
-
-.btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 14px 12px 24px;
-    border-radius: 0px;
-}
-
-.btnText {
-    font-size: 17px;
-    font-weight: 600;
-}
-
-span.addBtnIcon {
-    font-size: 20px;
-    margin-right: 7px;
 }
 
 .skillsToolsInterestsHeader {
@@ -103,16 +61,18 @@ span.addBtnIcon {
     margin-bottom: -5px;
 }
 
-span.btnIcon {
-    font-size: 28px;
-    font-variation-settings:
-    'FILL' 1;
+.skillsToolsInterestsHeadline {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-/* Icon under Education responsible for deleting and hiding the text on CV */
-span.deleteBtnIcon {
-    color: rgb(46, 46, 46);
-    font-size: 21px;
+/* ============================================
+   SKILLS CARD
+   ============================================ */
+.skillsToolsInterestsContainer {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
 }
 
 span.visibilityBtnIcon {

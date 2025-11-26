@@ -70,7 +70,7 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
 
     return (
         <div className={styles.companyCard}>
-            <div onClick={toggleCollapsing} className={styles.companyHeaderContainer} role='button'>
+            <div className={styles.companyHeaderContainer} role='button' onClick={toggleCollapsing}>
                 <div className={styles.companyHeadlineContainer}>
                     {/* Display an arrow icon if there are positions under given Company. */}
                     {positionCount > 0 && (

@@ -32,11 +32,11 @@ export default function TopControls({setCVData}) {
     return (
         <div className={styles.topControls}>
             <nav className={styles.topNavbar}>
-                <button className={styles.clearResume} onClick={handleCVRemoval}>
+                <button className={`${styles.btn} ${styles.clearResume}`} onClick={handleCVRemoval}>
                     <span className="material-icons">delete</span>
                     <span>Clear Resume</span>
                 </button>
-                <button className={styles.loadExample} onClick={handleLoadDefaultCV}> 
+                <button className={`${styles.btn} ${styles.loadExample}`} onClick={handleLoadDefaultCV}> 
                     <span>Load Example</span>
                 </button>
             </nav>
