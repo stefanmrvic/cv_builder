@@ -10,7 +10,7 @@ export default function MainControls({data, setCVData}) {
         <div className={styles.mainControls}>
             <PersonalDetails data={data.personalInfo} setCVData={setCVData}/>
             <Experience data={data.workExperience} setCVData={setCVData}/>
-            <SkillsToolsInterests data={data.education} setCVData={setCVData}/>
+            <SkillsToolsInterests data={data.skillsToolsInterests} setCVData={setCVData}/>
             <Education data={data.education} setCVData={setCVData}/>
         </div>
     )

@@ -38,7 +38,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
     })
 
-    const skillsToolsInterestsContainerRef = useRef(null);
+    const skillsToolsInterestsCardContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
 
     const toggleCollapsing = () => {
@@ -50,8 +50,8 @@ export default function SkillsToolsInterests({data, setCVData}) {
     }
 
     const handleCloseAnimation = () => {
-        skillsToolsInterestsContainerRef.current.setAttribute("class", `${styles.skillsToolsInterestsContainer} ${styles.closing}`)
-        skillsToolsInterestsContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        skillsToolsInterestsCardContainerRef.current.setAttribute("class", `${styles.skillsToolsInterestsContainer} ${styles.closing}`)
+        skillsToolsInterestsCardContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
     return (
@@ -96,19 +96,19 @@ export default function SkillsToolsInterests({data, setCVData}) {
             )}
 
             {isExpanded && (
-                <div className={`${styles.skillsToolsInterestsCardContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsContainerRef}>
+                <div className={`${styles.skillsToolsInterestsCardContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsCardContainerRef}>
                     <Skills
-                        data={data}
+                        data={data.skills}
                         setCVData={setCVData} 
                         setIsSkillsFormOpen={setIsSkillsFormOpen}
                     />
                     <Tools
-                        data={data}
+                        data={data.tools}
                         setCVData={setCVData} 
                         setIsToolsFormOpen={setIsToolsFormOpen}
                     />
                     <Interests
-                        data={data}
+                        data={data.interests}
                         setCVData={setCVData} 
                         setIsInterestsFormOpen={setIsInterestsFormOpen}
                     />

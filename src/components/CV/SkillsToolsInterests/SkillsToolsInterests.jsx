@@ -11,9 +11,17 @@ export default function SkillsToolsInterests({data}) {
         <div className='sectionBottomMargin'>
             <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>
             <ul className={styles.skillsToolsInterestsList}>
-                { data.skills.length > 0 && <li><Skills data={data.skills} /></li> }
-                { data.tools.length > 0 &&  <li><Tools data={data.tools} /></li> }
-                { data.interests.length > 0 &&  <li><Interests data={data.interests} /></li> }
+                { data.skills.isVisible && (
+                    data.skills.items.length > 0 && <li><Skills data={data.skills.items} /></li> 
+                )}
+
+                { data.tools.isVisible && (
+                    data.tools.items.length > 0 &&  <li><Tools data={data.tools.items} /></li> 
+                )}
+
+                { data.interests.isVisible && (
+                    data.interests.items.length > 0 &&  <li><Interests data={data.interests.items} /></li> 
+                )}
             </ul>
         </div>
     )
