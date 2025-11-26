@@ -158,10 +158,45 @@ const defaultCV = {
             ]    
         }
     ],
-    skillsToolsInterests: {
-        skills: ['Fluent English (written & spoken)', 'full-stack web development', 'JavaScript (ES6+)', 'React', 'Node.js', 'RESTful APIs', 'technical troubleshooting', 'remote team collaboration'],
-        tools: ['VS Code', 'Git & GitHub', 'Linux (Arch btw)', 'Postman', 'cPanel', 'WHM', 'Figma', 'Photoshop'],
-        interests: ['Boxing', 'strength training', 'running', 'meditation', 'minimalist design', 'traveling', 'Charles Bukowski']
+    skillsToolsInterests: {   
+        skills: {
+            items: [
+                { id: 'bc4b886c-999a-4293-8f8a-9712a5736eb6', name: 'Fluent English (written & spoken)' },
+                { id: '02560245-d813-459b-97dd-b01328331f8f', name: 'full-stack web development' },
+                { id: 'ff254ea6-d619-46fb-99c2-a109c59f488d', name: 'JavaScript (ES6+)' },
+                { id: '94c87237-ee37-471e-990e-725485b100f1', name: 'React' },
+                { id: 'e5dea7e4-66ae-488c-a745-a882080aa8d1', name: 'Node.js' },
+                { id: '253e12ea-4b65-4d29-8d6a-261a644272ca', name: 'RESTful APIs' },
+                { id: '49503cc0-34d8-4563-bf8b-01df4c87c9de', name: 'technical troubleshooting' },
+                { id: '405ece68-93ae-4b39-8f8c-cc5bbc1c37a9', name: 'remote team collaboration' }       
+            ],
+            isVisible: true
+        },
+        tools: {
+            items: [
+                { id: 'd327e562-c7ee-427f-b902-0bc5eb12b23d', name: 'VS Code' },
+                { id: '3bab0ff7-66a8-4e53-bcdb-61124c6db297', name: 'Git & GitHub' },
+                { id: '2205e094-a806-4fdd-9412-fa9f112e0332', name: 'Linux (Arch btw)' },
+                { id: '999d026e-dadd-4790-b557-f8cdd1428fe8', name: 'Postman' },
+                { id: '0db7db4e-aa75-4149-9bc7-7db6545cfa78', name: 'cPanel' },
+                { id: '26ee427f-29ba-4f29-9bed-f9a99e9ec136', name: 'WHM' },
+                { id: '5827d800-34a0-4c15-9339-92bde271784d', name: 'Figma' },
+                { id: '57be361c-bf59-4041-87e9-79efcbcc94a6', name: 'Photoshop' }
+            ],
+            isVisible: true
+        },
+        interests: {
+            items: [
+                { id: 'db8beb08-c681-4984-977c-a3fa6149ec02', name: 'Boxing' },
+                { id: '8b7a5ab7-fccb-488d-a240-9d75741dda7f', name: 'strength training' },
+                { id: '3502e19c-1369-4780-b614-29d711a67824', name: 'running' },
+                { id: '2b177dba-47ec-48ed-90a3-ff193fd0ced0', name: 'meditation' },
+                { id: 'c39baff7-f462-4dd6-97de-b4d3614f913c', name: 'minimalist design' },
+                { id: '08fc5d71-2232-4966-9b11-2e882ba68c45', name: 'traveling' },
+                { id: '9497206a-b4e8-4a51-9575-1569bfa2d336', name: 'Charles Bukowski' }    
+            ],
+            isVisible: true
+        }
     },
     education: [
         {

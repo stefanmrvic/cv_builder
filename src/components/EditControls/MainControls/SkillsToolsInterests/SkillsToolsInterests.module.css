@@ -22,11 +22,11 @@ span.btnIcon {
     position: relative;
     display: flex;    
     flex-direction: column;
-    gap: 6px;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
     animation: slideDown .25s forwards;
+    background-color: var(--secondary-bg-color);
 }
 
 .skillsToolsInterestsContainer.hidden {
@@ -74,29 +74,90 @@ span.btnIcon {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    flex-direction: column;
     border-radius: 0px;
 }
 
 /* ============================================
    SKILLS CARD
    ============================================ */
-span.visibilityBtnIcon {
-    color: rgb(46, 46, 46);
-    font-size: 23px;
-    margin-left: 5px;
-}
-
 .skillsContainer {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 14px 12px 24px;
+    padding: 12px 17px 12px 27px;
     border-top: 1px solid #e5e7eb;
+    cursor: pointer;
 }
 
 .skillsHeadline {
     font-size: 17px;
     font-weight: 600;
+}
+
+button.skillsVisibilityBtn {
+    padding: 10px;
+}
+
+span.skillsVisibilityBtnIcon {
+    color: rgb(46, 46, 46);
+    font-size: 23px;
+    margin-left: 5px;
+}
+
+/* ============================================
+   TOOLS CARD
+   ============================================ */
+.toolsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 17px 12px 27px;
+    border-top: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.toolsHeadline {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+button.toolsVisibilityBtn {
+    padding: 10px;
+}
+
+span.toolsVisibilityBtnIcon {
+    color: rgb(46, 46, 46);
+    font-size: 23px;
+    margin-left: 5px;
+}
+
+/* ============================================
+   INTERESTS CARD
+   ============================================ */
+.interestsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 17px 12px 27px;
+    border-top: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.interestsHeadline {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+button.interestsVisibilityBtn {
+    padding: 10px;
+}
+
+span.interestsVisibilityBtnIcon {
+    color: rgb(46, 46, 46);
+    font-size: 23px;
+    margin-left: 5px;
 }

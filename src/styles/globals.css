@@ -29,6 +29,13 @@ li::marker {
     font-size: 19px;
 }
 
+button {
+    background-color: var(--secondary-bg-color);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
 .headline {
     font-size: 18px;
     font-weight: bold;
@@ -39,11 +46,4 @@ li::marker {
 
 .sectionBottomMargin {
     margin-bottom: 20px;
-}
-
-button {
-    background-color: var(--secondary-bg-color);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
 }
