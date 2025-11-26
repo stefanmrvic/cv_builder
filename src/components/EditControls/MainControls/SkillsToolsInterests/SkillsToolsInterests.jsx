@@ -1,21 +1,41 @@
 import { useState, useRef } from 'react';
 
-import EducationItem from './SkillsToolsInterestsItem.jsx';
-import EducationForm from './SkillsToolsInterestsForm.jsx';
+import Skills from './Skills.jsx';
+import SkillsForm from './SkillsForm/SkillsForm.jsx';
+
+import Tools from './Tools.jsx';
+import ToolsForm from './ToolsForm/ToolsForm.jsx';
+
+import Interests from './Interests.jsx';
+import InterestsForm from './InterestsForm/InterestsForm.jsx';
 
 import styles from './SkillsToolsInterests.module.css';
 
-export default function Education({data, setCVData}) {
+export default function SkillsToolsInterests({data, setCVData}) {
+    // State for Skills,Tools & Interests Header
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isFormOpen, setIsFormOpen] = useState(false);
-    const [isNew, setIsNew] = useState(false)
-    const [formData, setFormData] = useState({
+
+    const [isSkillsFormOpen, setIsSkillsFormOpen] = useState(false);
+    const [isToolsFormOpen, setIsToolsFormOpen] = useState(false);
+    const [isInterestsFormOpen, setIsInterestsFormOpen] = useState(false);
+
+    // State for tracking the original state of the Skills database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const [skillsFormData, setSkillsFormData] = useState({
+        
+    })
+
+    // State for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const [toolsFormData, setToolsFormData] = useState({
         id: '',
         isVisible: '',
-        schoolName: '',
-        graduationDate: '',
-        qualification: '',
-        schoolLocation: ''
+
+    })
+
+    // State for tracking the original state of the Interests database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const [interestsFormData, setInterestsFormData] = useState({
+        id: '',
+        isVisible: '',
+
     })
 
     const btnContainerRef = useRef(null);
@@ -34,89 +54,52 @@ export default function Education({data, setCVData}) {
         btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
-    const populateForm = (id) => {
-        const item = data.find(item => item.id === id)
-
-        if (!item) return;
-
-        setFormData({
-            id: item.id,
-            isVisible: item.isVisibile,
-            schoolName: item.schoolName,
-            graduationDate: item.graduationDate,
-            qualification: item.qualification,
-            schoolLocation: item.schoolLocation
-        })
-    }
-
-    const handleAddBtnClick = () => {
-        const createEducationItem = {
-            id: crypto.randomUUID(),
-            isVisible: true, 
-            schoolName: '',
-            graduationDate: '',
-            qualification: '',
-            schoolLocation: ''
-        }
-
-        setIsNew(true)
-        setCVData(draft => {
-            draft.education.push(createEducationItem)
-        })
-        setFormData(createEducationItem);
-        setIsFormOpen(true);
-    }
-
     return (
         <div className={styles.skillsToolsInterestsContainer}>
-            <button className={`${styles.skillsToolsInterestsHeader} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+            <button className={`${styles.skillsToolsInterestsHeader} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                 <span className={`${styles.btnIcon} material-icons`}>settings</span>
                 <span className={styles.educationHeadline}>Skills, Tools & Interests</span>
                 <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
             </button>
 
-            {(isExpanded && isFormOpen) && (
-                <EducationForm 
-                    isNew={isNew}
-                    setIsNew={setIsNew}
-                    isFormOpen={isFormOpen}
-                    setIsFormOpen={setIsFormOpen}
-                    formData={formData} 
-                    setFormData={setFormData} 
+            {(isExpanded && isSkillsFormOpen) && (
+                <SkillsForm 
                     data={data} 
                     setCVData={setCVData} 
+                    skillsFormData={skillsFormData} 
+                    setSkillsFormData={setSkillsFormData} 
+                    isSkillsFormOpen={isSkillsFormOpen}
+                    setIsSkillsFormOpen={setIsSkillsFormOpen}
                 />
             )}
 
-            {/* It doesn't render conditionally container div on purpose with checks (isExpanded && !isFormOpen) to avoid jumping 
-                of Education items when form opens / closes. Insteads, it only checks if Education menu has been expanded. */}
+            {(isExpanded && isToolsFormOpen) && (
+                <ToolsForm 
+                    data={data} 
+                    setCVData={setCVData} 
+                    toolsFormData={toolsFormData} 
+                    setToolsFormData={setToolsFormData} 
+                    isToolsFormOpen={isToolsFormOpen}
+                    setIsToolsFormOpen={setIsToolsFormOpen}
+                />
+            )}
+
+            {(isExpanded && isInterestsFormOpen) && (
+                <InterestsForm 
+                    data={data} 
+                    setCVData={setCVData} 
+                    interestsFormData={interestsFormData} 
+                    setInterestsFormData={setInterestsFormData} 
+                    isInterestsFormOpen={isInterestsFormOpen}
+                    setIsInterestsFormOpen={setIsInterestsFormOpen}
+                />
+            )}
+
             {isExpanded && (
-                // hides the button elements if the form is opened
-                <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
-
-                    {data?.map(item => {
-                        return  <EducationItem 
-                            key={item.id}
-                            itemID={item.id}
-                            isVisible={item.isVisible}
-                            onClick={() => {
-                                populateForm(item.id)
-                                setIsFormOpen(true)}
-                            }
-                            setCVData={setCVData}
-                            education={item.schoolName}
-                        />
-                    })}
-
-                    <div className={styles.addBtnContainer}>
-                        <button 
-                            className={`${styles.addBtn} ${styles.btn}`} 
-                            onClick={handleAddBtnClick}
-                        >
-                            <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
-                            <span>Education</span>
-                        </button>
-                    </div>
+                <div className={`${styles.btnContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={btnContainerRef}>
+                    <Skills />
+                    <Tools />
+                    <Interests />
                 </div>
             )}
         </div>
