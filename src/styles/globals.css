@@ -40,3 +40,10 @@ li::marker {
 .sectionBottomMargin {
     margin-bottom: 20px;
 }
+
+button {
+    background-color: var(--secondary-bg-color);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}

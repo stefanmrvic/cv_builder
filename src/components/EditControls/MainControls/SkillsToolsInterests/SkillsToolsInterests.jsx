@@ -96,7 +96,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
             )}
 
             {isExpanded && (
-                <div className={`${styles.skillsToolsInterestsContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsContainerRef}>
+                <div className={`${styles.skillsToolsInterestsCardContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsContainerRef}>
                     <Skills
                         data={data}
                         setCVData={setCVData} 

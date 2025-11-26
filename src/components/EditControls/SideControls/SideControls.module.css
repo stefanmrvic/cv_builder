@@ -1,4 +1,4 @@
-button {
+.btn {
     background-color: var(--secondary-bg-color);
     border: none;
     border-radius: 12px;
@@ -28,17 +28,17 @@ button {
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
 }
 
-.sidebar > button {
+.sidebar > .btn {
     font-weight: 600;
     transition: background-color .15s ease-in-out, transform .15s;
 }
 
-.sidebar > button:active {
+.sidebar > .btn:active {
     transform: scale(0.9);
 }
 
 /* Selecting the icons inside of <button> elements */
-.sidebar > button > span:first-child {
+.sidebar > .btn > span:first-child {
     font-size: 21px;
 }
 

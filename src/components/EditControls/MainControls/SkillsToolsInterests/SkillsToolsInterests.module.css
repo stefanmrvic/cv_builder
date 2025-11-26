@@ -19,9 +19,13 @@ span.btnIcon {
 }
 
 .skillsToolsInterestsContainer {
+    position: relative;
     display: flex;    
     flex-direction: column;
     gap: 6px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
     animation: slideDown .25s forwards;
 }
 
@@ -66,17 +70,33 @@ span.btnIcon {
     font-weight: bold;
 }
 
+.skillsToolsInterestsCardContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-radius: 0px;
+}
+
 /* ============================================
    SKILLS CARD
    ============================================ */
-.skillsToolsInterestsContainer {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
-}
-
 span.visibilityBtnIcon {
     color: rgb(46, 46, 46);
     font-size: 23px;
     margin-left: 5px;
+}
+
+.skillsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px 12px 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.skillsHeadline {
+    font-size: 17px;
+    font-weight: 600;
 }
