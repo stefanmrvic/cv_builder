@@ -210,6 +210,16 @@ span.addBtnIcon {
 /* ============================================
    FORM BUTTONS
    ============================================ */
+.formBtnContainer {
+    display: flex;
+    gap: 17px;
+    margin-top: 13px;
+}
+    
+.formBtnContainer > button {
+    max-width: 92px;
+}
+
 .formBtnDelete {
     font-size: 13.3px;
     color: grey;
@@ -217,16 +227,6 @@ span.addBtnIcon {
     align-items: center;
     justify-content: center;
     outline: 1px solid grey;
-}
-
-.formBtnContainer {
-    display: flex;
-    gap: 17px;
-    margin-top: 13px;
-}
-
-.formBtnContainer > button {
-    max-width: 92px;
 }
 
 span.formBtnDeleteIcon {
