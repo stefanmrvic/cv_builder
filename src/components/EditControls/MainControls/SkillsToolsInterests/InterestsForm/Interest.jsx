@@ -45,7 +45,7 @@ export default function Interest({data, setCVData, setActiveIndex, isActive, ind
             )}
 
             <button className={styles.interestDeleteBtn} onClick={handleDelete}>
-                <span className={`${styles.addPositionBtnIcon} material-symbols-outlined`}>close</span>
+                <span className={`${styles.closeBtnIcon} material-symbols-outlined`}>close</span>
             </button>
         </div>
     )
