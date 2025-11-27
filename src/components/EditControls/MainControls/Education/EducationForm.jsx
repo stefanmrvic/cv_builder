@@ -114,7 +114,7 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
                 <div className={styles.formBtnContainer}>
                     <button className={styles.formBtnDelete} onClick={handleDeleteItem}>
                         <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
-                        <span>Delete</span>
+                        <span className={styles.formBtnDeleteText}>Delete</span>
                     </button>
                     <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
                     <button className={styles.formBtnSave} onClick={() => setIsFormOpen(false)}>Save</button>

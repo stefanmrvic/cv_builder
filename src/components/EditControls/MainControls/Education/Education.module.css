@@ -149,7 +149,6 @@ span.addBtnIcon {
    FORM STYLES
    ============================================ */
 .formContainer {
-    padding: 22px 18px;
     border-radius: 0 0 12px 12px;
     background-color: var(--secondary-bg-color);
 }
@@ -157,6 +156,7 @@ span.addBtnIcon {
 .form {
     display: flex;
     flex-direction: column;
+    padding: 22px 18px 0 22px;
     margin-bottom: 13px;
     
     label {
@@ -212,41 +212,91 @@ span.addBtnIcon {
    ============================================ */
 .formBtnContainer {
     display: flex;
-    gap: 17px;
-    margin-top: 13px;
+    justify-content: flex-start;
+    padding: 23px;
+    border-top: 1px solid #e5e7eb;
+    background: #fafafa;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
-    
+
 .formBtnContainer > button {
+    font-size: 13.5px;
     max-width: 92px;
+    height: 40px;
+}
+
+.formBtnCancel,
+.formBtnSave {
+    height: 40px;
 }
 
 .formBtnDelete {
-    font-size: 13.3px;
-    color: grey;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: 1px solid grey;
+    color: #374151; 
+    font-size: 14px;
+    font-weight: 600;
+    height: 41px;
+    padding: 10px 20px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnDelete:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
 }
 
 span.formBtnDeleteIcon {
     font-size: 20px;
 }
 
+span.formBtnDeleteText {
+    margin-bottom: -1.5px;
+    margin-left: 3px;
+}
+
 .formBtnCancel {
-    font-size: 13.3px;
-    color: grey;
-    outline: 1px solid grey;
-    padding: 8px 16px;
+    color: #374151; 
+    font-size: 14px;
+    font-weight: 600;
+    width: 87px;
+    padding: 10px 20px;
     margin-left: auto;
+    margin-right: 13px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnCancel:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
 }
 
 .formBtnSave {
-    font-size: 13.3px;
-    background-color: #187ff5;
-    color: #fff;
-    font-weight: bold;
-    padding: 8px 16px;
+    width: 87px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: #374151;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnSave:hover {
+    background: #1f2937;
+    border-color: #1f2937;
 }
 
 /* ============================================

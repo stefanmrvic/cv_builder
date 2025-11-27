@@ -9,7 +9,7 @@
 .form {
     display: flex;
     flex-direction: column;
-    padding: 22px 18px;
+    padding: 22px 18px 0 22px;
     margin-bottom: 13px;
     
     label {
@@ -49,11 +49,6 @@
         box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
         outline: none;
     }
-}
-
-.formBtnContainer {
-    padding: 12px 22px;
-    border-top: 1px solid #e5e7eb;
 }
 
 .formGroup {
@@ -491,8 +486,8 @@ span.subPointVisibilityBtnIcon {
    ============================================ */
 .formBtnContainer {
     display: flex;
-    justify-content: space-between;
-    padding: 23px 32px;
+    justify-content: flex-start;
+    padding: 23px;
     border-top: 1px solid #e5e7eb;
     background: #fafafa;
     border-bottom-left-radius: 12px;
@@ -500,35 +495,79 @@ span.subPointVisibilityBtnIcon {
 }
 
 .formBtnContainer > button {
+    font-size: 13.5px;
     max-width: 92px;
+}
+
+.formBtnCancel,
+.formBtnSave {
+    height: 40px;
+}
+
+.formBtnDelete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #374151; 
+    font-size: 14px;
+    font-weight: 600;
+    height: 41px;
+    padding: 10px 20px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnDelete:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
 }
 
 span.formBtnDeleteIcon {
     font-size: 20px;
 }
 
-.formBtnDelete {
-    font-size: 13.3px;
-    color: grey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #e5e7eb;
+span.formBtnDeleteText {
+    margin-bottom: -1.5px;
+    margin-left: 3px;
 }
 
 .formBtnCancel {
-    font-size: 13.3px;
-    color: grey;
-    padding: 8px 16px;
+    color: #374151; 
+    font-size: 14px;
+    font-weight: 600;
+    width: 87px;
+    padding: 10px 20px;
     margin-left: auto;
-    border: 1px solid #e5e7eb;
+    margin-right: 13px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnCancel:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
 }
 
 .formBtnSave {
-    font-size: 13.3px;
-    background-color: #187ff5;
-    color: #fff;
-    font-weight: bold;
-    padding: 8px 16px;
-    margin-left: 12px;
+    width: 87px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: #374151;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnSave:hover {
+    background: #1f2937;
+    border-color: #1f2937;
 }

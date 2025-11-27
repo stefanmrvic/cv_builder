@@ -190,7 +190,7 @@ export default function PositionForm({data, setCVData, positionFormData, setIsPo
             <div className={styles.formBtnContainer}>
                 <button className={styles.formBtnDelete} onClick={handleDelete}>
                     <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
-                    <span>Delete</span>
+                    <span className={styles.formBtnDeleteText}>Delete</span>
                 </button>
                 <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
                 <button className={styles.formBtnSave} onClick={() => setIsPositionFormOpen(false)}>Save</button>
