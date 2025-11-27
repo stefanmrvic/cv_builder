@@ -136,16 +136,16 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
                         <span>Add Position</span>
                     </button>
                 </div>
-            </form>
 
-            <div className={styles.formBtnContainer}>
-                <button className={styles.formBtnDelete} onClick={handleDelete}>
-                    <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
-                    <span>Delete</span>
-                </button>
-                <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
-                <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
-            </div>
+                <div className={styles.formBtnContainer}>
+                    <button className={styles.formBtnDelete} onClick={handleDelete}>
+                        <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
+                        <span>Delete</span>
+                    </button>
+                    <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
+                    <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
+                </div>
+            </form>
         </div>
     )
 }

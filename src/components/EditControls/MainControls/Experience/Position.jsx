@@ -14,7 +14,7 @@ export default function Position({data, setCVData, setIsPositionFormOpen, setPos
             if (position === undefined) throw new Error('Position not found!');
 
             const positionIndex = company.positions.findIndex(position => position.id === data.id);
-            if (positionIndex === -1) throw new Error('Position not found!');
+            if (positionIndex === -1) throw new Error('Position index not found!');
 
             company.positions.splice(positionIndex, 1);
         })

@@ -29,25 +29,6 @@ span.btnIcon {
     background-color: var(--secondary-bg-color);
 }
 
-.skillsToolsInterestsContainer.hidden {
-    visibility: hidden;
-    position: absolute;
-}
-
-.skillsToolsInterestsContainer.closing {
-    animation: slideUp .25s forwards;
-}
-
-@keyframes slideDown {
-    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
-}
-
-@keyframes slideUp {
-    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
-    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
-}
-
 .skillsToolsInterestsHeader {
     display: flex;
     gap: 11px;
@@ -76,6 +57,26 @@ span.btnIcon {
     align-items: center;
     flex-direction: column;
     border-radius: 0px;
+    animation: slideDown .25s forwards;
+}
+
+.skillsToolsInterestsCardContainer.hidden {
+    visibility: hidden;
+    position: absolute;
+}
+
+.skillsToolsInterestsContainer.closing {
+    animation: slideUp .25s forwards;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-25px); opacity: 0; max-height: 0;}
+    100% { transform: translateY(0); opacity: 1; max-height: 1000px}
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0); opacity: 1; max-height: 1000px}
+    100% { transform: translateY(-25px); opacity: 0; max-height: 0;}
 }
 
 /* ============================================

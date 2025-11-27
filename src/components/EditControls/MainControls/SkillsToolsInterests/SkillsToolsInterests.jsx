@@ -20,22 +20,16 @@ export default function SkillsToolsInterests({data, setCVData}) {
     const [isInterestsFormOpen, setIsInterestsFormOpen] = useState(false);
 
     // State for tracking the original state of the Skills database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [skillsFormData, setSkillsFormData] = useState({
-
-    })
+    const [skillsFormData, setSkillsFormData] = useState(data.skills.items)
 
     // State for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
     const [toolsFormData, setToolsFormData] = useState({
-        id: '',
-        isVisible: '',
-
+        items: data.tools.items
     })
 
     // State for tracking the original state of the Interests database, in case user wants to discard the made changes by clicking "Cancel" button.
     const [interestsFormData, setInterestsFormData] = useState({
-        id: '',
-        isVisible: '',
-
+        items: data.interests.items
     })
 
     const skillsToolsInterestsCardContainerRef = useRef(null);
@@ -64,11 +58,11 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
             {(isExpanded && isSkillsFormOpen) && (
                 <SkillsForm 
-                    data={data} 
+                    data={data.skills.items} 
                     setCVData={setCVData} 
                     skillsFormData={skillsFormData} 
                     setSkillsFormData={setSkillsFormData} 
-                    isSkillsFormOpen={isSkillsFormOpen}
+                    // isSkillsFormOpen={isSkillsFormOpen}
                     setIsSkillsFormOpen={setIsSkillsFormOpen}
                 />
             )}

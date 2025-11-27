@@ -52,6 +52,7 @@
 }
 
 .formBtnContainer {
+    padding: 12px 22px;
     border-top: 1px solid #e5e7eb;
 }
 
@@ -491,7 +492,7 @@ span.subPointVisibilityBtnIcon {
 .formBtnContainer {
     display: flex;
     justify-content: space-between;
-    padding: 20px 32px;
+    padding: 23px 32px;
     border-top: 1px solid #e5e7eb;
     background: #fafafa;
     border-bottom-left-radius: 12px;

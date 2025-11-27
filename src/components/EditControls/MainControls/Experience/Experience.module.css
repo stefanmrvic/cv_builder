@@ -83,7 +83,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 8px 14px 8px 60px;
+    padding: 10px 14px 10px 60px;
     border-radius: 0px;
     border-top: 1px solid #e5e7eb;
     background-color: var(--secondary-bg-color);
