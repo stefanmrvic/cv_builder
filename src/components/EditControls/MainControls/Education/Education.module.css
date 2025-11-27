@@ -48,25 +48,25 @@
     padding: 10px;
 }
 
-.btnContainer {
+.educationItemContainer {
     display: flex;    
     flex-direction: column;
     animation: slideDown .25s forwards;
 }
 
-.btnContainer.hidden {
+.educationItemContainer.hidden {
     visibility: hidden;
     position: absolute;
 }
 
-.btnContainer.closing {
+.educationItemContainer.closing {
     animation: slideUp .25s forwards;
 }
 
 /* ============================================
    BUTTONS & ACTIONS
    ============================================ */
-.btn {
+.educationItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,7 +75,7 @@
     border-top: 1px solid #e5e7eb;
 }
 
-.btnText {
+.educationItemHeadline {
     font-size: 17px;
     font-weight: 600;
 }

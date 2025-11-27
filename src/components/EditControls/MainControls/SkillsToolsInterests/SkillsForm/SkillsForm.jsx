@@ -60,7 +60,7 @@ export default function SkillsForm({data, setCVData, skillsFormData, setSkillsFo
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.addSkillFormGroup}>
                     <label htmlFor="title">Skills</label>
-                    <input autoFocus type="text" name="title" id="title" onChange={handleSkillInput} onFocus={() => setActiveIndex(null)} value={skillInput} placeholder="Enter a skill..." />
+                    <input className={styles.skillInput} autoFocus type="text" name="title" id="title" onChange={handleSkillInput} onFocus={() => setActiveIndex(null)} value={skillInput} placeholder="Enter a skill..." />
                     <button className={styles.addSkillBtn} onClick={handleAddSkill}>
                         <span className={`${styles.addSkillBtnIcon} material-symbols-outlined`}>add</span>
                         <span className={styles.addSkillBtnText}>Add</span>

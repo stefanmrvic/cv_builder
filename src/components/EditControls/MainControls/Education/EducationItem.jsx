@@ -30,8 +30,8 @@ export default function EducationItem({itemID, isVisible, setCVData, onClick, ed
     }
 
     return (
-        <a  onClick={onClick} className={`${styles.btn} ${styles.educationItem}`}>
-            <span className={styles.btnText}>{education}</span>
+        <div className={styles.educationItem} onClick={onClick} role='button'>
+            <span className={styles.educationItemHeadline}>{education}</span>
             <div className={styles.educationBtnContainer}>
                 <button onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
@@ -43,6 +43,6 @@ export default function EducationItem({itemID, isVisible, setCVData, onClick, ed
                     <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
             </div>
-        </a>
+        </div>
     )
 }

@@ -316,7 +316,7 @@ span.addPointBtnIcon {
 .pointHeaderContainer {
     display: flex;
     align-items: center;
-    padding: 11px 16px;
+    padding: 13px 16px;
     cursor: pointer;
 }
 
@@ -435,7 +435,7 @@ span.addSubPointBtnIcon {
     font-size: 13.5px;
 }
 
-.subPointFormGroup > textarea {
+div.subPointFormGroup > textarea {
     background-color: var(--secondary-bg-color);
 }
 

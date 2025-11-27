@@ -23,14 +23,10 @@ export default function SkillsToolsInterests({data, setCVData}) {
     const [skillsFormData, setSkillsFormData] = useState(data.skills.items)
 
     // State for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [toolsFormData, setToolsFormData] = useState({
-        items: data.tools.items
-    })
+    const [toolsFormData, setToolsFormData] = useState(data.tools.items)
 
     // State for tracking the original state of the Interests database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [interestsFormData, setInterestsFormData] = useState({
-        items: data.interests.items
-    })
+    const [interestsFormData, setInterestsFormData] = useState(data.interests.items)
 
     const skillsToolsInterestsCardContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
@@ -62,29 +58,26 @@ export default function SkillsToolsInterests({data, setCVData}) {
                     setCVData={setCVData} 
                     skillsFormData={skillsFormData} 
                     setSkillsFormData={setSkillsFormData} 
-                    // isSkillsFormOpen={isSkillsFormOpen}
                     setIsSkillsFormOpen={setIsSkillsFormOpen}
                 />
             )}
 
             {(isExpanded && isToolsFormOpen) && (
                 <ToolsForm 
-                    data={data} 
+                    data={data.tools.items} 
                     setCVData={setCVData} 
                     toolsFormData={toolsFormData} 
                     setToolsFormData={setToolsFormData} 
-                    isToolsFormOpen={isToolsFormOpen}
                     setIsToolsFormOpen={setIsToolsFormOpen}
                 />
             )}
 
             {(isExpanded && isInterestsFormOpen) && (
                 <InterestsForm 
-                    data={data} 
+                    data={data.interests.items} 
                     setCVData={setCVData} 
                     interestsFormData={interestsFormData} 
                     setInterestsFormData={setInterestsFormData} 
-                    isInterestsFormOpen={isInterestsFormOpen}
                     setIsInterestsFormOpen={setIsInterestsFormOpen}
                 />
             )}

@@ -18,20 +18,19 @@ export default function Education({data, setCVData}) {
         schoolLocation: ''
     })
 
-    const btnContainerRef = useRef(null);
+    const educationItemContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
 
     const toggleCollapsing = () => {
         arrowDownRef.current.classList.toggle(`${styles.active}`);
 
         if (isExpanded) handleCloseAnimation();
-
         setIsExpanded(!isExpanded);
     }
 
     const handleCloseAnimation = () => {
-        btnContainerRef.current.setAttribute("class", `${styles.btnContainer} ${styles.closing}`)
-        btnContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        educationItemContainerRef.current.setAttribute("class", `${styles.educationItemContainer} ${styles.closing}`)
+        educationItemContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
     const populateForm = (id) => {
@@ -92,10 +91,9 @@ export default function Education({data, setCVData}) {
                 of Education items when form opens / closes. Instead, it only checks if Education menu has been expanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
-                <div className={`${styles.btnContainer} ${isFormOpen ? styles.hidden : ''}`} ref={btnContainerRef}>
-
+                <div className={`${styles.educationItemContainer} ${isFormOpen ? styles.hidden : ''}`} ref={educationItemContainerRef}>
                     {data?.map(item => {
-                        return  <EducationItem 
+                        return <EducationItem 
                             key={item.id}
                             itemID={item.id}
                             isVisible={item.isVisible}

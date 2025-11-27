@@ -1,0 +1,207 @@
+/* ============================================
+   INTERESTS FORM STYLES
+   ============================================ */
+.formContainer {
+    border-radius: 0 0 12px 12px;
+    background-color: var(--secondary-bg-color);
+}
+
+.formContainer input {
+    background-color: var(--secondary-bg-color);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    
+    label {
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    .interestInput {
+        font-size: 13.3px;
+        color: var(--input-color);
+        background-color: var(--main-bg-color);
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        padding: 10px;
+        transition: border .25s, box-shadow .25s;
+        line-height: normal;
+    } 
+
+    .interestInput:focus,
+    .interestInput:focus-visible {
+        border-color: #3b83f6;
+        box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
+        outline: none;
+    }
+}
+
+.addInterestFormGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding: 15px 22px 0 22px;
+}
+
+.addInterestFormGroup > label {
+    color: var(--label-color);
+    font-size: 15px;
+    flex-basis: 100%;
+}
+
+.addInterestBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+    height: 39px;
+    padding: 6px 16px 6px 11px;
+    margin-top: 1px;
+    background-color: var(--main-bg-color);
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.addInterestBtn:hover {
+    color: #3b82f6;
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+span.addInterestBtnIcon {
+    font-size: 22px;
+}
+
+.interestsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 22px 15px 22px;
+}
+
+.noInterestsFoundMsg {
+    color: #9ca3af;
+    font-size: 14px;
+    padding: 42px 31px 42px 24px;
+    text-align: center;
+    border: 2px dashed #e5e7eb;
+    border-radius: 6px;
+}
+
+.formBtnContainer {
+    display: flex;
+    justify-content: flex-start;
+    padding: 23px 32px;
+    border-top: 1px solid #e5e7eb;
+    background: #fafafa;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.formBtnContainer > button {
+    max-width: 92px;
+}
+
+.formBtnCancel {
+    width: 87px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin-right: 13px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnCancel:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.formBtnSave {
+    width: 87px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background: #374151;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnSave:hover {
+    background: #1f2937;
+    border-color: #1f2937;
+}
+
+/* ============================================
+   INTEREST STYLES
+   ============================================ */
+.interestTag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.interestTag.active {
+    border-color: #3b83f6;
+    box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
+    outline: none;
+}
+
+input.interestName,
+span.interestName {
+    font-size: 13.5px;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+span.interestName {
+    color: #374151;
+    padding: 11px 5px 11px 15px;
+}
+
+input.interestName {
+    color: #111827;
+    padding: 7px 5px 9px 15px;
+}
+
+input.interestName:focus,
+input.interestName:focus-within {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.interestDeleteBtn {
+    background: transparent;
+    margin-bottom: -3px;
+    padding: 0 6px 0 0;
+}
+
+span.closeBtnIcon {
+    font-size: 20px;
+    color: #9ca3af;
+}
+
+.interestDeleteBtn:hover span.closeBtnIcon {
+    color: red;
+}
