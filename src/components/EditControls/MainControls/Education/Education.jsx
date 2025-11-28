@@ -68,22 +68,24 @@ export default function Education({data, setCVData}) {
 
     return (
         <div className={styles.educationContainer}>
-            <button className={`${styles.educationHeader} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
-                <span className={`${styles.btnIcon} material-symbols-outlined`}>school</span>
-                <span className={styles.educationHeadline}>Education</span>
-                <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
-            </button>
+            {!isFormOpen && (
+                <button className={`${styles.educationHeader} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+                    <span className={`${styles.btnIcon} material-symbols-outlined`}>school</span>
+                    <span className={styles.educationHeadline}>Education</span>
+                    <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
+                </button>
+            )}
 
             {(isExpanded && isFormOpen) && (
                 <EducationForm 
+                    data={data} 
+                    setCVData={setCVData} 
                     isNew={isNew}
                     setIsNew={setIsNew}
                     isFormOpen={isFormOpen}
                     setIsFormOpen={setIsFormOpen}
                     formData={formData} 
                     setFormData={setFormData} 
-                    data={data} 
-                    setCVData={setCVData} 
                 />
             )}
 

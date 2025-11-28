@@ -4,7 +4,7 @@ import PointCard from '../ExperienceForm/PointCard.jsx';
 
 import styles from './PositionForm.module.css';
 
-export default function PositionForm({data, setCVData, positionFormData, setIsPositionFormOpen}) {    
+export default function PositionForm({data, setCVData, isNewPosition, setIsNewPosition, positionFormData, setIsPositionFormOpen}) {    
     const [isNewPoint, setIsNewPoint] = useState(false);
 
     const handleDelete = () => {
@@ -42,6 +42,7 @@ export default function PositionForm({data, setCVData, positionFormData, setIsPo
             position.responsibilities = positionFormData.responsibilities;   
         });
 
+        setIsNewPosition(false);
         setIsPositionFormOpen(false);
     }
 
@@ -129,6 +130,9 @@ export default function PositionForm({data, setCVData, positionFormData, setIsPo
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setIsNewPosition(false);
+        setIsPositionFormOpen(false);
     }
 
     const company = data.find(company => company.id === positionFormData.companyID);
@@ -136,8 +140,15 @@ export default function PositionForm({data, setCVData, positionFormData, setIsPo
 
     return (
         <div className={styles.formContainer}>
-            <form className={styles.form} action="#" onSubmit={handleSubmit}>
+            <div className={`${styles.formHeaderContainer} ${styles.formOpened}`}>
+                <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>business_center</span>
+                <span className={styles.formHeadline}>
+                    {isNewPosition ? 'Add New Position' : 'Edit Position'}
+                </span>
+                <button className={`${styles.closeBtn} material-symbols-outlined`} onClick={revertChanges}>close_small</button>
+            </div>
 
+            <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formContainer}>
                     <div className={styles.formGroup}>
                         <label htmlFor="title">Position Title</label>
@@ -193,7 +204,7 @@ export default function PositionForm({data, setCVData, positionFormData, setIsPo
                     <span className={styles.formBtnDeleteText}>Delete</span>
                 </button>
                 <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
-                <button className={styles.formBtnSave} onClick={() => setIsPositionFormOpen(false)}>Save</button>
+                <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
             </div>
         </div>
     )

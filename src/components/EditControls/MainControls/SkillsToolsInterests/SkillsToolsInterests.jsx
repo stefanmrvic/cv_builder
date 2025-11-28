@@ -29,11 +29,8 @@ export default function SkillsToolsInterests({data, setCVData}) {
     const [interestsFormData, setInterestsFormData] = useState(data.interests.items)
 
     const skillsToolsInterestsCardContainerRef = useRef(null);
-    const arrowDownRef = useRef(null);
 
     const toggleCollapsing = () => {
-        arrowDownRef.current.classList.toggle(`${styles.active}`);
-
         if (isExpanded) handleCloseAnimation();
 
         setIsExpanded(!isExpanded);
@@ -46,11 +43,14 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
     return (
         <div className={styles.skillsToolsInterestsContainer}>
-            <button className={`${styles.skillsToolsInterestsHeader} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
-                <span className={`${styles.btnIcon} material-icons`}>settings</span>
-                <span className={styles.skillsToolsInterestsHeadline}>Skills, Tools & Interests</span>
-                <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
-            </button>
+             {/* Only displays Skill,Tools & Interests header if none of the forms are open. */}
+            {(!isSkillsFormOpen && !isToolsFormOpen && !isInterestsFormOpen) && (
+                <button className={`${styles.skillsToolsInterestsHeader} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+                    <span className={`${styles.btnIcon} material-icons`}>settings</span>
+                    <span className={styles.skillsToolsInterestsHeadline}>Skills, Tools & Interests</span>
+                    <span className={`${isExpanded ? styles.active : ''} ${styles.arrowDown} material-symbols-outlined`}>keyboard_arrow_down</span>
+                </button>
+            )}
 
             {(isExpanded && isSkillsFormOpen) && (
                 <SkillsForm 
@@ -58,6 +58,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
                     setCVData={setCVData} 
                     skillsFormData={skillsFormData} 
                     setSkillsFormData={setSkillsFormData} 
+                    isSkillsFormOpen={isSkillsFormOpen}
                     setIsSkillsFormOpen={setIsSkillsFormOpen}
                 />
             )}
@@ -68,6 +69,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
                     setCVData={setCVData} 
                     toolsFormData={toolsFormData} 
                     setToolsFormData={setToolsFormData} 
+                    isToolsFormOpen={isToolsFormOpen}
                     setIsToolsFormOpen={setIsToolsFormOpen}
                 />
             )}
@@ -78,6 +80,7 @@ export default function SkillsToolsInterests({data, setCVData}) {
                     setCVData={setCVData} 
                     interestsFormData={interestsFormData} 
                     setInterestsFormData={setInterestsFormData} 
+                    isInterestsFormOpen={isInterestsFormOpen}
                     setIsInterestsFormOpen={setIsInterestsFormOpen}
                 />
             )}

@@ -4,7 +4,7 @@ import Tool from './Tool.jsx';
 
 import styles from './ToolsForm.module.css';
 
-export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormData, setIsToolsFormOpen}) {
+export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormData, isToolsFormOpen, setIsToolsFormOpen}) {
     const [toolInput, setToolInput] = useState('');
 
     const handleToolInput = (e) => {
@@ -56,6 +56,12 @@ export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormD
 
     return (
         <div className={styles.formContainer}>
+            <div className={`${styles.formHeaderContainer} ${isToolsFormOpen ? styles.formOpened : ''}`}>
+                <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
+                <span className={styles.formHeadline}>Add Tools</span>
+                <button className={`${styles.closeBtn} material-symbols-outlined`} onClick={revertChanges}>close_small</button>
+            </div>
+
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.addToolFormGroup}>
                     <label htmlFor="title">Tools</label>

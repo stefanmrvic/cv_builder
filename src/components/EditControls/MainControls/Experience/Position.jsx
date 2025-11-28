@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import styles from './Experience.module.css';
 
 export default function Position({data, setCVData, setIsPositionFormOpen, setPositionFormData, companyID}) {

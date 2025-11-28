@@ -2,7 +2,7 @@
    INTERESTS FORM STYLES
    ============================================ */
 .formContainer {
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
     background-color: var(--secondary-bg-color);
 }
 
@@ -36,6 +36,41 @@
         box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
         outline: none;
     }
+}
+
+.formHeaderContainer {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    padding: 28px 24px 26px 24px;
+}
+
+.formHeaderContainer.formOpened {
+    margin-bottom: -5px;
+}
+
+span.formHeaderIcon {
+    font-size: 28px;
+    font-variation-settings:
+    'FILL' 1;
+    margin-top: -1px;
+}
+
+.formHeadline {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button.closeBtn {
+    color: #6b7280;
+    font-size: 28px;
+    padding: 0;
+    margin: -4px 0 -6px auto;
+    transition: color .11s ease-in-out;
+}
+
+button.closeBtn:hover {
+    color: #000000;
 }
 
 .addInterestFormGroup {

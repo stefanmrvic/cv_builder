@@ -10,6 +10,7 @@ export default function Experience({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
+    const [isNewPosition, setIsNewPosition] = useState(false);
     const [isNewExperience, setIsNewExperience] = useState(false)
 
     // Created with purpose of tracking the original state of the Experience Form Data in case user wants to discard the made changes by clicking "Cancel" button.
@@ -34,10 +35,9 @@ export default function Experience({data, setCVData}) {
     })
 
     const companyContainerRef = useRef(null);
-    const arrowDownRef = useRef(null);
 
     const toggleCollapsing = () => {
-        arrowDownRef.current.classList.toggle(`${styles.active}`);
+        
         
         if (isExpanded) handleCloseAnimation();
         setIsExpanded(!isExpanded);
@@ -67,11 +67,12 @@ export default function Experience({data, setCVData}) {
 
     return (
         <div className={styles.experienceContainer}>
-            {!isExperienceFormOpen && (
-                <button className={`${styles.experienceHeaderContainer} ${isExperienceFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+            {/* Only displays Experience header if both Experience and Position forms are closed. */}
+            {(!isExperienceFormOpen && !isPositionFormOpen) && (
+                <button className={`${styles.experienceHeaderContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                     <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
                     <span className={styles.experienceHeadline}>Experience</span>
-                    <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
+                    <span className={`${isExpanded ? styles.active : ''} ${styles.arrowDown} material-symbols-outlined`}>keyboard_arrow_down</span>
                 </button>
             )}
 
@@ -81,6 +82,8 @@ export default function Experience({data, setCVData}) {
                     setCVData={setCVData} 
                     isNewExperience={isNewExperience}
                     setIsNewExperience={setIsNewExperience}
+                    isNewPosition={isNewPosition}
+                    setIsNewPosition={setIsNewPosition}
                     isExperienceFormOpen={isExperienceFormOpen}
                     setIsExperienceFormOpen={setIsExperienceFormOpen}
                     experienceFormData={experienceFormData} 
@@ -91,9 +94,12 @@ export default function Experience({data, setCVData}) {
             {(isExpanded && isPositionFormOpen) && (
                 <PositionForm 
                     data={data} 
-                    setCVData={setCVData} 
+                    setCVData={setCVData}
+                    isNewPosition={isNewPosition}
+                    setIsNewPosition={setIsNewPosition}
                     positionFormData={positionFormData}
                     setPositionFormData={setPositionFormData}
+                    isPositionFormOpen={isPositionFormOpen}
                     setIsPositionFormOpen={setIsPositionFormOpen}
                 />
             )}

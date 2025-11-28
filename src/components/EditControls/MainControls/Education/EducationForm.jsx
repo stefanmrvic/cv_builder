@@ -1,12 +1,11 @@
 import styles from './Education.module.css';
 
-export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData, data, setCVData}) {
+export default function EducationForm({data, setCVData, isNew, setIsNew, isFormOpen, setIsFormOpen, formData}) {
     const handleDeleteItem = () => {
         if (!formData.id) throw new Error('formData.id is undefined!');
 
         setCVData(draft => {
             const itemIndex = draft.education.findIndex(item => item.id === formData.id);
-            
             if (itemIndex === undefined) throw new Error('Item not found!');
 
             draft.education.splice(itemIndex, 1);
@@ -20,7 +19,6 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
         
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
-
             if (!item) throw new Error('Item not found!');
 
             if (isNew) {
@@ -42,7 +40,6 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
     const handleSchoolName = (e) => {
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
-
             if (!item) throw new Error('Item not found!');
 
             item.schoolName = e.target.value;
@@ -52,7 +49,6 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
     const handleGraduationDate = (e) => {
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
-
             if (!item) throw new Error('Item not found!');
 
             item.graduationDate = e.target.value;
@@ -62,7 +58,6 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
     const handleQualification = (e) => {
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
-
             if (!item) throw new Error('Item not found!');
 
             item.qualification = e.target.value;
@@ -72,7 +67,6 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
     const handleSchoolLocation = (e) => {
         setCVData(draft => {
             const item = draft.education.find(item => item.id === formData.id);
-
             if (!item) throw new Error('Item not found!');
 
             item.schoolLocation = e.target.value;
@@ -81,7 +75,8 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
+        setIsNew(false);  
         setIsFormOpen(false);
     }
 
@@ -89,6 +84,14 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
 
     return (
         <div className={styles.formContainer}>
+            <div className={`${styles.formHeaderContainer} ${isFormOpen ? styles.formOpened : ''}`}>
+                <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>school</span>
+                <span className={styles.formHeadline}>
+                    {isNew ? 'Add New Education' : 'Edit Education'}
+                </span>
+                <button className={`${styles.closeBtn} material-symbols-outlined`} onClick={revertChanges}>close_small</button>
+            </div>
+
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="school">School</label>
@@ -117,7 +120,7 @@ export default function EducationForm({isNew, setIsNew, setIsFormOpen, formData,
                         <span className={styles.formBtnDeleteText}>Delete</span>
                     </button>
                     <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
-                    <button className={styles.formBtnSave} onClick={() => setIsFormOpen(false)}>Save</button>
+                    <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
                 </div>
         </div>
     )

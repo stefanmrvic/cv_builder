@@ -4,7 +4,7 @@ import Interest from './Interest.jsx';
 
 import styles from './InterestsForm.module.css';
 
-export default function InterestsForm({data, setCVData, interestsFormData, setInterestsFormData, setIsInterestsFormOpen}) {
+export default function InterestsForm({data, setCVData, interestsFormData, setInterestsFormData, isInterestsFormOpen, setIsInterestsFormOpen}) {
     const [interestInput, setInterestInput] = useState('');
 
     const handleInterestInput = (e) => {
@@ -56,6 +56,12 @@ export default function InterestsForm({data, setCVData, interestsFormData, setIn
 
     return (
         <div className={styles.formContainer}>
+            <div className={`${styles.formHeaderContainer} ${isInterestsFormOpen ? styles.formOpened : ''}`}>
+                <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
+                <span className={styles.formHeadline}>Add Interests</span>
+                <button className={`${styles.closeBtn} material-symbols-outlined`} onClick={revertChanges}>close_small</button>
+            </div>
+
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.addInterestFormGroup}>
                     <label htmlFor="title">Interests</label>
