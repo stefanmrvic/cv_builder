@@ -1,10 +1,12 @@
+import { useState, useRef, useEffect } from 'react';
+
 import styles from './ToolsForm.module.css';
 
-export default function Tool({data, setCVData, setActiveIndex, isActive, index}) {
-    const handleBlur = (e) => {
-        e.stopPropagation();
-        setActiveIndex(null);
-    }
+export default function Tool({data, setCVData}) {
+    const [isFocused, setIsFocused] = useState(false);
+    const [inputWidth, setInputWidth] = useState(null);
+
+    const toolNameRef = useRef(null);
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -31,18 +33,19 @@ export default function Tool({data, setCVData, setActiveIndex, isActive, index})
         })
     }
 
-    // Match the input width to the span width when a tool tag is clicked.
-    const inputComponentStyles = {
-        width: `${data.name.length + 2.1}ch`
-    }
+    // Calculating the width in px of invisible span element, so that I could use that with on all of the inputs.
+    useEffect(() => {
+        // The magic formula that just happens to work (with a bit of magic sprinkled in).
+        const textWidth = toolNameRef.current.offsetWidth + 21 + 'px';
+
+        if (textWidth) setInputWidth(textWidth);
+    }, []);
 
     return (
-        <div className={`${styles.toolTag} ${isActive ? styles.active : ''}`} onClick={() => setActiveIndex(index)}>
-            {isActive ? (
-                <input autoFocus className={styles.toolName} value={data.name} style={inputComponentStyles} onChange={handleInput} onBlur={handleBlur}></input>
-            ) : (
-                <span className={styles.toolName}>{data.name}</span>
-            )}
+        <div className={`${styles.toolTag} ${isFocused ? styles.active : ''}`}>
+            {/* Invisible span used to measure the text width for sizing the input. */}
+            <span  aria-hidden="true" className={styles.invisibleSkillName} ref={toolNameRef}>{data.name}</span>
+            <input className={styles.toolName} value={data.name} style={{width: `${inputWidth}`}} onChange={handleInput} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}></input>
 
             <button className={styles.toolDeleteBtn} onClick={handleDelete}>
                 <span className={`${styles.closeBtnIcon} material-symbols-outlined`}>close</span>

@@ -6,7 +6,6 @@ import styles from './ToolsForm.module.css';
 
 export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormData, setIsToolsFormOpen}) {
     const [toolInput, setToolInput] = useState('');
-    const [activeIndex, setActiveIndex] = useState(null);
 
     const handleToolInput = (e) => {
         setToolInput(e.target.value);
@@ -60,7 +59,7 @@ export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormD
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.addToolFormGroup}>
                     <label htmlFor="title">Tools</label>
-                    <input className={styles.toolInput} autoFocus type="text" name="title" id="title" onChange={handleToolInput} onFocus={() => setActiveIndex(null)} value={toolInput} placeholder="Enter a tool..." />
+                    <input className={styles.toolInput} autoFocus type="text" name="title" id="title" onChange={handleToolInput} value={toolInput} placeholder="Enter a tool..." />
                     <button className={styles.addToolBtn} onClick={handleAddTool}>
                         <span className={`${styles.addToolBtnIcon} material-symbols-outlined`}>add</span>
                         <span className={styles.addToolBtnText}>Add</span>
@@ -70,14 +69,11 @@ export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormD
                 <div className={styles.toolsContainer}>
                     {/* Checks if there are items under Tool object. */}
                     {data.length > 0 && (
-                        data.map((item, index) => ( 
+                        data.map((item) => ( 
                             <Tool 
                                 key={item.id} 
                                 data={item} 
                                 setCVData={setCVData} 
-                                isActive={activeIndex === index}
-                                index={index}
-                                setActiveIndex={setActiveIndex}
                             />
                         ))
                     )}

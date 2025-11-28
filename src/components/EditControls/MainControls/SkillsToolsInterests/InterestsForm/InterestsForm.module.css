@@ -99,7 +99,7 @@ span.addInterestBtnIcon {
 .formBtnContainer {
     display: flex;
     justify-content: flex-start;
-    padding: 23px 32px;
+    padding: 23px;
     border-top: 1px solid #e5e7eb;
     background: #fafafa;
     border-bottom-left-radius: 12px;
@@ -166,17 +166,20 @@ span.addInterestBtnIcon {
     outline: none;
 }
 
-input.interestName,
-span.interestName {
+input.interestName {
     font-size: 13.5px;
     border: none;
     outline: none;
     background: none;
 }
 
-span.interestName {
-    color: #374151;
-    padding: 11px 5px 11px 15px;
+.invisibleSkillName {
+    color: transparent;
+    font-size: 13.5px;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 input.interestName {
