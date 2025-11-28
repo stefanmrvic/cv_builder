@@ -67,11 +67,13 @@ export default function Experience({data, setCVData}) {
 
     return (
         <div className={styles.experienceContainer}>
-            <button className={`${styles.experienceHeaderContainer} ${isExperienceFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
-                <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
-                <span className={styles.experienceHeadline}>Experience</span>
-                <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
-            </button>
+            {!isExperienceFormOpen && (
+                <button className={`${styles.experienceHeaderContainer} ${isExperienceFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+                    <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
+                    <span className={styles.experienceHeadline}>Experience</span>
+                    <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
+                </button>
+            )}
 
             {(isExpanded && isExperienceFormOpen) && (
                 <ExperienceForm 
@@ -113,10 +115,7 @@ export default function Experience({data, setCVData}) {
                     ))}
 
                     <div className={styles.addBtnContainer}>
-                        <button 
-                            className={`${styles.addBtn} ${styles.btn}`} 
-                            onClick={handleAddExperience}
-                        >
+                        <button className={styles.addBtn} onClick={handleAddExperience}>
                             <span className={`${styles.addBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Experience</span>
                         </button>

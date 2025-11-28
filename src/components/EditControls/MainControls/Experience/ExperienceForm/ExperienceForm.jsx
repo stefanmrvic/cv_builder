@@ -4,7 +4,7 @@ import PositionCard from './PositionCard.jsx';
 
 import styles from './ExperienceForm.module.css';
 
-export default function ExperienceForm({data, setCVData, experienceFormData, isNewExperience, setIsNewExperience, setIsExperienceFormOpen}) {    
+export default function ExperienceForm({data, setCVData, experienceFormData, isNewExperience, setIsNewExperience, isExperienceFormOpen, setIsExperienceFormOpen}) {    
     const [isNewPosition, setIsNewPosition] = useState(false);
 
     const handleDelete = () => {
@@ -20,7 +20,9 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
         setIsExperienceFormOpen(false);
     }
 
-    const revertChanges = () => {
+    const revertChanges = (e) => {
+        e.stopPropagation(); 
+
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
         
         setCVData(draft => {
@@ -100,6 +102,12 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
 
     return (
         <div className={styles.formContainer}>
+            <div className={`${styles.formHeaderContainer} ${isExperienceFormOpen ? styles.formOpened : ''}`}>
+                <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>business_center</span>
+                <span className={styles.formHeadline}>Add New Experience</span>
+                <button className={`${styles.closeBtn} material-symbols-outlined`} onClick={revertChanges}>close_small</button>
+            </div>
+
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
