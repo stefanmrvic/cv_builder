@@ -6,14 +6,21 @@ import MainControls from './MainControls/MainControls.jsx';
 
 import styles from './EditControls.module.css';
 
-export default function EditControls({data, setCVData}) {
+export default function EditControls({data, setCVData, setOrder, setBulletPoints, setFont}) {
     const [activeTab, setActiveTab] = useState('content');
 
     return (
         <div className={styles.editControls}>
             <SideControls data={data} activeTab={activeTab} setActiveTab={setActiveTab} />
             <TopControls setCVData={setCVData} />
-            <MainControls data={data} setCVData={setCVData} activeTab={activeTab} />
+            <MainControls 
+                data={data} 
+                setCVData={setCVData} 
+                activeTab={activeTab} 
+                setOrder={setOrder} 
+                setBulletPoints={setBulletPoints}
+                setFont={setFont}
+            />
         </div>
     )
 }

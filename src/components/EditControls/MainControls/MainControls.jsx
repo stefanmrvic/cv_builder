@@ -3,13 +3,19 @@ import Customize from './Customize/Customize.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function MainControls({data, setCVData, activeTab}) {
+export default function MainControls({data, setCVData, activeTab, setOrder, setBulletPoints, setFont}) {
     return (
         <div className={styles.mainControls}>
             {activeTab === 'content' ? (
                 <Content data={data} setCVData={setCVData} />
             ) : (
-                <Customize data={data} setCVData={setCVData} />
+                <Customize 
+                    data={data} 
+                    setCVData={setCVData} 
+                    setOrder={setOrder}
+                    setBulletPoints={setBulletPoints}
+                    setFont={setFont}
+                />
             )}  
         </div>
     )

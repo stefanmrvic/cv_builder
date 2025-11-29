@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useImmer } from 'use-immer'
 
 import CV from './components/CV/CV.jsx'
@@ -13,10 +14,29 @@ import styles from './app.module.css'
 export default function App() {
   const [cvData, setCVData] = useImmer(defaultCV);
 
+  const [order, setOrder] = useState(['skills', 'experience', 'education'])
+  const [bulletPoints, setBulletPoints] = useState({
+    primary: '$',
+    secondary: '%'
+  })
+  const [font, setFont] = useState('sans-serif')
+
   return (
       <div className={styles.app}>
-        <EditControls data={cvData} setCVData={setCVData} />
-        <CV data={cvData} />
+        <EditControls 
+          data={cvData} 
+          setCVData={setCVData} 
+          setOrder={setOrder} 
+          setBulletPoints={setBulletPoints} 
+          setFont={setFont} 
+        />
+        
+        <CV 
+          data={cvData} 
+          order={order} 
+          bulletPoints={bulletPoints} 
+          font={font} 
+        />
       </div>
   )
 }
