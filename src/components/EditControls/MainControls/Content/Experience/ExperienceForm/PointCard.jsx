@@ -136,7 +136,7 @@ export default function PointCard({data, setCVData, index, companyID, positionID
                     <div className={styles.pointFormContainer}>
                         <div className={styles.pointFormGroup}>
                             <label htmlFor="point">Description</label>
-                            <textarea name="point" id="point" autoFocus={isNewPoint} value={(isNewPoint && isPlaceholderTitle) ? '' : (data?.point || '')} onChange={handleDescription} placeholder="Enter responsibility description..." />
+                            <textarea name="point" id="point" className={styles.pointTextarea} autoFocus={isNewPoint} value={(isNewPoint && isPlaceholderTitle) ? '' : (data?.point || '')} onChange={handleDescription} placeholder="Enter responsibility description..." />
                         </div>
 
                         <div className={styles.subResponsibilitiesContainer}>

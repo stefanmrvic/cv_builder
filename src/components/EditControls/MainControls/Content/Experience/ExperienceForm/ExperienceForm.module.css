@@ -131,7 +131,7 @@ span.addPositionBtnIcon {
 .positionContainer {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
-    background-color: var(--main-bg-color);
+    background-color: var(--secondary-bg-color);
     margin-bottom: 18px;
 }
 
@@ -141,7 +141,7 @@ span.addPositionBtnIcon {
 
 .positionFormContainer input,
 .positionFormContainer textarea {
-    background-color: var(--secondary-bg-color);
+    background-color: var(--main-bg-color);
 }
 
 .positionFormGroup {
@@ -293,10 +293,6 @@ span.addPointBtnIcon {
     background: #eff6ff;
 }
 
-/* .pointContainer {
-
-} */
-
 .pointCardContainer {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -317,10 +313,6 @@ span.addPointBtnIcon {
     padding: 0 16px;
 }
 
-.pointFormContainer textarea {
-    background-color: var(--main-bg-color);
-}
-
 .pointFormGroup {
     display: flex;
     flex-direction: column;
@@ -333,9 +325,10 @@ span.addPointBtnIcon {
     font-size: 13.5px;
 }
 
-.pointFormGroup > textarea {
+.pointFormGroup > .pointTextarea {
     min-height: 80px;
     resize: vertical;
+    background-color: var(--main-bg-color);
 }
 
 .pointFormGroupCompany {
@@ -396,14 +389,10 @@ span.pointVisibilityBtnIcon {
 /* ============================================
    SUBPOINT FORM STYLES
    ============================================ */
-/* .subPointContainer {
-
-} */
-
 .subPointCardContainer {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
-    background-color: var(--main-bg-color);
+    background-color: var(--secondary-bg-color);
     margin-bottom: 9px;
 }
 
@@ -466,7 +455,7 @@ span.addSubPointBtnIcon {
 }
 
 div.subPointFormGroup > textarea {
-    background-color: var(--secondary-bg-color);
+    background-color: var(--main-bg-color);
 }
 
 .subPointHeaderContainer {
