@@ -10,16 +10,16 @@ export default function CV({data, order}) {
         <div className={styles.cvContainer}>
           <PersonalInfo data={data.personalInfo} />
 
-          {order.map((item, index) => {
-            if (item === 'experience') {
-              return <WorkExperience key={index} data={data.workExperience} />
-            } else if (item === 'skills') {
-              return <SkillsToolsInterests key={index} data={data.skillsToolsInterests} />
+          {order.map(item => {
+            if (item.id === 'workExperience') {
+              return <WorkExperience key={item.id} data={data.workExperience} />
+            } else if (item.id === 'skillsToolsInterests') {
+              return <SkillsToolsInterests key={item.id} data={data.skillsToolsInterests} />
             } else {
-              return <Education key={index} data={data.education} />
+              return <Education key={item.id} data={data.education} />
             }
           })}
-
+          
         </div>
     )
 }

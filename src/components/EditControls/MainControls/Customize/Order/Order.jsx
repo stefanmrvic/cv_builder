@@ -2,25 +2,8 @@ import OrderItem from './OrderItem.jsx';
 
 import styles from './Order.module.css';
 
-export default function Order({setOrder}) {
-    const cvSections = [
-        {
-            id: 'workExperience',
-            icon: 'business_center',
-            headline: 'Experience'
-        },
-        {
-            id: 'skillsToolsInterests',
-            icon: 'settings',
-            headline: 'Skills, Tools & Interests'
-        },
-        {
-            id: 'education',
-            icon: 'school',
-            headline: 'Education'
-        }
-    ]
-
+export default function Order({order, setOrder}) {
+    console.log(order)
     return (
         <div className={styles.orderContainer}>
             <div className={styles.orderHeaderContainer}>
@@ -29,13 +12,15 @@ export default function Order({setOrder}) {
             </div>
 
             <div className={styles.orderCardsContainer}>
-                {cvSections.map((item, index) => (
+                {order.map((item, index) => (
                     <OrderItem 
                         key={item.id} 
                         data={item} 
+                        index={index}
+                        order={order}
                         setOrder={setOrder} 
                         isFirst={index === 0}
-                        isLast={index === cvSections.length - 1}
+                        isLast={index === order.length - 1}
                     />
                 ))}
             </div>

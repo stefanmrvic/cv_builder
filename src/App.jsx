@@ -13,30 +13,48 @@ import styles from './app.module.css'
 
 export default function App() {
   const [cvData, setCVData] = useImmer(defaultCV);
+  const [order, setOrder] = useState([
+        {
+          id: 'workExperience',
+          icon: 'business_center',
+          headline: 'Experience'
+        },
+        {
+          id: 'skillsToolsInterests',
+          icon: 'settings',
+          headline: 'Skills, Tools & Interests'
+        },
+        {
+          id: 'education',
+          icon: 'school',
+          headline: 'Education'
+        }
+  ])
 
-  const [order, setOrder] = useState(['skills', 'experience', 'education'])
   const [bulletPoints, setBulletPoints] = useState({
     primary: '$',
     secondary: '%'
   })
+
   const [font, setFont] = useState('sans-serif')
 
   return (
-      <div className={styles.app}>
-        <EditControls 
-          data={cvData} 
-          setCVData={setCVData} 
-          setOrder={setOrder} 
-          setBulletPoints={setBulletPoints} 
-          setFont={setFont} 
-        />
+    <div className={styles.app}>
+      <EditControls 
+        data={cvData} 
+        setCVData={setCVData} 
+        order={order}
+        setOrder={setOrder} 
+        setBulletPoints={setBulletPoints} 
+        setFont={setFont} 
+      />
         
-        <CV 
-          data={cvData} 
-          order={order} 
-          bulletPoints={bulletPoints} 
-          font={font} 
-        />
-      </div>
+      <CV 
+        data={cvData} 
+        order={order} 
+        bulletPoints={bulletPoints} 
+        font={font} 
+      />
+    </div>
   )
 }
