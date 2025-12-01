@@ -3,7 +3,7 @@ import Customize from './Customize/Customize.jsx';
 
 import styles from './MainControls.module.css';
 
-export default function MainControls({data, setCVData, activeTab, order, setOrder, setBulletPoints, setFont}) {
+export default function MainControls({data, setCVData, activeTab, order, setOrder, setBulletPoints}) {
     return (
         <div className={styles.mainControls}>
             {activeTab === 'content' ? (
@@ -15,7 +15,6 @@ export default function MainControls({data, setCVData, activeTab, order, setOrde
                     order={order}
                     setOrder={setOrder}
                     setBulletPoints={setBulletPoints}
-                    setFont={setFont}
                 />
             )}  
         </div>

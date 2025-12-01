@@ -3,7 +3,6 @@ import OrderItem from './OrderItem.jsx';
 import styles from './Order.module.css';
 
 export default function Order({order, setOrder}) {
-    console.log(order)
     return (
         <div className={styles.orderContainer}>
             <div className={styles.orderHeaderContainer}>

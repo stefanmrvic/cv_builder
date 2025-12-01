@@ -36,8 +36,6 @@ export default function App() {
     secondary: '%'
   })
 
-  const [font, setFont] = useState('sans-serif')
-
   return (
     <div className={styles.app}>
       <EditControls 
@@ -46,14 +44,12 @@ export default function App() {
         order={order}
         setOrder={setOrder} 
         setBulletPoints={setBulletPoints} 
-        setFont={setFont} 
       />
         
       <CV 
         data={cvData} 
         order={order} 
-        bulletPoints={bulletPoints} 
-        font={font} 
+        bulletPoints={bulletPoints}  
       />
     </div>
   )
