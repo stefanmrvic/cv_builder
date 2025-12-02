@@ -29,7 +29,11 @@
 }
 
 .responsibilities {
-    margin-left: 19px;
+    margin-left: 14px;
+}
+
+.mainPoint {
+    padding: 0 2px;
 }
 
 .mainPoint.circle {
