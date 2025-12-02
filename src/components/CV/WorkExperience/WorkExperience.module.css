@@ -33,7 +33,7 @@
 }
 
 .mainPoint {
-    padding: 0 2px;
+    padding: 0 5px;
 }
 
 .mainPoint.circle {
@@ -67,7 +67,7 @@
 }
 
 .subPoints {
-    margin-left: 50px;
+    margin-left: 45px;
     margin-bottom: 5px;
 }
 
@@ -100,5 +100,5 @@
 }
 
 .subPoints > li {
-    padding: 0 3px;
+    padding: 0 5px;
 }
