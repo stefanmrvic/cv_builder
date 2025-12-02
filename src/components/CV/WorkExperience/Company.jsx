@@ -2,7 +2,7 @@ import Position from './Position.jsx'
 
 import styles from './WorkExperience.module.css'
 
-export default function Company({company}) {
+export default function Company({company, bulletPoints}) {
     let isFirstVisiblePosition = company.positions.find(position => position.isVisible);
 
     return (
@@ -14,6 +14,7 @@ export default function Company({company}) {
                     companyName={company.companyName}
                     location={company.location}
                     position={position} 
+                    bulletPoints={bulletPoints}
                 />
             ))}
         </div>

@@ -1,6 +1,6 @@
 import Company from './Company.jsx'
 
-export default function WorkExperience({data}) {
+export default function WorkExperience({data, bulletPoints}) {
     // Exits if there are no companies in experience object
     if (!data) return null;
 
@@ -19,6 +19,7 @@ export default function WorkExperience({data}) {
                     <Company 
                         key={company.id}
                         company={company}
+                        bulletPoints={bulletPoints}
                     />
                 ))
             }  

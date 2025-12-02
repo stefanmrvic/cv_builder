@@ -32,8 +32,8 @@ export default function App() {
   ])
 
   const [bulletPoints, setBulletPoints] = useState({
-    primary: '$',
-    secondary: '%'
+    main: 'square',
+    sub: 'circle'
   })
 
   return (
@@ -43,6 +43,7 @@ export default function App() {
         setCVData={setCVData} 
         order={order}
         setOrder={setOrder} 
+        bulletPoints={bulletPoints}
         setBulletPoints={setBulletPoints} 
       />
         

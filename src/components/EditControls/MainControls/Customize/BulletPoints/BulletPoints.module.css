@@ -50,15 +50,11 @@
     justify-content: center;
     gap: 15px;
     border: 1px solid #e5e7eb;
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
 }
 
 .bulletPointsMainBtn.active {
     border-color: #333;
-}
-
-.bulletPointsMainBtn:hover:not(.active) {
-    border-color: #cbd5e0;
 }
 
 .bulletPointsMainBtnIcon {
@@ -118,15 +114,11 @@
     justify-content: center;
     gap: 15px;
     border: 1px solid #e5e7eb;
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
 }
 
 .bulletPointsSubBtn.active {
     border-color: #333;
-}
-
-.bulletPointsSubBtn:hover:not(.active) {
-    border-color: #cbd5e0;
 }
 
 .bulletPointsSubBtnIcon {
@@ -195,8 +187,38 @@
     margin-bottom: 5px;
 }
 
-.bulletPoint > p {
+.mainBulletPoint {
     margin-bottom: 8px;
+}
+
+.mainBulletPoint.circle {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainBulletPoint.square {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainBulletPoint.triangle {
+    margin-top: -2px;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainBulletPoint.triangle::marker {
+    font-size: 18px;
+}
+
+.mainBulletPoint.diamond {
+    margin-top: -2px;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainBulletPoint.diamond::marker {
+    font-size: 18px;
+}
+
+.mainBulletPoint::marker {
+    font-size: 15px;
 }
 
 .subBulletPoint {
@@ -208,16 +230,36 @@
     list-style: none;
 }
 
-.subBulletPoint::before {
-    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: -19px;
-    width: 8px;
-    height: 8px;
-    color: #666;
-    /* background-size: contain;
-    background-repeat: no-repeat; */
+.subBulletPoint.circle {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
 }
 
+.subBulletPoint.square {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+.subBulletPoint.square::marker {
+    font-size: 15px;
+}
+
+.subBulletPoint.triangle {
+    margin-top: -2px;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E")
+}
+
+.subBulletPoint.triangle::marker {
+    font-size: 17px;
+}
+
+.subBulletPoint.diamond {
+    margin-top: -2px;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E")
+}
+
+.subBulletPoint.diamond::marker {
+    font-size: 18px;
+}
+
+.subBulletPoint::marker {
+    font-size: 15px;
+}

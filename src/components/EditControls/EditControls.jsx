@@ -6,7 +6,7 @@ import MainControls from './MainControls/MainControls.jsx';
 
 import styles from './EditControls.module.css';
 
-export default function EditControls({data, setCVData, order, setOrder, setBulletPoints}) {
+export default function EditControls({data, setCVData, order, setOrder, bulletPoints, setBulletPoints}) {
     const [activeTab, setActiveTab] = useState('content');
 
     return (
@@ -19,6 +19,7 @@ export default function EditControls({data, setCVData, order, setOrder, setBulle
                 activeTab={activeTab} 
                 order={order}
                 setOrder={setOrder} 
+                bulletPoints={bulletPoints}
                 setBulletPoints={setBulletPoints}
             />
         </div>

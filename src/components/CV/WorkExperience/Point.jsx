@@ -2,12 +2,12 @@ import SubPoint from './SubPoint.jsx';
 
 import styles from './WorkExperience.module.css';
 
-export default function Point({point}) {
+export default function Point({point, bulletPoints}) {
     return (
-        <li>
+        <li className={`${styles.mainPoint} ${styles[bulletPoints.main]}`}>
             <p>{point.point}</p>
             
-            <ul className={styles.subPoints}>
+            <ul className={`${styles.subPoints} ${styles[bulletPoints.sub]}`}>
                 {point.subPoints.length > 0 && 
                     point.subPoints
                         .filter(subPoint => subPoint.isVisible)

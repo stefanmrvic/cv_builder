@@ -5,16 +5,16 @@ import Education from './Education/Education.jsx'
 
 import styles from './CV.module.css'
 
-export default function CV({data, order}) {
+export default function CV({data, order, bulletPoints}) {
     return (
         <div className={styles.cvContainer}>
           <PersonalInfo data={data.personalInfo} />
 
           {order.map(item => {
             if (item.id === 'workExperience') {
-              return <WorkExperience key={item.id} data={data.workExperience} />
+              return <WorkExperience key={item.id} data={data.workExperience} bulletPoints={bulletPoints} />
             } else if (item.id === 'skillsToolsInterests') {
-              return <SkillsToolsInterests key={item.id} data={data.skillsToolsInterests} />
+              return <SkillsToolsInterests key={item.id} data={data.skillsToolsInterests} bulletPoints={bulletPoints} />
             } else {
               return <Education key={item.id} data={data.education} />
             }

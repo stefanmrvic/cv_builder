@@ -32,12 +32,69 @@
     margin-left: 19px;
 }
 
+.mainPoint.circle {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainPoint.square {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainPoint.triangle {
+    margin-top: -2px;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainPoint.triangle::marker {
+    font-size: 22px;
+}
+
+.mainPoint.diamond {
+    margin-top: -2px;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='%23000'/%3E%3C/svg%3E");
+}
+
+.mainPoint.diamond::marker {
+    font-size: 22px;
+}
+
+.mainPoint::marker {
+    font-size: 19px;
+}
+
 .subPoints {
-    list-style: circle;
     margin-left: 50px;
     margin-bottom: 5px;
 }
 
+.subPoints.circle {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+.subPoints.square {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+.subPoints.square > li::marker {
+    font-size: 16px;
+}
+
+.subPoints.triangle {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E")
+}
+
+.subPoints.diamond {
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E")
+}
+
+.subPoints.diamond > li::marker {
+    font-size: 20px;
+}
+
 .subPoints > li::marker {
-    font-size: 22px;
+    font-size: 19px;
+}
+
+.subPoints > li {
+    padding: 0 3px;
 }

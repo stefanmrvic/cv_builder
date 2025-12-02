@@ -4,7 +4,7 @@ import styles from './WorkExperience.module.css';
 
 // Passes companyName and location so the first position can display company details above the job title,
 // since Position objects don't have access to their parent company's properties.
-export default function Position({isFirst, companyName, location, position}) {
+export default function Position({isFirst, companyName, location, position, bulletPoints}) {
     return (
         <>
         {position.isVisible && (
@@ -29,7 +29,7 @@ export default function Position({isFirst, companyName, location, position}) {
                         )
                     }
                 </div>
-                <Responsibilities responsibilities={position.responsibilities} />
+                <Responsibilities responsibilities={position.responsibilities} bulletPoints={bulletPoints}/>
             </div>
         )}
         </>
