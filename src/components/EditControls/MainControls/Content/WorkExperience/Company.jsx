@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 import Position from './Position.jsx';
 
-import styles from './Experience.module.css';
+import styles from './WorkExperience.module.css';
 
 export default function Company({data, setCVData, setExperienceFormData, setIsExperienceFormOpen, setPositionFormData, setIsPositionFormOpen}) {
     const [isExpanded, setIsExpanded] = useState(false);

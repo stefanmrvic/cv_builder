@@ -37,17 +37,6 @@
 /* ============================================
    EDUCATION ITEM
    ============================================ */
-.educationItem {
-    background-color: var(--secondary-bg-color);
-    cursor: pointer;
-}
-
-.educationBtnContainer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
 .educationItemContainer {
     display: flex;    
     flex-direction: column;
@@ -63,16 +52,15 @@
     animation: slideUp .25s forwards;
 }
 
-/* ============================================
-   BUTTONS & ACTIONS
-   ============================================ */
 .educationItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 14px 12px 24px;
+    padding: 13px 14px 13px 24px;
     border-radius: 0px;
     border-top: 1px solid #e5e7eb;
+    background-color: var(--secondary-bg-color);
+    cursor: pointer;
 }
 
 .educationItemHeadline {
@@ -80,6 +68,14 @@
     font-weight: 600;
 }
 
+.educationBtnContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+/* ============================================
+   BUTTONS & ACTIONS
+   ============================================ */
 .addBtnContainer {
     background-color: var(--secondary-bg-color);
     border-radius: 0 0 12px 12px;

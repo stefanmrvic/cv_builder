@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useImmer } from 'use-immer'
 
-import CV from './components/CV/CV.jsx'
+import CVPreview from './components/CV/Preview/CVPreview.jsx'
 import EditControls from './components/EditControls/EditControls.jsx'
 
 import defaultCV from './data/defaultCV.js'
@@ -47,7 +47,7 @@ export default function App() {
         setBulletPoints={setBulletPoints} 
       />
         
-      <CV 
+      <CVPreview 
         data={cvData} 
         order={order} 
         bulletPoints={bulletPoints}  

@@ -1,4 +1,4 @@
-import styles from './Experience.module.css';
+import styles from './WorkExperience.module.css';
 
 export default function Position({data, setCVData, setIsPositionFormOpen, setPositionFormData, companyID}) {
     const handleDelete = (e) => {

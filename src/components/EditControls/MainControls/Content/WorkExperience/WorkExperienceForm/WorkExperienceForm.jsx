@@ -1,6 +1,6 @@
 import PositionCard from './PositionCard.jsx';
 
-import styles from './ExperienceForm.module.css';
+import styles from './WorkExperienceForm.module.css';
 
 export default function ExperienceForm({data, setCVData, experienceFormData, isNewExperience, setIsNewExperience, isNewPosition, setIsNewPosition, isExperienceFormOpen, setIsExperienceFormOpen}) {    
     const handleDelete = () => {

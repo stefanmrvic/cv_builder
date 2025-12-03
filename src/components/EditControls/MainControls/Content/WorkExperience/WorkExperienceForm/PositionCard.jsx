@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import PointCard from './PointCard.jsx';
 
-import styles from './ExperienceForm.module.css';
+import styles from './WorkExperienceForm.module.css';
 
 export default function PositionCard({data, setCVData, isNewPosition, setIsNewPosition, index, companyID}) {
     const [isExpanded, setIsExpanded] = useState(false);

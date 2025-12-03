@@ -3,9 +3,9 @@ import WorkExperience from './WorkExperience/WorkExperience.jsx';
 import SkillsToolsInterests from './SkillsToolsInterests/SkillsToolsInterests.jsx'
 import Education from './Education/Education.jsx'
 
-import styles from './CV.module.css'
+import styles from './CVPreview.module.css'
 
-export default function CV({data, order, bulletPoints}) {
+export default function CVPreview({data, order, bulletPoints}) {
     return (
         <div className={styles.cvContainer}>
           <PersonalInfo data={data.personalInfo} />

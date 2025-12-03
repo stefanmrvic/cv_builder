@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import PointCard from '../ExperienceForm/PointCard.jsx';
+import PointCard from '../WorkExperienceForm/PointCard.jsx';
 
 import styles from './PositionForm.module.css';
 

@@ -2,9 +2,9 @@ import { useState, useRef } from 'react';
 
 import Company from './Company.jsx';
 import PositionForm from './PositionForm/PositionForm.jsx';
-import ExperienceForm from './ExperienceForm/ExperienceForm.jsx';
+import ExperienceForm from './WorkExperienceForm/WorkExperienceForm.jsx';
 
-import styles from './Experience.module.css';
+import styles from './WorkExperience.module.css';
 
 export default function Experience({data, setCVData}) {
     const [isExpanded, setIsExpanded] = useState(false);
