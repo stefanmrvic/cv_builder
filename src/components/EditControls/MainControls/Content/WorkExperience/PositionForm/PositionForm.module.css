@@ -241,7 +241,7 @@ span.addPointBtnIcon {
 .pointHeaderContainer {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    padding: 14px 16px;
     cursor: pointer;
 }
 
@@ -342,7 +342,6 @@ span.addSubPointBtnIcon {
     padding: 0 16px;
 }
 
-
 .subPointFormGroup {
     display: flex;
     flex-direction: column;
@@ -363,7 +362,7 @@ span.addSubPointBtnIcon {
 .subPointHeaderContainer {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    padding: 14px 16px;
     cursor: pointer;
 }
 
