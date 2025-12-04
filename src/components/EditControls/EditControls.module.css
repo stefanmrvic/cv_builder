@@ -1,5 +1,5 @@
 .editControls {
-    display: grid;
+    /* display: grid;
     grid-template-rows: 54px 1fr;
     grid-template-columns: 105px 504px;
     grid-template-areas: 
@@ -7,5 +7,6 @@
     "sideControls mainControls";
     gap: 24px;
     flex: 1;
-    max-width: 750px;
+    max-width: 750px; */
+    flex-basis: 52%;
 }

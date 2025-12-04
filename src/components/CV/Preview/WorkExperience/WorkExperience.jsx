@@ -13,16 +13,13 @@ export default function WorkExperience({data, bulletPoints}) {
         <div className='sectionBottomMargin'>
             <h1 className='headline'>WORK EXPERIENCE</h1>
 
-            {data
-                .filter(company => company.isVisible)
-                .map(company => (
-                    <Company 
-                        key={company.id}
-                        company={company}
-                        bulletPoints={bulletPoints}
-                    />
-                ))
-            }  
+            {visibleCompanies.map(company => (
+                <Company 
+                    key={company.id}
+                    company={company}
+                    bulletPoints={bulletPoints}
+                />
+            ))}  
         </div>    
     )
 }

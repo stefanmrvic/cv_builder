@@ -8,20 +8,20 @@ Font.register({
 export default function PersonalDetails({data}) {
     // Filters out the empty fields in the Personal Details sections to avoid leaving them in the CV.
     // It also leaves out the fullName property for easier styling.
-    const nonEmptyFields = Object.entries(data.personalInfo).filter(([key, value]) => (key !== 'fullName' && value !== ''));
+    const nonEmptyFields = Object.entries(data).filter(([key, value]) => (key !== 'fullName' && value !== ''));
  
-    // Container StyleSheets
+    // Container StyleSheet
     const styles = StyleSheet.create({
-        fullName: { fontSize: 35, fontWeight: 'bold', marginBottom: 5.25 },
+        fullName: { fontSize: 30, fontWeight: 'bold', marginBottom: 5.25 },
         info: { display: 'flex', flexDirection: 'row', rowGap: 5, columnGap: 4.5, flexWrap: 'wrap', paddingBottom: 3 }
     })
 
     return (
         // Personal Details Container
         <View style={{ borderBottom: '1.25pt solid black', marginBottom: 15}}>
-            {data.personalInfo.fullName !== '' && (
+            {data.fullName !== '' && (
                 // Full Name Text
-                <Text style={styles.fullName}>{data.personalInfo.fullName}</Text>
+                <Text style={styles.fullName}>{data.fullName}</Text>
             )} 
             
             {/* Info Details Container */}

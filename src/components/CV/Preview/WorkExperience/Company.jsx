@@ -3,14 +3,19 @@ import Position from './Position.jsx'
 import styles from './WorkExperience.module.css'
 
 export default function Company({company, bulletPoints}) {
-    let isFirstVisiblePosition = company.positions.find(position => position.isVisible);
+    if (!company) return null;
+
+    const visiblePositions = company.positions.filter(item => item.isVisible);
+    if (!visiblePositions) return null;
+
+    let firstVisiblePosition = visiblePositions[0];
 
     return (
         <div className={styles.companyContainer}>
             {company.positions.length > 0 && company.positions.map(position => (
                 <Position 
                     key={position.id}
-                    isFirst={position === isFirstVisiblePosition} 
+                    isLast={position === firstVisiblePosition} 
                     companyName={company.companyName}
                     location={company.location}
                     position={position} 

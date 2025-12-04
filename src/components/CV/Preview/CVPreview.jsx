@@ -1,6 +1,10 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { MyDocument } from '../Generator/CVDocument.jsx';
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { PDFViewer } from '@react-pdf/renderer';
+
 import PersonalInfo from './PersonalInfo/PersonalInfo.jsx';
 import WorkExperience from './WorkExperience/WorkExperience.jsx';
 import SkillsToolsInterests from './SkillsToolsInterests/SkillsToolsInterests.jsx'
@@ -12,12 +16,6 @@ export default function CVPreview({data, order, bulletPoints}) {
     return (
         <div className={styles.cvContainer}>
           <PersonalInfo data={data.personalInfo} />
-
-          <PDFDownloadLink document={<MyDocument />} fileName="testCV.pdf">
-            {({ blob, url, loading, error }) =>
-              loading ? 'Loading document...' : 'Download now!'
-            }
-          </PDFDownloadLink>
 
           {order.map(item => {
             if (item.id === 'workExperience') {

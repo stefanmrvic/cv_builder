@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import { PDFViewer } from '@react-pdf/renderer';
+import { MyDocument } from '../CV/Generator/CVDocument.jsx';
+
 import SideControls from './SideControls/SideControls.jsx';
 import TopControls from './TopControls/TopControls.jsx';
 import MainControls from './MainControls/MainControls.jsx';
@@ -11,7 +14,7 @@ export default function EditControls({data, setCVData, order, setOrder, bulletPo
 
     return (
         <div className={styles.editControls}>
-            <SideControls data={data} activeTab={activeTab} setActiveTab={setActiveTab} />
+            {/* <SideControls data={data} activeTab={activeTab} setActiveTab={setActiveTab} />
             <TopControls setCVData={setCVData} />
             <MainControls 
                 data={data} 
@@ -21,7 +24,11 @@ export default function EditControls({data, setCVData, order, setOrder, bulletPo
                 setOrder={setOrder} 
                 bulletPoints={bulletPoints}
                 setBulletPoints={setBulletPoints}
-            />
+            /> */}
+
+            <PDFViewer style={{ width: '80%', height: '100%' }}>
+                <MyDocument />
+            </PDFViewer>
         </div>
     )
 }
