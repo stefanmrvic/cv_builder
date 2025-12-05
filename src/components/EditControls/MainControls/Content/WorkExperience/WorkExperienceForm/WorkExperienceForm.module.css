@@ -195,10 +195,24 @@ span.addPositionBtnIcon {
 
 .positionFormGroupDate .startDate,
 .positionFormGroupDate .endDate {
+    position: relative;
     display: flex;
     flex-direction: column;
     min-width: 176px;
     width: 198px;
+}
+
+.positionFormGroupDate span.startDateValue,
+.positionFormGroupDate span.endDateValue {
+    font-size: 13.3px;
+    padding: 10px;
+    position: absolute;
+    top: 26px;
+    left: 2px;
+    width: 80%;
+    height: 31px;
+    border-radius: 7px;
+    background-color: var(--main-bg-color);
 }
 
 .positionFormGroupDate .startDate label,

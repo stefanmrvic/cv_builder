@@ -18,8 +18,8 @@ const defaultCV = {
                     id: '710fea86-05b4-4b7e-8512-31f564d4ac19',
                     isVisible: true,
                     title: 'Full-Stack Software Engineer',
-                    startDate: '2023-04-12',
-                    endDate: '2025-12-05',
+                    startDate: 'Apr. 2023',
+                    endDate: 'Present',
                     currentlyEmployed: true,
                     responsibilities: [
                         {   
@@ -73,8 +73,8 @@ const defaultCV = {
                     id: 'c76cbc1e-4508-418b-9bc9-55eb3e07310d',
                     isVisible: true,
                     title: 'Software Engineer (Front-end)',
-                    startDate: '2021-06-04',
-                    endDate: '2025-10-04',
+                    startDate: 'Jun. 2021',
+                    endDate: 'Mar. 2023',
                     currentlyEmployed: false,
                     responsibilities: [
                         {
@@ -109,9 +109,9 @@ const defaultCV = {
                     id: '5480e0fe-60df-4661-ac9f-ffc667ed7292',
                     isVisible: true,
                     title: 'Frontend Developer',
-                    startDate: '2017-04-12',
-                    endDate: '2019-06-01',
-                    currentlyEmployed: true,
+                    startDate: 'Apr. 2019',
+                    endDate: 'May. 2021',
+                    currentlyEmployed: false,
                     responsibilities: [
                         {
                             id: '5d48db69-510c-4c2d-811e-e3f16a125556',
@@ -137,8 +137,8 @@ const defaultCV = {
                     id: '11dbb5fb-dea5-4643-b4f1-c42afc22e540',
                     isVisible: true,
                     title: 'Junior Web Developer',
-                    startDate: '2018-01-12',
-                    endDate: '2019-12-12',
+                    startDate: 'Jan. 2018',
+                    endDate: 'Apr. 2019',
                     currentlyEmployed: false,
                     responsibilities: [
                         {

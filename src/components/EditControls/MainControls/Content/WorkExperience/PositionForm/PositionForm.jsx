@@ -60,6 +60,31 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
         });
     }
 
+    const formatStartDate = () => {
+        if (!data.startDate) return '';
+
+        const date = new Date(data.startDate).toDateString();
+        const dateArr = date.split(' ');
+
+        const year = dateArr[3];
+        const month = dateArr[1];
+
+        return `${month}. ${year}`;
+    }
+
+    const formatEndDate = () => {
+        if (!data.endDate) return '';
+        if (data.currentlyEmployed || data.endDate === 'Present') return 'Present';
+        
+        const date = new Date(data.endDate).toDateString();
+        const dateArr = date.split(' ');
+
+        const year = dateArr[3];
+        const month = dateArr[1];
+
+        return `${month}. ${year}`;
+    }
+
     const handleStartDate = (e) => {
         if (!data) throw new Error('Data not found!');
 
@@ -138,6 +163,9 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     const company = data.find(company => company.id === positionFormData.companyID);
     const position = company.positions.find(position => position.id === positionFormData.id)
 
+    const startDateValue = formatStartDate();
+    const endDateValue = formatEndDate();
+
     return (
         <div className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${styles.formOpened}`}>
@@ -152,16 +180,18 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
                 <div className={styles.formContainer}>
                     <div className={styles.formGroup}>
                         <label htmlFor="title">Position Title</label>
-                        <input autoFocus type="text" name="title" id="title" value={position?.title || ''} onChange={handlePositionTitle} placeholder="Enter Position Title" />
+                        <input autoFocus type="text" name="title" id="title" onChange={handlePositionTitle} placeholder="Enter Position Title" />
                     </div>
                     <div className={styles.formGroupDate}>
                         <div className={styles.startDate}>
                             <label htmlFor="startDate">Start Date</label>
-                            <input type="text" name="startDate" id="startDate" value={position?.startDate || ''} onChange={handleStartDate} placeholder="Enter Start Date" />
+                            <span className={styles.startDateValue}>{startDateValue}</span>
+                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} placeholder="Enter Start Date" />
                         </div>
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
-                            <input type="text" name="endDate" id="endDate" disabled={position.currentlyEmployed ? true : false} value={position.currentlyEmployed ? 'Present' : position?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" />
+                            <span className={styles.endDateValue}>{endDateValue}</span> 
+                            <input type="date" name="endDate" id="endDate" disabled={position.currentlyEmployed ? true : false} value={position.currentlyEmployed ? 'Present' : position?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" />
                         </div>
                         <div className={styles.currentlyEmployed}>
                             <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={position?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>
