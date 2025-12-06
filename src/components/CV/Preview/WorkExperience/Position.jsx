@@ -4,7 +4,7 @@ import styles from './WorkExperience.module.css';
 
 // Passes companyName and location so the first position can display company details above the job title,
 // since Position objects don't have access to their parent company's properties.
-export default function Position({isFirst, companyName, location, position, bulletPoints}) {
+export default function Position({isLast, companyName, location, position, bulletPoints}) {
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         if (date === NaN) throw new Error('Invalid date!');
@@ -22,7 +22,7 @@ export default function Position({isFirst, companyName, location, position, bull
     return (
         <div className={styles.positionContainer}>
             <div className={styles.positionHeader}>
-                {isFirst ? (
+                {isLast ? (
                     <>
                         <div className={styles.flexContainer}>
                             <p className={styles.companyName}>{companyName}</p>
@@ -34,13 +34,14 @@ export default function Position({isFirst, companyName, location, position, bull
                         </div>
                     </>
                 ) : (
-                        <div className={styles.flexContainer}>
-                            <p className={styles.jobTitle}>{position.title}</p>
-                            <p className={styles.startEndDate}>{formattedStartDate} - {position.currentlyEmployed ? 'Present' : formattedEndDate}</p>
-                        </div>
+                    <div className={styles.flexContainer}>
+                        <p className={styles.jobTitle}>{position.title}</p>
+                        <p className={styles.startEndDate}>{formattedStartDate} - {position.currentlyEmployed ? 'Present' : formattedEndDate}</p>
+                    </div>
                     )
                 }
             </div>
+
             <Responsibilities responsibilities={position.responsibilities} bulletPoints={bulletPoints}/>
         </div>
     )
