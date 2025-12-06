@@ -1,18 +1,18 @@
 import Position from './Position.jsx'
 
+import { sortPositionsByEmploymentDate } from '../../../../utils/sortFunctions.js';
+
 import styles from './WorkExperience.module.css'
 
 export default function Company({company, bulletPoints}) {
-    if (!company) return null;
-
-    const visiblePositions = company.positions.filter(item => item.isVisible);
-    if (!visiblePositions) return null;
+    const visiblePositions = company.positions.filter(company => company.isVisible);
+    const sortedPositions = visiblePositions.sort(sortPositionsByEmploymentDate);
 
     let firstVisiblePosition = visiblePositions[0];
 
     return (
         <div className={styles.companyContainer}>
-            {visiblePositions.map(position => (
+            {sortedPositions.map(position => (
                 <Position 
                     key={position.id}
                     isLast={position === firstVisiblePosition} 
