@@ -1,8 +1,7 @@
-import Position from './Position.jsx'
-
+import { View, Text, StyleSheet } from '@react-pdf/renderer';
 import { sortPositionsByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
-import styles from './WorkExperience.module.css'
+import Position from './PDFPosition.jsx';
 
 export default function Company({ company, bulletPoints }) {
     const visiblePositions = company.positions.filter(company => company.isVisible);
@@ -11,7 +10,7 @@ export default function Company({ company, bulletPoints }) {
     let firstVisiblePosition = visiblePositions[0];
 
     return (
-        <div className={styles.companyContainer}>
+        <View>
             {sortedPositions.map(position => (
                 <Position 
                     key={position.id}
@@ -22,6 +21,6 @@ export default function Company({ company, bulletPoints }) {
                     bulletPoints={bulletPoints}
                 />
             ))}
-        </div>
+        </View>
     )
 }

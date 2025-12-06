@@ -2,7 +2,7 @@ import Company from './Company.jsx'
 
 import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
-export default function WorkExperience({data, bulletPoints}) {
+export default function WorkExperience({ data, bulletPoints }) {
     // Exits if there are no companies in experience object
     if (!data) return null;
     

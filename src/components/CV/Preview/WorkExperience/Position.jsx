@@ -1,10 +1,10 @@
-import Responsibilities from './Responsibilities.jsx'
+import Point from './Point.jsx';
 
 import styles from './WorkExperience.module.css';
 
 // Passes companyName and location so that last position in that company can display company details above the job title,
 // since Position objects don't have access to their parent company's properties.
-export default function Position({isLast, companyName, location, position, bulletPoints}) {
+export default function Position({ isFirst, companyName, location, position, bulletPoints }) {
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         if (date === NaN) throw new Error('Invalid date!');
@@ -22,7 +22,8 @@ export default function Position({isLast, companyName, location, position, bulle
     return (
         <div className={styles.positionContainer}>
             <div className={styles.positionHeader}>
-                {isLast ? (
+                {/* Only the first (most recent) position displays the company name & location. */}
+                {isFirst ? (
                     <>
                         <div className={styles.flexContainer}>
                             <p className={styles.companyName}>{companyName}</p>
@@ -42,7 +43,15 @@ export default function Position({isLast, companyName, location, position, bulle
                 }
             </div>
             
-            <Responsibilities responsibilities={position.responsibilities} bulletPoints={bulletPoints}/>
+            <ul className={styles.responsibilities}>
+                {position.responsibilities.length > 0 && (
+                    position.responsibilities
+                        .filter(point => point.isVisible)
+                        .map(point => (
+                            <Point key={point.id} point={point} bulletPoints={bulletPoints} />
+                        ))    
+                )}
+            </ul>
         </div>
     )
 }

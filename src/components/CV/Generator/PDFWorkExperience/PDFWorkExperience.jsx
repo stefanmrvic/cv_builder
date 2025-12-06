@@ -1,10 +1,14 @@
-import {View, Text, StyleSheet } from '@react-pdf/renderer';
+import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
-export default function WorkExperience({data}) {
+import Company from './PDFCompany.jsx';
+
+export default function WorkExperience({ data, bulletPoints }) {
     // Exits if there are no companies in experience object
     if (!data) return null;
 
     const visibleCompanies = data.filter(company => company.isVisible);
+    const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
 
     // Exits if there are no visible companies
     if (visibleCompanies.length === 0) return null;
@@ -19,13 +23,13 @@ export default function WorkExperience({data}) {
             <Text style={styles.headline}>WORK EXPERIENCE</Text>
 
             <View>
-                {/* {visibleCompanies.map(company => (
+                {sortedCompanies.map(company => (
                     <Company 
                         key={company.id}
                         company={company}
                         bulletPoints={bulletPoints}
                     />
-                ))}   */}
+                ))}  
             </View>
         </View>
     )

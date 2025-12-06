@@ -8,13 +8,13 @@ export default function Point({point, bulletPoints}) {
             <p>{point.point}</p>
             
             <ul className={`${styles.subPoints} ${styles[bulletPoints.sub]}`}>
-                {point.subPoints.length > 0 && 
+                {point.subPoints.length > 0 && (
                     point.subPoints
                         .filter(subPoint => subPoint.isVisible)
                         .map(subPoint => ( 
                             <SubPoint key={subPoint.id} subPoint={subPoint} />
                         ))
-                } 
+                )} 
             </ul>
         </li>
     )
