@@ -37,8 +37,6 @@ export default function Experience({data, setCVData}) {
     const companyContainerRef = useRef(null);
 
     const toggleCollapsing = () => {
-        
-        
         if (isExpanded) handleCloseAnimation();
         setIsExpanded(!isExpanded);
     }

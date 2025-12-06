@@ -12,7 +12,7 @@ export default function Company({company, bulletPoints}) {
 
     return (
         <div className={styles.companyContainer}>
-            {company.positions.length > 0 && company.positions.map(position => (
+            {visiblePositions.map(position => (
                 <Position 
                     key={position.id}
                     isLast={position === firstVisiblePosition} 

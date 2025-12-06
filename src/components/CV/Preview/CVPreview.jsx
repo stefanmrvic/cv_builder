@@ -1,5 +1,3 @@
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { MyDocument } from '../Generator/CVDocument.jsx';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
