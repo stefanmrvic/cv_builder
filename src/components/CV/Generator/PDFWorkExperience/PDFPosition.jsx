@@ -27,18 +27,18 @@ export default function Position({ isFirst, companyName, location, position, bul
                     // Company startDate & endDate row container
                     <>
                         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
-                            <Text style={{ fontSize: 14.75, fontWeight:'bold' }}>{companyName}</Text>
-                            <Text style={{ fontSize: 14.75, fontWeight:'bold' }}>{formattedStartDate} - {position.currentlyEmployed ? 'Present' : formattedEndDate}</Text>
+                            <Text style={{ fontSize: 14, fontWeight:'bold' }}>{companyName}</Text>
+                            <Text style={{ fontSize: 14, fontWeight:'bold' }}>{formattedStartDate} - {position.currentlyEmployed ? 'Present' : formattedEndDate}</Text>
                         </View>
                         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
-                            <Text style={{ fontSize: 14.75, fontStyle: 'italic' }}>{position.title}</Text>
-                            <Text style={{ fontSize: 14.75, fontStyle: 'italic' }}>{location}</Text>
+                            <Text style={{ fontSize: 14.2, fontStyle: 'italic' }}>{position.title}</Text>
+                            <Text style={{ fontSize: 14, fontStyle: 'italic' }}>{location}</Text>
                         </View>
                     </>
                 ) : (
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3}}>
-                        <Text style={{ fontSize: 14.75, fontStyle: 'italic' }}>{position.title}</Text>
-                        <Text style={{ fontSize: 14.75, fontWeight:'bold' }}>{formattedStartDate} - {position.currentlyEmployed ? 'Present' : formattedEndDate}</Text>
+                        <Text style={{ fontSize: 14.2, fontStyle: 'italic' }}>{position.title}</Text>
+                        <Text style={{ fontSize: 14, fontWeight:'bold' }}>{formattedStartDate} - {position.currentlyEmployed ? 'Present' : formattedEndDate}</Text>
                     </View>
                 )}
             </View>

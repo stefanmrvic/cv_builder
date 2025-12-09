@@ -2,13 +2,13 @@ import { View, Text, Svg, Rect, StyleSheet } from '@react-pdf/renderer';
 
 import SubPoint from './PDFSubPoint.jsx';
 
-const Square = () => (
-    <Svg viewBox='0 0 10 10'>
+const Square = ({ style }) => (
+    <Svg viewBox='0 0 10 10' width='6.5' height='6.5' style={style}>
         <Rect 
             x='1'
             y='1'
-            width='8'
-            height='8'
+            width='6.5'
+            height='6.5'
             fill='black'
         />
     </Svg>
@@ -17,8 +17,11 @@ const Square = () => (
 export default function Point({ point, bulletPoints }) {
     return (
         <View>
-            <Square />
-            <Text style={{ fontSize: 13.5, marginBottom: 5.2 }}>{point.point}</Text>
+            <View style={{ display: 'flex', flexDirection: 'row', columnGap: 6, marginLeft: 1 }}>
+                <Square style={{ marginTop: 5}} />
+                {/* <Square style={{  }} /> */}
+                <Text style={{ fontSize: 13.5, marginBottom: 5.2, maxWidth: 510 }}>{point.point}</Text>
+            </View>
 
             <View>
                 {point.subPoints.length > 0 && (

@@ -7,6 +7,9 @@ import WorkExperience from './PDFWorkExperience/PDFWorkExperience.jsx';
 
 import cvData from '../../../data/defaultCV.js';
 
+// It removes hyphenation from words across the whole document
+Font.registerHyphenationCallback(word => [word]);
+
 export const MyDocument = () => (
     <Document>
         <Page size='A4' style={{ fontFamily: 'Times-Roman', padding: 30 }}>
