@@ -1,18 +1,7 @@
-import { View, Text, Svg, Rect, StyleSheet } from '@react-pdf/renderer';
+import { View, Text } from '@react-pdf/renderer';
 
 import SubPoint from './PDFSubPoint.jsx';
-
-const Square = ({ style }) => (
-    <Svg viewBox='0 0 10 10' width='6.5' height='6.5' style={style}>
-        <Rect 
-            x='1'
-            y='1'
-            width='6.5'
-            height='6.5'
-            fill='black'
-        />
-    </Svg>
-)
+import { Square, Circle, Triangle, Diamond } from './PDFShapes.jsx';
 
 export default function Point({ point, bulletPoints }) {
     return (
@@ -23,7 +12,7 @@ export default function Point({ point, bulletPoints }) {
                 <Text style={{ fontSize: 13.5, marginBottom: 5.2, maxWidth: 510 }}>{point.point}</Text>
             </View>
 
-            <View>
+            <View style={{ marginLeft: 50 }}>
                 {point.subPoints.length > 0 && (
                     point.subPoints
                         .filter(subPoint => subPoint.isVisible)
