@@ -24,7 +24,7 @@ export default function WorkExperience({ data, bulletPoints, wrap }) {
 
             <View>
                 {sortedCompanies.map(company => (
-                    <Company 
+                    <Company
                         key={company.id}
                         company={company}
                         bulletPoints={bulletPoints}

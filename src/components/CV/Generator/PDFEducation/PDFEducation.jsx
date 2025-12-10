@@ -14,7 +14,7 @@ export default function Education({ data, wrap }) {
             <Text style={styles.headline}>EDUCATION</Text>
 
             {data.map(item => (
-                <View key={item}>
+                <View key={item.id}>
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
                         <Text style={{ fontSize: 13.4, fontWeight:'bold' }}>{item.schoolName}</Text>
                         <Text style={{ fontSize: 13.4, fontWeight:'bold' }}>{item.graduationDate}</Text>

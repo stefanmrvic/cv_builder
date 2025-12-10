@@ -28,7 +28,7 @@ export default function EditControls({data, setCVData, order, setOrder, bulletPo
 
             <PDFViewer style={{ width: '80%', height: '100%' }}>
                 <MyDocument 
-                    data={data} bulletPoints={bulletPoints}
+                    data={data} order={order} bulletPoints={bulletPoints}
                 />
             </PDFViewer>
         </div>
