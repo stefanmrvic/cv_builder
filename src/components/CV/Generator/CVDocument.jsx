@@ -10,11 +10,13 @@ import cvData from '../../../data/defaultCV.js';
 // It removes hyphenation from words across the whole document
 Font.registerHyphenationCallback(word => [word]);
 
-export const MyDocument = () => (
-    <Document>
-        <Page size='A4' style={{ fontFamily: 'Times-Roman', padding: 30 }}>
-            <PersonalDetails data={cvData.personalInfo} />
-            <WorkExperience data={cvData.workExperience} />
-        </Page>
-    </Document>
-)
+export const MyDocument = ({ data, bulletPoints }) => {
+    return (
+        <Document>
+            <Page size='A4' style={{ fontFamily: 'Times-Roman', padding: 30 }}>
+                <PersonalDetails data={data.personalInfo} />
+                <WorkExperience data={data.workExperience} bulletPoints={bulletPoints} />
+            </Page>
+        </Document>
+    )
+}

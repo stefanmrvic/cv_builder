@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { View } from '@react-pdf/renderer';
 import { sortPositionsByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
 import Position from './PDFPosition.jsx';

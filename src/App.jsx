@@ -47,7 +47,7 @@ export default function App() {
         setBulletPoints={setBulletPoints} 
       />
         
-      <CVPreview 
+      <CVPreview
         data={cvData} 
         order={order} 
         bulletPoints={bulletPoints}  

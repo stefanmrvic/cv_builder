@@ -23,8 +23,7 @@ export default function CVPreview({ data, order, bulletPoints }) {
             } else {
               return <Education key={item.id} data={data.education} />
             }
-          })}
-          
+          })} 
         </div>
     )
 }

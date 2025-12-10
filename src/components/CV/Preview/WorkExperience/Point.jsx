@@ -2,7 +2,7 @@ import SubPoint from './SubPoint.jsx';
 
 import styles from './WorkExperience.module.css';
 
-export default function Point({point, bulletPoints}) {
+export default function Point({ point, bulletPoints }) {
     return (
         <li className={`${styles.mainPoint} ${styles[bulletPoints.main]}`}>
             <p>{point.point}</p>
