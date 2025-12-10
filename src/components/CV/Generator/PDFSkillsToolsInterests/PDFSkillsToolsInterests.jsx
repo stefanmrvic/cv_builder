@@ -16,15 +16,15 @@ export default function SkillsToolsInterests({ data, bulletPoints }) {
     const interests = data.interests.items.map(item => item.name).join('; ');
 
     return (
-        <View>
+        <View style={{ marginBottom: 15 }}>
             <Text style={styles.headline}>SKILLS, TOOLS & INTERESTS</Text>
 
             {/* Skills */}
             <View>
                 {data.skills.items.length > 0 && (
-                    <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 500 }}>
+                    <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 520 }}>
                         <BulletIcon type={bulletPoints} size='6.7' />
-                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .5, lineHeight: 1.25 }}>Skills:
+                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Skills:
                             <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {skills}</Text>
                         </Text>
                     </View>
@@ -36,7 +36,7 @@ export default function SkillsToolsInterests({ data, bulletPoints }) {
                 {data.tools.items.length > 0 && (
                     <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 500 }}>
                         <BulletIcon type={bulletPoints} size='6.7' />
-                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .5, lineHeight: 1.25 }}>Tools:
+                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Tools:
                             <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {tools}</Text>
                         </Text>
                     </View>
@@ -48,7 +48,7 @@ export default function SkillsToolsInterests({ data, bulletPoints }) {
                 {data.tools.items.length > 0 && (
                     <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 500 }}>
                         <BulletIcon type={bulletPoints} size='6.7' />
-                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .5, lineHeight: 1.25 }}>Interests:
+                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Interests:
                             <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {interests}</Text>
                         </Text>
                     </View>

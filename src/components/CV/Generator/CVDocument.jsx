@@ -15,7 +15,7 @@ export const MyDocument = ({ data, bulletPoints }) => {
                 <PersonalDetails data={data.personalInfo} />
                 <WorkExperience data={data.workExperience} bulletPoints={bulletPoints} />
                 <SkillsToolsInterests data={data.skillsToolsInterests} bulletPoints={bulletPoints.main} />
-                <Education />
+                <Education data={data.education} />
             </Page>
         </Document>
     )

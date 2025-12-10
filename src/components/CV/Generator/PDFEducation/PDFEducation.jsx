@@ -13,9 +13,20 @@ export default function Education({ data }) {
         <View>
             <Text style={styles.headline}>EDUCATION</Text>
 
-            <View>
-                
-            </View>
+            {data.map(item => (
+                <View key={item}>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+                        <Text style={{ fontSize: 13.4, fontWeight:'bold' }}>{item.schoolName}</Text>
+                        <Text style={{ fontSize: 13.4, fontWeight:'bold' }}>{item.graduationDate}</Text>
+                    </View>
+
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
+                        <Text style={{ fontSize: 13.4, fontStyle: 'italic' }}>{item.qualification}</Text>
+                        <Text style={{ fontSize: 13.4, fontStyle: 'italic' }}>{item.schoolLocation}</Text>
+                    </View>
+                </View>
+            ))}
+
         </View>
     )
 }
