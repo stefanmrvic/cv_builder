@@ -19,7 +19,7 @@ export default function Position({ isFirst, companyName, location, position, bul
 
     return (
         // Position Container
-        <View style={{ marginBottom: 15 }}>
+        <View style={{ marginBottom: 7 }}>
             {/* Position Header Container Start */}
             <View>
                {/* Only the first (most recent) position displays the company name & location. */}
