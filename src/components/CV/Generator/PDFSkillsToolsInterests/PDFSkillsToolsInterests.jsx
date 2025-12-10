@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from '@react-pdf/renderer';
 
 import BulletIcon from '../PDFShapes.jsx';
 
-export default function SkillsToolsInterests({ data, bulletPoints }) {
+export default function SkillsToolsInterests({ data, bulletPoints, wrap }) {
     // Exits if there are no companies in skillsToolsInterests object
     if (!data) return null;
 
@@ -16,7 +16,7 @@ export default function SkillsToolsInterests({ data, bulletPoints }) {
     const interests = data.interests.items.map(item => item.name).join('; ');
 
     return (
-        <View style={{ marginBottom: 15 }}>
+        <View style={{ marginBottom: 15 }} wrap={wrap}>
             <Text style={styles.headline}>SKILLS, TOOLS & INTERESTS</Text>
 
             {/* Skills */}

@@ -11,11 +11,11 @@ Font.registerHyphenationCallback(word => [word]);
 export const MyDocument = ({ data, bulletPoints }) => {
     return (
         <Document>
-            <Page size='A4' style={{ fontFamily: 'Times-Roman', padding: 30 }}>
+            <Page size='A4' style={{ fontFamily: 'Times-Roman', padding: 30 }} wrap>
                 <PersonalDetails data={data.personalInfo} />
-                <WorkExperience data={data.workExperience} bulletPoints={bulletPoints} />
-                <SkillsToolsInterests data={data.skillsToolsInterests} bulletPoints={bulletPoints.main} />
-                <Education data={data.education} />
+                <WorkExperience data={data.workExperience} bulletPoints={bulletPoints} wrap={true} />
+                <SkillsToolsInterests data={data.skillsToolsInterests} bulletPoints={bulletPoints.main} wrap={false} />
+                <Education data={data.education} wrap={false} />
             </Page>
         </Document>
     )

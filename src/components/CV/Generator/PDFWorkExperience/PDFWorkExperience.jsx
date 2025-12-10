@@ -3,7 +3,7 @@ import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.j
 
 import Company from './PDFCompany.jsx';
 
-export default function WorkExperience({ data, bulletPoints }) {
+export default function WorkExperience({ data, bulletPoints, wrap }) {
     // Exits if there are no companies in experience object
     if (!data) return null;
 
@@ -19,7 +19,7 @@ export default function WorkExperience({ data, bulletPoints }) {
     })
 
     return (
-        <View>
+        <View wrap={wrap}>
             <Text style={styles.headline}>WORK EXPERIENCE</Text>
 
             <View>

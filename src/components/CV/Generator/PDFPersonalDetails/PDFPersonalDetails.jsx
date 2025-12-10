@@ -5,7 +5,7 @@ Font.register({
     src: 'https://cdn.jsdelivr.net/npm/dejavu-fonts-ttf@2.37.3/ttf/DejaVuSans.ttf'
 });
 
-export default function PersonalDetails({data}) {
+export default function PersonalDetails({ data, wrap }) {
     // Filters out the empty fields in the Personal Details sections to avoid leaving them in the CV.
     // It also leaves out the fullName property for easier styling.
     const nonEmptyFields = Object.entries(data).filter(([key, value]) => (key !== 'fullName' && value !== ''));
@@ -18,7 +18,7 @@ export default function PersonalDetails({data}) {
 
     return (
         // Personal Details Container
-        <View style={{ borderBottom: '1.25pt solid black', marginBottom: 15}}>
+        <View style={{ borderBottom: '1.25pt solid black', marginBottom: 15}} wrap={wrap}>
             {data.fullName !== '' && (
                 // Full Name Text
                 <Text style={styles.fullName}>{data.fullName}</Text>

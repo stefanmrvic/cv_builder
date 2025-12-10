@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
 
-export default function Education({ data }) {
+export default function Education({ data, wrap }) {
     // Exits if there are no companies in education object
     if (!data) return null;
 
@@ -10,7 +10,7 @@ export default function Education({ data }) {
     })
 
     return (
-        <View>
+        <View wrap={wrap}>
             <Text style={styles.headline}>EDUCATION</Text>
 
             {data.map(item => (
