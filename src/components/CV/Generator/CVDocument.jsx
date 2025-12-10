@@ -2,10 +2,8 @@ import { Document, Page, Font } from '@react-pdf/renderer';
 
 import PersonalDetails from './PDFPersonalDetails/PDFPersonalDetails.jsx';
 import WorkExperience from './PDFWorkExperience/PDFWorkExperience.jsx';
-// import SkillsToolsInterests from './PDFSkillsToolsInterests.jsx';
-// import Education from './PDFEducation.jsx';
-
-import cvData from '../../../data/defaultCV.js';
+import SkillsToolsInterests from './PDFSkillsToolsInterests/PDFSkillsToolsInterests.jsx';
+import Education from './PDFEducation/PDFEducation.jsx';
 
 // It removes hyphenation from words across the whole document
 Font.registerHyphenationCallback(word => [word]);
@@ -16,6 +14,8 @@ export const MyDocument = ({ data, bulletPoints }) => {
             <Page size='A4' style={{ fontFamily: 'Times-Roman', padding: 30 }}>
                 <PersonalDetails data={data.personalInfo} />
                 <WorkExperience data={data.workExperience} bulletPoints={bulletPoints} />
+                <SkillsToolsInterests data={data.skillsToolsInterests} bulletPoints={bulletPoints.main} />
+                <Education />
             </Page>
         </Document>
     )

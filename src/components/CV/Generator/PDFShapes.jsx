@@ -1,6 +1,6 @@
 import { Svg, Rect, Polygon, Circle as CircleSVG } from '@react-pdf/renderer';
 
-export default function BulletIcon ({ type, style, fill, stroke }) {
+export default function BulletIcon ({ type, size, style, fill, stroke }) {
     const bulletComponents = {
         square: Square,
         circle: Circle,
@@ -9,7 +9,7 @@ export default function BulletIcon ({ type, style, fill, stroke }) {
     }
 
     const Component = bulletComponents[type];
-    return <Component style={style} fill={fill} stroke={stroke} />
+    return <Component style={style} size={size} fill={fill} stroke={stroke} />
 }
 
 const Square = ({ style, size = 6.5, fill = 'black', stroke = null }) => (

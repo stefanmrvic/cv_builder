@@ -1,7 +1,7 @@
 import { View, Text } from '@react-pdf/renderer';
 
 import SubPoint from './PDFSubPoint.jsx';
-import BulletIcon from './PDFShapes.jsx';
+import BulletIcon from '../PDFShapes.jsx';
 
 export default function Point({ point, bulletPoints }) {
     return (
