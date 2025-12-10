@@ -10,7 +10,7 @@ import Education from './Education/Education.jsx'
 
 import styles from './CVPreview.module.css'
 
-export default function CVPreview({data, order, bulletPoints}) {
+export default function CVPreview({ data, order, bulletPoints }) {
     return (
         <div className={styles.cvContainer}>
           <PersonalInfo data={data.personalInfo} />

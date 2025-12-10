@@ -1,4 +1,4 @@
-import { Document, Page, Font, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Font } from '@react-pdf/renderer';
 
 import PersonalDetails from './PDFPersonalDetails/PDFPersonalDetails.jsx';
 import WorkExperience from './PDFWorkExperience/PDFWorkExperience.jsx';
