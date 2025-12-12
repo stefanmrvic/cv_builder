@@ -81,6 +81,7 @@ export default function PointCard({data, setCVData, index, companyID, positionID
     }
 
     const handleAddSubPoint = (e) => {
+        e.preventDefault();
         if (!data) throw new Error('data not found!');
 
         setCVData(draft => {

@@ -4,10 +4,12 @@ export const sortCompaniesByEmploymentDate = (a, b) => {
     const presentEmploymentsB = b.positions.filter(position => position.currentlyEmployed);
 
     const mostRecentPositionA = findMostRecentStartDate(presentEmploymentsA);
-    if (!mostRecentPositionA) throw new Error('mostRecentPositionA not found!');
+    // if (!mostRecentPositionA) throw new Error('mostRecentPositionA not found!');
+    if (!mostRecentPositionA) console.log('mostRecentPositionA not found!');
 
     const mostRecentPositionB = findMostRecentStartDate(presentEmploymentsB);
-    if (!mostRecentPositionB) throw new Error('mostRecentPositionB not found!');
+    // if (!mostRecentPositionB) throw new Error('mostRecentPositionB not found!');
+    if (!mostRecentPositionB) console.log('mostRecentPositionB not found!');
 
     // If there are two or more companies with positions endDate checked "currentlyEmployed", decide which company
     // will precede the other one, by looking which company has more recent startDate.

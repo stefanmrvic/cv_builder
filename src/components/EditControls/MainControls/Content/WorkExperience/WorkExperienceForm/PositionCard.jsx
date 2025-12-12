@@ -136,6 +136,9 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleAddPoint = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
         if (!data) throw new Error('Data not found!');
 
         setCVData(draft => {
@@ -188,18 +191,18 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
                 <div className={styles.positionFormContainer}>
                     <div className={styles.positionFormGroup}>
                         <label htmlFor="title">Position Title</label>
-                        <input autoFocus={isNewPosition} type="text" name="title" id="title" value={(isNewPosition && isPlaceholderTitle) ? '' : (data?.title || '')} onChange={handlePositionTitle} placeholder="Enter Position Title" />
+                        <input autoFocus={isNewPosition} type="text" name="title" id="title" value={(isNewPosition && isPlaceholderTitle) ? '' : (data?.title || '')} onChange={handlePositionTitle} placeholder="Enter Position Title" required />
                     </div>
                     <div className={styles.positionFormGroupDate}>
                         <div className={styles.startDate}>
                             <label htmlFor="startDate">Start Date</label>
                             <span className={styles.startDateValue}>{startDateValue}</span>
-                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} placeholder="Enter Start Date" />
+                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} placeholder="Enter Start Date" required />
                         </div>
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
                             <span className={styles.endDateValue}>{endDateValue}</span>
-                            <input type="date" name="endDate" id="endDate" disabled={data?.currentlyEmployed} onChange={handleEndDate} placeholder="Enter End Date" />
+                            <input type="date" name="endDate" id="endDate" disabled={data?.currentlyEmployed} onChange={handleEndDate} placeholder="Enter End Date" required />
                         </div>
                         <div className={styles.currentlyEmployed}>
                             <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={data?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>

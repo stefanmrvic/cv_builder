@@ -61,6 +61,7 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
     }
 
     const handleAddPosition = (e) => {
+        e.stopPropagation();
         e.preventDefault()
 
         if (!data) throw new Error('data not found!');
@@ -107,7 +108,7 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
-                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" />
+                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" required />
                 </div>              
 
                 <div className={styles.formGroup}>

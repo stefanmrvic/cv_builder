@@ -180,18 +180,18 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
                 <div className={styles.formContainer}>
                     <div className={styles.formGroup}>
                         <label htmlFor="title">Position Title</label>
-                        <input autoFocus type="text" name="title" id="title" onChange={handlePositionTitle} placeholder="Enter Position Title" />
+                        <input autoFocus type="text" name="title" id="title" onChange={handlePositionTitle} placeholder="Enter Position Title" required />
                     </div>
                     <div className={styles.formGroupDate}>
                         <div className={styles.startDate}>
                             <label htmlFor="startDate">Start Date</label>
                             <span className={styles.startDateValue}>{startDateValue}</span>
-                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} placeholder="Enter Start Date" />
+                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} placeholder="Enter Start Date" required />
                         </div>
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
                             <span className={styles.endDateValue}>{endDateValue}</span> 
-                            <input type="date" name="endDate" id="endDate" disabled={position.currentlyEmployed ? true : false} value={position.currentlyEmployed ? 'Present' : position?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" />
+                            <input type="date" name="endDate" id="endDate" disabled={position.currentlyEmployed ? true : false} value={position.currentlyEmployed ? 'Present' : position?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" required />
                         </div>
                         <div className={styles.currentlyEmployed}>
                             <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={position?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>

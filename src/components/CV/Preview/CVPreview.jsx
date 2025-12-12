@@ -1,7 +1,5 @@
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { MyDocument } from '../Generator/CVDocument.jsx';
 
 import PersonalInfo from './PersonalInfo/PersonalInfo.jsx';
 import WorkExperience from './WorkExperience/WorkExperience.jsx';
@@ -13,6 +11,15 @@ import styles from './CVPreview.module.css'
 export default function CVPreview({ data, order, bulletPoints }) {
     return (
         <div className={styles.cvContainer}>
+          {/* Using key as Date.now() because there is a bug in react-pdf library which causes <PDFDownloadLink /> component not to
+            rerender when the item is removed in the runtime. Ref: https://github.com/diegomura/react-pdf/issues/3153#issuecomment-3124691739 
+            P.S. Wrapping map function inside of render prop did not work, so this workaround had to be used as a last resort. */}
+          <PDFDownloadLink 
+            key={Date.now()} className={styles.pdfDownloadBtn} document={<MyDocument data={data} order={order} bulletPoints={bulletPoints}/>} fileName='sumsum.pdf'
+          >
+            Download PDF
+          </PDFDownloadLink>
+
           <PersonalInfo data={data.personalInfo} />
 
           {order.map(item => {
