@@ -6,6 +6,7 @@
 }
 
 .topControls {
+    order: 0;
     min-width: 251px;
     grid-area: topControls;
     background-color: var(--secondary-bg-color);
@@ -20,7 +21,25 @@
     align-items: center;
     gap: 10px;
     height: 100%;
-    padding: 12px;
+    padding: 6px;
+}
+
+@media only screen and (min-width: 683px) {
+    .topNavbar {
+        padding: 12px;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
+    .topNavbar {
+        padding: 6px;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .topNavbar {
+        padding: 12px;
+    }
 }
 
 .topNavbar > .btn:active {

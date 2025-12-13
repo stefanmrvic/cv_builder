@@ -1,4 +1,5 @@
 .mainControls {
+    order: 2;
     display: flex;
     flex-direction: column;
     gap: 28px;

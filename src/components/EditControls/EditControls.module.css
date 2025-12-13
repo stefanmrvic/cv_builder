@@ -1,12 +1,44 @@
 .editControls {
-    display: grid;
-    grid-template-rows: 54px 1fr;
-    grid-template-columns: 105px 504px;
-    grid-template-areas: 
-    "sideControls topControls"
-    "sideControls mainControls";
+    display: flex;
+    flex-direction: column;
     gap: 24px;
     flex: 1;
     max-width: 750px;
-    /* flex-basis: 52%; */
+}
+
+@media only screen and (min-width: 683px) {
+    .editControls {
+        display: grid;
+        grid-template-rows: 54px 1fr;
+        grid-template-columns: 105px 504px;
+        grid-template-areas: 
+        "sideControls topControls"
+        "sideControls mainControls";
+        gap: 24px;
+        margin: auto;
+        flex: 1;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
+    .editControls {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        flex: 1;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .editControls {
+        display: grid;
+        grid-template-rows: 54px 1fr;
+        grid-template-columns: 105px 504px;
+        grid-template-areas: 
+        "sideControls topControls"
+        "sideControls mainControls";
+        gap: 24px;
+        margin: auto;
+        flex: 1;
+    }
 }

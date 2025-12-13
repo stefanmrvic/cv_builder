@@ -11,6 +11,7 @@
 }
 
 .sideControls {
+    order: 1;
     display: flex;
     flex-direction: column;
     grid-area: sideControls;
@@ -19,13 +20,38 @@
 
 .sidebar {
     display: flex;
-    flex-direction: column;
-    padding: 14px 8px;
+    justify-content: space-around;
+    padding: 6px 8px;
     background-color: var(--secondary-bg-color);
-    gap: 3px;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
+}
+
+@media only screen and (min-width: 683px) {
+    .sidebar {
+        flex-direction: column; 
+        /* justify-content: initial; */
+        padding: 14px 8px;
+        gap: 3px;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
+    .sidebar {
+        flex-direction: row; 
+        justify-content: space-around;
+        padding: 6px 8px;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .sidebar {
+        flex-direction: column; 
+        /* justify-content: initial; */
+        padding: 14px 8px;
+        gap: 3px;
+    }
 }
 
 .sidebar > .btn {
