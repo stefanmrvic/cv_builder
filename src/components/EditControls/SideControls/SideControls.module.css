@@ -28,23 +28,6 @@
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
 }
 
-@media only screen and (min-width: 683px) {
-    .sidebar {
-        flex-direction: column; 
-        /* justify-content: initial; */
-        padding: 14px 8px;
-        gap: 3px;
-    }
-}
-
-@media only screen and (min-width: 1020px) {
-    .sidebar {
-        flex-direction: row; 
-        justify-content: space-around;
-        padding: 6px 8px;
-    }
-}
-
 @media only screen and (min-width: 1300px) {
     .sidebar {
         flex-direction: column; 
