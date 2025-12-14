@@ -33,70 +33,100 @@
 }
 
 .mainPoint {
+    position: relative;
+    list-style: none;
     padding: 0 5px;
 }
 
-.mainPoint.circle {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='%23000'/%3E%3C/svg%3E");
+.mainPointPara {
+    margin-bottom: 3px;
 }
 
-.mainPoint.square {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='%23000'/%3E%3C/svg%3E");
+.mainPoint.circle::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 8px;
+    height: 8px;
+} 
+
+.mainPoint.square::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 8px;
+    height: 8px;
 }
 
-.mainPoint.triangle {
-    margin-top: -2px;
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='%23000'/%3E%3C/svg%3E");
+.mainPoint.triangle::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 10px;
+    height: 10px;
 }
 
-.mainPoint.triangle::marker {
-    font-size: 22px;
+.mainPoint.diamond::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 10px;
+    height: 10px;
 }
 
-.mainPoint.diamond {
-    margin-top: -2px;
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='%23000'/%3E%3C/svg%3E");
+.mainPoint > ul:nth-of-type(1) {
+    margin-top: 5px;
 }
 
-.mainPoint.diamond::marker {
-    font-size: 22px;
-}
-
-.mainPoint::marker {
-    font-size: 19px;
+.mainPoint > ul:nth-last-child(1) {
+    margin-bottom: 7px;
 }
 
 .subPoints {
+    position: relative;
+    list-style: none;
     margin-left: 45px;
     margin-bottom: 5px;
 }
 
-.subPoints.circle {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+.subPoints.circle::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 8px;
+    height: 8px;
 }
 
-.subPoints.square {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+.subPoints.square::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 8px;
+    height: 8px;
 }
 
-.subPoints.square > li::marker {
-    font-size: 16px;
+.subPoints.triangle::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 10px;
+    height: 10px;
 }
 
-.subPoints.triangle {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E")
-}
-
-.subPoints.diamond {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E")
-}
-
-.subPoints.diamond > li::marker {
-    font-size: 20px;
-}
-
-.subPoints > li::marker {
-    font-size: 19px;
+.subPoints.diamond::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 10px;
+    height: 10px;
 }
 
 .subPoints > li {

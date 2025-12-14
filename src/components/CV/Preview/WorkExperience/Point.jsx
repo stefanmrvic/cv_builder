@@ -5,17 +5,17 @@ import styles from './WorkExperience.module.css';
 export default function Point({ point, bulletPoints }) {
     return (
         <li className={`${styles.mainPoint} ${styles[bulletPoints.main]}`}>
-            <p>{point.point}</p>
+            <p className={styles.mainPointPara}>{point.point}</p>
             
-            <ul className={`${styles.subPoints} ${styles[bulletPoints.sub]}`}>
-                {point.subPoints.length > 0 && (
-                    point.subPoints
-                        .filter(subPoint => subPoint.isVisible)
-                        .map(subPoint => ( 
+            {point.subPoints.length > 0 && (
+                point.subPoints
+                    .filter(subPoint => subPoint.isVisible)
+                    .map(subPoint => ( 
+                        <ul className={`${styles.subPoints} ${styles[bulletPoints.sub]}`}>
                             <SubPoint key={subPoint.id} subPoint={subPoint} />
-                        ))
-                )} 
-            </ul>
+                        </ul>
+                    ))
+            )} 
         </li>
     )
 }
