@@ -425,7 +425,10 @@ span.subPointVisibilityBtnIcon {
    ============================================ */
 .formBtnContainer {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
     padding: 23px;
     border-top: 1px solid #e5e7eb;
     background: #fafafa;
@@ -433,9 +436,23 @@ span.subPointVisibilityBtnIcon {
     border-bottom-right-radius: 12px;
 }
 
+@media only screen and (min-width: 388px) {
+    .formBtnContainer {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+}
+
 .formBtnContainer > button {
-    font-size: 13.5px;
-    max-width: 92px;
+    font-size: 13px;
+    max-width: 78px;
+}
+
+@media only screen and (min-width: 388px) {
+    .formBtnContainer > button {
+        font-size: 13.5px;
+        max-width: 92px;
+    }
 }
 
 .formBtnCancel,
@@ -477,15 +494,19 @@ span.formBtnDeleteText {
     color: #374151; 
     font-size: 14px;
     font-weight: 600;
-    width: 87px;
     padding: 10px 20px;
-    margin-left: auto;
-    margin-right: 13px;
     background: #ffffff;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s;
+}
+
+@media only screen and (min-width: 388px) {
+    .formBtnCancel {
+        margin-left: auto;
+        width: 87px;
+    }
 }
 
 .formBtnCancel:hover {
@@ -494,7 +515,6 @@ span.formBtnDeleteText {
 }
 
 .formBtnSave {
-    width: 87px;
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -504,6 +524,12 @@ span.formBtnDeleteText {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s;
+}
+
+@media only screen and (min-width: 388px) {
+    .formBtnSave {
+        width: 87px;
+    }
 }
 
 .formBtnSave:hover {

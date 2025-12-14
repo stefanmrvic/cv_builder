@@ -1,18 +1,16 @@
-.btn {
-    font-size: 30px;
-    padding: 6px;
-    border-radius: 4px;
-    flex: 1;
-}
-
 .topControls {
     order: 0;
     min-width: 251px;
-    grid-area: topControls;
     background-color: var(--secondary-bg-color);
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 72%, .2);
     border-radius: 12px;
     border: 1px solid #e5e7eb;
+}
+
+@media only screen and (min-width: 1330px) {
+    .topControls {
+        grid-area: topControls;
+    }
 }
 
 .topNavbar {
@@ -30,16 +28,23 @@
     }
 }
 
-@media only screen and (min-width: 1020px) {
+@media only screen and (min-width: 1200px) {
     .topNavbar {
         padding: 6px;
     }
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1330px) {
     .topNavbar {
         padding: 12px;
     }
+}
+
+.btn {
+    font-size: 30px;
+    padding: 6px;
+    border-radius: 4px;
+    flex: 1;
 }
 
 .topNavbar > .btn:active {

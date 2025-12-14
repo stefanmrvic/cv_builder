@@ -1,21 +1,14 @@
-.btn {
-    background-color: var(--secondary-bg-color);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-}
-
-.active {
-    background-color: var(--main-bg-color);
-    font-variation-settings: 'FILL' 1;
-}
-
 .sideControls {
     order: 1;
     display: flex;
     flex-direction: column;
-    grid-area: sideControls;
     border: none;
+}
+
+@media only screen and (min-width: 1330px) {
+    .sideControls {
+        grid-area: sideControls;
+    }
 }
 
 .sidebar {
@@ -28,13 +21,24 @@
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1330px) {
     .sidebar {
         flex-direction: column; 
-        /* justify-content: initial; */
         padding: 14px 8px;
         gap: 3px;
     }
+}
+
+.btn {
+    background-color: var(--secondary-bg-color);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.active {
+    background-color: var(--main-bg-color);
+    font-variation-settings: 'FILL' 1;
 }
 
 .sidebar > .btn {

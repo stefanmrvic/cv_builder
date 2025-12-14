@@ -17,16 +17,12 @@ body {
     padding: 40px;
     box-shadow: 0 13px 27px -5px rgba(50, 50, 93, .1), 0 8px 16px -8px rgba(0, 0, 0, .25);
     background-color: var(--secondary-bg-color);
-    transform: scale(.4) translateY(-1017px);
-    /* Removing extra white space caused by scale property */
-    margin-bottom: -101%;
+    zoom: .4;
 }
 
 @media only screen and (min-width: 438px) {
     .cvContentContainer {
-        transform: scale(.5) translateY(-683px);
-        /* Removing extra white space caused by scale property */
-        margin-bottom: -84%;
+        zoom: .5;
     }
 }
 
@@ -34,12 +30,11 @@ body {
     .cvContentContainer {
         width: 100%;
         max-width: 21cm;
-        transform: scale(1) translate(0px, 0px);
-        margin-bottom: 0;
+        zoom: 1;
     }
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1330px) {
     .cvContentContainer {
         min-width: 730px;
     }
@@ -58,7 +53,7 @@ body {
     border: 1px solid blue;
 }
 
-@media only screen and (min-width: 1020px) {
+@media only screen and (min-width: 1200px) {
     .pdfDownloadBtn {
         position: absolute;
         top: 24px;

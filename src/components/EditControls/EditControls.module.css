@@ -1,24 +1,15 @@
 .editControls {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 504px);
     gap: 24px;
-    width: 100%;
-    max-width: 570px;
     margin-bottom: 28px;
 }
 
-@media only screen and (min-width: 1020px) {
-    .editControls {
-        width: 40%;
-        max-width: 750px;
-    }
-}
-
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1330px) {
     .editControls {
         display: grid;
         grid-template-rows: 54px 1fr;
-        grid-template-columns: 105px 504px;
+        grid-template-columns: 105px minmax(0, 504px);
         grid-template-areas: 
         "sideControls topControls"
         "sideControls mainControls";

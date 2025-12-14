@@ -10,6 +10,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    padding-right: 1px;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     box-shadow: 0 7px 29px 0 hsla(240, 5%, 80%, .2);
