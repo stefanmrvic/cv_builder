@@ -17,7 +17,7 @@ export default function SkillsToolsInterests({data, bulletPoints}) {
         <div className='sectionBottomMargin'>
             <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>
             <ul className={styles.skillsToolsInterestsList}>
-                {data.certifications.isVisible && data.skills.items.length > 0 && (
+                {data.certifications.isVisible && data.certifications.items.length > 0 && (
                     <li className={styles[bulletPoints.main]}>
                         <Certifications data={data.certifications.items} />
                     </li> 

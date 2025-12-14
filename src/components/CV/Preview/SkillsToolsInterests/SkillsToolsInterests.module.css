@@ -3,35 +3,43 @@
 }
 
 .skillsToolsInterestsList > li {
+    position: relative;
+    list-style: none;
     padding: 0 5px;
 }
 
-.circle {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='%23000'/%3E%3C/svg%3E");
+.circle::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 8px;
+    height: 8px;
 }
 
-.square {
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='%23000'/%3E%3C/svg%3E");
+.square::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 8px;
+    height: 8px;
 }
 
-.triangle {
-    margin-top: -2px;
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='%23000'/%3E%3C/svg%3E");
+.triangle::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 10px;
+    height: 10px;
 }
 
-.triangle::marker {
-    font-size: 21px;
+.diamond::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='%23000'/%3E%3C/svg%3E");
+    position: absolute;
+    top: -1px;
+    left: -13px;
+    width: 10px;
+    height: 10px;
 }
-
-.diamond {
-    margin-top: -2px;
-    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='%23000'/%3E%3C/svg%3E");
-}
-
-.diamond::marker {
-    font-size: 21px;
-}
-
-/* li::marker {
-    font-size: 19px;
-} */
