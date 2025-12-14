@@ -28,8 +28,7 @@
    ============================================ */
 .bulletPointsMainContainer {
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 10px;
+    flex-direction: column;
     margin-bottom: 30px;
 }
 
@@ -39,6 +38,12 @@
     font-weight: 600;
     flex-basis: 100%;
     margin-bottom: 14px;
+}
+
+.bulletPointsMainBtnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .bulletPointsMainBtn {
@@ -98,9 +103,14 @@
 
 .bulletPointsSubContainer {
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 10px;
+    flex-direction: column;
     margin-bottom: 30px;
+}
+
+.bulletPointsSubBtnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .bulletPointsSubHeadline {
