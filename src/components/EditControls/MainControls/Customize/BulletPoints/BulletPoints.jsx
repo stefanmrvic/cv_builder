@@ -72,11 +72,11 @@ export default function BulletPoints({bulletPoints, setBulletPoints}) {
                 <h3 className={styles.bulletPointsPreviewHeadline}>PREVIEW</h3>
                 <ul className={styles.bulletPointsPreviewList}>
                     <li className={`${styles.bulletPoint} ${styles.mainBulletPoint} ${styles[bulletPoints.main]}`}>
-                        <p>As a Full-Stack Software Engineer, I design, develop, and optimize scalable web applications and internal tools.</p>
+                        <p className={styles.bulletPointPara}>Led cross-functional team to deliver product ahead of schedule.</p>
 
                         <ul className={styles.subBulletPointList}>
                             <li className={`${styles.subBulletPoint} ${styles.subBulletPoint} ${styles[bulletPoints.sub]}`}>
-                                Built a content analytics dashboard using React, Node.js, and TypeScript, improving internal reporting speed by 40%.
+                                Coordinated with 5 departments across 3 time zones.
                             </li>
                         </ul>
                     </li>
@@ -84,11 +84,11 @@ export default function BulletPoints({bulletPoints, setBulletPoints}) {
 
                 <ul className={styles.bulletPointsPreviewList}>
                     <li className={`${styles.bulletPoint} ${styles.mainBulletPoint} ${styles[bulletPoints.main]}`}>
-                        <p>Led code reviews and implemented testing automation with Jest and Cypress to ensure high-quality releases.</p>
+                        <p className={styles.bulletPointPara}>Increased user engagement by 45% through UX improvements.</p>
 
                         <ul className={styles.subBulletPointList}>
                             <li className={`${styles.subBulletPoint} ${styles.subBulletPoint} ${styles[bulletPoints.sub]}`}>
-                                Established testing standards that achieved 85% code coverage across frontend applications.
+                                Implemented A/B testing framework for data-driven decisions.
                             </li>
                         </ul>
                     </li>

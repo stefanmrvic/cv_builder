@@ -18,11 +18,15 @@ body {
     box-shadow: 0 13px 27px -5px rgba(50, 50, 93, .1), 0 8px 16px -8px rgba(0, 0, 0, .25);
     background-color: var(--secondary-bg-color);
     transform: scale(.4) translateY(-1017px);
+    /* Removing extra white space caused by scale property */
+    margin-bottom: -101%;
 }
 
 @media only screen and (min-width: 438px) {
     .cvContentContainer {
         transform: scale(.5) translateY(-683px);
+        /* Removing extra white space caused by scale property */
+        margin-bottom: -84%;
     }
 }
 
@@ -31,6 +35,7 @@ body {
         width: 100%;
         max-width: 21cm;
         transform: scale(1) translate(0px, 0px);
+        margin-bottom: 0;
     }
 }
 

@@ -159,6 +159,10 @@ const defaultCV = {
         }
     ],
     skillsToolsInterests: {   
+        certifications: {
+            items: [],
+            isVisible: true
+        },
         skills: {
             items: [
                 { id: 'bc4b886c-999a-4293-8f8a-9712a5736eb6', name: 'Fluent English (written & spoken)' },
