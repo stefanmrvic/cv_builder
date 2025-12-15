@@ -1,52 +1,67 @@
 export const sortCompaniesByEmploymentDate = (a, b) => {
-    // Checks which company has a position with checked "currentlyEmployed" to put it on the top of CV.
-    const presentEmploymentsA = a.positions.filter(position => position.currentlyEmployed);
-    const presentEmploymentsB = b.positions.filter(position => position.currentlyEmployed);
-
-    const mostRecentPositionA = findMostRecentStartDate(presentEmploymentsA);
+    const mostRecentPositionA = findMostRecentPosition(a.positions);
     // if (!mostRecentPositionA) throw new Error('mostRecentPositionA not found!');
     if (!mostRecentPositionA) console.log('mostRecentPositionA not found!');
 
-    const mostRecentPositionB = findMostRecentStartDate(presentEmploymentsB);
+    const mostRecentPositionB = findMostRecentPosition(b.positions);
     // if (!mostRecentPositionB) throw new Error('mostRecentPositionB not found!');
     if (!mostRecentPositionB) console.log('mostRecentPositionB not found!');
 
-    // If there are two or more companies with positions endDate checked "currentlyEmployed", decide which company
-    // will precede the other one, by looking which company has more recent startDate.
-    if (mostRecentPositionA && mostRecentPositionB) {
-        // Converting Date strings back to Date objects and then further converting them into ms int.
-        const startDateA = new Date(mostRecentPositionA.startDate).getTime();
-        const startDateB = new Date(mostRecentPositionB.startDate).getTime();
+    const competingPositions = [mostRecentPositionA, mostRecentPositionB];
+    const winningPosition = findMostRecentPosition(competingPositions);
 
-        // Checks if either (or both of) startDateA or startDateB are NaN which would indicate that their values are either empty or invalid.
-        // In which case the other company should take precedence. Or none company should take precedence if they are both NaN.
-        if (startDateA === NaN && startDateB === NaN) return 0;
-        else if (startDateA < startDateB || startDateB === NaN) return 1;
-        else if (startDateA > startDateB || startDateA === NaN) return -1;
-
-        // If both Date ints are equal, leave the order as is.
+    if (winningPosition === mostRecentPositionA) {
+        return -1;
+    } else if (winningPosition && mostRecentPositionB) {
+        return 1;
+    } else {
         return 0;
     }
-    else if (mostRecentPositionA && !mostRecentPositionB) return -1;
-    else if (!mostRecentPositionA && mostRecentPositionB) return 1;
+}
+
+const findMostRecentPosition = (positionsArr) => {
+    const presentPositions = positionsArr.filter(position => position.currentlyEmployed);
+    
+    // If there are no positions with the status "currentlyEmployed", it will search for the position(s) with the most recent endDate(s).
+    if (presentPositions.length === 0) {
+        let mostRecentEndDatePosition = positionsArr[0];
+
+        // This loop finds the most recent position by converting endDates into ints and then returning 
+        // the biggest int (which indicates the most amount of time passed until now in ms).
+        for (let i = 0; i < positionsArr.length; i++) {
+            const mostRecentPositionInt = new Date(mostRecentEndDatePosition.endDate).getTime();
+            // If endDate is not undefined, create the Date object with endDate time string, otherwise, set it as 0.
+            const currentPositionInt = positionsArr[i].endDate ? new Date(positionsArr[i].endDate).getTime() : 0;
+
+            // Checks if the current position is more recent than the currently most recent position
+            if (currentPositionInt > mostRecentPositionInt) {
+                mostRecentEndDatePosition = positionsArr[i];
+            // If both positions have the same endDate, checks which one has more recent startDate
+            } else if (currentPositionInt === mostRecentPositionInt) {
+                const competingPositions = [mostRecentEndDatePosition, positionsArr[i]];
+                mostRecentEndDatePosition = findMostRecentStartDate(competingPositions)
+            }
+        }
+        return mostRecentEndDatePosition;
+    } else {
+        const mostRecentPosition = findMostRecentStartDate(presentPositions);
+        return mostRecentPosition;
+    }
 }
 
 // Finds most recent startDates and returns it.
-export const findMostRecentStartDate = (positionsArr) => {
-    const presentEmployments = positionsArr;
-    let mostRecentPosition = presentEmployments[0];
+const findMostRecentStartDate = (positionsArr) => {
+    const currentEmployments = positionsArr;
+    let mostRecentPosition = currentEmployments[0];
 
     // It iterates over the positions array and compares startDates to return the most recently started position.
-    for (let i = 0; i < presentEmployments.length; i++) {
-        const currPosDate = new Date(presentEmployments[i].startDate);
-        const currPos = currPosDate.getTime();
+    for (let i = 0; i < currentEmployments.length; i++) {
+        // If startDate is not undefined, create the Date object with startDate time string, otherwise, set it as 0.
+        const currPositionInt = currentEmployments[i].startDate ? new Date(currentEmployments[i].startDate).getTime() : 0;
+        const mostRecentPositionInt = new Date(mostRecentPosition.startDate).getTime();
 
-        const mostRecentPosDate = new Date(mostRecentPosition.startDate)
-        const mostRecentPos = mostRecentPosDate.getTime();
-
-        if (currPos > mostRecentPos) mostRecentPosition = presentEmployments[i];
+        if (currPositionInt > mostRecentPositionInt) mostRecentPosition = currentEmployments[i];
     }
-
     return mostRecentPosition;
 }
 
@@ -54,22 +69,29 @@ export const sortPositionsByEmploymentDate = (a, b) => {
     const presentEmploymentA = a.currentlyEmployed;
     const presentEmploymentB = b.currentlyEmployed;
 
-    // If there are two or more positions whose endDate is checked as "currentlyEmployed", decide which position
-    // will precede the other one, by looking which position has the more recent startDate.
-    if (presentEmploymentA && presentEmploymentB) {
-        // Converting Date strings back to Date objects and then further converting them into ms int.
+    // Converts both positions endDates to ints so it can compare which one is more recent.
+    const mostRecentEmploymentA = presentEmploymentA ? new Date().getTime() : new Date(a.endDate).getTime();
+    const mostRecentEmploymentB = presentEmploymentB ? new Date().getTime() : new Date(b.endDate).getTime();
+
+    if (mostRecentEmploymentA > mostRecentEmploymentB) {
+        return -1;
+    } else if (mostRecentEmploymentA < mostRecentEmploymentB) {
+        return 1;
+    // If both positions have the same endDate, it checks which position has the more recent startDate.
+    } else if (mostRecentEmploymentA === mostRecentEmploymentB) {
         const startDateA = new Date(a.startDate).getTime();
         const startDateB = new Date(b.startDate).getTime();
 
         // Checks if either (or both of) startDateA or startDateB are NaN which would indicate that their values are either empty or invalid.
         // In which case the other position should take precedence. Or none position should take precedence if they are both NaN.
-        if (startDateA === NaN && startDateB === NaN) return 0;
-        else if (startDateA < startDateB || startDateB === NaN) return 1;
-        else if (startDateA > startDateB || startDateA === NaN) return -1;
-
-        // If both Date ints are equal, leave the order as is.
-        return 0;
+        if (startDateA === NaN && startDateB === NaN) {
+            return 0;
+        } else if (startDateA < startDateB || startDateB === NaN) {
+            return 1;
+        } else if (startDateA > startDateB || startDateA === NaN) {
+            return -1;
+        }
     }
-    else if (presentEmploymentA && !presentEmploymentB) return -1;
-    else if (!presentEmploymentA && presentEmploymentB) return 1;
+    // If both position ints are equal, leave the order as is.
+    return 0;
 }
