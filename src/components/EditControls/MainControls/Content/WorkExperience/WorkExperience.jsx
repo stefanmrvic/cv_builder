@@ -96,7 +96,6 @@ export default function Experience({data, setCVData}) {
                     isNewPosition={isNewPosition}
                     setIsNewPosition={setIsNewPosition}
                     positionFormData={positionFormData}
-                    setPositionFormData={setPositionFormData}
                     isPositionFormOpen={isPositionFormOpen}
                     setIsPositionFormOpen={setIsPositionFormOpen}
                 />

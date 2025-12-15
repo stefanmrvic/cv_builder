@@ -42,7 +42,7 @@ export default function Position({data, setCVData, setIsPositionFormOpen, setPos
             companyID: companyID,
             isVisible: data.isVisible,
             title: data.title,
-            startDate: data.startDatet,
+            startDate: data.startDate,
             endDate: data.endDate,
             currentlyEmployed: data.currentlyEmployed,
             responsibilities: data.responsibilities

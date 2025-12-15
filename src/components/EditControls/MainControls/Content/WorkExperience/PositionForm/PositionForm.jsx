@@ -180,13 +180,13 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
                 <div className={styles.formContainer}>
                     <div className={styles.formGroup}>
                         <label htmlFor="title">Position Title</label>
-                        <input autoFocus type="text" name="title" id="title" onChange={handlePositionTitle} placeholder="Enter Position Title" required />
+                        <input autoFocus type="text" name="title" id="title" onChange={handlePositionTitle} value={position.title} placeholder="Enter Position Title" required />
                     </div>
                     <div className={styles.formGroupDate}>
                         <div className={styles.startDate}>
                             <label htmlFor="startDate">Start Date</label>
                             <span className={styles.startDateValue}>{startDateValue}</span>
-                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} placeholder="Enter Start Date" required />
+                            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} value={position.startDate} placeholder="Enter Start Date" required />
                         </div>
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
