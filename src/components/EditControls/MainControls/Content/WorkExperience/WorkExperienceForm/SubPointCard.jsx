@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useAppContext } from '../../../../../../AppContext';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function SubPointCard({data, setCVData, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint}) {
+export default function SubPointCard({ subPoint, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint }) {
+    const { setCVData } = useAppContext();
+
     const [isExpanded, setIsExpanded] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
 
@@ -14,19 +17,19 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
     const handleDelete = (e) => {
         e.stopPropagation(); 
 
-        if (!data.id) throw new Error('subPoint.id is undefined!');
+        if (!subPoint.id) throw new Error('subPoint.id is undefined!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionID);
+            const position = company.positions.find(item => item.id === positionID);
             if (position === undefined) throw new Error('Position  not found!');    
             
-            const point = position.responsibilities.find(point => point.id === pointID);
+            const point = position.responsibilities.find(item => item.id === pointID);
             if (point === undefined) throw new Error('Point not found!');
 
-            const subPointIndex = point.subPoints.findIndex(subPoint => subPoint.id === data.id);
+            const subPointIndex = point.subPoints.findIndex(item => item.id === subPoint.id);
             if (subPointIndex === -1) throw new Error('Sub-Point not found!');
 
             point.subPoints.splice(subPointIndex, 1);
@@ -40,21 +43,21 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
         // Stop default form submit behavior
         e.preventDefault();
         
-        if (isExpanded && data.isVisible) setIsExpanded(prevState => !prevState);
+        if (isExpanded && subPoint.isVisible) setIsExpanded(prevState => !prevState);
 
-        if (!data.id) throw new Error('subPoint.id is undefined!');
+        if (!subPoint.id) throw new Error('subPoint.id is undefined!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionID);
+            const position = company.positions.find(item => item.id === positionID);
             if (position === undefined) throw new Error('Position  not found!');     
 
-            const point = position.responsibilities.find(point => point.id === pointID);
+            const point = position.responsibilities.find(item => item.id === pointID);
             if (point === undefined) throw new Error('Point not found!');
 
-            const subPoint = point.subPoints.find(subPoint => subPoint.id === data.id);
+            const subPoint = point.subPoints.find(item => item.id === subPoint.id);
             if (subPoint === undefined) throw new Error('Sub-Point not found!');
 
             subPoint.isVisible = !subPoint.isVisible;
@@ -64,19 +67,19 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
     }
 
     const handleDescription = (e) => {
-        if (!data.id) throw new Error('subPoint.id is undefined!');
+        if (!subPoint.id) throw new Error('subPoint.id is undefined!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionID);
+            const position = company.positions.find(item => item.id === positionID);
             if (position === undefined) throw new Error('Position  not found!');     
 
-            const point = position.responsibilities.find(point => point.id === pointID);
+            const point = position.responsibilities.find(item => item.id === pointID);
             if (point === undefined) throw new Error('Point not found!');
 
-            const subPoint = point.subPoints.find(subPoint => subPoint.id === data.id);
+            const subPoint = point.subPoints.find(item => item.id === subPoint.id);
             if (subPoint === undefined) throw new Error('Sub-Point not found!');
 
             subPoint.subPoint = e.target.value;
@@ -89,7 +92,7 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
         if (isNewSubPoint) setIsNewSubPoint(false);
     }
 
-    const isPlaceholderTitle = data.subPoint.toLowerCase().includes('subpoint');
+    const isPlaceholderTitle = subPoint.subPoint.toLowerCase().includes('subpoint');
 
     return (
         <div className={styles.subPointContainer}>
@@ -101,8 +104,7 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
                         {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                     </span>
 
-                    <span className={styles.subPointDescription}>{data.subPoint}</span>
-
+                    <span className={styles.subPointDescription}>{subPoint.subPoint}</span>
 
                     <div className={styles.subPointBtnContainer}>
                         <button className={styles.subPointVisibilityBtn} onClick={handleVisibility}>
@@ -121,7 +123,7 @@ export default function SubPointCard({data, setCVData, index, companyID, positio
                     <div className={styles.subPointFormContainer}>
                         <div className={styles.subPointFormGroup}>
                             <label htmlFor="sub-point">Description</label>
-                            <textarea type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={(isNewSubPoint && isPlaceholderTitle) ? '' : (data?.subPoint || '')} onChange={handleDescription} placeholder="Enter sub-point description..." />
+                            <textarea type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={(isNewSubPoint && isPlaceholderTitle) ? '' : (subPoint?.subPoint || '')} onChange={handleDescription} placeholder="Enter sub-point description..." />
                         </div>
                     </div>
                 )}

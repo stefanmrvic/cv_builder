@@ -4,7 +4,7 @@ import { sortPositionsByEmploymentDate } from '../../../../utils/sortFunctions.j
 
 import styles from './WorkExperience.module.css'
 
-export default function Company({ company, bulletPoints }) {
+export default function Company({ company }) {
     const visiblePositions = company.positions.filter(company => company.isVisible);
     const sortedPositions = visiblePositions.sort(sortPositionsByEmploymentDate);
 
@@ -19,7 +19,6 @@ export default function Company({ company, bulletPoints }) {
                     companyName={company.companyName}
                     location={company.location}
                     position={position} 
-                    bulletPoints={bulletPoints}
                 />
             ))}
         </div>

@@ -1,9 +1,12 @@
 import { View, Text } from '@react-pdf/renderer';
+import { useAppContext } from '../../../../AppContext.jsx';
 
 import SubPoint from './PDFSubPoint.jsx';
 import BulletIcon from '../PDFShapes.jsx';
 
-export default function Point({ point, bulletPoints }) {
+export default function Point({ point }) {
+    const { bulletPoints } = useAppContext();
+
     return (
         <View>
             <View style={{ display: 'flex', flexDirection: 'row', columnGap: 6, marginLeft: 1 }}>
@@ -16,7 +19,7 @@ export default function Point({ point, bulletPoints }) {
                     point.subPoints
                         .filter(subPoint => subPoint.isVisible)
                         .map(subPoint => ( 
-                            <SubPoint key={subPoint.id} subPoint={subPoint} bulletPoints={bulletPoints.sub} />
+                            <SubPoint key={subPoint.id} subPoint={subPoint} />
                         ))
                 )} 
             </View>

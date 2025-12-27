@@ -5,13 +5,13 @@ import SkillsToolsInterests from './SkillsToolsInterests/SkillsToolsInterests.js
 
 import styles from './Content.module.css';
 
-export default function Content({data, setCVData}) {
+export default function Content() {
     return (
         <div className={styles.content}>
-            <PersonalDetails data={data.personalInfo} setCVData={setCVData} />
-            <WorkExperience data={data.workExperience} setCVData={setCVData} />
-            <SkillsToolsInterests data={data.skillsToolsInterests} setCVData={setCVData} />
-            <Education data={data.education} setCVData={setCVData} />
+            <PersonalDetails />
+            <WorkExperience />
+            <SkillsToolsInterests data={cvData.skillsToolsInterests} setCVData={setCVData} />
+            <Education data={cvData.education} setCVData={setCVData} />
         </div>
     )
 }

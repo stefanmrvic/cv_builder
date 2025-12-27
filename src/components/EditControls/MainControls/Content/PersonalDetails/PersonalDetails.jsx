@@ -1,8 +1,14 @@
 import { useState, useRef } from 'react';
+import { useAppContext, usePersonalInfo } from '../../../../../AppContext';
 
 import styles from './PersonalDetails.module.css';
 
-export default function PersonalDetails({data, setCVData}) {
+export default function PersonalDetails() {
+    const { setCVData } = useAppContext();
+
+    const personalInfo = usePersonalInfo();
+    if (!personalInfo) return null;
+    
     const [isExpanded, setIsExpanded] = useState(true);
 
     const personalDetailsFormRef = useRef(null);
@@ -67,32 +73,32 @@ export default function PersonalDetails({data, setCVData}) {
                 <form className={styles.personalDetailsForm} ref={personalDetailsFormRef} action="">
                     <div className={styles.flexContainer}>
                         <label htmlFor="name">Full name</label>
-                        <input type="text" id="name" value={data.fullName} onChange={handleNameChange}/>
+                        <input type="text" id="name" value={personalInfo.fullName} onChange={handleNameChange}/>
                     </div>
 
                     <div className={styles.flexContainer}>
                         <label htmlFor="birthDay">Date of birth</label>
-                        <input type="text" id="birthDay" value={data.birthDay} onChange={handleBirthDayChange}/>
+                        <input type="text" id="birthDay" value={personalInfo.birthDay} onChange={handleBirthDayChange}/>
                     </div>
 
                     <div className={styles.flexContainer}>
                         <label htmlFor="email">Email <span className={styles.recommendedText}>recommended</span></label>
-                        <input type="email" id="email" value={data.email} onChange={handleEmailChange} />
+                        <input type="email" id="email" value={personalInfo.email} onChange={handleEmailChange} />
                     </div>
 
                     <div className={styles.flexContainer}>
                         <label htmlFor="number">Phone number <span className={styles.recommendedText}>recommended</span></label>
-                        <input type="tel" id="number" value={data.phone} onChange={handlePhoneChange} />
+                        <input type="tel" id="number" value={personalInfo.phone} onChange={handlePhoneChange} />
                     </div>
 
                     <div className={styles.flexContainer}>
                         <label htmlFor="address">Address <span className={styles.recommendedText}>recommended</span></label>
-                        <input type="text" id="address" value={data.location} onChange={handleLocationChange} />
+                        <input type="text" id="address" value={personalInfo.location} onChange={handleLocationChange} />
                     </div>
 
                     <div className={styles.flexContainer}>
                         <label htmlFor="linkedin">LinkedIn <span className={styles.recommendedText}>recommended</span></label>
-                        <input type="text" id="linkedin" value={data.linkedin} onChange={handleLinkedInChange} />
+                        <input type="text" id="linkedin" value={personalInfo.linkedin} onChange={handleLinkedInChange} />
                     </div>
                 </form>
             )}

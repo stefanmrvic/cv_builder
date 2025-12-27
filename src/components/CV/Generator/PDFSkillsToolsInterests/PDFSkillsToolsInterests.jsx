@@ -1,31 +1,52 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { useAppContext, useSkills } from '../../../../AppContext.jsx';
 
 import BulletIcon from '../PDFShapes.jsx';
 
-export default function SkillsToolsInterests({ data, bulletPoints, wrap }) {
-    // Exits if there are no companies in skillsToolsInterests object
-    if (!data) return null;
+export default function SkillsToolsInterests({ wrap }) {
+    const { bulletPoints } = useAppContext();
+    const { certifications, skills, tools, interests } = useSkills();
+
+    // Exits if there are no items under skillsToolsInterests object
+    if (!certifications && !skills && !tools && !interests) return null;
 
     // Container StyleSheets
     const styles = StyleSheet.create({
         headline: { fontSize: 13.5, fontWeight: 'bold', paddingBottom: 2.25, marginBottom: 4.5, borderBottom: '1.25pt solid black' }
     })
 
-    const skills = data.skills.items.map(item => item.name).join('; ');
-    const tools = data.tools.items.map(item => item.name).join('; ');
-    const interests = data.interests.items.map(item => item.name).join('; ');
+    const certificationsStr = certifications.items.map(item => item.name).join('; ');
+    const skillsStr = skills.items.map(item => item.name).join('; ');
+    const toolsStr = tools.items.map(item => item.name).join('; ');
+    const interestsStr = interests.items.map(item => item.name).join('; ');
 
     return (
         <View style={{ marginBottom: 15 }} wrap={wrap}>
-            <Text style={styles.headline}>SKILLS, TOOLS & INTERESTS</Text>
+            {certifications.items.length > 0  ? (
+                <Text style={styles.headline}>CERTIFICATIONS & SKILLS</Text>
+            ) : (
+                <Text style={styles.headline}>SKILLS, TOOLS & INTERESTS</Text>
+            )}
 
-            {/* Skills */}
+            {/* Certifications */}
             <View>
-                {data.skills.items.length > 0 && (
+                {certifications.items.length > 0 && (
                     <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 520 }}>
                         <BulletIcon type={bulletPoints} size='6.7' />
                         <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Skills:
-                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {skills}</Text>
+                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {certificationsStr}</Text>
+                        </Text>
+                    </View>
+                )}
+            </View>
+
+            {/* Skills */}
+            <View>
+                {skills.items.length > 0 && (
+                    <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 520 }}>
+                        <BulletIcon type={bulletPoints} size='6.7' />
+                        <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Skills:
+                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {skillsStr}</Text>
                         </Text>
                     </View>
                 )}
@@ -33,11 +54,11 @@ export default function SkillsToolsInterests({ data, bulletPoints, wrap }) {
 
             {/* Tools */}
             <View>
-                {data.tools.items.length > 0 && (
+                {tools.items.length > 0 && (
                     <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 500 }}>
                         <BulletIcon type={bulletPoints} size='6.7' />
                         <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Tools:
-                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {tools}</Text>
+                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {toolsStr}</Text>
                         </Text>
                     </View>
                 )}
@@ -45,11 +66,11 @@ export default function SkillsToolsInterests({ data, bulletPoints, wrap }) {
 
             {/* Interests */}
             <View>
-                {data.tools.items.length > 0 && (
+                {interests.items.length > 0 && (
                     <View style={{ display: 'flex', flexDirection: 'row', maxWidth: 500 }}>
                         <BulletIcon type={bulletPoints} size='6.7' />
                         <Text style={{ fontSize: 13.5, fontWeight: 'bold', marginLeft: 7, marginBottom: .2, lineHeight: 1.25 }}>Interests:
-                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {interests}</Text>
+                            <Text style={{ fontSize: 13.5, fontWeight: 'normal' }}> {interestsStr}</Text>
                         </Text>
                     </View>
                 )}

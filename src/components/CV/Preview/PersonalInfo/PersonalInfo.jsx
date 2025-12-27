@@ -1,12 +1,15 @@
+import { useAppContext } from '../../../../AppContext';
+
 import styles from './PersonalInfo.module.css'
 
-export default function PersonalInfo({data}) {
+export default function PersonalInfo() {
+    const { cvData } = useAppContext();
     const personalInfo = [];
 
-    for (const prop in data) {
-        if((data[prop].trim().length > 0) && 
+    for (const prop in cvData) {
+        if((cvData[prop].trim().length > 0) && 
             (prop !== 'fullName' && prop !== 'linkedin')) {
-                personalInfo.push(data[prop]);
+                personalInfo.push(cvData[prop]);
         }
     }
 
@@ -14,15 +17,15 @@ export default function PersonalInfo({data}) {
 
     return (
         <div className={`${styles.personalInfo} sectionBottomMargin`}>
-            <h1 className={styles.fullName}>{data.fullName}</h1>
+            <h1 className={styles.fullName}>{cvData.fullName}</h1>
 
             <ul className={styles.details}>
                 {personalInfo.map((item, index) => {
                     return <li key={index}><p>{item} {index !== lastInfoItem ? " ❖ " : ''} </p></li>
                 })}
 
-                {data.linkedin.trim() && 
-                    <li>❖ <a href={data.linkedin} target='_blank'>LN</a></li>
+                {cvData.linkedin.trim() && 
+                    <li>❖ <a href={cvData.linkedin} target='_blank'>LN</a></li>
                 }
             </ul>
         </div>

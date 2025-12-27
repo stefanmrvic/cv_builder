@@ -1,14 +1,17 @@
-import {Text, View, Font, StyleSheet, Link } from '@react-pdf/renderer';
+import { Text, View, Font, StyleSheet, Link } from '@react-pdf/renderer';
+import { usePersonalInfo } from '../../../../AppContext';
 
 Font.register({
     family: 'DejaVu',
     src: 'https://cdn.jsdelivr.net/npm/dejavu-fonts-ttf@2.37.3/ttf/DejaVuSans.ttf'
 });
 
-export default function PersonalDetails({ data, wrap }) {
+export default function PersonalDetails({ wrap }) {
+    const { personalInfo } = usePersonalInfo();
+
     // Filters out the empty fields in the Personal Details sections to avoid leaving them in the CV.
     // It also leaves out the fullName property for easier styling.
-    const nonEmptyFields = Object.entries(data).filter(([key, value]) => (key !== 'fullName' && value !== ''));
+    const nonEmptyFields = Object.entries(personalInfo).filter(([key, value]) => (key !== 'fullName' && value !== ''));
  
     // Container StyleSheet
     const styles = StyleSheet.create({
@@ -19,9 +22,9 @@ export default function PersonalDetails({ data, wrap }) {
     return (
         // Personal Details Container
         <View style={{ borderBottom: '1.25pt solid black', marginBottom: 15}} wrap={wrap}>
-            {data.fullName !== '' && (
+            {personalInfo.fullName !== '' && (
                 // Full Name Text
-                <Text style={styles.fullName}>{data.fullName}</Text>
+                <Text style={styles.fullName}>{personalInfo.fullName}</Text>
             )} 
             
             {/* Info Details Container */}

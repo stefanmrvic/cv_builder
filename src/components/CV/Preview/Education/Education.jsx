@@ -1,12 +1,16 @@
+import { useEducation } from '../../../../AppContext.jsx';
+
 import EducationItem from './EducationItem.jsx'
 
 import styles from './Education.module.css';
 
-export default function Education({data}) {
-    // Exits if there are no items in education object
-    if (!data) return null;
+export default function Education() {
+    const { education } = useEducation();
 
-    const visibleEducationItems = data.filter(item => item.isVisible);
+    // Exits if there are no items in education object
+    if (!education) return null;
+
+    const visibleEducationItems = education.filter(item => item.isVisible);
 
     // Exits if there are no visible education items
     if (visibleEducationItems.length === 0) return null;

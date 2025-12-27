@@ -1,10 +1,14 @@
+import { useAppContext } from '../../../../AppContext.jsx';
+
 import Point from './Point.jsx';
 
 import styles from './WorkExperience.module.css';
 
 // Passes companyName and location so that last position in that company can display company details above the job title,
 // since Position objects don't have access to their parent company's properties.
-export default function Position({ isFirst, companyName, location, position, bulletPoints }) {
+export default function Position({ isFirst, companyName, location, position }) {
+    const { bulletPoints } = useAppContext();
+    
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         if (date === NaN) throw new Error('Invalid date!');
@@ -48,7 +52,7 @@ export default function Position({ isFirst, companyName, location, position, bul
                     position.responsibilities
                         .filter(point => point.isVisible)
                         .map(point => (
-                            <Point key={point.id} point={point} bulletPoints={bulletPoints} />
+                            <Point key={point.id} point={point} />
                         ))    
                 )}
             </ul>

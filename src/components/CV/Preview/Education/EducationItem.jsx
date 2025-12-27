@@ -1,6 +1,6 @@
 import styles from './Education.module.css';
 
-export default function EducationItem({education}) {
+export default function EducationItem({ education }) {
     return (
         <div>
             <div className={styles.flexContainer}>

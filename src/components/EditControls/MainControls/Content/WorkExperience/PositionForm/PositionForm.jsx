@@ -1,20 +1,27 @@
 import { useState } from 'react';
+import { useAppContext, useWorkExperience } from '../../../../../../AppContext.jsx';
 
 import PointCard from '../WorkExperienceForm/PointCard.jsx';
 
 import styles from './PositionForm.module.css';
 
-export default function PositionForm({data, setCVData, isNewPosition, setIsNewPosition, positionFormData, setIsPositionFormOpen}) {    
+export default function PositionForm({ isNewPosition, setIsNewPosition, positionFormData, setIsPositionFormOpen }) {   
+    const { setCVData } = useAppContext();
+    const workExperience = useWorkExperience();
+
     const [isNewPoint, setIsNewPoint] = useState(false);
+
+    const company = workExperience.find(item => item.id === positionFormData.companyID);
+    const position = company.positions.find(item => item.id === positionFormData.id)
 
     const handleDelete = () => {
         if (!positionFormData.companyID) throw new Error('positionFormData.companyID is undefined!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const positionIndex = company.positions.findIndex(position => position.id === positionFormData.id);
+            const positionIndex = company.positions.findIndex(item => item.id === positionFormData.id);
             if (positionIndex === -1) throw new Error('Position not found!');
 
             company.positions.splice(positionIndex, 1);
@@ -27,10 +34,10 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
         if (!positionFormData.companyID) throw new Error('positionFormData.companyID is undefined!');
         
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionFormData.id);
+            const position = company.positions.find(item => item.id === positionFormData.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.id = positionFormData.id;
@@ -47,13 +54,13 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handlePositionTitle = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!workExperience) throw new Error('WorkExperience not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionFormData.id);
+            const position = company.positions.find(item => item.id === positionFormData.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.title = e.target.value;
@@ -61,9 +68,9 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const formatStartDate = () => {
-        if (!data.startDate) return '';
+        if (!position.startDate) return '';
 
-        const date = new Date(data.startDate).toDateString();
+        const date = new Date(position.startDate).toDateString();
         const dateArr = date.split(' ');
 
         const year = dateArr[3];
@@ -73,10 +80,10 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const formatEndDate = () => {
-        if (!data.endDate) return '';
-        if (data.currentlyEmployed || data.endDate === 'Present') return 'Present';
+        if (!position.endDate) return '';
+        if (position.currentlyEmployed || position.endDate === 'Present') return 'Present';
         
-        const date = new Date(data.endDate).toDateString();
+        const date = new Date(position.endDate).toDateString();
         const dateArr = date.split(' ');
 
         const year = dateArr[3];
@@ -86,13 +93,13 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleStartDate = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionFormData.id);
+            const position = company.positions.find(item => item.id === positionFormData.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.startDate = e.target.value;
@@ -100,13 +107,13 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleEndDate = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionFormData.id);
+            const position = company.positions.find(item => item.id === positionFormData.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.endDate = e.target.value;
@@ -114,13 +121,13 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleCurrentlyEmployed = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionFormData.id);
+            const position = company.positions.find(item => item.id === positionFormData.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.currentlyEmployed = !position.currentlyEmployed;
@@ -131,13 +138,13 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
         // Stop default form submit behavior
         e.preventDefault();
 
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === positionFormData.companyID);
+            const company = draft.workExperience.find(item => item.id === positionFormData.companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === positionFormData.id);
+            const position = company.positions.find(item => item.id === positionFormData.id);
             if (position === undefined) throw new Error('Position not found!');
 
             const newPoint = {
@@ -159,9 +166,6 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
         setIsNewPosition(false);
         setIsPositionFormOpen(false);
     }
-
-    const company = data.find(company => company.id === positionFormData.companyID);
-    const position = company.positions.find(position => position.id === positionFormData.id)
 
     const startDateValue = formatStartDate();
     const endDateValue = formatEndDate();
@@ -207,9 +211,8 @@ export default function PositionForm({data, setCVData, isNewPosition, setIsNewPo
                                 return <PointCard 
                                     key={point.id} 
                                     index={index} 
-                                    data={point}
-                                    setCVData={setCVData}
-                                    // TO-DO: Refactor later with Context API
+                                    point={point}
+                                    // TO-DO Refactor Company/Posiiton ID passing logic
                                     companyID={positionFormData.companyID}
                                     positionID={positionFormData.id}
                                     isNewPoint={isNew}

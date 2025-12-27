@@ -1,8 +1,11 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { useEducation } from '../../../../AppContext';
 
-export default function Education({ data, wrap }) {
-    // Exits if there are no companies in education object
-    if (!data) return null;
+export default function Education({ wrap }) {
+    const { education } = useEducation();
+
+    // Exits if there are no items under education object
+    if (!education) return null;
 
     // Container StyleSheets
     const styles = StyleSheet.create({
@@ -13,7 +16,7 @@ export default function Education({ data, wrap }) {
         <View wrap={wrap}>
             <Text style={styles.headline}>EDUCATION</Text>
 
-            {data.map(item => (
+            {education.map(item => (
                 <View key={item.id}>
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 3 }}>
                         <Text style={{ fontSize: 13.4, fontWeight:'bold' }}>{item.schoolName}</Text>
@@ -26,7 +29,6 @@ export default function Education({ data, wrap }) {
                     </View>
                 </View>
             ))}
-
         </View>
     )
 }

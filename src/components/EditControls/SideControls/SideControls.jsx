@@ -3,7 +3,7 @@ import Customize from './Customize.jsx'
 
 import styles from './SideControls.module.css'
 
-export default function SideControls({activeTab, setActiveTab}) {
+export default function SideControls({ activeTab, setActiveTab }) {
     return (
         <div className={styles.sideControls}>
             <nav className={styles.sidebar}>

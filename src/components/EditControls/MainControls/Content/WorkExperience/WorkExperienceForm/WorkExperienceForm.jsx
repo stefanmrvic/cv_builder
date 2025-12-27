@@ -1,8 +1,14 @@
+import { useAppContext, useWorkExperience } from '../../../../../../AppContext.jsx';
+
 import PositionCard from './PositionCard.jsx';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function ExperienceForm({data, setCVData, experienceFormData, isNewExperience, setIsNewExperience, isNewPosition, setIsNewPosition, isExperienceFormOpen, setIsExperienceFormOpen}) {    
+export default function ExperienceForm({ experienceFormData, isNewExperience, setIsNewExperience, isNewPosition, setIsNewPosition, isExperienceFormOpen, setIsExperienceFormOpen }) {    
+    const { setCVData } = useAppContext();
+
+    const workExperience = useWorkExperience();
+
     const handleDelete = () => {
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
 
@@ -64,7 +70,7 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
         e.stopPropagation();
         e.preventDefault()
 
-        if (!data) throw new Error('data not found!');
+        if (!workExperience) throw new Error('workExperience not found!');
 
         const newPosition = {
             id: crypto.randomUUID(),
@@ -93,7 +99,7 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
         if (isNewExperience) setIsNewExperience(false);
     }
 
-    const company = data.find(company => company.id === experienceFormData.id);
+    const company = workExperience.find(company => company.id === experienceFormData.id);
 
     return (
         <div className={styles.formContainer}>
@@ -124,13 +130,10 @@ export default function ExperienceForm({data, setCVData, experienceFormData, isN
                         return <PositionCard 
                             key={position.id} 
                             index={index} 
-                            data={position} 
-                            setCVData={setCVData} 
-                            // TO-DO: Reformat later with Context
+                            position={position} 
                             companyID={experienceFormData.id}
                             isNewPosition={isNew}
                             setIsNewPosition={setIsNewPosition}
-                            positionCount={experienceFormData.positions.length}
                         />
                     })
                 )}

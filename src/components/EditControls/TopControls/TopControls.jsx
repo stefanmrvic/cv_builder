@@ -1,8 +1,12 @@
+import { useAppContext } from '../../../AppContext.jsx'
+
 import defaultCV from '../../../data/defaultCV.js'
 
 import styles from './TopControls.module.css'
 
-export default function TopControls({ setCVData }) {
+export default function TopControls() {
+    const { setCVData } = useAppContext();
+    
     const handleCVRemoval = () => {
         const emptyCV = {
             personalInfo: {

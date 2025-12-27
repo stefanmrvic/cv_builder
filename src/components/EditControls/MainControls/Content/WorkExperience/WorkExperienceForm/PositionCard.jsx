@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useAppContext } from '../../../../../../AppContext.jsx';
 
 import PointCard from './PointCard.jsx';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function PositionCard({data, setCVData, isNewPosition, setIsNewPosition, index, companyID}) {
+export default function PositionCard({ position, isNewPosition, setIsNewPosition, index, companyID }) {
+    const { setCVData } = useAppContext();
+
     const [isExpanded, setIsExpanded] = useState(false);
     const [isNewPoint, setIsNewPoint] = useState(false);
 
@@ -16,13 +19,13 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     const handleDelete = (e) => {
         e.stopPropagation(); 
 
-        if (!data.id) throw new Error('data.id is undefined!');
+        if (!position.id) throw new Error('position.id is undefined!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === -1) throw new Error('Company not found!');
 
-            const positionIndex = company.positions.findIndex(position => position.id === data.id);
+            const positionIndex = company.positions.findIndex(item => item.id === position.id);
             if (positionIndex === -1) throw new Error('Position index not found!');
 
             company.positions.splice(positionIndex, 1);
@@ -33,15 +36,15 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
         e.preventDefault();
         e.stopPropagation();
         
-        if (isExpanded && data.isVisible) setIsExpanded(!isExpanded);
+        if (isExpanded && position.isVisible) setIsExpanded(!isExpanded);
         
-        if (!data.id) throw new Error('data.id is undefined!');
+        if (!position.id) throw new Error('position.id is undefined!');
 
        setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id)
+            const position = company.positions.find(item => item.id === position.id)
             if (!position) throw new Error('Position not found!');
             
             position.isVisible = !position.isVisible;
@@ -49,13 +52,13 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handlePositionTitle = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id);
+            const position = company.positions.find(item => item.id === position.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.title = e.target.value;
@@ -63,9 +66,9 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const formatStartDate = () => {
-        if (!data.startDate) return '';
+        if (!position.startDate) return '';
 
-        const date = new Date(data.startDate).toDateString();
+        const date = new Date(position.startDate).toDateString();
         const dateArr = date.split(' ');
 
         const year = dateArr[3];
@@ -75,10 +78,10 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const formatEndDate = () => {
-        if (!data.endDate) return '';
-        if (data.currentlyEmployed || data.endDate === 'Present') return 'Present';
+        if (!position.endDate) return '';
+        if (position.currentlyEmployed || position.endDate === 'Present') return 'Present';
         
-        const date = new Date(data.endDate).toDateString();
+        const date = new Date(position.endDate).toDateString();
         const dateArr = date.split(' ');
 
         const year = dateArr[3];
@@ -88,13 +91,13 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleStartDate = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id);
+            const position = company.positions.find(item => item.id === position.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.startDate = e.target.value;
@@ -102,13 +105,13 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleEndDate = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id);
+            const position = company.positions.find(item => item.id === position.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.endDate = e.target.value;
@@ -116,13 +119,13 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
     }
 
     const handleCurrentlyEmployed = (e) => {
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id);
+            const position = company.positions.find(item => item.id === position.id);
             if (position === undefined) throw new Error('Position not found!');
 
             position.currentlyEmployed = !position.currentlyEmployed;
@@ -139,19 +142,19 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
         e.preventDefault();
         e.stopPropagation();
 
-        if (!data) throw new Error('Data not found!');
+        if (!position) throw new Error('Position not found!');
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id)
+            const position = company.positions.find(item => item.id === position.id)
             if (position === undefined) throw new Error('Position not found!');
 
             const newPoint = {
                 id: crypto.randomUUID(),
                 isVisible: true,
-                point: `Point #${data.responsibilities.length +1}`,
+                point: `Point #${position.responsibilities.length +1}`,
                 subPoints: []
             }
 
@@ -161,7 +164,7 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
         setIsNewPoint(true);
     }
 
-    const isPlaceholderTitle = data.title.toLowerCase().includes('position');
+    const isPlaceholderTitle = position.title.toLowerCase().includes('position');
     const startDateValue = formatStartDate();
     const endDateValue = formatEndDate();
 
@@ -172,12 +175,12 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                 </span>
 
-                <span className={styles.positionHeadline}>{data ? data.title : 'Position #' + (index +1)}</span>
+                <span className={styles.positionHeadline}>{position ? position.title : 'Position #' + (index +1)}</span>
 
                 <div className={styles.positionBtnContainer}>
                     <button className={styles.positionVisibilityBtn} onClick={handleVisibility}>
                         <span className={`${styles.positionVisibilityBtnIcon} material-symbols-outlined`}>
-                            {data.isVisible ? 'visibility' : 'visibility_off'}
+                            {position.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
                     </button>
 
@@ -191,7 +194,7 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
                 <div className={styles.positionFormContainer}>
                     <div className={styles.positionFormGroup}>
                         <label htmlFor="title">Position Title</label>
-                        <input autoFocus={isNewPosition} type="text" name="title" id="title" value={(isNewPosition && isPlaceholderTitle) ? '' : (data?.title || '')} onChange={handlePositionTitle} placeholder="Enter Position Title" required />
+                        <input autoFocus={isNewPosition} type="text" name="title" id="title" value={(isNewPosition && isPlaceholderTitle) ? '' : (position?.title || '')} onChange={handlePositionTitle} placeholder="Enter Position Title" required />
                     </div>
                     <div className={styles.positionFormGroupDate}>
                         <div className={styles.startDate}>
@@ -202,27 +205,25 @@ export default function PositionCard({data, setCVData, isNewPosition, setIsNewPo
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
                             <span className={styles.endDateValue}>{endDateValue}</span>
-                            <input type="date" name="endDate" id="endDate" disabled={data?.currentlyEmployed} onChange={handleEndDate} placeholder="Enter End Date" required />
+                            <input type="date" name="endDate" id="endDate" disabled={position?.currentlyEmployed} onChange={handleEndDate} placeholder="Enter End Date" required />
                         </div>
                         <div className={styles.currentlyEmployed}>
-                            <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={data?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>
+                            <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={position?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>
                             <label className={styles.label} htmlFor="currentlyEmployed">Currently working here</label>
                         </div>
                     </div>
 
                     <div className={styles.responsibilitiesContainer}>
-                        {data.responsibilities.length > 0 && (
-                            data.responsibilities.map((point, index) => {
-                                const isNew = isNewPoint && index === data.responsibilities.length - 1;
+                        {position.responsibilities.length > 0 && (
+                            position.responsibilities.map((point, index) => {
+                                const isNew = isNewPoint && index === position.responsibilities.length - 1;
 
                                 return <PointCard 
                                     key={point.id} 
                                     index={index} 
-                                    data={point}
-                                    setCVData={setCVData}
-                                    // TO-DO: Reformat later with Context
+                                    point={point}
                                     companyID={companyID}
-                                    positionID={data.id}
+                                    positionID={position.id}
                                     isNewPoint={isNew}
                                     setIsNewPoint={setIsNewPoint}
                                 />

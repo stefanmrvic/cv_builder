@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useAppContext, useWorkExperience } from '../../../../../AppContext.jsx';
 
 import Company from './Company.jsx';
 import PositionForm from './PositionForm/PositionForm.jsx';
@@ -6,7 +7,10 @@ import ExperienceForm from './WorkExperienceForm/WorkExperienceForm.jsx';
 
 import styles from './WorkExperience.module.css';
 
-export default function Experience({data, setCVData}) {
+export default function WorkExperience() {
+    const { setCVData } = useAppContext();
+    const workExperience = useWorkExperience();
+
     const [isExpanded, setIsExpanded] = useState(false);
     const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(false);
@@ -76,8 +80,6 @@ export default function Experience({data, setCVData}) {
 
             {(isExpanded && isExperienceFormOpen) && (
                 <ExperienceForm 
-                    data={data} 
-                    setCVData={setCVData} 
                     isNewExperience={isNewExperience}
                     setIsNewExperience={setIsNewExperience}
                     isNewPosition={isNewPosition}
@@ -91,8 +93,6 @@ export default function Experience({data, setCVData}) {
 
             {(isExpanded && isPositionFormOpen) && (
                 <PositionForm 
-                    data={data} 
-                    setCVData={setCVData}
                     isNewPosition={isNewPosition}
                     setIsNewPosition={setIsNewPosition}
                     positionFormData={positionFormData}
@@ -105,11 +105,10 @@ export default function Experience({data, setCVData}) {
             {isExpanded && (
                 // Hides the button elements if the form is opened
                 <div className={`${styles.companyContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.hidden : ''}`} ref={companyContainerRef}>
-                    {data?.map(company => (
+                    {workExperience?.map(company => (
                         <Company 
                             key={company.id}
-                            data={company}
-                            setCVData={setCVData}
+                            company={company}
                             setExperienceFormData={setExperienceFormData}
                             setIsExperienceFormOpen={setIsExperienceFormOpen}
                             setPositionFormData={setPositionFormData}

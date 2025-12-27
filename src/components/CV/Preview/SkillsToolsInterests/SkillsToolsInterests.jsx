@@ -1,3 +1,5 @@
+import { useAppContext, useSkills } from '../../../../AppContext.jsx'
+
 import Certifications from './Certifications.jsx'
 import Skills from './Skills.jsx'
 import Tools from './Tools.jsx'
@@ -5,39 +7,42 @@ import Interests from './Interests.jsx'
 
 import styles from './SkillsToolsInterests.module.css'
 
-export default function SkillsToolsInterests({data, bulletPoints}) {
+export default function SkillsToolsInterests() {
+    const { bulletPoints } = useAppContext();
+    const { certifications, skills, tools, interests } = useSkills();
+
     // Returns null if there are no items under any category of certifications / skills / tools / interests
-    if (data.certifications.items.length === 0 &&
-        data.skills.items.length === 0 &&
-        data.tools.items.length === 0 &&
-        data.interests.items.length === 0
+    if (certifications.items.length === 0 &&
+        skills.items.length === 0 &&
+        tools.items.length === 0 &&
+        interests.items.length === 0
     ) return null;
 
     return (
         <div className='sectionBottomMargin'>
             <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>
             <ul className={styles.skillsToolsInterestsList}>
-                {data.certifications.isVisible && data.certifications.items.length > 0 && (
+                {certifications.isVisible && certifications.items.length > 0 && (
                     <li className={styles[bulletPoints.main]}>
-                        <Certifications data={data.certifications.items} />
+                        <Certifications />
                     </li> 
                 )}
 
-                {data.skills.isVisible && data.skills.items.length > 0 && (
+                {skills.isVisible && skills.items.length > 0 && (
                     <li className={styles[bulletPoints.main]}>
-                        <Skills data={data.skills.items} />
+                        <Skills />
                     </li>   
                 )}
 
-                {data.tools.isVisible && data.tools.items.length > 0 && (
+                {tools.isVisible && tools.items.length > 0 && (
                     <li className={styles[bulletPoints.main]}>
-                        <Tools data={data.tools.items} />
+                        <Tools />
                     </li>
                 )}
 
-                {data.interests.isVisible && data.interests.items.length > 0 && (
+                {interests.isVisible && interests.items.length > 0 && (
                     <li className={styles[bulletPoints.main]}>
-                        <Interests data={data.interests.items} />
+                        <Interests />
                     </li> 
                 )}
             </ul>

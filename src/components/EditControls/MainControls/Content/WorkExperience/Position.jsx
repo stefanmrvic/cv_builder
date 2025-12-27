@@ -1,17 +1,21 @@
+import { useAppContext } from '../../../../../AppContext';
+
 import styles from './WorkExperience.module.css';
 
-export default function Position({data, setCVData, setIsPositionFormOpen, setPositionFormData, companyID}) {
+export default function Position({ position, setIsPositionFormOpen, setPositionFormData, companyID }) {
+    const { setCVData } = useAppContext();
+
     const handleDelete = (e) => {
         e.stopPropagation();
         
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id);
+            const position = company.positions.find(item => item.id === position.id);
             if (position === undefined) throw new Error('Position not found!');
 
-            const positionIndex = company.positions.findIndex(position => position.id === data.id);
+            const positionIndex = company.positions.findIndex(item => item.id === position.id);
             if (positionIndex === -1) throw new Error('Position index not found!');
 
             company.positions.splice(positionIndex, 1);
@@ -22,10 +26,10 @@ export default function Position({data, setCVData, setIsPositionFormOpen, setPos
         e.stopPropagation();
   
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === companyID);
+            const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(position => position.id === data.id);
+            const position = company.positions.find(item => item.id === position.id);
             if (position === undefined) throw new Error('Position not found!');
             
             position.isVisible = !position.isVisible;
@@ -35,17 +39,17 @@ export default function Position({data, setCVData, setIsPositionFormOpen, setPos
     const handleEdit = (e) => {
         e.stopPropagation();
 
-        if (!data.id) throw new Error('PositionID not found!');
+        if (!position.id) throw new Error('PositionID not found!');
 
         setPositionFormData({
-            id: data.id,
+            id: position.id,
             companyID: companyID,
-            isVisible: data.isVisible,
-            title: data.title,
-            startDate: data.startDate,
-            endDate: data.endDate,
-            currentlyEmployed: data.currentlyEmployed,
-            responsibilities: data.responsibilities
+            isVisible: position.isVisible,
+            title: position.title,
+            startDate: position.startDate,
+            endDate: position.endDate,
+            currentlyEmployed: position.currentlyEmployed,
+            responsibilities: position.responsibilities
         })
 
         setIsPositionFormOpen(true);
@@ -53,12 +57,12 @@ export default function Position({data, setCVData, setIsPositionFormOpen, setPos
 
     return (
         <div className={styles.positionHeaderContainer} onClick={handleEdit} role='button'>
-            <span className={styles.positionHeadline}>{data.title}</span>
+            <span className={styles.positionHeadline}>{position.title}</span>
 
             <div className={styles.positionHeaderBtnContainer}>
                 <button className={styles.visibilityBtn} onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
-                        {data.isVisible ? 'visibility' : 'visibility_off'}
+                        {position.isVisible ? 'visibility' : 'visibility_off'}
                     </span>
                 </button>
 

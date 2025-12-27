@@ -1,12 +1,15 @@
+import { useWorkExperience } from '../../../../AppContext.jsx';
+
 import Company from './Company.jsx'
 
 import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
-export default function WorkExperience({ data, bulletPoints }) {
+export default function WorkExperience() {
+    const { workExperience } = useWorkExperience();
     // Exits if there are no companies in experience object
-    if (!data) return null;
+    if (!cvData) return null;
     
-    const visibleCompanies = data.filter(company => company.isVisible);
+    const visibleCompanies = workExperience.filter(company => company.isVisible);
     const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
 
     // Exits if there are no visible companies
@@ -20,7 +23,6 @@ export default function WorkExperience({ data, bulletPoints }) {
                 <Company 
                     key={company.id}
                     company={company}
-                    bulletPoints={bulletPoints}
                 />
             ))}  
         </div>    

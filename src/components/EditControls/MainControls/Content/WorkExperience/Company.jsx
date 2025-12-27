@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
+import { useAppContext } from '../../../../../AppContext.jsx';
 
 import Position from './Position.jsx';
 
 import styles from './WorkExperience.module.css';
 
-export default function Company({data, setCVData, setExperienceFormData, setIsExperienceFormOpen, setPositionFormData, setIsPositionFormOpen}) {
+export default function Company({ company, setExperienceFormData, setIsExperienceFormOpen, setPositionFormData, setIsPositionFormOpen }) {
+    const { setCVData } = useAppContext();
     const [isExpanded, setIsExpanded] = useState(false);
 
     const positionsContainerRef = useRef(null);
@@ -14,10 +16,10 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
         e.stopPropagation();
         
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === data.id);
+            const company = draft.workExperience.find(item => item.id === company.id);
             if (!company) throw new Error('Company not found!');
 
-            const companyIndex = draft.workExperience.findIndex(company => company.id === data.id);
+            const companyIndex = draft.workExperience.findIndex(item => item.id === company.id);
             if (companyIndex === undefined) throw new Error('Company not found!');
 
             draft.workExperience.splice(companyIndex, 1);
@@ -28,7 +30,7 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
         e.stopPropagation();
   
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === data.id);
+            const company = draft.workExperience.find(item => item.id === company.id);
             if (!company) throw new Error('Company not found!');
             
             company.isVisible = !company.isVisible;
@@ -38,14 +40,14 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
     const handleEdit = (e) => {
         e.stopPropagation();
 
-        if (!data.id) throw new Error('CompanyID not found!');
+        if (!company.id) throw new Error('CompanyID not found!');
 
         setExperienceFormData({
-            id: data.id,
-            isVisible: data.isVisible,
-            companyName: data.companyName,
-            location: data.location,
-            positions: data.positions
+            id: company.id,
+            isVisible: company.isVisible,
+            companyName: company.companyName,
+            location: company.location,
+            positions: company.positions
         })
 
         setIsExperienceFormOpen(true);
@@ -66,7 +68,7 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
         positionsContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
     }
 
-    const positionCount = data.positions.length;
+    const positionCount = company.positions.length;
 
     return (
         <div className={styles.companyCard}>
@@ -76,13 +78,13 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
                     {positionCount > 0 && (
                         <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
                     )}
-                    <span className={`${styles.companyHeadline} ${positionCount === 0 ? styles.alone : ''}`}>{data.companyName}</span>
+                    <span className={`${styles.companyHeadline} ${positionCount === 0 ? styles.alone : ''}`}>{company.companyName}</span>
                 </div>
 
                 <div className={styles.companyHeaderBtnContainer}>
                     <button className={styles.visibilityBtn} onClick={handleVisibility}>
                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
-                            {data.isVisible ? 'visibility' : 'visibility_off'}
+                            {company.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
                     </button>
 
@@ -99,14 +101,14 @@ export default function Company({data, setCVData, setExperienceFormData, setIsEx
             {/* Show this section if there are job positions under given Company. */}
             {isExpanded && (
                 <div className={styles.positionsContainer} ref={positionsContainerRef}>
-                    {data.positions.map(position => (
+                    {company.positions.map(position => (
                         <Position
                             key={position.id}
-                            data={position}
-                            setCVData={setCVData}
+                            position={position}
                             setPositionFormData={setPositionFormData}
                             setIsPositionFormOpen={setIsPositionFormOpen}
-                            companyID={data.id}
+                            // TO-DO Refactor Company ID passing logic
+                            companyID={company.id}
                         />
                     ))}
                 </div>
