@@ -1,6 +1,13 @@
+import { useAppContext, useEducation } from '../../../../../AppContext';
+
 import styles from './Education.module.css';
 
-export default function EducationForm({data, setCVData, isNew, setIsNew, isFormOpen, setIsFormOpen, formData}) {
+export default function EducationForm({ isNew, setIsNew, isFormOpen, setIsFormOpen, formData }) {
+    const { setCVData } = useAppContext();
+    const education = useEducation();
+    
+    const educationItem = education.find(item => item.id === formData.id);
+
     const handleDeleteItem = () => {
         if (!formData.id) throw new Error('formData.id is undefined!');
 
@@ -80,8 +87,6 @@ export default function EducationForm({data, setCVData, isNew, setIsNew, isFormO
         setIsFormOpen(false);
     }
 
-    const item = data.find(item => item.id === formData.id);
-
     return (
         <div className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isFormOpen ? styles.formOpened : ''}`}>
@@ -95,22 +100,22 @@ export default function EducationForm({data, setCVData, isNew, setIsNew, isFormO
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="school">School</label>
-                    <input type="text" name="school" id="school" onChange={handleSchoolName} value={item?.schoolName || ''} placeholder="Enter School / University" />
+                    <input type="text" name="school" id="school" onChange={handleSchoolName} value={educationItem?.schoolName || ''} placeholder="Enter School / University" />
                 </div>
 
                 <div className={styles.formGroup}>
                     <label htmlFor="degree">Degree</label>
-                    <input type="text" name="degree" id="degree" onChange={handleQualification} value={item?.qualification || ''} placeholder="Enter Degree / Field of study" />
+                    <input type="text" name="degree" id="degree" onChange={handleQualification} value={educationItem?.qualification || ''} placeholder="Enter Degree / Field of study" />
                 </div>
                                 
                 <div className={styles.formGroup}>
                     <label htmlFor="graduationDate">Graduation Date</label>
-                    <input type="text" name="graduationDate" id="graduationDate" onChange={handleGraduationDate} value={item?.graduationDate || ''} placeholder="Enter Graduation Date" />
+                    <input type="text" name="graduationDate" id="graduationDate" onChange={handleGraduationDate} value={educationItem?.graduationDate || ''} placeholder="Enter Graduation Date" />
                 </div>
 
                 <div className={styles.formGroup}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" name="location" id="location" onChange={handleSchoolLocation} value={item?.schoolLocation || ''} placeholder="Enter Location" />
+                    <input type="text" name="location" id="location" onChange={handleSchoolLocation} value={educationItem?.schoolLocation || ''} placeholder="Enter Location" />
                 </div>
 
             </form>

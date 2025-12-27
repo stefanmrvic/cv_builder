@@ -222,6 +222,7 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
                                     key={point.id} 
                                     index={index} 
                                     point={point}
+                                    // To-DO Refactor Company/Position ID passing logic
                                     companyID={companyID}
                                     positionID={position.id}
                                     isNewPoint={isNew}

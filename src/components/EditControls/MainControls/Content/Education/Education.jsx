@@ -1,11 +1,15 @@
 import { useState, useRef } from 'react';
+import { useAppContext, useEducation } from '../../../../../AppContext.jsx';
 
 import EducationItem from './EducationItem.jsx';
 import EducationForm from './EducationForm.jsx';
 
 import styles from './Education.module.css';
 
-export default function Education({data, setCVData}) {
+export default function Education() {
+    const { setCVData } = useAppContext();
+    const education = useEducation();
+
     const [isExpanded, setIsExpanded] = useState(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isNew, setIsNew] = useState(false)
@@ -31,21 +35,6 @@ export default function Education({data, setCVData}) {
     const handleCloseAnimation = () => {
         educationItemContainerRef.current.setAttribute("class", `${styles.educationItemContainer} ${styles.closing}`)
         educationItemContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
-    }
-
-    const populateForm = (id) => {
-        const item = data.find(item => item.id === id)
-
-        if (!item) return;
-
-        setFormData({
-            id: item.id,
-            isVisible: item.isVisibile,
-            schoolName: item.schoolName,
-            graduationDate: item.graduationDate,
-            qualification: item.qualification,
-            schoolLocation: item.schoolLocation
-        })
     }
 
     const handleAddBtnClick = () => {
@@ -78,8 +67,6 @@ export default function Education({data, setCVData}) {
 
             {(isExpanded && isFormOpen) && (
                 <EducationForm 
-                    data={data} 
-                    setCVData={setCVData} 
                     isNew={isNew}
                     setIsNew={setIsNew}
                     isFormOpen={isFormOpen}
@@ -94,17 +81,13 @@ export default function Education({data, setCVData}) {
             {isExpanded && (
                 // Hides the button elements if the form is opened
                 <div className={`${styles.educationItemContainer} ${isFormOpen ? styles.hidden : ''}`} ref={educationItemContainerRef}>
-                    {data?.map(item => {
+                    {education?.map(item => {
                         return <EducationItem 
                             key={item.id}
-                            itemID={item.id}
+                            educationID={item.id}
                             isVisible={item.isVisible}
-                            onClick={() => {
-                                populateForm(item.id)
-                                setIsFormOpen(true)}
-                            }
-                            setCVData={setCVData}
-                            education={item.schoolName}
+                            setIsFormOpen={setIsFormOpen}
+                            setFormData={setFormData}    
                         />
                     })}
 

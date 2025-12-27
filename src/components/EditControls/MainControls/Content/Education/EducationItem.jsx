@@ -1,37 +1,61 @@
+import { useAppContext, useEducation } from '../../../../../AppContext';
+
 import styles from './Education.module.css';
 
-export default function EducationItem({itemID, isVisible, setCVData, onClick, education}) {
+export default function EducationItem({ educationID, isVisible, setIsFormOpen, setFormData }) {
+    const { cvData, setCVData } = useAppContext();
+    const education = useEducation();
+
+    const populateForm = (id) => {
+        const educationItem = education.find(item => item.id === id)
+
+        if (!educationItem) return;
+
+        setFormData({
+            id: educationItem.id,
+            isVisible: educationItem.isVisibile,
+            schoolName: educationItem.schoolName,
+            graduationDate: educationItem.graduationDate,
+            qualification: educationItem.qualification,
+            schoolLocation: educationItem.schoolLocation
+        })
+
+        setIsFormOpen(true);
+    }
+
     const handleDeleteItem = (e) => {
         e.stopPropagation();
 
-        if (!itemID) throw new Error('itemID is undefined!');
+        if (!educationID) throw new Error('educationID is undefined!');
 
         setCVData(draft => {
-            const itemIndex = draft.education.findIndex(item => item.id === itemID);
+            const educationItemIndex = draft.education.findIndex(item => item.id === educationID);
 
-            if (itemIndex === undefined) throw new Error('Item not found!');
+            if (educationItemIndex === undefined) throw new Error('Item not found!');
 
-            draft.education.splice(itemIndex, 1);
+            draft.education.splice(educationItemIndex, 1);
         })
     }
 
     const handleVisibility = (e) => {
         e.stopPropagation();
 
-        if (!itemID) throw new Error('itemID is undefined!');
+        if (!educationID) throw new Error('educationID is undefined!');
 
        setCVData(draft => {
-            const item = draft.education.find(item => item.id === itemID);
+            const educationItem = draft.education.find(item => item.id === educationID);
 
-            if (!item) throw new Error('Item not found!');
+            if (!educationItem) throw new Error('educationItem not found!');
 
-            item.isVisible = !item.isVisible;
+            educationItem.isVisible = !educationItem.isVisible;
        })
     }
 
+    const schoolName = cvData.education.find(item => item.id === educationID)?.schoolName;
+
     return (
-        <div className={styles.educationItem} onClick={onClick} role='button'>
-            <span className={styles.educationItemHeadline}>{education}</span>
+        <div className={styles.educationItem} onClick={() => populateForm(educationID)} role='button'>
+            <span className={styles.educationItemHeadline}>{schoolName}</span>
             <div className={styles.educationBtnContainer}>
                 <button onClick={handleVisibility}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>

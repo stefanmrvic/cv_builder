@@ -11,7 +11,7 @@ export default function Content() {
             <PersonalDetails />
             <WorkExperience />
             <SkillsToolsInterests data={cvData.skillsToolsInterests} setCVData={setCVData} />
-            <Education data={cvData.education} setCVData={setCVData} />
+            <Education />
         </div>
     )
 }
