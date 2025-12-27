@@ -11,7 +11,7 @@ import Education from './Education/Education.jsx'
 import styles from './CVPreview.module.css'
 
 export default function CVPreview() {
-    const { order } = useAppContext();
+    const { cvData, order, bulletPoints } = useAppContext();
 
     return (
       <div className={styles.cvContainer}>
@@ -21,7 +21,9 @@ export default function CVPreview() {
         <PDFDownloadLink 
           key={Date.now()} 
           className={styles.pdfDownloadBtn} 
-          document={<MyDocument />} 
+          // Have to pass down the props because Context API is not working with react-pdf library... (╯°□°)╯︵ ┻━┻
+          // GitHUb issue is still open: https://github.com/diegomura/react-pdf/issues/522
+          document={<MyDocument data={cvData} order={order} bulletPoints={bulletPoints} />} 
           fileName='luckyCV.pdf'
         >
           Download PDF

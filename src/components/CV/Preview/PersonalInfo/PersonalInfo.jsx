@@ -1,31 +1,35 @@
-import { useAppContext } from '../../../../AppContext';
+import { usePersonalInfo } from '../../../../AppContext';
 
 import styles from './PersonalInfo.module.css'
 
 export default function PersonalInfo() {
-    const { cvData } = useAppContext();
-    const personalInfo = [];
+    const personalInfo = usePersonalInfo();
+    const nonEmptyInfoFields = []
 
-    for (const prop in cvData) {
-        if((cvData[prop].trim().length > 0) && 
+    // It iterates over personalInfo object inside of cvData object and checks which fields are empty
+    // It pushes non-empty fields into the nonEmptyInfoFields array, so that they can be mapped over in order to put separator icon between them
+    for (const prop in personalInfo) {
+        if((personalInfo[prop].trim().length > 0) && 
             (prop !== 'fullName' && prop !== 'linkedin')) {
-                personalInfo.push(cvData[prop]);
+                nonEmptyInfoFields.push(personalInfo[prop]);
         }
     }
 
-    const lastInfoItem = personalInfo.length - 1;
+    const lastInfoItem = nonEmptyInfoFields.length - 1;
 
     return (
         <div className={`${styles.personalInfo} sectionBottomMargin`}>
-            <h1 className={styles.fullName}>{cvData.fullName}</h1>
+            <h1 className={styles.fullName}>{personalInfo.fullName}</h1>
 
             <ul className={styles.details}>
-                {personalInfo.map((item, index) => {
+                {/* It maps over the fields which ar enot empty and places separator icon between them. */}
+                {nonEmptyInfoFields.map((item, index) => {
                     return <li key={index}><p>{item} {index !== lastInfoItem ? " ❖ " : ''} </p></li>
                 })}
 
-                {cvData.linkedin.trim() && 
-                    <li>❖ <a href={cvData.linkedin} target='_blank'>LN</a></li>
+                {/* If the LinkedIn field is not empty, it will create a special <a> element for it, with link to the LinkedIn profile. */}
+                {personalInfo.linkedin.trim() && 
+                    <li>❖ <a href={personalInfo.linkedin} target='_blank'>LN</a></li>
                 }
             </ul>
         </div>

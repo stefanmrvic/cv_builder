@@ -1,13 +1,10 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { useWorkExperience } from '../../../../AppContext.jsx';
 
 import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
 import Company from './PDFCompany.jsx';
 
-export default function WorkExperience({ wrap }) {
-    const { workExperience } = useWorkExperience();
-
+export default function WorkExperience({ workExperience, bulletPoints, wrap }) {
     // Exits if there are no companies under experience object
     if (!workExperience) return null;
 
@@ -31,6 +28,7 @@ export default function WorkExperience({ wrap }) {
                     <Company
                         key={company.id}
                         company={company}
+                        bulletPoints={bulletPoints}
                     />
                 ))}  
             </View>

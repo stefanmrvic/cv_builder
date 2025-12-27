@@ -1,6 +1,10 @@
+import { useAppContext } from '../../../../../AppContext';
+
 import styles from './BulletPoints.module.css';
 
-export default function BulletPoints({bulletPoints, setBulletPoints}) {
+export default function BulletPoints() {
+    const { bulletPoints, setBulletPoints } = useAppContext();
+
     const handleMainBulletPointChange = (e) => {
         const bulletPoint = e.target.closest(`.${styles.bulletPointsMainBtn}`);
         if (!bulletPoint) throw new Error('BulletPoint ID not found!');

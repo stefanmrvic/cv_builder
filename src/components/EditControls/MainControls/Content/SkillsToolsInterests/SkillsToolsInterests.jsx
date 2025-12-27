@@ -53,8 +53,8 @@ export default function SkillsToolsInterests() {
 
     return (
         <div className={styles.skillsToolsInterestsContainer}>
-             {/* Only displays Skill,Tools & Interests header if none of the forms are open. */}
-            {(!isSkillsFormOpen && !isToolsFormOpen && !isInterestsFormOpen) && (
+             {/* Only displays Certifications & Skills or Skills,Tools & Interests header if none of the forms are open. */}
+            {(!isCertificationsFormOpen && !isSkillsFormOpen && !isToolsFormOpen && !isInterestsFormOpen) && (
                 <button className={`${styles.skillsToolsInterestsHeader} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                     <span className={`${styles.btnIcon} material-icons`}>settings</span>
                     <span className={styles.skillsToolsInterestsHeadline}>Skills, Tools & Interests</span>

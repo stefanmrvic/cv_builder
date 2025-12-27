@@ -1,9 +1,6 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { useEducation } from '../../../../AppContext';
 
-export default function Education({ wrap }) {
-    const { education } = useEducation();
-
+export default function Education({ education, wrap }) {
     // Exits if there are no items under education object
     if (!education) return null;
 

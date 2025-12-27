@@ -15,10 +15,10 @@ export default function Company({ company }) {
             {sortedPositions.map(position => (
                 <Position 
                     key={position.id}
+                    position={position} 
                     isFirst={position === firstVisiblePosition} 
                     companyName={company.companyName}
                     location={company.location}
-                    position={position} 
                 />
             ))}
         </div>

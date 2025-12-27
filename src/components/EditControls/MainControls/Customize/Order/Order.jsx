@@ -1,8 +1,12 @@
+import { useAppContext } from '../../../../../AppContext.jsx';
+
 import OrderItem from './OrderItem.jsx';
 
 import styles from './Order.module.css';
 
-export default function Order({order, setOrder}) {
+export default function Order() {
+    const { order } = useAppContext();
+
     return (
         <div className={styles.orderContainer}>
             <div className={styles.orderHeaderContainer}>
@@ -16,8 +20,6 @@ export default function Order({order, setOrder}) {
                         key={item.id} 
                         data={item} 
                         index={index}
-                        order={order}
-                        setOrder={setOrder} 
                         isFirst={index === 0}
                         isLast={index === order.length - 1}
                     />

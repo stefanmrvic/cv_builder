@@ -4,7 +4,7 @@ import { sortPositionsByEmploymentDate } from '../../../../utils/sortFunctions.j
 
 import Position from './PDFPosition.jsx';
 
-export default function Company({ company }) {
+export default function Company({ company, bulletPoints }) {
     const visiblePositions = company.positions.filter(company => company.isVisible);
     const sortedPositions = visiblePositions.sort(sortPositionsByEmploymentDate);
 
@@ -19,6 +19,7 @@ export default function Company({ company }) {
                     companyName={company.companyName}
                     location={company.location}
                     position={position} 
+                    bulletPoints={bulletPoints}
                 />
             ))}
         </View>

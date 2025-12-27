@@ -1,6 +1,10 @@
+import { useAppContext } from '../../../../../AppContext';
+
 import styles from './Order.module.css';
 
-export default function OrderItem({data, setCVData, index, order, setOrder, isFirst, isLast}) {
+export default function OrderItem({ data, index, isFirst, isLast }) {
+    const { order, setOrder } = useAppContext();
+    
     const handleOrderShiftUp = () => {
         if (index === 0) return;
 

@@ -5,9 +5,9 @@ import Company from './Company.jsx'
 import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.js';
 
 export default function WorkExperience() {
-    const { workExperience } = useWorkExperience();
+    const workExperience = useWorkExperience();
     // Exits if there are no companies in experience object
-    if (!cvData) return null;
+    if (!workExperience) return null;
     
     const visibleCompanies = workExperience.filter(company => company.isVisible);
     const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);

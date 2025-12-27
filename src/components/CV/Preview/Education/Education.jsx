@@ -5,7 +5,7 @@ import EducationItem from './EducationItem.jsx'
 import styles from './Education.module.css';
 
 export default function Education() {
-    const { education } = useEducation();
+    const education = useEducation();
 
     // Exits if there are no items in education object
     if (!education) return null;
@@ -20,7 +20,7 @@ export default function Education() {
             <h1 className='headline'>EDUCATION</h1>
 
             <div className={styles.educationContainer}>
-                {data
+                {education
                     .filter(item => item.isVisible)
                     .map(item => {
                         return <EducationItem 

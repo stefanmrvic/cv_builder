@@ -1,11 +1,9 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { useAppContext, useSkills } from '../../../../AppContext.jsx';
 
 import BulletIcon from '../PDFShapes.jsx';
 
-export default function SkillsToolsInterests({ wrap }) {
-    const { bulletPoints } = useAppContext();
-    const { certifications, skills, tools, interests } = useSkills();
+export default function SkillsToolsInterests({ skillsToolsInterests, bulletPoints, wrap }) {
+    const { certifications, skills, tools, interests } = skillsToolsInterests;
 
     // Exits if there are no items under skillsToolsInterests object
     if (!certifications && !skills && !tools && !interests) return null;

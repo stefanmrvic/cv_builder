@@ -12,13 +12,13 @@ export default function Point({ point }) {
             <p className={styles.mainPointPara}>{point.point}</p>
             
             {point.subPoints.length > 0 && (
-                point.subPoints
-                    .filter(subPoint => subPoint.isVisible)
-                    .map(subPoint => ( 
-                        <ul className={`${styles.subPoints} ${styles[bulletPoints.sub]}`}>
+                <ul className={`${styles.subPoints} ${styles[bulletPoints.sub]}`}>
+                    {point.subPoints
+                        .filter(subPoint => subPoint.isVisible)
+                        .map(subPoint => ( 
                             <SubPoint key={subPoint.id} subPoint={subPoint} />
-                        </ul>
-                    ))
+                        ))}
+                </ul>
             )} 
         </li>
     )
