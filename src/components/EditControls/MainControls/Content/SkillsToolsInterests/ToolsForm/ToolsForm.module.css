@@ -208,7 +208,7 @@ input.toolName {
     background: none;
 }
 
-.invisibleSkillName {
+.invisibleToolName {
     font-size: 13.5px;
     visibility: hidden;
     position: absolute;

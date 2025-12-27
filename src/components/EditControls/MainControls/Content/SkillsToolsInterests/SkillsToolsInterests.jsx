@@ -1,4 +1,8 @@
 import { useState, useRef } from 'react';
+import { useSkills } from '../../../../../AppContext.jsx';
+
+import Certifications from './Certifications.jsx';
+import CertificationsForm from './CertificationsForm/CertificationsForm.jsx';
 
 import Skills from './Skills.jsx';
 import SkillsForm from './SkillsForm/SkillsForm.jsx';
@@ -11,22 +15,28 @@ import InterestsForm from './InterestsForm/InterestsForm.jsx';
 
 import styles from './SkillsToolsInterests.module.css';
 
-export default function SkillsToolsInterests({data, setCVData}) {
+export default function SkillsToolsInterests() {
+    const skillsToolsInterests = useSkills();
+
     // State for Skills,Tools & Interests Header
     const [isExpanded, setIsExpanded] = useState(false);
 
+    const [isCertificationsFormOpen, setIsCertificationsFormOpen] = useState(false);
     const [isSkillsFormOpen, setIsSkillsFormOpen] = useState(false);
     const [isToolsFormOpen, setIsToolsFormOpen] = useState(false);
     const [isInterestsFormOpen, setIsInterestsFormOpen] = useState(false);
 
+    // State for tracking the original state of the Certifications database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const [certificationsFormData, setCertificationsFormData] = useState(skillsToolsInterests.certifications.items)
+
     // State for tracking the original state of the Skills database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [skillsFormData, setSkillsFormData] = useState(data.skills.items)
+    const [skillsFormData, setSkillsFormData] = useState(skillsToolsInterests.skills.items)
 
     // State for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [toolsFormData, setToolsFormData] = useState(data.tools.items)
+    const [toolsFormData, setToolsFormData] = useState(skillsToolsInterests.tools.items)
 
     // State for tracking the original state of the Interests database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [interestsFormData, setInterestsFormData] = useState(data.interests.items)
+    const [interestsFormData, setInterestsFormData] = useState(skillsToolsInterests.interests.items)
 
     const skillsToolsInterestsCardContainerRef = useRef(null);
 
@@ -90,19 +100,19 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
             {isExpanded && (
                 <div className={`${styles.skillsToolsInterestsCardContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsCardContainerRef}>
+                    <Certifications
+                        setIsCertificationsFormOpen={setIsCertificationsFormOpen}
+                    />
+
                     <Skills
-                        data={data.skills}
-                        setCVData={setCVData} 
                         setIsSkillsFormOpen={setIsSkillsFormOpen}
                     />
+
                     <Tools
-                        data={data.tools}
-                        setCVData={setCVData} 
                         setIsToolsFormOpen={setIsToolsFormOpen}
                     />
+                    
                     <Interests
-                        data={data.interests}
-                        setCVData={setCVData} 
                         setIsInterestsFormOpen={setIsInterestsFormOpen}
                     />
                 </div>

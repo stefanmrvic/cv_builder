@@ -1,5 +1,5 @@
 /* ============================================
-   SKILLS FORM STYLES
+   CERTIFICATIONS FORM STYLES
    ============================================ */
 .formContainer {
     border-radius: 12px;
@@ -19,7 +19,7 @@
         margin-bottom: 7px;
     }
 
-    .skillInput {
+    .certificationInput {
         font-size: 13.3px;
         color: var(--input-color);
         background-color: var(--main-bg-color);
@@ -30,8 +30,8 @@
         line-height: normal;
     } 
 
-    .skillInput:focus,
-    .skillInput:focus-visible {
+    .certificationInput:focus,
+    .certificationInput:focus-visible {
         border-color: #3b83f6;
         box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
         outline: none;
@@ -73,7 +73,7 @@ button.closeBtn:hover {
     color: #000000;
 }
 
-.addSkillFormGroup {
+.addCertificationFormGroup {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -81,13 +81,13 @@ button.closeBtn:hover {
     padding: 15px 22px 0 22px;
 }
 
-.addSkillFormGroup > label {
+.addCertificationFormGroup > label {
     color: var(--label-color);
     font-size: 15px;
     flex-basis: 100%;
 }
 
-.addSkillBtn {
+.addCertificationBtn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -105,24 +105,24 @@ button.closeBtn:hover {
     transition: all .3s;
 }
 
-.addSkillBtn:hover {
+.addCertificationBtn:hover {
     color: #3b82f6;
     border-color: #3b82f6;
     background: #eff6ff;
 }
 
-span.addSkillBtnIcon {
+span.addCertificationBtnIcon {
     font-size: 22px;
 }
 
-.skillsContainer {
+.certificationsContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     padding: 0 22px 15px 22px;
 }
 
-.noSkillsFoundMsg {
+.noCertificationsFoundMsg {
     color: #9ca3af;
     font-size: 14px;
     padding: 42px 31px 42px 24px;
@@ -183,9 +183,9 @@ span.addSkillBtnIcon {
 }
 
 /* ============================================
-   SKILL STYLES
+   CERTIFICATION STYLES
    ============================================ */
-.skillTag {
+.certificationTag {
     display: inline-flex;
     align-items: center;
     border: 1px solid #d1d5db;
@@ -195,20 +195,20 @@ span.addSkillBtnIcon {
     transition: all .3s;
 }
 
-.skillTag.active {
+.certificationTag.active {
     border-color: #3b83f6;
     box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
     outline: none;
 }
 
-input.skillName {
+input.certificationName {
     font-size: 13.5px;
     border: none;
     outline: none;
     background: none;
 }
 
-.invisibleSkillName {
+.invisibleCertificationName {
     font-size: 13.5px;
     visibility: hidden;
     position: absolute;
@@ -216,19 +216,19 @@ input.skillName {
     left: 0;
 }
 
-input.skillName {
+input.certificationName {
     color: #111827;
     padding: 7px 5px 9px 15px;
 }
 
-input.skillName:focus,
-input.skillName:focus-within {
+input.certificationName:focus,
+input.certificationName:focus-within {
     outline: none;
     border: none;
     background: transparent;
 }
 
-.skillDeleteBtn {
+.certificationDeleteBtn {
     background: transparent;
     margin-bottom: -3px;
     padding: 0 6px 0 0;
@@ -239,6 +239,6 @@ span.closeBtnIcon {
     color: #9ca3af;
 }
 
-.skillDeleteBtn:hover span.closeBtnIcon {
+.certificationDeleteBtn:hover span.closeBtnIcon {
     color: red;
 }

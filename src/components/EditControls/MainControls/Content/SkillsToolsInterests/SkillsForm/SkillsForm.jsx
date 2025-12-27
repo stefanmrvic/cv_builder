@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useSkills } from '../../../../../../AppContext.jsx';
+import { useAppContext, useSkills } from '../../../../../../AppContext.jsx';
 
 import Skill from './Skill.jsx';
 
 import styles from './SkillsForm.module.css';
 
 export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkillsFormOpen, setIsSkillsFormOpen }) {
-    const { setCVData } = useSkills();
+    const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
     const skills = skillsToolsInterests.skills.items;

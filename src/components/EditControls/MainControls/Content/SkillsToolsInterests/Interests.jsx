@@ -1,7 +1,14 @@
+import { useAppContext, useSkills } from '../../../../../AppContext';
+
 import styles from './SkillsToolsInterests.module.css';
 
-export default function Interests({data, setCVData, setIsInterestsFormOpen}) {
-        const handleVisibility = (e) => {
+export default function Interests({ setIsInterestsFormOpen }) {
+    const { setCVData } = useAppContext();
+    
+    const skillsToolsInterests = useSkills();
+    const interests = skillsToolsInterests.interests;
+
+    const handleVisibility = (e) => {
         e.stopPropagation();
   
         setCVData(draft => {
@@ -18,7 +25,7 @@ export default function Interests({data, setCVData, setIsInterestsFormOpen}) {
 
             <button className={styles.interestsVisibilityBtn} onClick={(handleVisibility)}>
                 <span className={`${styles.interestsVisibilityBtnIcon} material-symbols-outlined`}>
-                    {data.isVisible ? 'visibility' : 'visibility_off'}
+                    {interests.isVisible ? 'visibility' : 'visibility_off'}
                 </span>
             </button>
         </div>

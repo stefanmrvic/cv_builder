@@ -10,7 +10,7 @@ export default function Content() {
         <div className={styles.content}>
             <PersonalDetails />
             <WorkExperience />
-            <SkillsToolsInterests data={cvData.skillsToolsInterests} setCVData={setCVData} />
+            <SkillsToolsInterests />
             <Education />
         </div>
     )

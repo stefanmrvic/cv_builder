@@ -208,7 +208,7 @@ input.interestName {
     background: none;
 }
 
-.invisibleSkillName {
+.invisibleInterestName {
     color: transparent;
     font-size: 13.5px;
     visibility: hidden;

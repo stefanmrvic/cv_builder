@@ -1,93 +1,95 @@
 import { useState } from 'react';
+import { useAppContext, useSkills } from '../../../../../../AppContext.jsx';
 
-import Skill from './Certification.jsx';
+import Certification from './Certification.jsx';
 
-import styles from './SkillsForm.module.css';
+import styles from './CertificationsForm.module.css';
 
-export default function SkillsForm({data, setCVData, skills, setSkills, isSkillsFormOpen, setIsSkillsFormOpen}) {
-    const [skillInput, setSkillInput] = useState('');
+export default function CertificationsForm({ certificationsFormData, setCertificationsFormData, isCertificationsFormOpen, setIsCertificationsFormOpen }) {
+    const { setCVData } = useAppContext();
+    
+    const skillsToolsInterests = useSkills();
+    const certifications = skillsToolsInterests.certifications.items;
 
-    const handleSkillInput = (e) => {
-        setSkillInput(e.target.value);
+    const [certificationInput, setCertificationInput] = useState('');
+
+    const handleCertificationInput = (e) => {
+        setCertificationInput(e.target.value);
     }
 
     const revertChanges = () => {
-        if (!skillsFormData) throw new Error('skillsFormData is undefined!');
+        if (!certificationsFormData) throw new Error('certificationsFormData is undefined!');
         
         setCVData(draft => {
-            const skills = draft.skillsToolsInterests.skills;
-            if (skills === undefined) throw new Error('Skills not found!');
+            const certifications = draft.skillsToolsInterests.certifications;
+            if (certifications === undefined) throw new Error('Certifications not found!');
 
-            skills.items = skillsFormData;
+            certifications.items = certificationsFormData;
         });
 
-        setIsSkillsFormOpen(false);
+        setIsCertificationsFormOpen(false);
     }
 
-    const handleAddSkill = (e) => {
+    const handleAddCertification = (e) => {
         // Stop default form submit behavior
         e.preventDefault();
 
-        if (!data) throw new Error('Skills data not found!');
+        if (!certifications) throw new Error('Certifications data not found!');
 
         setCVData(draft => {
-            const newSkill = {
+            const newCertification = {
                 id: crypto.randomUUID(),
-                name: skillInput
+                name: certificationInput
             }
 
-            // Prevents adding empty skills
-            if (newSkill.name.trim()) {
-                draft.skillsToolsInterests.skills.items.push(newSkill);
+            // Prevents adding empty certification
+            if (newCertification.name.trim()) {
+                draft.skillsToolsInterests.certifications.items.push(newCertification);
             }
         });
 
-        setSkillInput('');
+        setCertificationInput('');
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(!data) throw new Error('Skills not found!');
+        if(!certifications) throw new Error('Certifications not found!');
 
-        setSkillsFormData(data);
-        setIsSkillsFormOpen(false);
+        setCertificationsFormData(certifications);
+        setIsCertificationsFormOpen(false);
     }
 
     return (
         <div className={styles.formContainer}>
-            <div className={`${styles.formHeaderContainer} ${isSkillsFormOpen ? styles.formOpened : ''}`}>
+            <div className={`${styles.formHeaderContainer} ${isCertificationsFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
-                <span className={styles.formHeadline}>Add Skills</span>
+                <span className={styles.formHeadline}>Add Certifications</span>
                 <button className={`${styles.closeBtn} material-symbols-outlined`} onClick={revertChanges}>close_small</button>
             </div>
 
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
-                <div className={styles.addSkillFormGroup}>
-                    <label htmlFor="title">Skills</label>
-                    <input className={styles.skillInput} autoFocus type="text" name="title" id="title" onChange={handleSkillInput} value={skillInput} placeholder="Enter a skill..." />
-                    <button className={styles.addSkillBtn} onClick={handleAddSkill}>
-                        <span className={`${styles.addSkillBtnIcon} material-symbols-outlined`}>add</span>
-                        <span className={styles.addSkillBtnText}>Add</span>
+                <div className={styles.addCertificationFormGroup}>
+                    <label htmlFor="title">Certifications</label>
+                    <input className={styles.certificationInput} autoFocus type="text" name="title" id="title" onChange={handleCertificationInput} value={certificationInput} placeholder="Enter a certification..." />
+                    <button className={styles.addCertificationBtn} onClick={handleAddCertification}>
+                        <span className={`${styles.addCertificationBtnIcon} material-symbols-outlined`}>add</span>
+                        <span className={styles.addCertificationBtnText}>Add</span>
                     </button>
                 </div>
 
-                <div className={styles.skillsContainer}>
-                    {/* Checks if there are items under Skill object. */}
-                    {data.length > 0 && (
-                        data.map((item, index) => ( 
-                            <Skill 
-                                key={item.id} 
-                                data={item} 
-                                setCVData={setCVData} 
-                            />
+                <div className={styles.certificationsContainer}>
+                    {/* Checks if there are items under Certifications object. */}
+                    {certifications.length > 0 && (
+                        certifications.map(item => ( 
+                            <Certification key={item.id} certification={item} />
                         ))
                     )}
 
-                    {/* Shows msg to indicate that there are no items under Skill object. */}
-                    {data.length === 0 && (
-                        <span className={styles.noSkillsFoundMsg}>
-                            No skills added yet. Type a skill and click "Add" to get started.
+                    {/* Shows msg to indicate that there are no items under Certifications object. */}
+                    {certifications.length === 0 && (
+                        <span className={styles.noCertificationsFoundMsg}>
+                            No certifications added yet. Type a certification and click "Add" to get started.
                         </span>
                     )}
                 </div>
