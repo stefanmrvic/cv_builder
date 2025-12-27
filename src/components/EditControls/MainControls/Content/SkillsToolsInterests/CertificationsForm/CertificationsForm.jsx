@@ -1,16 +1,10 @@
 import { useState } from 'react';
-import { useSkills } from '../../../../../../AppContext.jsx';
 
-import Skill from './Skill.jsx';
+import Skill from './Certification.jsx';
 
 import styles from './SkillsForm.module.css';
 
-export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkillsFormOpen, setIsSkillsFormOpen }) {
-    const { setCVData } = useSkills();
-    
-    const skillsToolsInterests = useSkills();
-    const skills = skillsToolsInterests.skills.items;
-
+export default function SkillsForm({data, setCVData, skills, setSkills, isSkillsFormOpen, setIsSkillsFormOpen}) {
     const [skillInput, setSkillInput] = useState('');
 
     const handleSkillInput = (e) => {
@@ -34,7 +28,7 @@ export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkills
         // Stop default form submit behavior
         e.preventDefault();
 
-        if (!skills) throw new Error('Skills data not found!');
+        if (!data) throw new Error('Skills data not found!');
 
         setCVData(draft => {
             const newSkill = {
@@ -54,9 +48,9 @@ export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkills
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(!skills) throw new Error('Skills not found!');
+        if(!data) throw new Error('Skills not found!');
 
-        setSkillsFormData(skills);
+        setSkillsFormData(data);
         setIsSkillsFormOpen(false);
     }
 
@@ -80,14 +74,18 @@ export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkills
 
                 <div className={styles.skillsContainer}>
                     {/* Checks if there are items under Skill object. */}
-                    {skills.length > 0 && (
-                        skills.map(item => ( 
-                            <Skill key={item.id} skill={item} />
+                    {data.length > 0 && (
+                        data.map((item, index) => ( 
+                            <Skill 
+                                key={item.id} 
+                                data={item} 
+                                setCVData={setCVData} 
+                            />
                         ))
                     )}
 
                     {/* Shows msg to indicate that there are no items under Skill object. */}
-                    {skills.length === 0 && (
+                    {data.length === 0 && (
                         <span className={styles.noSkillsFoundMsg}>
                             No skills added yet. Type a skill and click "Add" to get started.
                         </span>

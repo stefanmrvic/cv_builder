@@ -1,0 +1,244 @@
+/* ============================================
+   SKILLS FORM STYLES
+   ============================================ */
+.formContainer {
+    border-radius: 12px;
+    background-color: var(--secondary-bg-color);
+}
+
+.formContainer input {
+    background-color: var(--secondary-bg-color);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    
+    label {
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    .skillInput {
+        font-size: 13.3px;
+        color: var(--input-color);
+        background-color: var(--main-bg-color);
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        padding: 10px;
+        transition: border .25s, box-shadow .25s;
+        line-height: normal;
+    } 
+
+    .skillInput:focus,
+    .skillInput:focus-visible {
+        border-color: #3b83f6;
+        box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
+        outline: none;
+    }
+}
+
+.formHeaderContainer {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    padding: 28px 24px 26px 24px;
+}
+
+.formHeaderContainer.formOpened {
+    margin-bottom: -5px;
+}
+
+span.formHeaderIcon {
+    font-size: 28px;
+    font-variation-settings:
+    'FILL' 1;
+    margin-top: -1px;
+}
+
+.formHeadline {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button.closeBtn {
+    color: #6b7280;
+    font-size: 28px;
+    padding: 0;
+    margin: -4px 0 -6px auto;
+    transition: color .11s ease-in-out;
+}
+
+button.closeBtn:hover {
+    color: #000000;
+}
+
+.addSkillFormGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding: 15px 22px 0 22px;
+}
+
+.addSkillFormGroup > label {
+    color: var(--label-color);
+    font-size: 15px;
+    flex-basis: 100%;
+}
+
+.addSkillBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+    height: 39px;
+    padding: 6px 16px 6px 11px;
+    margin-top: 1px;
+    background-color: var(--main-bg-color);
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.addSkillBtn:hover {
+    color: #3b82f6;
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+span.addSkillBtnIcon {
+    font-size: 22px;
+}
+
+.skillsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 22px 15px 22px;
+}
+
+.noSkillsFoundMsg {
+    color: #9ca3af;
+    font-size: 14px;
+    padding: 42px 31px 42px 24px;
+    text-align: center;
+    border: 2px dashed #e5e7eb;
+    border-radius: 6px;
+}
+
+.formBtnContainer {
+    display: flex;
+    justify-content: flex-start;
+    padding: 23px;
+    border-top: 1px solid #e5e7eb;
+    background: #fafafa;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.formBtnContainer > button {
+    max-width: 92px;
+}
+
+.formBtnCancel {
+    height: 39px;
+    width: 87px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 13px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnCancel:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.formBtnSave {
+    height: 38px;
+    width: 87px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    background: #374151;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.formBtnSave:hover {
+    background: #1f2937;
+    border-color: #1f2937;
+}
+
+/* ============================================
+   SKILL STYLES
+   ============================================ */
+.skillTag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.skillTag.active {
+    border-color: #3b83f6;
+    box-shadow: 0 3px 15px rgba(59, 131, 246, .2);
+    outline: none;
+}
+
+input.skillName {
+    font-size: 13.5px;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.invisibleSkillName {
+    font-size: 13.5px;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+input.skillName {
+    color: #111827;
+    padding: 7px 5px 9px 15px;
+}
+
+input.skillName:focus,
+input.skillName:focus-within {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.skillDeleteBtn {
+    background: transparent;
+    margin-bottom: -3px;
+    padding: 0 6px 0 0;
+}
+
+span.closeBtnIcon {
+    font-size: 20px;
+    color: #9ca3af;
+}
+
+.skillDeleteBtn:hover span.closeBtnIcon {
+    color: red;
+}

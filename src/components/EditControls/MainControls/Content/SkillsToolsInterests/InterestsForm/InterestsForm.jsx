@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { useAppContext, useSkills } from '../../../../../../AppContext.jsx';
 
 import Interest from './Interest.jsx';
 
 import styles from './InterestsForm.module.css';
 
-export default function InterestsForm({data, setCVData, interestsFormData, setInterestsFormData, isInterestsFormOpen, setIsInterestsFormOpen}) {
+export default function InterestsForm({ interestsFormData, setInterestsFormData, isInterestsFormOpen, setIsInterestsFormOpen }) {
+    const { setCVData } = useAppContext();
+    
+    const skillsToolsInterests = useSkills();
+    const interests = skillsToolsInterests.interests.items;
+    
     const [interestInput, setInterestInput] = useState('');
 
     const handleInterestInput = (e) => {
@@ -28,7 +34,7 @@ export default function InterestsForm({data, setCVData, interestsFormData, setIn
         // Stop default form submit behavior
         e.preventDefault();
 
-        if (!data) throw new Error('Interests data not found!');
+        if (!interests) throw new Error('Interests data not found!');
 
         setCVData(draft => {
             const newInterest = {
@@ -48,9 +54,9 @@ export default function InterestsForm({data, setCVData, interestsFormData, setIn
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(!data) throw new Error('Interests not found!');
+        if(!interests) throw new Error('Interests not found!');
 
-        setInterestsFormData(data);
+        setInterestsFormData(interests);
         setIsInterestsFormOpen(false);
     }
 
@@ -74,13 +80,9 @@ export default function InterestsForm({data, setCVData, interestsFormData, setIn
 
                 <div className={styles.interestsContainer}>
                     {/* Checks if there are items under Interest object. */}
-                    {data.length > 0 && (
-                        data.map(item => ( 
-                            <Interest 
-                                key={item.id} 
-                                data={item} 
-                                setCVData={setCVData} 
-                            />
+                    {interests.length > 0 && (
+                        interests.map(item => ( 
+                            <Interest key={item.id} interest={item} />
                         ))
                     )}
 

@@ -52,10 +52,17 @@ export default function SkillsToolsInterests({data, setCVData}) {
                 </button>
             )}
 
+            {(isExpanded && isCertificationsFormOpen) && (
+                <CertificationsForm 
+                    certificationsFormData={certificationsFormData} 
+                    setCertificationsFormData={setCertificationsFormData} 
+                    isCertificationsFormOpen={isCertificationsFormOpen}
+                    setIsCertificationsFormOpen={setIsCertificationsFormOpen}
+                />
+            )}
+
             {(isExpanded && isSkillsFormOpen) && (
                 <SkillsForm 
-                    data={data.skills.items} 
-                    setCVData={setCVData} 
                     skillsFormData={skillsFormData} 
                     setSkillsFormData={setSkillsFormData} 
                     isSkillsFormOpen={isSkillsFormOpen}
@@ -65,8 +72,6 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
             {(isExpanded && isToolsFormOpen) && (
                 <ToolsForm 
-                    data={data.tools.items} 
-                    setCVData={setCVData} 
                     toolsFormData={toolsFormData} 
                     setToolsFormData={setToolsFormData} 
                     isToolsFormOpen={isToolsFormOpen}
@@ -76,8 +81,6 @@ export default function SkillsToolsInterests({data, setCVData}) {
 
             {(isExpanded && isInterestsFormOpen) && (
                 <InterestsForm 
-                    data={data.interests.items} 
-                    setCVData={setCVData} 
                     interestsFormData={interestsFormData} 
                     setInterestsFormData={setInterestsFormData} 
                     isInterestsFormOpen={isInterestsFormOpen}

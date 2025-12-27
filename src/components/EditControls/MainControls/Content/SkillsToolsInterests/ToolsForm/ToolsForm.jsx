@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { useAppContext, useSkills } from '../../../../../../AppContext.jsx';
 
 import Tool from './Tool.jsx';
 
 import styles from './ToolsForm.module.css';
 
-export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormData, isToolsFormOpen, setIsToolsFormOpen}) {
+export default function ToolsForm({ toolsFormData, setToolsFormData, isToolsFormOpen, setIsToolsFormOpen }) {
+    const { setCVData } = useAppContext();
+    
+    const skillsToolsInterests = useSkills();
+    const tools = skillsToolsInterests.tools.items;
+
     const [toolInput, setToolInput] = useState('');
 
     const handleToolInput = (e) => {
@@ -28,7 +34,7 @@ export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormD
         // Stop default form submit behavior
         e.preventDefault();
 
-        if (!data) throw new Error('Tools data not found!');
+        if (!tools) throw new Error('Tools data not found!');
 
         setCVData(draft => {
             const newTool = {
@@ -48,9 +54,9 @@ export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormD
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(!data) throw new Error('Tools not found!');
+        if(!tools) throw new Error('Tools not found!');
 
-        setToolsFormData(data);
+        setToolsFormData(tools);
         setIsToolsFormOpen(false);
     }
 
@@ -74,18 +80,14 @@ export default function ToolsForm({data, setCVData, toolsFormData, setToolsFormD
 
                 <div className={styles.toolsContainer}>
                     {/* Checks if there are items under Tool object. */}
-                    {data.length > 0 && (
-                        data.map((item) => ( 
-                            <Tool 
-                                key={item.id} 
-                                data={item} 
-                                setCVData={setCVData} 
-                            />
+                    {tools.length > 0 && (
+                        tools.map((item) => ( 
+                            <Tool key={item.id} tool={item} />
                         ))
                     )}
 
                     {/* Shows msg to indicate that there are no items under Tool object. */}
-                    {data.length === 0 && (
+                    {tools.length === 0 && (
                         <span className={styles.noToolsFoundMsg}>
                             No tools added yet. Type a tool and click "Add" to get started.
                         </span>

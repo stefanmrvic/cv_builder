@@ -1,11 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { useAppContext } from '../../../../../AppContext';
 
 import styles from './SkillsForm.module.css';
 
-export default function Skill({ skill }) {
-    const { setCVData } = useAppContext();
-
+export default function Skill({data, setCVData}) {
     const [isFocused, setIsFocused] = useState(false);
     const [inputWidth, setInputWidth] = useState(null);
 
@@ -15,10 +12,10 @@ export default function Skill({ skill }) {
         e.stopPropagation(); 
         
         setCVData(draft => {
-            const skill = draft.skillsToolsInterests.skills.items.find(item => item.id === skill.id);
+            const skill = draft.skillsToolsInterests.skills.items.find(item => item.id === data.id);
             if (skill === undefined) throw new Error('Skill not found!');
 
-            const skillIndex = draft.skillsToolsInterests.skills.items.findIndex(item => item.id === skill.id);
+            const skillIndex = draft.skillsToolsInterests.skills.items.findIndex(item => item.id === data.id);
             if (skillIndex === -1) throw new Error('Skill index not found!');
 
             draft.skillsToolsInterests.skills.items.splice(skillIndex, 1);
@@ -26,10 +23,10 @@ export default function Skill({ skill }) {
     }
 
     const handleInput = (e) => {
-        if (!skill.id) throw new Error('Skill ID not found!');
+        if (!data.id) throw new Error('Skill ID not found!');
 
         setCVData(draft => {
-            const skill = draft.skillsToolsInterests.skills.items.find(item => item.id === skill.id);
+            const skill = draft.skillsToolsInterests.skills.items.find(item => item.id === data.id);
             if (skill === undefined) throw new Error('Skill not found!');
 
             skill.name = e.target.value;
@@ -47,8 +44,8 @@ export default function Skill({ skill }) {
     return (
         <div className={`${styles.skillTag} ${isFocused ? styles.active : ''}`}>
             {/* Invisible span used to measure the text width for sizing the input. */}
-            <span aria-hidden="true" className={styles.invisibleSkillName} ref={skillNameRef}>{skill.name}</span>
-            <input className={styles.skillName} value={skill.name} style={{width: `${inputWidth}`}} onChange={handleInput} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}></input>
+            <span aria-hidden="true" className={styles.invisibleSkillName} ref={skillNameRef}>{data.name}</span>
+            <input className={styles.skillName} value={data.name} style={{width: `${inputWidth}`}} onChange={handleInput} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}></input>
 
             <button className={styles.skillDeleteBtn} onClick={handleDelete}>
                 <span className={`${styles.closeBtnIcon} material-symbols-outlined`}>close</span>
