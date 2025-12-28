@@ -87,7 +87,7 @@ export default function InterestsForm({ interestsFormData, setInterestsFormData,
                     )}
 
                     {/* Shows msg to indicate that there are no items under Interest object. */}
-                    {data.length === 0 && (
+                    {interests.length === 0 && (
                         <span className={styles.noInterestsFoundMsg}>
                             No interests added yet. Type a interest and click "Add" to get started.
                         </span>

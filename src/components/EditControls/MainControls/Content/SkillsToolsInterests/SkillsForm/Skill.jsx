@@ -15,8 +15,8 @@ export default function Skill({ skill }) {
         e.stopPropagation(); 
         
         setCVData(draft => {
-            const skill = draft.skillsToolsInterests.skills.items.find(item => item.id === skill.id);
-            if (skill === undefined) throw new Error('Skill not found!');
+            const skillItem = draft.skillsToolsInterests.skills.items.find(item => item.id === skill.id);
+            if (skillItem === undefined) throw new Error('Skill not found!');
 
             const skillIndex = draft.skillsToolsInterests.skills.items.findIndex(item => item.id === skill.id);
             if (skillIndex === -1) throw new Error('Skill index not found!');
@@ -29,10 +29,10 @@ export default function Skill({ skill }) {
         if (!skill.id) throw new Error('Skill ID not found!');
 
         setCVData(draft => {
-            const skill = draft.skillsToolsInterests.skills.items.find(item => item.id === skill.id);
-            if (skill === undefined) throw new Error('Skill not found!');
+            const skillItem = draft.skillsToolsInterests.skills.items.find(item => item.id === skill.id);
+            if (skillItem === undefined) throw new Error('Skill not found!');
 
-            skill.name = e.target.value;
+            skillItem.name = e.target.value;
         })
     }
 

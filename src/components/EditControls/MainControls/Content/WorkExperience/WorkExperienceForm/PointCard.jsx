@@ -53,10 +53,10 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
             const position = company.positions.find(item => item.id === positionID);
             if (position === undefined) throw new Error('Position  not found!');     
 
-            const point = position.responsibilities.find(item => item.id === point.id);
-            if (point === undefined) throw new Error('Point not found!');
+            const pointItem = position.responsibilities.find(item => item.id === point.id);
+            if (pointItem === undefined) throw new Error('Point not found!');
 
-            point.isVisible = !point.isVisible;
+            pointItem.isVisible = !point.isVisible;
         });
     }
 
@@ -70,10 +70,10 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
             const position = company.positions.find(item => item.id === positionID);
             if (position === undefined) throw new Error('Position  not found!');     
 
-            const point = position.responsibilities.find(item => item.id === point.id);
-            if (point === undefined) throw new Error('Point not found!');
+            const pointItem = position.responsibilities.find(item => item.id === point.id);
+            if (pointItem === undefined) throw new Error('Point not found!');
 
-            point.point = e.target.value;
+            pointItem.point = e.target.value;
         });
     }
 
@@ -94,8 +94,8 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
             const position = company.positions.find(item => item.id === positionID)
             if (position === undefined) throw new Error('Position not found!');
 
-            const point = position.responsibilities.find(item => item.id === point.id);
-            if (point === undefined) throw new Error('Point not found!');
+            const pointItem = position.responsibilities.find(item => item.id === point.id);
+            if (pointItem === undefined) throw new Error('Point not found!');
 
             const newSubPoint = {
                 id: crypto.randomUUID(),
@@ -103,7 +103,7 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
                 subPoint: `SubPoint #${point.subPoints.length +1}`,
             }
 
-            point.subPoints.push(newSubPoint)
+            pointItem.subPoints.push(newSubPoint)
         });
 
         setIsNewSubPoint(true);

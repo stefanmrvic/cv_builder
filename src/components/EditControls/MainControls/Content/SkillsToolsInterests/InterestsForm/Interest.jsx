@@ -15,8 +15,8 @@ export default function Interest({ interest }) {
         e.stopPropagation(); 
         
         setCVData(draft => {
-            const interest = draft.skillsToolsInterests.interests.items.find(item => item.id === interest.id);
-            if (interest === undefined) throw new Error('Interest not found!');
+            const interestItem = draft.skillsToolsInterests.interests.items.find(item => item.id === interest.id);
+            if (interestItem === undefined) throw new Error('Interest not found!');
 
             const interestIndex = draft.skillsToolsInterests.interests.items.findIndex(item => item.id === interest.id);
             if (interestIndex === -1) throw new Error('Interest index not found!');
@@ -29,10 +29,10 @@ export default function Interest({ interest }) {
         if (!interest.id) throw new Error('Interest ID not found!');
 
         setCVData(draft => {
-            const interest = draft.skillsToolsInterests.interests.items.find(item => item.id === interest.id);
-            if (interest === undefined) throw new Error('Interest not found!');
+            const interestItem = draft.skillsToolsInterests.interests.items.find(item => item.id === interest.id);
+            if (interestItem === undefined) throw new Error('Interest not found!');
 
-            interest.name = e.target.value;
+            interestItem.name = e.target.value;
         })
     }
 
@@ -47,7 +47,7 @@ export default function Interest({ interest }) {
     return (
         <div className={`${styles.interestTag} ${isFocused ? styles.active : ''}`}>
             {/* Invisible span used to measure the text width for sizing the input. */}
-            <span aria-hidden="true" className={styles.invisibleSkillName} ref={interestNameRef}>{interest.name}</span>
+            <span aria-hidden="true" className={styles.invisibleInterestName} ref={interestNameRef}>{interest.name}</span>
             <input className={styles.interestName} value={interest.name} style={{width: `${inputWidth}`}} onChange={handleInput} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}></input>
 
             <button className={styles.interestDeleteBtn} onClick={handleDelete}>

@@ -15,8 +15,8 @@ export default function Tool({ tool }) {
         e.stopPropagation(); 
         
         setCVData(draft => {
-            const tool = draft.skillsToolsInterests.tools.items.find(item => item.id === tool.id);
-            if (tool === undefined) throw new Error('Tool not found!');
+            const toolItem = draft.skillsToolsInterests.tools.items.find(item => item.id === tool.id);
+            if (toolItem === undefined) throw new Error('Tool not found!');
 
             const toolIndex = draft.skillsToolsInterests.tools.items.findIndex(item => item.id === tool.id);
             if (toolIndex === -1) throw new Error('Tool index not found!');
@@ -29,10 +29,10 @@ export default function Tool({ tool }) {
         if (!tool.id) throw new Error('Tool ID not found!');
 
         setCVData(draft => {
-            const tool = draft.skillsToolsInterests.tools.items.find(item => item.id === tool.id);
-            if (tool === undefined) throw new Error('Tool not found!');
+            const toolItem = draft.skillsToolsInterests.tools.items.find(item => item.id === tool.id);
+            if (toolItem === undefined) throw new Error('Tool not found!');
 
-            tool.name = e.target.value;
+            toolItem.name = e.target.value;
         })
     }
 
@@ -47,7 +47,7 @@ export default function Tool({ tool }) {
     return (
         <div className={`${styles.toolTag} ${isFocused ? styles.active : ''}`}>
             {/* Invisible span used to measure the text width for sizing the input. */}
-            <span  aria-hidden="true" className={styles.invisibleSkillName} ref={toolNameRef}>{tool.name}</span>
+            <span  aria-hidden="true" className={styles.invisibleToolName} ref={toolNameRef}>{tool.name}</span>
             <input className={styles.toolName} value={tool.name} style={{width: `${inputWidth}`}} onChange={handleInput} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)}></input>
 
             <button className={styles.toolDeleteBtn} onClick={handleDelete}>

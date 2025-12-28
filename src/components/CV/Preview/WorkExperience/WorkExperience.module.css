@@ -87,13 +87,16 @@
 }
 
 .subPoints {
-    position: relative;
     list-style: none;
     margin-left: 45px;
     margin-bottom: 5px;
 }
 
-.subPoints.circle::before {
+.subPoint {
+    position: relative;
+}
+
+.subPoint.circle::before {
     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
     position: absolute;
     top: -1px;
@@ -102,7 +105,7 @@
     height: 8px;
 }
 
-.subPoints.square::before {
+.subPoint.square::before {
     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
     position: absolute;
     top: -1px;
@@ -111,7 +114,7 @@
     height: 8px;
 }
 
-.subPoints.triangle::before {
+.subPoint.triangle::before {
     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,9 1,9' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
     position: absolute;
     top: -1px;
@@ -120,7 +123,7 @@
     height: 10px;
 }
 
-.subPoints.diamond::before {
+.subPoint.diamond::before {
     content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpolygon points='5,1 9,5 5,9 1,5' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
     position: absolute;
     top: -1px;

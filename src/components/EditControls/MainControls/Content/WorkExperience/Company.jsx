@@ -16,8 +16,8 @@ export default function Company({ company, setExperienceFormData, setIsExperienc
         e.stopPropagation();
         
         setCVData(draft => {
-            const company = draft.workExperience.find(item => item.id === company.id);
-            if (!company) throw new Error('Company not found!');
+            const companyItem = draft.workExperience.find(item => item.id === company.id);
+            if (!companyItem) throw new Error('Company not found!');
 
             const companyIndex = draft.workExperience.findIndex(item => item.id === company.id);
             if (companyIndex === undefined) throw new Error('Company not found!');
@@ -30,10 +30,10 @@ export default function Company({ company, setExperienceFormData, setIsExperienc
         e.stopPropagation();
   
         setCVData(draft => {
-            const company = draft.workExperience.find(item => item.id === company.id);
-            if (!company) throw new Error('Company not found!');
+            const companyItem = draft.workExperience.find(item => item.id === company.id);
+            if (!companyItem) throw new Error('Company not found!');
             
-            company.isVisible = !company.isVisible;
+            companyItem.isVisible = !company.isVisible;
        })
     }
 

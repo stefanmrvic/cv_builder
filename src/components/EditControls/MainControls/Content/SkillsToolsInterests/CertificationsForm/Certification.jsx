@@ -15,8 +15,8 @@ export default function Certification({ certification }) {
         e.stopPropagation(); 
         
         setCVData(draft => {
-            const certification = draft.skillsToolsInterests.certifications.items.find(item => item.id === certification.id);
-            if (certification === undefined) throw new Error('Certification not found!');
+            const certificationItem = draft.skillsToolsInterests.certifications.items.find(item => item.id === certification.id);
+            if (certificationItem === undefined) throw new Error('Certification not found!');
 
             const certificationIndex = draft.skillsToolsInterests.certifications.items.findIndex(item => item.id === certification.id);
             if (certificationIndex === -1) throw new Error('Certification index not found!');
@@ -29,10 +29,10 @@ export default function Certification({ certification }) {
         if (!certification.id) throw new Error('Certification ID not found!');
 
         setCVData(draft => {
-            const certification = draft.skillsToolsInterests.certifications.items.find(item => item.id === certification.id);
-            if (certification === undefined) throw new Error('Certification not found!');
+            const certificationItem = draft.skillsToolsInterests.certifications.items.find(item => item.id === certification.id);
+            if (certificationItem === undefined) throw new Error('Certification not found!');
 
-            certification.name = e.target.value;
+            certificationItem.name = e.target.value;
         })
     }
 

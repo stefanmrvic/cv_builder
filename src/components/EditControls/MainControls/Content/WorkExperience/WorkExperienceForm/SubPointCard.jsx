@@ -57,10 +57,10 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
             const point = position.responsibilities.find(item => item.id === pointID);
             if (point === undefined) throw new Error('Point not found!');
 
-            const subPoint = point.subPoints.find(item => item.id === subPoint.id);
-            if (subPoint === undefined) throw new Error('Sub-Point not found!');
+            const subPointItem = point.subPoints.find(item => item.id === subPoint.id);
+            if (subPointItem === undefined) throw new Error('Sub-Point not found!');
 
-            subPoint.isVisible = !subPoint.isVisible;
+            subPointItem.isVisible = !subPoint.isVisible;
         });
         
         setIsVisible(prevState => !prevState);
@@ -79,10 +79,10 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
             const point = position.responsibilities.find(item => item.id === pointID);
             if (point === undefined) throw new Error('Point not found!');
 
-            const subPoint = point.subPoints.find(item => item.id === subPoint.id);
-            if (subPoint === undefined) throw new Error('Sub-Point not found!');
+            const subPointItem = point.subPoints.find(item => item.id === subPoint.id);
+            if (subPointItem === undefined) throw new Error('Sub-Point not found!');
 
-            subPoint.subPoint = e.target.value;
+            subPointItem.subPoint = e.target.value;
         });
     }
 

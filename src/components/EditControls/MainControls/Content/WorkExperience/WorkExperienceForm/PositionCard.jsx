@@ -44,10 +44,10 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(item => item.id === position.id)
-            if (!position) throw new Error('Position not found!');
+            const positionItem = company.positions.find(item => item.id === position.id)
+            if (!positionItem) throw new Error('Position not found!');
             
-            position.isVisible = !position.isVisible;
+            positionItem.isVisible = !position.isVisible;
        })
     }
 
@@ -58,10 +58,10 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(item => item.id === position.id);
-            if (position === undefined) throw new Error('Position not found!');
+            const positionItem = company.positions.find(item => item.id === position.id);
+            if (positionItem === undefined) throw new Error('Position not found!');
 
-            position.title = e.target.value;
+            positionItem.title = e.target.value;
         });
     }
 
@@ -97,10 +97,10 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(item => item.id === position.id);
-            if (position === undefined) throw new Error('Position not found!');
+            const positionItem = company.positions.find(item => item.id === position.id);
+            if (positionItem === undefined) throw new Error('Position not found!');
 
-            position.startDate = e.target.value;
+            positionItem.startDate = e.target.value;
         });
     }
 
@@ -111,10 +111,10 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(item => item.id === position.id);
-            if (position === undefined) throw new Error('Position not found!');
+            const positionItem = company.positions.find(item => item.id === position.id);
+            if (positionItem === undefined) throw new Error('Position not found!');
 
-            position.endDate = e.target.value;
+            positionItem.endDate = e.target.value;
         });
     }
 
@@ -125,10 +125,10 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(item => item.id === position.id);
-            if (position === undefined) throw new Error('Position not found!');
+            const positionItem = company.positions.find(item => item.id === position.id);
+            if (positionItem === undefined) throw new Error('Position not found!');
 
-            position.currentlyEmployed = !position.currentlyEmployed;
+            positionItem.currentlyEmployed = !positionItem.currentlyEmployed;
         });
     }
 
@@ -148,8 +148,8 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             const company = draft.workExperience.find(item => item.id === companyID);
             if (company === undefined) throw new Error('Company not found!');
 
-            const position = company.positions.find(item => item.id === position.id)
-            if (position === undefined) throw new Error('Position not found!');
+            const positionItem = company.positions.find(item => item.id === position.id)
+            if (positionItem === undefined) throw new Error('Position not found!');
 
             const newPoint = {
                 id: crypto.randomUUID(),
@@ -158,7 +158,7 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
                 subPoints: []
             }
 
-            position.responsibilities.push(newPoint);
+            positionItem.responsibilities.push(newPoint);
         });
 
         setIsNewPoint(true);

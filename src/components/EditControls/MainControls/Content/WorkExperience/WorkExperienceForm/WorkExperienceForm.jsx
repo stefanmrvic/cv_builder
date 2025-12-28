@@ -26,12 +26,12 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
         if (!experienceFormData.id) throw new Error('experienceFormData.id is undefined!');
         
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
+            const company = draft.workExperience.find(item => item.id === experienceFormData.id);
 
             if (!company) throw new Error('Company not found!');
 
             if (isNewExperience) {
-                const companyIndex = draft.workExperience.findIndex(company => company.id === experienceFormData.id);
+                const companyIndex = draft.workExperience.findIndex(item => item.id === experienceFormData.id);
                 if (companyIndex === -1) throw new Error('CompanyIndex not found!');
 
                 draft.workExperience.splice(companyIndex, 1);
@@ -50,7 +50,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
 
     const handleCompanyName = (e) => {
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
+            const company = draft.workExperience.find(item => item.id === experienceFormData.id);
             if (!company) throw new Error('Company not found!');
 
             company.companyName = e.target.value;
@@ -59,7 +59,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
 
     const handleLocation = (e) => {
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
+            const company = draft.workExperience.find(item => item.id === experienceFormData.id);
             if (!company) throw new Error('Company not found!');
 
             company.location = e.target.value;
@@ -83,7 +83,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
         }
 
         setCVData(draft => {
-            const company = draft.workExperience.find(company => company.id === experienceFormData.id);
+            const company = draft.workExperience.find(item => item.id === experienceFormData.id);
             if (company === undefined) throw new Error('Company not found!');
 
             company.positions.push(newPosition)
@@ -99,7 +99,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
         if (isNewExperience) setIsNewExperience(false);
     }
 
-    const company = workExperience.find(company => company.id === experienceFormData.id);
+    const company = workExperience.find(item => item.id === experienceFormData.id);
 
     return (
         <div className={styles.formContainer}>
