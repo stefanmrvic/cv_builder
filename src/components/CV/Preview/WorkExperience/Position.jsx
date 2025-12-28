@@ -6,8 +6,10 @@ import styles from './WorkExperience.module.css';
 // since Position objects don't have access to their parent company's properties.
 export default function Position({ position, isFirst, companyName, location }) {
     const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+
         const date = new Date(dateStr);
-        if (date === NaN) throw new Error('Invalid date!');
+        if (date === NaN) console.log('Invalid date!');
 
         const dateArr = date.toDateString().split(' ');
         const year = dateArr[3];
