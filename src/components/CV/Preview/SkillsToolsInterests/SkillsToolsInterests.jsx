@@ -20,7 +20,12 @@ export default function SkillsToolsInterests() {
 
     return (
         <div className='sectionBottomMargin'>
-            <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>
+            {certifications.items.length === 0 ? (
+                <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>
+            ) : (
+                <h1 className='headline'>CERTIFICATIONS & SKILLS</h1>
+            )}
+
             <ul className={styles.skillsToolsInterestsList}>
                 {certifications.isVisible && certifications.items.length > 0 && (
                     <li className={styles[bulletPoints.main]}>
