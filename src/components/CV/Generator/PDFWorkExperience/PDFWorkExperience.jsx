@@ -6,13 +6,13 @@ import Company from './PDFCompany.jsx';
 
 export default function WorkExperience({ workExperience, bulletPoints, wrap }) {
     // Exits if there are no companies under experience object
-    if (!workExperience) return null;
+    if (workExperience.length === 0) return null;
 
     const visibleCompanies = workExperience.filter(company => company.isVisible);
-    const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
-
-    // Exits if there are no visible companies
+    // Returns null if there are no visible companies in workExperience object
     if (visibleCompanies.length === 0) return null;
+
+    const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
 
     // Container StyleSheets
     const styles = StyleSheet.create({

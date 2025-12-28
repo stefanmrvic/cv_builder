@@ -12,10 +12,10 @@ export default function Position({ position, setIsPositionFormOpen, setPositionF
             const companyItem = draft.workExperience.find(item => item.id === companyID);
             if (companyItem === undefined) throw new Error('Company not found!');
 
-            const positionItem = company.positions.find(item => item.id === position.id);
+            const positionItem = companyItem.positions.find(item => item.id === position.id);
             if (positionItem === undefined) throw new Error('Position not found!');
 
-            const positionIndex = company.positions.findIndex(item => item.id === position.id);
+            const positionIndex = companyItem.positions.findIndex(item => item.id === position.id);
             if (positionIndex === -1) throw new Error('Position index not found!');
 
             companyItem.positions.splice(positionIndex, 1);

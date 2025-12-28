@@ -33,7 +33,7 @@ export default function Company({ company, setExperienceFormData, setIsExperienc
             const companyItem = draft.workExperience.find(item => item.id === company.id);
             if (!companyItem) throw new Error('Company not found!');
             
-            companyItem.isVisible = !company.isVisible;
+            companyItem.isVisible = !companyItem.isVisible;
        })
     }
 

@@ -6,14 +6,14 @@ import { sortCompaniesByEmploymentDate } from '../../../../utils/sortFunctions.j
 
 export default function WorkExperience() {
     const workExperience = useWorkExperience();
-    // Exits if there are no companies in experience object
-    if (!workExperience) return null;
+    // Returns null if there are no companies under workExperience object
+    if (workExperience.length === 0) return null;
     
     const visibleCompanies = workExperience.filter(company => company.isVisible);
-    const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
-
-    // Exits if there are no visible companies
+    // Returns null if there are no visible companies under workExperience object
     if (visibleCompanies.length === 0) return null;
+
+    const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
 
     return (  
         <div className='sectionBottomMargin'>

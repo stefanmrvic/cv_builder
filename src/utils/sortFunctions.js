@@ -1,10 +1,10 @@
 export const sortCompaniesByEmploymentDate = (a, b) => {
+    if (a.positions.length === 0 || b.positions.length === 0) return null;
+
     const mostRecentPositionA = findMostRecentPosition(a.positions);
-    // if (!mostRecentPositionA) throw new Error('mostRecentPositionA not found!');
     if (!mostRecentPositionA) console.log('mostRecentPositionA not found!');
 
     const mostRecentPositionB = findMostRecentPosition(b.positions);
-    // if (!mostRecentPositionB) throw new Error('mostRecentPositionB not found!');
     if (!mostRecentPositionB) console.log('mostRecentPositionB not found!');
 
     const competingPositions = [mostRecentPositionA, mostRecentPositionB];
@@ -20,6 +20,13 @@ export const sortCompaniesByEmploymentDate = (a, b) => {
 }
 
 const findMostRecentPosition = (positionsArr) => {
+    // Early return if positionsArr is either empty, or it has only 1 item.
+    if (positionsArr.length === 1) return positionsArr[0];
+    if (positionsArr.length === 0) {
+        console.log('positionsArr is empty');
+        return;
+    }
+
     const presentPositions = positionsArr.filter(position => position.currentlyEmployed);
     
     // If there are no positions with the status "currentlyEmployed", it will search for the position(s) with the most recent endDate(s).

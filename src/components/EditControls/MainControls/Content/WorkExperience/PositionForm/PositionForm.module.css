@@ -123,8 +123,8 @@ button.closeBtn:hover {
     width: 198px;
 }
 
-.positionFormGroupDate span.startDateValue,
-.positionFormGroupDate span.endDateValue {
+.formGroupDate span.startDateValue,
+.formGroupDate span.endDateValue {
     font-size: 13.3px;
     padding: 10px;
     position: absolute;
