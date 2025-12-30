@@ -1,10 +1,11 @@
 import { useAppContext, useWorkExperience } from '../../../../../../AppContext.jsx';
+import { setLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
 import PositionCard from './PositionCard.jsx';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function ExperienceForm({ experienceFormData, isNewExperience, setIsNewExperience, isNewPosition, setIsNewPosition, isExperienceFormOpen, setIsExperienceFormOpen }) {    
+export default function ExperienceForm({ experienceFormData, isNewExperience, handleIsNewExperience, isNewPosition, handleIsNewPosition, isExperienceFormOpen, handleIsExperienceFormOpen }) {    
     const { setCVData } = useAppContext();
 
     const workExperience = useWorkExperience();
@@ -19,7 +20,8 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
             draft.workExperience.splice(companyIndex, 1);
         });
 
-        setIsExperienceFormOpen(false);
+        handleIsExperienceFormOpen(false);
+        setLocalStorageItem('isNewPosition', false);
     }
 
     const revertChanges = () => {
@@ -44,8 +46,23 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
             }
         });
 
-        setIsNewExperience(false);  
-        setIsExperienceFormOpen(false);
+        handleIsNewExperience(false);  
+        handleIsExperienceFormOpen(false);
+
+        // Collapses all expanded Positions / Points / SubPoints cards when the user clicks on X or Cancel button.
+        company.positions.map(position => {
+            setLocalStorageItem(`isExpandedPosition - ${position.id}`, false);
+
+            position.responsibilities.map(responsibility => {
+                setLocalStorageItem(`isExpandedPoint - ${responsibility.id}`, false);
+
+                responsibility.subPoints.map(subResponsibility => {
+                    setLocalStorageItem(`isExpandedSubPoint - ${subResponsibility.id}`, false);
+                })
+            })
+        })
+
+        setLocalStorageItem('isNewPosition', false);
     }
 
     const handleCompanyName = (e) => {
@@ -89,14 +106,17 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
             company.positions.push(newPosition)
         });
         
-        setIsNewPosition(true);
+        handleIsNewPosition(true);
+        setLocalStorageItem('isNewPosition', true);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setIsExperienceFormOpen(false);
-        if (isNewExperience) setIsNewExperience(false);
+        handleIsExperienceFormOpen(false);
+        setLocalStorageItem('isNewPosition', false);
+
+        if (isNewExperience) handleIsNewExperience(false);
     }
 
     const company = workExperience.find(item => item.id === experienceFormData.id);
@@ -134,7 +154,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, se
                             // To-DO Refactor Company ID passing logic
                             companyID={experienceFormData.id}
                             isNewPosition={isNew}
-                            setIsNewPosition={setIsNewPosition}
+                            handleIsNewPosition={handleIsNewPosition}
                         />
                     })
                 )}

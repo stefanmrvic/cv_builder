@@ -11,8 +11,8 @@ import Education from './Education/Education.jsx'
 import styles from './CVPreview.module.css'
 
 function DownloadButton({ cvData, order, bulletPoints, className }) {
+  // Generates PDF only when the download button is clicked in order to avoid expensive PDF computations
   const handleDownload = async () => {
-      // Generates PDF only when the download button is clicked in order to avoid expensive PDF computations
       const blob = await pdf(
         <MyDocument data={cvData} order={order} bulletPoints={bulletPoints} />
       ).toBlob();

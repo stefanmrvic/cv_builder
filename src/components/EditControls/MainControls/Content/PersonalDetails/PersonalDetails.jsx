@@ -2,28 +2,35 @@ import { useState, useRef } from 'react';
 import { useAppContext, usePersonalInfo } from '../../../../../AppContext';
 
 import styles from './PersonalDetails.module.css';
+import { getLocalStorageItem, setLocalStorageItem } from '../../../../../utils/localStorage';
 
 export default function PersonalDetails() {
+    const persistentIsExpanded = getLocalStorageItem('isExpandedPersonalDetails', true);
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
+
     const { setCVData } = useAppContext();
 
     const personalInfo = usePersonalInfo();
     if (!personalInfo) return null;
-    
-    const [isExpanded, setIsExpanded] = useState(true);
 
     const personalDetailsFormRef = useRef(null);
     const arrowUpRef = useRef(null);
+
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem('isExpandedPersonalDetails', newState);
+    }
 
     const toggleCollapsing = () => {
         arrowUpRef.current.classList.toggle(`${styles.active}`);
         
         if (isExpanded) handleCloseAnimation();
-        setIsExpanded(!isExpanded);
+        handleIsExpanded(!isExpanded);
     }
 
     const handleCloseAnimation = () => {
         personalDetailsFormRef.current.setAttribute("class", `${styles.personalDetailsForm} ${styles.closing}`)
-        personalDetailsFormRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        personalDetailsFormRef.current.onanimationend = () => handleIsExpanded(!isExpanded);
     }
 
     const handleNameChange = (e) => {

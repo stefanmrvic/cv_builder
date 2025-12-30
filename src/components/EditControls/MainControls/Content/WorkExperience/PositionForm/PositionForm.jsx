@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import { useAppContext, useWorkExperience } from '../../../../../../AppContext.jsx';
+import { getLocalStorageItem, setLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
 import PointCard from '../WorkExperienceForm/PointCard.jsx';
 
 import styles from './PositionForm.module.css';
 
-export default function PositionForm({ isNewPosition, setIsNewPosition, positionFormData, setIsPositionFormOpen }) {   
+export default function PositionForm({ isNewPosition, handleIsNewPosition, positionFormData, handleIsPositionFormOpen }) {   
     const { setCVData } = useAppContext();
     const workExperience = useWorkExperience();
 
+    const persistentIsNewPoint = getLocalStorageItem('isNewPoint', false);
     const [isNewPoint, setIsNewPoint] = useState(false);
 
     const company = workExperience.find(item => item.id === positionFormData.companyID);
-    const position = company.positions.find(item => item.id === positionFormData.id)
+    const position = company.positions.find(item => item.id === positionFormData.id);
+
+    const handleIsNewPoint = (newState) => {
+        setIsNewPoint(newState);
+        setLocalStorageItem('isNewPoint', newState);
+    }
 
     const handleDelete = () => {
         if (!positionFormData.companyID) throw new Error('positionFormData.companyID is undefined!');
@@ -27,7 +34,7 @@ export default function PositionForm({ isNewPosition, setIsNewPosition, position
             company.positions.splice(positionIndex, 1);
         });
 
-        setIsPositionFormOpen(false);
+        handleIsPositionFormOpen(false);
     }
 
     const revertChanges = () => {
@@ -49,8 +56,17 @@ export default function PositionForm({ isNewPosition, setIsNewPosition, position
             position.responsibilities = positionFormData.responsibilities;   
         });
 
-        setIsNewPosition(false);
-        setIsPositionFormOpen(false);
+        handleIsNewPosition(false);
+        handleIsPositionFormOpen(false);
+
+        // Collapses all expanded Points & SubPoints cards when the user clicks on X or Cancel button.
+        position.responsibilities.map(responsibility => {
+            setLocalStorageItem(`isExpandedPoint${responsibility.id}`, false);
+
+            responsibility.subPoints.map(subResponsibility => {
+                setLocalStorageItem(`isExpandedSubPoint${subResponsibility.id}`, false);
+            })
+        })
     }
 
     const handlePositionTitle = (e) => {
@@ -157,14 +173,14 @@ export default function PositionForm({ isNewPosition, setIsNewPosition, position
             position.responsibilities.push(newPoint);
         });
 
-        setIsNewPoint(true);
+        handleIsNewPoint(true);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setIsNewPosition(false);
-        setIsPositionFormOpen(false);
+        handleIsNewPosition(false);
+        handleIsPositionFormOpen(false);
     }
 
     const startDateValue = formatStartDate();
@@ -216,7 +232,7 @@ export default function PositionForm({ isNewPosition, setIsNewPosition, position
                                     companyID={positionFormData.companyID}
                                     positionID={positionFormData.id}
                                     isNewPoint={isNew}
-                                    setIsNewPoint={setIsNewPoint}
+                                    handleIsNewPoint={handleIsNewPoint}
                                 />
                             })
                         )}

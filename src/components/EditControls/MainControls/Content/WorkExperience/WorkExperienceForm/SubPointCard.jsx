@@ -1,18 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAppContext } from '../../../../../../AppContext';
+import { setLocalStorageItem, getLocalStorageItem, removeLocalStorageItem } from '../../../../../../utils/localStorage';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function SubPointCard({ subPoint, index, companyID, positionID, pointID, isNewSubPoint, setIsNewSubPoint }) {
+export default function SubPointCard({ subPoint, index, companyID, positionID, pointID, isNewSubPoint, handleIsNewSubPoint }) {
     const { setCVData } = useAppContext();
 
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [isVisible, setIsVisible] = useState(true);
+    // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
+    // It expands the SubPointCard by default if the user created new SubPoint.
+    const persistentIsExpanded = getLocalStorageItem(`isExpandedSubPoint - ${subPoint.id}`, isNewSubPoint);
+    const [isExpanded, setIsExpanded] = useState(isNewSubPoint);
 
-    // Using useEffect Hook here to automatically expand the SubPoint card if the user created new SubPoint.
-    useEffect(() => {
-        if (isNewSubPoint) setIsExpanded(true);
-    }, [])
+    const persistentIsVisible = getLocalStorageItem(`isVisibleSubPoint - ${subPoint.id}`, true);
+    const [isVisible, setIsVisible] = useState(persistentIsVisible);
+
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem(`isExpandedSubPoint - ${subPoint.id}`, newState);
+    }
+
+    const handleIsVisible = (newState) => {
+        setIsVisible(newState);
+        setLocalStorageItem(`isVisibleSubPoint - ${subPoint.id}`, newState);
+    }
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -34,16 +45,19 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
 
             point.subPoints.splice(subPointIndex, 1);
         });
+
+        // Removes the localStorage item of the position's isExpanded state in order to prevent clutter inside of localStorage object.
+        removeLocalStorageItem(`isExpandedSubPoint - ${subPoint.id}`);
     }
 
     const handleVisibility = (e) => {
         // Stops bubbling to parent <div> with onClick handler
         e.stopPropagation()
         
-        // Stop default form submit behavior
+        // Stops default form submit behavior
         e.preventDefault();
         
-        if (isExpanded && subPoint.isVisible) setIsExpanded(prevState => !prevState);
+        if (isExpanded && subPoint.isVisible) handleIsExpanded(!isExpanded);
 
         if (!subPoint.id) throw new Error('subPoint.id is undefined!');
 
@@ -63,7 +77,7 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
             subPointItem.isVisible = !subPoint.isVisible;
         });
         
-        setIsVisible(prevState => !prevState);
+        handleIsVisible(!isVisible);
     }
 
     const handleDescription = (e) => {
@@ -87,9 +101,9 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
     }
 
     const handleCollapsing = () => {
-        setIsExpanded(prevState => !prevState);
+        handleIsExpanded(!isExpanded);
 
-        if (isNewSubPoint) setIsNewSubPoint(false);
+        if (isNewSubPoint) handleIsNewSubPoint(false);
     }
 
     const isPlaceholderTitle = subPoint.subPoint.toLowerCase().includes('subpoint');

@@ -4,13 +4,21 @@ import { useAppContext } from '../../../../../AppContext.jsx';
 import Position from './Position.jsx';
 
 import styles from './WorkExperience.module.css';
+import { setLocalStorageItem, getLocalStorageItem } from '../../../../../utils/localStorage.js';
 
-export default function Company({ company, setExperienceFormData, setIsExperienceFormOpen, setPositionFormData, setIsPositionFormOpen }) {
+export default function Company({ company, index, setExperienceFormData, setIsExperienceFormOpen, setPositionFormData, setIsPositionFormOpen }) {
     const { setCVData } = useAppContext();
-    const [isExpanded, setIsExpanded] = useState(false);
+
+    const persistentIsExpanded = getLocalStorageItem(`isExpandedCompany${index}`, false);
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const positionsContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
+
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem(`isExpandedCompany${index}`, newState);
+    }
 
     const handleDelete = (e) => {
         e.stopPropagation();
@@ -60,12 +68,12 @@ export default function Company({ company, setExperienceFormData, setIsExperienc
         arrowDownRef.current.classList.toggle(`${styles.active}`);
         
         if (isExpanded) handleCloseAnimation();
-        setIsExpanded(!isExpanded);
+        handleIsExpanded(!isExpanded);
     }
     
     const handleCloseAnimation = () => {
         positionsContainerRef.current.setAttribute("class", `${styles.positionsContainer} ${styles.closing}`)
-        positionsContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        positionsContainerRef.current.onanimationend = () => handleIsExpanded(!isExpanded);
     }
 
     const positionCount = company.positions.length;

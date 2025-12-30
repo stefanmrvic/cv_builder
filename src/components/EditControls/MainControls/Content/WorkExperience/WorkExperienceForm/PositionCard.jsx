@@ -1,20 +1,38 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from '../../../../../../AppContext.jsx';
+import { setLocalStorageItem, getLocalStorageItem, removeLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
 import PointCard from './PointCard.jsx';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function PositionCard({ position, isNewPosition, setIsNewPosition, index, companyID }) {
+export default function PositionCard({ position, index, isNewPosition, handleIsNewPosition, companyID }) {
     const { setCVData } = useAppContext();
 
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [isNewPoint, setIsNewPoint] = useState(false);
+    // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
+    // It expands the PositionCard by default if the user created new Position.
+    const persistentIsExpanded = getLocalStorageItem(`isExpandedPosition - ${position.id}`, isNewPosition)
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
+    
+    // useEffect(() => {
+    //     if (isNewPosition) {
+            
+    //         setLocalStorageItem(`isExpandedPosition - ${position.id}`, isNewPosition)
+    //     }
+    // })
 
-    // Using useEffect Hook here to automatically expand the Posiiton card if the user created new Position.
-    useEffect(() => {
-        if (isNewPosition) setIsExpanded(true);
-    }, [])
+    const persistentIsNewPoint = getLocalStorageItem(`isNewPoint - ${position.id}`, false)
+    const [isNewPoint, setIsNewPoint] = useState(persistentIsNewPoint);
+
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem(`isExpandedPosition - ${position.id}`, newState)
+    }
+
+    const handleIsNewPoint = (newState) => {
+        setIsNewPoint(newState);
+        setLocalStorageItem('isNewPoint', newState)
+    }
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -30,13 +48,16 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
 
             company.positions.splice(positionIndex, 1);
         });
+
+        // Removes the localStorage item of the position's isExpanded state in order to prevent clutter in localStorage object.
+        removeLocalStorageItem(`isExpandedPosition - ${position.id}`);
     }
 
     const handleVisibility = (e) => {
         e.preventDefault();
         e.stopPropagation();
         
-        if (isExpanded && position.isVisible) setIsExpanded(!isExpanded);
+        if (isExpanded && position.isVisible) handleIsExpanded(!isExpanded);
         
         if (!position.id) throw new Error('position.id is undefined!');
 
@@ -133,9 +154,12 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
     }
 
     const handleCollapsing = () => {
-        setIsExpanded(prevState => !prevState);
+        handleIsExpanded(!isExpanded);
 
-        if (isNewPosition) setIsNewPosition(false);
+        if (isNewPosition) {
+            handleIsNewPosition(false);
+            setLocalStorageItem('isNewPosition', false);
+        }
     }
 
     const handleAddPoint = (e) => {
@@ -161,7 +185,7 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
             positionItem.responsibilities.push(newPoint);
         });
 
-        setIsNewPoint(true);
+        handleIsNewPoint(true);
     }
 
     const isPlaceholderTitle = position.title.toLowerCase().includes('position');
@@ -226,7 +250,7 @@ export default function PositionCard({ position, isNewPosition, setIsNewPosition
                                     companyID={companyID}
                                     positionID={position.id}
                                     isNewPoint={isNew}
-                                    setIsNewPoint={setIsNewPoint}
+                                    handleIsNewPoint={handleIsNewPoint}
                                 />
                             })
                         )}

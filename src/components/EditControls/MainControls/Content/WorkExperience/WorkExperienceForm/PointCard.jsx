@@ -1,20 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAppContext } from '../../../../../../AppContext.jsx';
+import { setLocalStorageItem, getLocalStorageItem, removeLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
 import SubPointCard from './SubPointCard.jsx';
 
 import styles from './WorkExperienceForm.module.css';
 
-export default function PointCard({ point, index, companyID, positionID, isNewPoint, setIsNewPoint }) {
+export default function PointCard({ point, index, companyID, positionID, isNewPoint, handleIsNewPoint }) {
     const { setCVData } = useAppContext();
 
-    const [isExpanded, setIsExpanded] = useState(false);
+    // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
+    // It expands the PointCard by default if the user created new Point.
+    const persistentIsExpanded = getLocalStorageItem(`isExpandedPoint - ${point.id}`, isNewPoint)
+    const [isExpanded, setIsExpanded] = useState(isNewPoint);
+
+    const persistentIsNewSubPoint = getLocalStorageItem('isNewSubPoint', false)
     const [isNewSubPoint, setIsNewSubPoint] = useState(false);
 
-    // Using useEffect Hook here to automatically expand the Point card if the user created new Point.
-    useEffect(() => {
-        if (isNewPoint) setIsExpanded(true);
-    }, [])
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem(`isExpandedPoint - ${point.id}`, newState);
+    }
+
+    const handleIsNewSubPoint = (newState) => {
+        setIsNewSubPoint(newState);
+        setLocalStorageItem('isNewSubPoint', newState);
+    }
 
     const handleDelete = (e) => {
         e.stopPropagation(); 
@@ -33,6 +44,9 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
 
             position.responsibilities.splice(pointIndex, 1);
         });
+
+        // Removes the localStorage item of the point's isExpanded state in order to prevent clutter inside of localStorage object.
+        removeLocalStorageItem(`isExpandedPoint - ${point.id}`);
     }
 
     const handleVisibility = (e) => {
@@ -42,7 +56,7 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
         // Stop default form submit behavior
         e.preventDefault();
         
-        if (isExpanded && point.isVisible) setIsExpanded(prevState => !prevState);
+        if (isExpanded && point.isVisible) handleIsExpanded(!isExpanded);
 
         if (!point.id) throw new Error('experienceFormData.id is undefined!');
 
@@ -78,9 +92,9 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
     }
 
     const handleCollapsing = () => {
-        setIsExpanded(prevState => !prevState);
+        handleIsExpanded(!isExpanded);
 
-        if (isNewPoint) setIsNewPoint(false);
+        if (isNewPoint) handleIsNewPoint(false);
     }
 
     const handleAddSubPoint = (e) => {
@@ -106,7 +120,7 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
             pointItem.subPoints.push(newSubPoint)
         });
 
-        setIsNewSubPoint(true);
+        handleIsNewSubPoint(true);
     }
 
     const isPlaceholderTitle = point.point.toLowerCase().includes('point');
@@ -157,7 +171,7 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
                                         positionID={positionID}
                                         pointID={point.id} 
                                         isNewSubPoint={isNew}
-                                        setIsNewSubPoint={setIsNewSubPoint}
+                                        handleIsNewSubPoint={handleIsNewSubPoint}
                                     />
                                 })
                             )}
