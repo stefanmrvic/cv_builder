@@ -5,7 +5,7 @@ import styles from './PersonalDetails.module.css';
 import { getLocalStorageItem, setLocalStorageItem } from '../../../../../utils/localStorage';
 
 export default function PersonalDetails() {
-    const persistentIsExpanded = getLocalStorageItem('isExpandedPersonalDetails', true);
+    const persistentIsExpanded = getLocalStorageItem('isExpanded - PersonalDetails', true);
     const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const { setCVData } = useAppContext();
@@ -18,7 +18,7 @@ export default function PersonalDetails() {
 
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState);
-        setLocalStorageItem('isExpandedPersonalDetails', newState);
+        setLocalStorageItem('isExpanded - PersonalDetails', newState);
     }
 
     const toggleCollapsing = () => {

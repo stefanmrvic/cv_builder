@@ -2,7 +2,7 @@ import { useAppContext, useSkills } from '../../../../../AppContext';
 
 import styles from './SkillsToolsInterests.module.css';
 
-export default function Skills({ setIsSkillsFormOpen }) {
+export default function Skills({ handleIsSkillsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -20,7 +20,7 @@ export default function Skills({ setIsSkillsFormOpen }) {
     }
 
     return (
-        <div className={styles.skillsContainer} role='button' onClick={() => setIsSkillsFormOpen(true)}>
+        <div className={styles.skillsContainer} role='button' onClick={() => handleIsSkillsFormOpen(true)}>
             <span className={styles.skillsHeadline}>Skills</span>
 
             <button className={styles.skillsVisibilityBtn} onClick={(handleVisibility)}>

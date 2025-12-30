@@ -20,31 +20,82 @@ export default function SkillsToolsInterests() {
     const skillsToolsInterests = useSkills();
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
-    const persistentIsExpanded = getLocalStorageItem('isExpandedSkills', false);
+    const persistentIsExpanded = getLocalStorageItem('isExpanded - Skills', false);
     const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
-    const [isCertificationsFormOpen, setIsCertificationsFormOpen] = useState(false);
-    const [isSkillsFormOpen, setIsSkillsFormOpen] = useState(false);
-    const [isToolsFormOpen, setIsToolsFormOpen] = useState(false);
-    const [isInterestsFormOpen, setIsInterestsFormOpen] = useState(false);
+    const persistentIsCertificationsFormOpen = getLocalStorageItem('isFormOpen - Certifications', false);
+    const [isCertificationsFormOpen, setIsCertificationsFormOpen] = useState(persistentIsCertificationsFormOpen);
 
-    // State for tracking the original state of the Certifications database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [certificationsFormData, setCertificationsFormData] = useState(skillsToolsInterests.certifications.items)
+    const persistentIsSkillsFormOpen = getLocalStorageItem('isFormOpen - Skills', false);
+    const [isSkillsFormOpen, setIsSkillsFormOpen] = useState(persistentIsSkillsFormOpen);
 
-    // State for tracking the original state of the Skills database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [skillsFormData, setSkillsFormData] = useState(skillsToolsInterests.skills.items)
+    const persistentIsToolsFormOpen = getLocalStorageItem('isFormOpen - Tools', false);
+    const [isToolsFormOpen, setIsToolsFormOpen] = useState(persistentIsToolsFormOpen);
 
-    // State for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [toolsFormData, setToolsFormData] = useState(skillsToolsInterests.tools.items)
+    const persistentIsInterestsFormOpen = getLocalStorageItem('isFormOpen - Interests', false);
+    const [isInterestsFormOpen, setIsInterestsFormOpen] = useState(persistentIsInterestsFormOpen);
 
-    // State for tracking the original state of the Interests database, in case user wants to discard the made changes by clicking "Cancel" button.
-    const [interestsFormData, setInterestsFormData] = useState(skillsToolsInterests.interests.items)
+    // Persistent state with localStorage for tracking the original state of the Certifications database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const persistentCertificationsFormData = getLocalStorageItem('formData - Certifications', skillsToolsInterests.certifications.items)
+    const [certificationsFormData, setCertificationsFormData] = useState(persistentCertificationsFormData)
+
+    // Persistent state with localStorage for tracking the original state of the Skills database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const persistentSkillsFormData = getLocalStorageItem('formData - Skills', skillsToolsInterests.skills.items)
+    const [skillsFormData, setSkillsFormData] = useState(persistentSkillsFormData)
+
+    // Persistent state with localStorage for tracking the original state of the Tools database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const persistentToolsFormData = getLocalStorageItem('formData - Tools', skillsToolsInterests.tools.items)
+    const [toolsFormData, setToolsFormData] = useState(persistentToolsFormData)
+
+    // Persistent state with localStorage for tracking the original state of the Interests database, in case user wants to discard the made changes by clicking "Cancel" button.
+    const persistentInterestsFormData = getLocalStorageItem('formData - Interests', skillsToolsInterests.interests.items)
+    const [interestsFormData, setInterestsFormData] = useState(persistentInterestsFormData)
 
     const skillsToolsInterestsCardContainerRef = useRef(null);
 
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState);
-        setLocalStorageItem('isExpandedSkills', newState)
+        setLocalStorageItem('isExpanded - Skills', newState)
+    }
+
+    const handleIsCertificationsFormOpen = (newState) => {
+        setIsCertificationsFormOpen(newState);
+        setLocalStorageItem('isFormOpen - Certifications', newState);
+    }
+
+    const handleCertificationsFormData = (newState) => {
+        setCertificationsFormData(newState);
+        setLocalStorageItem('formData - Certifications', newState);
+    }
+
+    const handleIsSkillsFormOpen = (newState) => {
+        setIsSkillsFormOpen(newState);
+        setLocalStorageItem('isFormOpen - Skills', newState);
+    }
+
+    const handleSkillsFormData = (newState) => {
+        setSkillsFormData(newState);
+        setLocalStorageItem('formData - Skills', newState);
+    }
+
+    const handleIsToolsFormOpen = (newState) => {
+        setIsToolsFormOpen(newState);
+        setLocalStorageItem('isFormOpen - Tools', newState);
+    }
+
+    const handleToolsFormData = (newState) => {
+        setToolsFormData(newState);
+        setLocalStorageItem('formData - Tools', newState);
+    }
+
+    const handleIsInterestsFormOpen = (newState) => {
+        setIsInterestsFormOpen(newState);
+        setLocalStorageItem('isFormOpen - Interests', newState);
+    }
+
+    const handleInterestsFormData = (newState) => {
+        setInterestsFormData(newState);
+        setLocalStorageItem('formData - Interests', newState);
     }
 
     const toggleCollapsing = () => {
@@ -72,55 +123,55 @@ export default function SkillsToolsInterests() {
             {(isExpanded && isCertificationsFormOpen) && (
                 <CertificationsForm 
                     certificationsFormData={certificationsFormData} 
-                    setCertificationsFormData={setCertificationsFormData} 
+                    handleCertificationsFormData={handleCertificationsFormData} 
                     isCertificationsFormOpen={isCertificationsFormOpen}
-                    setIsCertificationsFormOpen={setIsCertificationsFormOpen}
+                    handleIsCertificationsFormOpen={handleIsCertificationsFormOpen}
                 />
             )}
 
             {(isExpanded && isSkillsFormOpen) && (
                 <SkillsForm 
                     skillsFormData={skillsFormData} 
-                    setSkillsFormData={setSkillsFormData} 
+                    handleSkillsFormData={handleSkillsFormData} 
                     isSkillsFormOpen={isSkillsFormOpen}
-                    setIsSkillsFormOpen={setIsSkillsFormOpen}
+                    handleIsSkillsFormOpen={handleIsSkillsFormOpen}
                 />
             )}
 
             {(isExpanded && isToolsFormOpen) && (
                 <ToolsForm 
                     toolsFormData={toolsFormData} 
-                    setToolsFormData={setToolsFormData} 
+                    handleToolsFormData={handleToolsFormData} 
                     isToolsFormOpen={isToolsFormOpen}
-                    setIsToolsFormOpen={setIsToolsFormOpen}
+                    handleIsToolsFormOpen={handleIsToolsFormOpen}
                 />
             )}
 
             {(isExpanded && isInterestsFormOpen) && (
                 <InterestsForm 
                     interestsFormData={interestsFormData} 
-                    setInterestsFormData={setInterestsFormData} 
+                    handleInterestsFormData={handleInterestsFormData} 
                     isInterestsFormOpen={isInterestsFormOpen}
-                    setIsInterestsFormOpen={setIsInterestsFormOpen}
+                    handleIsInterestsFormOpen={handleIsInterestsFormOpen}
                 />
             )}
 
             {isExpanded && (
                 <div className={`${styles.skillsToolsInterestsCardContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsCardContainerRef}>
                     <Certifications
-                        setIsCertificationsFormOpen={setIsCertificationsFormOpen}
+                        handleIsCertificationsFormOpen={handleIsCertificationsFormOpen}
                     />
 
                     <Skills
-                        setIsSkillsFormOpen={setIsSkillsFormOpen}
+                        handleIsSkillsFormOpen={handleIsSkillsFormOpen}
                     />
 
                     <Tools
-                        setIsToolsFormOpen={setIsToolsFormOpen}
+                        handleIsToolsFormOpen={handleIsToolsFormOpen}
                     />
                     
                     <Interests
-                        setIsInterestsFormOpen={setIsInterestsFormOpen}
+                        handleIsInterestsFormOpen={handleIsInterestsFormOpen}
                     />
                 </div>
             )}

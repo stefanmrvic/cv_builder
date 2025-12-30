@@ -5,7 +5,7 @@ import Skill from './Skill.jsx';
 
 import styles from './SkillsForm.module.css';
 
-export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkillsFormOpen, setIsSkillsFormOpen }) {
+export default function SkillsForm({ skillsFormData, handleSkillsFormData, isSkillsFormOpen, handleIsSkillsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -27,7 +27,7 @@ export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkills
             skills.items = skillsFormData;
         });
 
-        setIsSkillsFormOpen(false);
+        handleIsSkillsFormOpen(false);
     }
 
     const handleAddSkill = (e) => {
@@ -56,8 +56,8 @@ export default function SkillsForm({ skillsFormData, setSkillsFormData, isSkills
 
         if(!skills) throw new Error('Skills not found!');
 
-        setSkillsFormData(skills);
-        setIsSkillsFormOpen(false);
+        handleSkillsFormData(skills);
+        handleIsSkillsFormOpen(false);
     }
 
     return (

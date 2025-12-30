@@ -13,7 +13,7 @@ export default function WorkExperience() {
     const workExperience = useWorkExperience();
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
-    const persistentIsExpanded = getLocalStorageItem('isExpandedWorkExperience', false);
+    const persistentIsExpanded = getLocalStorageItem('isExpanded - Work Experience', false);
     const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const persistentIsPositionFormOpen = getLocalStorageItem('isPositionFormOpen', false);
@@ -56,7 +56,7 @@ export default function WorkExperience() {
     // Below are the localStorage wrapper functions that update both state and localStorage
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState)
-        setLocalStorageItem('isExpandedWorkExperience', newState);
+        setLocalStorageItem('isExpanded - WorkExperience', newState);
     }
 
     const handleIsPositionFormOpen = (newState) => {
@@ -122,7 +122,7 @@ export default function WorkExperience() {
             {(!isExperienceFormOpen && !isPositionFormOpen) && (
                 <button className={`${styles.experienceHeaderContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
                     <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
-                    <span className={styles.experienceHeadline}>Experience</span>
+                    <span className={styles.experienceHeadline}>Work Experience</span>
                     <span className={`${isExpanded ? styles.active : ''} ${styles.arrowDown} material-symbols-outlined`}>keyboard_arrow_down</span>
                 </button>
             )}

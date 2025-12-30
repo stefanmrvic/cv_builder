@@ -5,7 +5,7 @@ import Certification from './Certification.jsx';
 
 import styles from './CertificationsForm.module.css';
 
-export default function CertificationsForm({ certificationsFormData, setCertificationsFormData, isCertificationsFormOpen, setIsCertificationsFormOpen }) {
+export default function CertificationsForm({ certificationsFormData, handleCertificationsFormData, isCertificationsFormOpen, handleIsCertificationsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -27,7 +27,7 @@ export default function CertificationsForm({ certificationsFormData, setCertific
             certifications.items = certificationsFormData;
         });
 
-        setIsCertificationsFormOpen(false);
+        handleIsCertificationsFormOpen(false);
     }
 
     const handleAddCertification = (e) => {
@@ -56,8 +56,8 @@ export default function CertificationsForm({ certificationsFormData, setCertific
 
         if(!certifications) throw new Error('Certifications not found!');
 
-        setCertificationsFormData(certifications);
-        setIsCertificationsFormOpen(false);
+        handleCertificationsFormData(certifications);
+        handleIsCertificationsFormOpen(false);
     }
 
     return (

@@ -5,7 +5,7 @@ import Interest from './Interest.jsx';
 
 import styles from './InterestsForm.module.css';
 
-export default function InterestsForm({ interestsFormData, setInterestsFormData, isInterestsFormOpen, setIsInterestsFormOpen }) {
+export default function InterestsForm({ interestsFormData, handleInterestsFormData, isInterestsFormOpen, handleIsInterestsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -27,7 +27,7 @@ export default function InterestsForm({ interestsFormData, setInterestsFormData,
             interests.items = interestsFormData;
         });
 
-        setIsInterestsFormOpen(false);
+        handleIsInterestsFormOpen(false);
     }
 
     const handleAddInterest = (e) => {
@@ -56,8 +56,8 @@ export default function InterestsForm({ interestsFormData, setInterestsFormData,
 
         if(!interests) throw new Error('Interests not found!');
 
-        setInterestsFormData(interests);
-        setIsInterestsFormOpen(false);
+        handleInterestsFormData(interests);
+        handleIsInterestsFormOpen(false);
     }
 
     return (

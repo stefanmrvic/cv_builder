@@ -5,7 +5,7 @@ import Tool from './Tool.jsx';
 
 import styles from './ToolsForm.module.css';
 
-export default function ToolsForm({ toolsFormData, setToolsFormData, isToolsFormOpen, setIsToolsFormOpen }) {
+export default function ToolsForm({ toolsFormData, handleToolsFormData, isToolsFormOpen, handleIsToolsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -27,7 +27,7 @@ export default function ToolsForm({ toolsFormData, setToolsFormData, isToolsForm
             tools.items = toolsFormData;
         });
 
-        setIsToolsFormOpen(false);
+        handleIsToolsFormOpen(false);
     }
 
     const handleAddTool = (e) => {
@@ -56,8 +56,8 @@ export default function ToolsForm({ toolsFormData, setToolsFormData, isToolsForm
 
         if(!tools) throw new Error('Tools not found!');
 
-        setToolsFormData(tools);
-        setIsToolsFormOpen(false);
+        handleToolsFormData(tools);
+        handleIsToolsFormOpen(false);
     }
 
     return (
