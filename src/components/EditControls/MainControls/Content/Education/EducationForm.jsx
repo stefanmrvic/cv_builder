@@ -2,7 +2,7 @@ import { useAppContext, useEducation } from '../../../../../AppContext';
 
 import styles from './Education.module.css';
 
-export default function EducationForm({ isNew, setIsNew, isFormOpen, setIsFormOpen, formData }) {
+export default function EducationForm({ isNew, handleIsNew, isFormOpen, handleIsFormOpen, formData }) {
     const { setCVData } = useAppContext();
     const education = useEducation();
     
@@ -10,15 +10,17 @@ export default function EducationForm({ isNew, setIsNew, isFormOpen, setIsFormOp
 
     const handleDeleteItem = () => {
         if (!formData.id) throw new Error('formData.id is undefined!');
-
+        
         setCVData(draft => {
-            const itemIndex = draft.education.findIndex(item => item.id === formData.id);
-            if (itemIndex === undefined) throw new Error('Item not found!');
+            const item = draft.education.find(item => item.id === formData.id);
+            if (!item) throw new Error('Item not found!');
 
+            const itemIndex = draft.education.findIndex(item => item.id === formData.id);
             draft.education.splice(itemIndex, 1);
         });
 
-        setIsFormOpen(false);
+        handleIsFormOpen(false);
+        handleFormData('');
     }
 
     const revertChanges = () => {
@@ -40,8 +42,8 @@ export default function EducationForm({ isNew, setIsNew, isFormOpen, setIsFormOp
             }
         });
 
-        setIsNew(false);  
-        setIsFormOpen(false);
+        handleIsNew(false);  
+        handleIsFormOpen(false);
     }
 
     const handleSchoolName = (e) => {
@@ -83,8 +85,8 @@ export default function EducationForm({ isNew, setIsNew, isFormOpen, setIsFormOp
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        setIsNew(false);  
-        setIsFormOpen(false);
+        handleIsNew(false);  
+        handleIsFormOpen(false);
     }
 
     return (

@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useAppContext, useEducation } from '../../../../../AppContext.jsx';
+import { getLocalStorageItem, setLocalStorageItem } from '../../../../../utils/localStorage.js';
 
 import EducationItem from './EducationItem.jsx';
 import EducationForm from './EducationForm.jsx';
@@ -10,31 +11,59 @@ export default function Education() {
     const { setCVData } = useAppContext();
     const education = useEducation();
 
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [isFormOpen, setIsFormOpen] = useState(false);
-    const [isNew, setIsNew] = useState(false)
-    const [formData, setFormData] = useState({
+    // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
+    const persistentIsExpanded = getLocalStorageItem('isExpanded - Education', false);
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
+
+    const persistentIsFormOpen = getLocalStorageItem('isFormOpen - Education', false);
+    const [isFormOpen, setIsFormOpen] = useState(persistentIsFormOpen);
+
+    const persistentIsNew = getLocalStorageItem('isNew - Education', false);
+    const [isNew, setIsNew] = useState(persistentIsNew)
+
+    const persistentFormData = getLocalStorageItem('formData - Education', {
         id: '',
         isVisible: '',
         schoolName: '',
         graduationDate: '',
         qualification: '',
         schoolLocation: ''
-    })
+    });
+    const [formData, setFormData] = useState(persistentFormData)
 
     const educationItemContainerRef = useRef(null);
     const arrowDownRef = useRef(null);
+
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem('isExpanded - Education', newState)
+    }
+
+    const handleIsFormOpen = (newState) => {
+        setIsFormOpen(newState);
+        setLocalStorageItem('isFormOpen - Education', newState);
+    }
+
+    const handleFormData = (newState) => {
+        setFormData(newState);
+        setLocalStorageItem('formData - Education', newState);
+    }
+
+    const handleIsNew = (newState) => {
+        setIsNew(newState);
+        setLocalStorageItem('isNew - Education', newState);
+    }
 
     const toggleCollapsing = () => {
         arrowDownRef.current.classList.toggle(`${styles.active}`);
 
         if (isExpanded) handleCloseAnimation();
-        setIsExpanded(!isExpanded);
+        handleIsExpanded(!isExpanded);
     }
 
     const handleCloseAnimation = () => {
         educationItemContainerRef.current.setAttribute("class", `${styles.educationItemContainer} ${styles.closing}`)
-        educationItemContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        educationItemContainerRef.current.onanimationend = () => handleIsExpanded(!isExpanded);
     }
 
     const handleAddBtnClick = () => {
@@ -47,12 +76,12 @@ export default function Education() {
             schoolLocation: ''
         }
 
-        setIsNew(true)
+        handleIsNew(true)
         setCVData(draft => {
             draft.education.push(createEducationItem)
         })
-        setFormData(createEducationItem);
-        setIsFormOpen(true);
+        handleFormData(createEducationItem);
+        handleIsFormOpen(true);
     }
 
     return (
@@ -68,11 +97,11 @@ export default function Education() {
             {(isExpanded && isFormOpen) && (
                 <EducationForm 
                     isNew={isNew}
-                    setIsNew={setIsNew}
+                    handleIsNew={handleIsNew}
                     isFormOpen={isFormOpen}
-                    setIsFormOpen={setIsFormOpen}
+                    handleIsFormOpen={handleIsFormOpen}
                     formData={formData} 
-                    setFormData={setFormData} 
+                    handleFormData={handleFormData} 
                 />
             )}
 
@@ -86,8 +115,8 @@ export default function Education() {
                             key={item.id}
                             educationID={item.id}
                             isVisible={item.isVisible}
-                            setIsFormOpen={setIsFormOpen}
-                            setFormData={setFormData}    
+                            handleIsFormOpen={handleIsFormOpen}
+                            handleFormData={handleFormData}    
                         />
                     })}
 

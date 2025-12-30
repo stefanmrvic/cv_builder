@@ -2,16 +2,16 @@ import { useAppContext, useEducation } from '../../../../../AppContext';
 
 import styles from './Education.module.css';
 
-export default function EducationItem({ educationID, isVisible, setIsFormOpen, setFormData }) {
+export default function EducationItem({ educationID, isVisible, handleIsFormOpen, handleFormData }) {
     const { cvData, setCVData } = useAppContext();
     const education = useEducation();
 
-    const populateForm = (id) => {
-        const educationItem = education.find(item => item.id === id)
+    const populateForm = () => {
+        const educationItem = education.find(item => item.id === educationID)
 
         if (!educationItem) return;
 
-        setFormData({
+        handleFormData({
             id: educationItem.id,
             isVisible: educationItem.isVisibile,
             schoolName: educationItem.schoolName,
@@ -20,7 +20,7 @@ export default function EducationItem({ educationID, isVisible, setIsFormOpen, s
             schoolLocation: educationItem.schoolLocation
         })
 
-        setIsFormOpen(true);
+        handleIsFormOpen(true);
     }
 
     const handleDeleteItem = (e) => {
@@ -54,7 +54,7 @@ export default function EducationItem({ educationID, isVisible, setIsFormOpen, s
     const schoolName = cvData.education.find(item => item.id === educationID)?.schoolName;
 
     return (
-        <div className={styles.educationItem} onClick={() => populateForm(educationID)} role='button'>
+        <div className={styles.educationItem} onClick={populateForm} role='button'>
             <span className={styles.educationItemHeadline}>{schoolName}</span>
             <div className={styles.educationBtnContainer}>
                 <button onClick={handleVisibility}>

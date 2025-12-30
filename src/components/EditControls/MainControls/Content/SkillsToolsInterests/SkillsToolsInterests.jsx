@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useSkills } from '../../../../../AppContext.jsx';
+import { getLocalStorageItem, setLocalStorageItem } from './../../../../../utils/localStorage.js';
 
 import Certifications from './Certifications.jsx';
 import CertificationsForm from './CertificationsForm/CertificationsForm.jsx';
@@ -18,8 +19,9 @@ import styles from './SkillsToolsInterests.module.css';
 export default function SkillsToolsInterests() {
     const skillsToolsInterests = useSkills();
 
-    // State for Skills,Tools & Interests Header
-    const [isExpanded, setIsExpanded] = useState(false);
+    // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
+    const persistentIsExpanded = getLocalStorageItem('isExpandedSkills', false);
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const [isCertificationsFormOpen, setIsCertificationsFormOpen] = useState(false);
     const [isSkillsFormOpen, setIsSkillsFormOpen] = useState(false);
@@ -40,15 +42,20 @@ export default function SkillsToolsInterests() {
 
     const skillsToolsInterestsCardContainerRef = useRef(null);
 
+    const handleIsExpanded = (newState) => {
+        setIsExpanded(newState);
+        setLocalStorageItem('isExpandedSkills', newState)
+    }
+
     const toggleCollapsing = () => {
         if (isExpanded) handleCloseAnimation();
 
-        setIsExpanded(!isExpanded);
+        handleIsExpanded(!isExpanded);
     }
 
     const handleCloseAnimation = () => {
         skillsToolsInterestsCardContainerRef.current.setAttribute("class", `${styles.skillsToolsInterestsContainer} ${styles.closing}`)
-        skillsToolsInterestsCardContainerRef.current.onanimationend = () => setIsExpanded(!isExpanded);
+        skillsToolsInterestsCardContainerRef.current.onanimationend = () => handleIsExpanded(!isExpanded);
     }
 
     return (
