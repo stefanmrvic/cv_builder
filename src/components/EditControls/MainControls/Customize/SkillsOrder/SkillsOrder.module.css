@@ -1,0 +1,69 @@
+/* ============================================
+   SKILLS ORDER CONTAINER
+   ============================================ */
+.skillsOrderContainer {
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background-color: var(--secondary-bg-color);
+}
+
+.skillsOrderHeaderContainer {
+    padding: 24px 24px 23px 24px;
+}
+
+.skillsOrderHeadline {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.skillsOrderText {
+    color: #666;
+    font-size: 14px;
+    line-height: normal;
+}
+
+/* ============================================
+   SKILLS ORDER ITEM CONTAINER
+   ============================================ */
+.skillsOrderCardContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 23px 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.skillsOrderCardHeaderContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skillsOrderCardHeadline {
+    font-size: 17.5px;
+    font-weight: 600;
+}
+
+.skillsOrderCardBtnContainer {
+    display: flex;
+    gap: 5px;
+}
+
+.skillsOrderCardBtn {
+    color: #0f0f0f;
+    height: 29px; /* 31px*/
+    width: 29px;  /* 33px*/
+    padding: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+}
+
+.skillsOrderCardBtn:disabled {
+    color: #b7b7b7;
+    cursor: not-allowed;
+}
+
+span.skillsOrderCardBtnIcon {
+    display: block;
+    font-weight: 250;
+}

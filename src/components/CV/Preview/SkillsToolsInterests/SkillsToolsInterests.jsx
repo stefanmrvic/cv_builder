@@ -8,7 +8,7 @@ import Interests from './Interests.jsx'
 import styles from './SkillsToolsInterests.module.css'
 
 export default function SkillsToolsInterests() {
-    const { bulletPoints } = useAppContext();
+    const { bulletPoints, skillsOrder } = useAppContext();
     const { certifications, skills, tools, interests } = useSkills();
 
     // Returns null if there are no items under any category of certifications / skills / tools / interests
@@ -27,29 +27,42 @@ export default function SkillsToolsInterests() {
             )}
 
             <ul className={styles.skillsToolsInterestsList}>
-                {certifications.isVisible && certifications.items.length > 0 && (
-                    <li className={styles[bulletPoints.main]}>
-                        <Certifications />
-                    </li> 
-                )}
+                {/* Orders Certifications, Skills, Tools, and Interests based on the set order under Customization tab. */}
+                {skillsOrder.map(item => {
+                    if (item.id === 'certifications') {
+                        if (!certifications.isVisible || certifications.items.length === 0) return null;
+                        
+                        return (
+                            <li key={item.id} className={styles[bulletPoints.main]}>
+                                <Certifications />
+                            </li> 
+                        )
+                    } else if (item.id === 'skills') {
+                        if (!skills.isVisible || skills.items.length === 0) return null;
+                        
+                        return (
+                            <li key={item.id} className={styles[bulletPoints.main]}>
+                                <Skills />
+                            </li> 
+                        )
+                    } else if (item.id === 'tools') {
+                        if (!tools.isVisible || tools.items.length === 0) return null;
+                        
+                        return (
+                            <li key={item.id} className={styles[bulletPoints.main]}>
+                                <Tools />
+                            </li> 
+                        )
+                    } else {
+                        if (!interests.isVisible || interests.items.length === 0) return null;
 
-                {skills.isVisible && skills.items.length > 0 && (
-                    <li className={styles[bulletPoints.main]}>
-                        <Skills />
-                    </li>   
-                )}
-
-                {tools.isVisible && tools.items.length > 0 && (
-                    <li className={styles[bulletPoints.main]}>
-                        <Tools />
-                    </li>
-                )}
-
-                {interests.isVisible && interests.items.length > 0 && (
-                    <li className={styles[bulletPoints.main]}>
-                        <Interests />
-                    </li> 
-                )}
+                        return (
+                            <li key={item.id} className={styles[bulletPoints.main]}>
+                                <Interests />
+                            </li> 
+                        )
+                    }
+                })}
             </ul>
         </section>
     )

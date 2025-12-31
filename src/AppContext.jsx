@@ -8,11 +8,12 @@ const AppContext = createContext(null);
 export function AppProvider({ children }) {
   // Utilizing useRef hook to keep track of whether the component is mounted or not, in order to prevent localStorage data overwriting on initial load.
   const cvDataEffectRan = useRef(false);
-  const orderEffectRan = useRef(false);
+  const sectionsOrderEffectRan = useRef(false);
+  const skillsOrderEffectRan = useRef(false);
   const bulletPointsEffectRan = useRef(false);
 
   const [cvData, setCVData] = useImmer(defaultCV);
-  const [order, setOrder] = useState([
+  const [sectionsOrder, setSectionsOrder] = useState([
     {
       id: 'workExperience',
       icon: 'business_center',
@@ -30,6 +31,13 @@ export function AppProvider({ children }) {
     }
   ])
 
+  const [skillsOrder, setSkillsOrder] = useState([
+    { id: 'certifications', headline: 'Certifications'},
+    { id: 'skills', headline: 'Skills' },
+    { id: 'tools', headline: 'Tools' },
+    { id: 'interests', headline: 'Interests' }
+  ])
+
   const [bulletPoints, setBulletPoints] = useState({
     main: 'square',
     sub: 'circle'
@@ -38,11 +46,13 @@ export function AppProvider({ children }) {
   // Updates the states which are passed throughout the App with the localStorage objects on initial load.
   useEffect(() => {
     const cvData = JSON.parse(localStorage.getItem('cvData'))
-    const order = JSON.parse(localStorage.getItem('order'))
+    const sectionsOrder = JSON.parse(localStorage.getItem('sectionsOrder'))
     const bulletPoints = JSON.parse(localStorage.getItem('bulletPoints'))
+    const skillsOrder = JSON.parse(localStorage.getItem('skillsOrder'))
 
     if (cvData) setCVData(cvData)
-    if (order) setOrder(order)
+    if (sectionsOrder) setSectionsOrder(sectionsOrder)
+    if (skillsOrder) setSkillsOrder(skillsOrder)
     if (bulletPoints) setBulletPoints(bulletPoints)
   }, []);
 
@@ -56,15 +66,25 @@ export function AppProvider({ children }) {
     }
   }, [cvData])
 
-  // Prevents useEffect function to run at mount, but rather only when order is updated, 
+  // Prevents useEffect function to run at mount, but rather only when sectionsOrder is updated, 
   // so that localStorage setItem function doesn't overwrite saved localStorage object on initial mount.
   useEffect(() => {
-    if (orderEffectRan.current) {
-      localStorage.setItem('order', JSON.stringify(order));
+    if (sectionsOrderEffectRan.current) {
+      localStorage.setItem('sectionsOrder', JSON.stringify(sectionsOrder));
     } else {
-      orderEffectRan.current = true;
+      sectionsOrderEffectRan.current = true;
     }
-  }, [order])
+  }, [sectionsOrder])
+
+  // Prevents useEffect function to run at mount, but rather only when skillsOrder is updated, 
+  // so that localStorage setItem function doesn't overwrite saved localStorage object on initial mount.
+  useEffect(() => {
+    if (skillsOrderEffectRan.current) {
+      localStorage.setItem('skillsOrder', JSON.stringify(skillsOrder));
+    } else {
+      skillsOrderEffectRan.current = true;
+    }
+  }, [skillsOrder])
 
   // Prevents useEffect function to run at mount, but rather only when bulletPoints is updated, 
   // so that localStorage setItem function doesn't overwrite saved localStorage object on initial mount.
@@ -78,7 +98,7 @@ export function AppProvider({ children }) {
 
 
   return (
-      <AppContext value={{ cvData, setCVData, order, setOrder, bulletPoints, setBulletPoints }}>
+      <AppContext value={{ cvData, setCVData, sectionsOrder, setSectionsOrder, skillsOrder, setSkillsOrder, bulletPoints, setBulletPoints }}>
           {children}
       </AppContext>
   )

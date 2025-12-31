@@ -10,11 +10,11 @@ import Education from './Education/Education.jsx'
 
 import styles from './CVPreview.module.css'
 
-function DownloadButton({ cvData, order, bulletPoints, className }) {
-  // Generates PDF only when the download button is clicked in order to avoid expensive PDF computations
+function DownloadButton({ cvData, sectionsOrder, bulletPoints, skillsOrder, className }) {
+  // Generates PDF only when the download button is clicked in sectionsOrder to avoid expensive PDF computations
   const handleDownload = async () => {
       const blob = await pdf(
-        <MyDocument data={cvData} order={order} bulletPoints={bulletPoints} />
+        <MyDocument data={cvData} sectionsOrder={sectionsOrder} bulletPoints={bulletPoints} skillsOrder={skillsOrder} />
       ).toBlob();
 
       // Creating download link
@@ -37,7 +37,7 @@ function DownloadButton({ cvData, order, bulletPoints, className }) {
 }
 
 export default function CVPreview() {
-  const { cvData, order, bulletPoints } = useAppContext();
+  const { cvData, sectionsOrder, bulletPoints, skillsOrder } = useAppContext();
 
   return (
     <section className={styles.cvContainer} aria-label='CV preview'>
@@ -48,14 +48,15 @@ export default function CVPreview() {
         key={Date.now()} 
         className={styles.pdfDownloadBtn} 
         cvData={cvData}
-        order={order}
+        sectionsOrder={sectionsOrder}
         bulletPoints={bulletPoints}
+        skillsOrder={skillsOrder}
       />
 
       <div className={styles.cvContentContainer}>
         <PersonalInfo />
 
-        {order.map(item => {
+        {sectionsOrder.map(item => {
           if (item.id === 'workExperience') {
             return <WorkExperience key={item.id} />
           } else if (item.id === 'skillsToolsInterests') {

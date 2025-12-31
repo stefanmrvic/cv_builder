@@ -160,7 +160,9 @@ const defaultCV = {
     ],
     skillsToolsInterests: {   
         certifications: {
-            items: [],
+            items: [
+                { id: 'bc4b886c-999a-4293-8f8a-9765hgf3hj89', name: 'OSCP' },
+            ],
             isVisible: true
         },
         skills: {
@@ -199,7 +201,7 @@ const defaultCV = {
                 { id: '08fc5d71-2232-4966-9b11-2e882ba68c45', name: 'traveling' },
                 { id: '9497206a-b4e8-4a51-9575-1569bfa2d336', name: 'Charles Bukowski' }    
             ],
-            isVisible: true
+            isVisible: false
         }
     },
     education: [

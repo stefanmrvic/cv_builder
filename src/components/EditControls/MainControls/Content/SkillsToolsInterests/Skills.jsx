@@ -3,10 +3,36 @@ import { useAppContext, useSkills } from '../../../../../AppContext';
 import styles from './SkillsToolsInterests.module.css';
 
 export default function Skills({ ariaExpanded, handleIsSkillsFormOpen }) {
-    const { setCVData } = useAppContext();
+    const { setCVData, skillsOrder, setSkillsOrder } = useAppContext();
     
     const skillsToolsInterests = useSkills();
     const skills = skillsToolsInterests.skills;
+
+    const handleOrderShiftUp = () => {
+        if (index === 0) return;
+
+        const newArr = skillsOrder.map((item, itemIndex) => {
+            if (itemIndex === index - 1) return skillsOrder[index];
+            else if (itemIndex === index) return skillsOrder[index - 1];
+
+            return item;
+        })
+
+        setSkillsOrder(newArr);
+    }
+
+    const handleOrderShiftDown = () => {
+        if (index === skillsOrder.length - 1) return;
+
+        const newArr = skillsOrder.map((item, itemIndex) => {
+            if (itemIndex === index + 1) return skillsOrder[index];
+            else if (itemIndex === index) return skillsOrder[index + 1];
+
+            return item;
+        })
+
+        setSkillsOrder(newArr);
+    }
 
     const handleVisibility = (e) => {
         e.stopPropagation();

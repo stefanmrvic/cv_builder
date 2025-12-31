@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useSkills } from '../../../../../AppContext.jsx';
+import { useAppContext, useSkills } from '../../../../../AppContext.jsx';
 import { getLocalStorageItem, setLocalStorageItem } from './../../../../../utils/localStorage.js';
 
 import Certifications from './Certifications.jsx';
@@ -17,8 +17,9 @@ import InterestsForm from './InterestsForm/InterestsForm.jsx';
 import styles from './SkillsToolsInterests.module.css';
 
 export default function SkillsToolsInterests() {
+    const { skillsOrder } = useAppContext();
+
     const skillsToolsInterests = useSkills();
-    const { certifications, skills, tools, interests } = useSkills();
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
     const persistentIsExpanded = getLocalStorageItem('isExpanded - Skills', false);
@@ -168,25 +169,33 @@ export default function SkillsToolsInterests() {
                     className={`${styles.skillsToolsInterestsCardContainer} ${(isCertificationsFormOpen || isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} 
                     ref={skillsToolsInterestsCardContainerRef}
                 >
-                    <Certifications
-                        ariaExpanded={isCertificationsFormOpen}
-                        handleIsCertificationsFormOpen={handleIsCertificationsFormOpen}
-                    />
-
-                    <Skills
-                        ariaExpanded={isSkillsFormOpen}
-                        handleIsSkillsFormOpen={handleIsSkillsFormOpen}
-                    />
-
-                    <Tools
-                        ariaExpanded={isToolsFormOpen}
-                        handleIsToolsFormOpen={handleIsToolsFormOpen}
-                    />
-                    
-                    <Interests
-                        ariaExpanded={isInterestsFormOpen}
-                        handleIsInterestsFormOpen={handleIsInterestsFormOpen}
-                    />
+                    {skillsOrder.map(item => {
+                        if (item.id === 'certifications') {
+                            return <Certifications
+                                key={item.id}
+                                ariaExpanded={isCertificationsFormOpen}
+                                handleIsCertificationsFormOpen={handleIsCertificationsFormOpen}
+                            /> 
+                        } else if (item.id === 'skills') {
+                            return <Skills
+                                key={item.id}
+                                ariaExpanded={isSkillsFormOpen}
+                                handleIsSkillsFormOpen={handleIsSkillsFormOpen}
+                            />
+                        } else if (item.id === 'tools') {
+                            return <Tools
+                                key={item.id}
+                                ariaExpanded={isToolsFormOpen}
+                                handleIsToolsFormOpen={handleIsToolsFormOpen}
+                            />
+                        } else {
+                            return <Interests
+                                key={item.id}
+                                ariaExpanded={isInterestsFormOpen}
+                                handleIsInterestsFormOpen={handleIsInterestsFormOpen}
+                            />
+                        }  
+                    })}
                 </div>
             )}
         </section>
