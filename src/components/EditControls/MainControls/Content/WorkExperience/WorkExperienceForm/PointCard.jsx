@@ -10,16 +10,16 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
     const { setCVData } = useAppContext();
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
-    // It expands the PointCard by default if the user created new Point.
-    const persistentIsExpanded = getLocalStorageItem(`isExpandedPoint - ${point.id}`, isNewPoint)
-    const [isExpanded, setIsExpanded] = useState(isNewPoint);
+    // It expands the PointCard by default if the user creates new Point.
+    const persistentIsExpanded = getLocalStorageItem(`isExpanded - Point: ${point.id}`, isNewPoint)
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const persistentIsNewSubPoint = getLocalStorageItem('isNewSubPoint', false)
-    const [isNewSubPoint, setIsNewSubPoint] = useState(false);
+    const [isNewSubPoint, setIsNewSubPoint] = useState(persistentIsNewSubPoint);
 
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState);
-        setLocalStorageItem(`isExpandedPoint - ${point.id}`, newState);
+        setLocalStorageItem(`isExpanded - Point: ${point.id}`, newState);
     }
 
     const handleIsNewSubPoint = (newState) => {
@@ -45,8 +45,8 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
             position.responsibilities.splice(pointIndex, 1);
         });
 
-        // Removes the localStorage item of the point's isExpanded state in order to prevent clutter inside of localStorage object.
-        removeLocalStorageItem(`isExpandedPoint - ${point.id}`);
+        // Removes the stored isExpanded state of Point inside of localStorage, in order to prevent clutter.
+        removeLocalStorageItem(`isExpanded - Point: ${point.id}`);
     }
 
     const handleVisibility = (e) => {
@@ -56,7 +56,8 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
         // Stop default form submit behavior
         e.preventDefault();
         
-        if (isExpanded && point.isVisible) handleIsExpanded(!isExpanded);
+        // Collapses the Point Description if users turns off the visibility of that point, so that he can focus on other Points.
+        if (isExpanded && point.isVisible) handleIsExpanded(false);
 
         if (!point.id) throw new Error('experienceFormData.id is undefined!');
 

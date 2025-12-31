@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppContext, useWorkExperience } from '../../../../../../AppContext.jsx';
-import { getLocalStorageItem, setLocalStorageItem } from '../../../../../../utils/localStorage.js';
+import { getLocalStorageItem, setLocalStorageItem, removeLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
 import PointCard from '../WorkExperienceForm/PointCard.jsx';
 
@@ -11,7 +11,7 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
     const workExperience = useWorkExperience();
 
     const persistentIsNewPoint = getLocalStorageItem('isNewPoint', false);
-    const [isNewPoint, setIsNewPoint] = useState(false);
+    const [isNewPoint, setIsNewPoint] = useState(persistentIsNewPoint);
 
     const company = workExperience.find(item => item.id === positionFormData.companyID);
     const position = company.positions.find(item => item.id === positionFormData.id);
@@ -35,6 +35,9 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
         });
 
         handleIsPositionFormOpen(false);
+
+        // Removes the stored isExpanded state of Position inside of localStorage, in order to prevent clutter.
+        removeLocalStorageItem(`isExpanded - Position: ${positionFormData.id}`);
     }
 
     const revertChanges = () => {
@@ -61,10 +64,10 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
 
         // Collapses all expanded Points & SubPoints cards when the user clicks on X or Cancel button.
         position.responsibilities.map(responsibility => {
-            setLocalStorageItem(`isExpandedPoint${responsibility.id}`, false);
+            setLocalStorageItem(`isExpanded - Point: ${responsibility.id}`, false);
 
             responsibility.subPoints.map(subResponsibility => {
-                setLocalStorageItem(`isExpandedSubPoint${subResponsibility.id}`, false);
+                setLocalStorageItem(`isExpanded - SubPoint: ${subResponsibility.id}`, false);
             })
         })
     }

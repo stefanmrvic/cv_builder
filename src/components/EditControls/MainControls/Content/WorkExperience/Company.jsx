@@ -1,15 +1,16 @@
 import { useState, useRef } from 'react';
 import { useAppContext } from '../../../../../AppContext.jsx';
+import { removeLocalStorageItem } from '../../../../../utils/localStorage.js';
 
 import Position from './Position.jsx';
 
 import styles from './WorkExperience.module.css';
 import { setLocalStorageItem, getLocalStorageItem } from '../../../../../utils/localStorage.js';
 
-export default function Company({ company, index, setExperienceFormData, setIsExperienceFormOpen, setPositionFormData, setIsPositionFormOpen }) {
+export default function Company({ company, handleExperienceFormData, handleIsExperienceFormOpen, handlePositionFormData, handleIsPositionFormOpen }) {
     const { setCVData } = useAppContext();
 
-    const persistentIsExpanded = getLocalStorageItem(`isExpandedCompany${index}`, false);
+    const persistentIsExpanded = getLocalStorageItem(`isExpanded - Company: ${company.id}`, false);
     const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const positionsContainerRef = useRef(null);
@@ -17,7 +18,7 @@ export default function Company({ company, index, setExperienceFormData, setIsEx
 
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState);
-        setLocalStorageItem(`isExpandedCompany${index}`, newState);
+        setLocalStorageItem(`isExpanded - Company: ${company.id}`, newState);
     }
 
     const handleDelete = (e) => {
@@ -32,6 +33,9 @@ export default function Company({ company, index, setExperienceFormData, setIsEx
 
             draft.workExperience.splice(companyIndex, 1);
         })
+
+        // Removes the stored isExpanded state of Company inside of localStorage, in order to prevent clutter.
+        removeLocalStorageItem(`isExpanded - Company: ${company.id}`);
     }
 
     const handleVisibility = (e) => {
@@ -50,7 +54,7 @@ export default function Company({ company, index, setExperienceFormData, setIsEx
 
         if (!company.id) throw new Error('CompanyID not found!');
 
-        setExperienceFormData({
+        handleExperienceFormData({
             id: company.id,
             isVisible: company.isVisible,
             companyName: company.companyName,
@@ -58,7 +62,7 @@ export default function Company({ company, index, setExperienceFormData, setIsEx
             positions: company.positions
         })
 
-        setIsExperienceFormOpen(true);
+        handleIsExperienceFormOpen(true);
     }
 
     const toggleCollapsing = () => {
@@ -113,8 +117,8 @@ export default function Company({ company, index, setExperienceFormData, setIsEx
                         <Position
                             key={position.id}
                             position={position}
-                            setPositionFormData={setPositionFormData}
-                            setIsPositionFormOpen={setIsPositionFormOpen}
+                            handlePositionFormData={handlePositionFormData}
+                            handleIsPositionFormOpen={handleIsPositionFormOpen}
                             // TO-DO Refactor Company ID passing logic
                             companyID={company.id}
                         />

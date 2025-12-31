@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAppContext, useWorkExperience } from '../../../../../AppContext.jsx';
 import { setLocalStorageItem, getLocalStorageItem } from '../../../../../utils/localStorage.js';
 
@@ -12,24 +12,28 @@ export default function WorkExperience() {
     const { setCVData } = useAppContext();
     const workExperience = useWorkExperience();
 
+    // Tracks the previous length of workExperience to use it in useEffect hook, in order to detect when the new workExperience gets added, so that it can pass 
+    // updated array of workExperiences.
+    const prevLengthRef = useRef(workExperience.length);
+
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
-    const persistentIsExpanded = getLocalStorageItem('isExpanded - Work Experience', false);
+    const persistentIsExpanded = getLocalStorageItem('isExpanded - WorkExperience', false);
     const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
-    const persistentIsPositionFormOpen = getLocalStorageItem('isPositionFormOpen', false);
+    const persistentIsPositionFormOpen = getLocalStorageItem('isFormOpen - Position', false);
     const [isPositionFormOpen, setIsPositionFormOpen] = useState(persistentIsPositionFormOpen);
 
-    const persistentIsExperienceFormOpen = getLocalStorageItem('isExperienceFormOpen', false);
+    const persistentIsExperienceFormOpen = getLocalStorageItem('isFormOpen - Experience', false);
     const [isExperienceFormOpen, setIsExperienceFormOpen] = useState(persistentIsExperienceFormOpen);
 
     const persistentIsNewPosition = getLocalStorageItem('isNewPosition', false);
-    const [isNewPosition, setIsNewPosition] = useState(false);
+    const [isNewPosition, setIsNewPosition] = useState(persistentIsNewPosition);
 
     const persistentIsNewExperience = getLocalStorageItem('isNewExperience', false);
     const [isNewExperience, setIsNewExperience] = useState(persistentIsNewExperience)
 
     // Created with purpose of tracking the original state of the Experience Form Data in case user wants to discard the made changes by clicking "Cancel" button.
-    const persistentExperienceFormData = getLocalStorageItem('experienceFormData', {
+    const persistentExperienceFormData = getLocalStorageItem('formData - Experience', {
         id: '',
         isVisible: '',
         companyName: '',
@@ -39,7 +43,7 @@ export default function WorkExperience() {
     const [experienceFormData, setExperienceFormData] = useState(persistentExperienceFormData);
 
     // Created with purpose of tracking the original state of the Posiiton Form Data in case user wants to discard the made changes by clicking "Cancel" button.
-    const persistentPositionFormData = getLocalStorageItem('positionFormData', {
+    const persistentPositionFormData = getLocalStorageItem('formData - Position', {
         id: '',
         companyID: '',
         isVisible: '',
@@ -59,34 +63,34 @@ export default function WorkExperience() {
         setLocalStorageItem('isExpanded - WorkExperience', newState);
     }
 
-    const handleIsPositionFormOpen = (newState) => {
-        setIsPositionFormOpen(newState)
-        setLocalStorageItem('isPositionFormOpen', newState);
-    }
-
-    const handleIsExperienceFormOpen = (newState) => {
-        setIsExperienceFormOpen(newState)
-        setLocalStorageItem('isExperienceFormOpen', newState);
-    }
-
-    const handleIsNewPosition = (newState) => {
-        setIsNewPosition(newState)
-        setLocalStorageItem('isNewPosition', newState);
-    }
-
     const handleIsNewExperience = (newState) => {
         setIsNewExperience(newState)
         setLocalStorageItem('isNewExperience', newState);
     }
 
+    const handleIsExperienceFormOpen = (newState) => {
+        setIsExperienceFormOpen(newState)
+        setLocalStorageItem('isFormOpen - Experience', newState);
+    }
+    
     const handleExperienceFormData = (newState) => {
         setExperienceFormData(newState)
-        setLocalStorageItem('experienceFormData', newState);
+        setLocalStorageItem('formData - Experience', newState);
+    }
+    
+    const handleIsNewPosition = (newState) => {
+        setIsNewPosition(newState)
+        setLocalStorageItem('isNewPosition', newState);
+    }
+
+    const handleIsPositionFormOpen = (newState) => {
+        setIsPositionFormOpen(newState)
+        setLocalStorageItem('isFormOpen - Position', newState);
     }
 
     const handlePositionFormData = (newState) => {
         setPositionFormData(newState)
-        setLocalStorageItem('positionFormData', newState);
+        setLocalStorageItem('formData - Position', newState);
     }
 
     const toggleCollapsing = () => {
@@ -108,13 +112,25 @@ export default function WorkExperience() {
             positions: []
         }
 
-        handleIsNewExperience(true)
         setCVData(draft => {
             draft.workExperience.push(newExperience)
         })
-        handleExperienceFormData(newExperience);
-        handleIsExperienceFormOpen(true);
     }
+
+    useEffect(() => {
+        const prevLength = prevLengthRef.current;
+        const currLength = workExperience.length;
+
+        if (currLength > prevLength) {
+            const newlyAddedExperiencePos = workExperience.length - 1;
+            
+            handleExperienceFormData(workExperience[newlyAddedExperiencePos]);
+            handleIsNewExperience(true);
+            handleIsExperienceFormOpen(true);
+        }
+
+        prevLengthRef.current = workExperience.length;
+    }, [workExperience.length])
 
     return (
         <div className={styles.experienceContainer}>
@@ -154,14 +170,13 @@ export default function WorkExperience() {
             {isExpanded && (
                 // Hides the button elements if the form is opened
                 <div className={`${styles.companyContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.hidden : ''}`} ref={companyContainerRef}>
-                    {workExperience?.map((company, index) => (
+                    {workExperience?.map(company => (
                         <Company 
                             key={company.id}
-                            index={index}
                             company={company}
-                            setExperienceFormData={handleExperienceFormData}
-                            setIsExperienceFormOpen={handleIsExperienceFormOpen}
-                            setPositionFormData={handlePositionFormData}
+                            handleExperienceFormData={handleExperienceFormData}
+                            handleIsExperienceFormOpen={handleIsExperienceFormOpen}
+                            handlePositionFormData={handlePositionFormData}
                             handleIsPositionFormOpen={handleIsPositionFormOpen}
                         />
                     ))}

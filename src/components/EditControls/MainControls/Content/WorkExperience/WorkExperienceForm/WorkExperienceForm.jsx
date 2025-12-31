@@ -1,5 +1,5 @@
 import { useAppContext, useWorkExperience } from '../../../../../../AppContext.jsx';
-import { setLocalStorageItem } from '../../../../../../utils/localStorage.js';
+import { removeLocalStorageItem, setLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
 import PositionCard from './PositionCard.jsx';
 
@@ -22,6 +22,9 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
 
         handleIsExperienceFormOpen(false);
         setLocalStorageItem('isNewPosition', false);
+
+        // Removes the stored isExpanded state of Company inside of localStorage, in order to prever clutter.
+        removeLocalStorageItem(`isExpanded - Company: ${experienceFormData.id}`);
     }
 
     const revertChanges = () => {
@@ -51,13 +54,13 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
 
         // Collapses all expanded Positions / Points / SubPoints cards when the user clicks on X or Cancel button.
         company.positions.map(position => {
-            setLocalStorageItem(`isExpandedPosition - ${position.id}`, false);
+            setLocalStorageItem(`isExpanded - Position: ${position.id}`, false);
 
             position.responsibilities.map(responsibility => {
-                setLocalStorageItem(`isExpandedPoint - ${responsibility.id}`, false);
+                setLocalStorageItem(`isExpanded - Point: ${responsibility.id}`, false);
 
                 responsibility.subPoints.map(subResponsibility => {
-                    setLocalStorageItem(`isExpandedSubPoint - ${subResponsibility.id}`, false);
+                    setLocalStorageItem(`isExpanded - SubPoint: ${subResponsibility.id}`, false);
                 })
             })
         })
@@ -120,6 +123,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
     }
 
     const company = workExperience.find(item => item.id === experienceFormData.id);
+    console.log(workExperience)
 
     return (
         <div className={styles.formContainer}>
@@ -134,12 +138,12 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
-                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company.companyName} onChange={handleCompanyName} placeholder="Enter Company Name" required />
+                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company.companyName ?? ''} onChange={handleCompanyName} placeholder="Enter Company Name" required />
                 </div>              
 
                 <div className={styles.formGroup}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" name="location" id="location" value={company.location} onChange={handleLocation} placeholder="Enter Location" />
+                    <input type="text" name="location" id="location" value={company.location ?? ''} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
 
                 {/* Render each position in the company */}

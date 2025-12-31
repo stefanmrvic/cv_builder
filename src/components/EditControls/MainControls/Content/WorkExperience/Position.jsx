@@ -2,7 +2,7 @@ import { useAppContext } from '../../../../../AppContext';
 
 import styles from './WorkExperience.module.css';
 
-export default function Position({ position, setIsPositionFormOpen, setPositionFormData, companyID }) {
+export default function Position({ position, handleIsPositionFormOpen, handlePositionFormData, companyID }) {
     const { setCVData } = useAppContext();
 
     const handleDelete = (e) => {
@@ -20,6 +20,9 @@ export default function Position({ position, setIsPositionFormOpen, setPositionF
 
             companyItem.positions.splice(positionIndex, 1);
         })
+
+        // Removes the stored isExpanded state of Position inside of localStorage, in order to prevent clutter.
+        removeLocalStorageItem(`isExpanded - Position: ${position.id}`);
     }
 
     const handleVisibility = (e) => {
@@ -41,7 +44,7 @@ export default function Position({ position, setIsPositionFormOpen, setPositionF
 
         if (!position.id) throw new Error('PositionID not found!');
 
-        setPositionFormData({
+        handlePositionFormData({
             id: position.id,
             companyID: companyID,
             isVisible: position.isVisible,
@@ -52,7 +55,7 @@ export default function Position({ position, setIsPositionFormOpen, setPositionF
             responsibilities: position.responsibilities
         })
 
-        setIsPositionFormOpen(true);
+        handleIsPositionFormOpen(true);
     }
 
     return (

@@ -11,22 +11,15 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
     // It expands the PositionCard by default if the user created new Position.
-    const persistentIsExpanded = getLocalStorageItem(`isExpandedPosition - ${position.id}`, isNewPosition)
+    const persistentIsExpanded = getLocalStorageItem(`isExpanded - Position: ${position.id}`, isNewPosition)
     const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
-    
-    // useEffect(() => {
-    //     if (isNewPosition) {
-            
-    //         setLocalStorageItem(`isExpandedPosition - ${position.id}`, isNewPosition)
-    //     }
-    // })
 
-    const persistentIsNewPoint = getLocalStorageItem(`isNewPoint - ${position.id}`, false)
+    const persistentIsNewPoint = getLocalStorageItem('isNewPoint', false)
     const [isNewPoint, setIsNewPoint] = useState(persistentIsNewPoint);
 
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState);
-        setLocalStorageItem(`isExpandedPosition - ${position.id}`, newState)
+        setLocalStorageItem(`isExpanded - Position: ${position.id}`, newState)
     }
 
     const handleIsNewPoint = (newState) => {
@@ -50,14 +43,14 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
         });
 
         // Removes the localStorage item of the position's isExpanded state in order to prevent clutter in localStorage object.
-        removeLocalStorageItem(`isExpandedPosition - ${position.id}`);
+        removeLocalStorageItem(`isExpanded - Position: ${position.id}`);
     }
 
     const handleVisibility = (e) => {
         e.preventDefault();
         e.stopPropagation();
         
-        if (isExpanded && position.isVisible) handleIsExpanded(!isExpanded);
+        if (isExpanded && position.isVisible) handleIsExpanded(false);
         
         if (!position.id) throw new Error('position.id is undefined!');
 
@@ -240,6 +233,7 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
                     <div className={styles.responsibilitiesContainer}>
                         {position.responsibilities.length > 0 && (
                             position.responsibilities.map((point, index) => {
+                                debugger;
                                 const isNew = isNewPoint && index === position.responsibilities.length - 1;
 
                                 return <PointCard 

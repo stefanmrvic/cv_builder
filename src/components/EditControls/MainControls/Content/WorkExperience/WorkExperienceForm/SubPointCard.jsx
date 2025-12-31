@@ -9,7 +9,7 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
     // It expands the SubPointCard by default if the user created new SubPoint.
-    const persistentIsExpanded = getLocalStorageItem(`isExpandedSubPoint - ${subPoint.id}`, isNewSubPoint);
+    const persistentIsExpanded = getLocalStorageItem(`isExpanded - SubPoint: ${subPoint.id}`, isNewSubPoint);
     const [isExpanded, setIsExpanded] = useState(isNewSubPoint);
 
     const persistentIsVisible = getLocalStorageItem(`isVisibleSubPoint - ${subPoint.id}`, true);
@@ -17,12 +17,12 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
 
     const handleIsExpanded = (newState) => {
         setIsExpanded(newState);
-        setLocalStorageItem(`isExpandedSubPoint - ${subPoint.id}`, newState);
+        setLocalStorageItem(`isExpanded - SubPoint: ${subPoint.id}`, newState);
     }
 
     const handleIsVisible = (newState) => {
         setIsVisible(newState);
-        setLocalStorageItem(`isVisibleSubPoint - ${subPoint.id}`, newState);
+        setLocalStorageItem(`isVisible - SubPoint: ${subPoint.id}`, newState);
     }
 
     const handleDelete = (e) => {
@@ -46,8 +46,8 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
             point.subPoints.splice(subPointIndex, 1);
         });
 
-        // Removes the localStorage item of the position's isExpanded state in order to prevent clutter inside of localStorage object.
-        removeLocalStorageItem(`isExpandedSubPoint - ${subPoint.id}`);
+        // Removes the stored isExpanded state of SubPoint inside of localStorage, in order to prevent clutter.
+        removeLocalStorageItem(`isExpanded - SubPoint: ${subPoint.id}`);
     }
 
     const handleVisibility = (e) => {
