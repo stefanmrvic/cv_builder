@@ -2,7 +2,7 @@
 
 A CV builder I made to help with job applications. Build your CV, customize it how you want, and download it as a PDF.
 
-<img width="1458" height="1105" alt="2025-12-31_16-12" src="https://github.com/user-attachments/assets/cc1b701e-91d2-41d6-a76a-1f1a82b4e152" />
+<img width="1201" height="1015" alt="2025-12-31_16-12" src="https://github.com/user-attachments/assets/72f43215-d506-4410-bad6-aa8ffb6aef2b" />
 
 ## Live Demo
 
