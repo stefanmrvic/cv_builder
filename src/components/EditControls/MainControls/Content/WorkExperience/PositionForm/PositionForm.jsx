@@ -214,7 +214,7 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
                         <div className={styles.endDate}>
                             <label htmlFor="endDate">End Date</label>
                             <span className={styles.endDateValue}>{endDateValue}</span> 
-                            <input type="date" name="endDate" id="endDate" disabled={position.currentlyEmployed ? true : false} value={position.currentlyEmployed ? 'Present' : position?.endDate || ''} onChange={handleEndDate} placeholder="Enter End Date" required />
+                            <input type="date" name="endDate" id="endDate" disabled={position.currentlyEmployed ? true : false} onChange={handleEndDate} placeholder="Enter End Date" required />
                         </div>
                         <div className={styles.currentlyEmployed}>
                             <input className={styles.checkbox} type="checkbox" name="currentlyEmployed" id="currentlyEmployed" checked={position?.currentlyEmployed} onChange={handleCurrentlyEmployed}/>

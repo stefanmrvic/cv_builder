@@ -157,7 +157,7 @@ export default function SkillsToolsInterests() {
             )}
 
             {isExpanded && (
-                <div className={`${styles.skillsToolsInterestsCardContainer} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsCardContainerRef}>
+                <div className={`${styles.skillsToolsInterestsCardContainer} ${(isCertificationsFormOpen || isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsCardContainerRef}>
                     <Certifications
                         handleIsCertificationsFormOpen={handleIsCertificationsFormOpen}
                     />
