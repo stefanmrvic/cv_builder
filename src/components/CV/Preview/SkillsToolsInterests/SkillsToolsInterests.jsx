@@ -19,7 +19,7 @@ export default function SkillsToolsInterests() {
     ) return null;
 
     return (
-        <div className='sectionBottomMargin'>
+        <section className='sectionBottomMargin'>
             {certifications.items.length === 0 ? (
                 <h1 className='headline'>SKILLS, TOOLS & INTERESTS</h1>
             ) : (
@@ -51,6 +51,6 @@ export default function SkillsToolsInterests() {
                     </li> 
                 )}
             </ul>
-        </div>
+        </section>
     )
 }

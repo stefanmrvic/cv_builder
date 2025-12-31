@@ -127,11 +127,15 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
     const isPlaceholderTitle = point.point.toLowerCase().includes('point');
 
     return (
-        <div className={styles.pointContainer}>
+        <div aria-expanded={isExpanded} className={styles.pointContainer}>
             <span className={styles.pointHeadline}>{`Point #${index +1}`}</span>
 
             <div className={styles.pointCardContainer}>
-                <div className={styles.pointHeaderContainer} onClick={handleCollapsing}>
+                <div 
+                    aria-controls='point-description'
+                    className={styles.pointHeaderContainer} 
+                    onClick={handleCollapsing}
+                >
                     <span className={`${styles.expandArrowIcon} material-icons`}>
                         {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                     </span>
@@ -139,20 +143,31 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
                     <span className={styles.pointDescription}>{point.point}</span>
 
                     <div className={styles.pointBtnContainer}>
-                        <button className={styles.pointVisibilityBtn} onClick={handleVisibility}>
+                        <button 
+                            aria-label={point.isVisible ? 'Hide point' : 'Show point'}
+                            className={styles.pointVisibilityBtn} 
+                            onClick={handleVisibility}
+                        >
                             <span className={`${styles.pointVisibilityBtnIcon} material-symbols-outlined`}>
                                 {point.isVisible ? 'visibility' : 'visibility_off'}
                             </span>
                         </button>
 
-                        <button className={styles.pointDeleteBtn} onClick={handleDelete}>
+                        <button 
+                            aria-label="Delete point"
+                            className={styles.pointDeleteBtn} 
+                            onClick={handleDelete}
+                        >
                             <span className={`${styles.pointDeleteBtnIcon} material-icons`}>delete</span>
                         </button>
                     </div>
                 </div>
 
                 {isExpanded && (
-                    <div className={styles.pointFormContainer}>
+                    <div 
+                        id='point-description'
+                        className={styles.pointFormContainer}
+                    >
                         <div className={styles.pointFormGroup}>
                             <label htmlFor="point">Description</label>
                             <textarea name="point" id="point" className={styles.pointTextarea} autoFocus={isNewPoint} value={(isNewPoint && isPlaceholderTitle) ? '' : (point?.point || '')} onChange={handleDescription} placeholder="Enter responsibility description..." />
@@ -179,7 +194,7 @@ export default function PointCard({ point, index, companyID, positionID, isNewPo
                         </div>
 
                         <div className={styles.addSubPointBtnContainer}>
-                            <button className={styles.addSubPointBtn} onClick={handleAddSubPoint}>
+                            <button className={styles.addSubPointBtn} type='button' onClick={handleAddSubPoint}>
                                 <span className={`${styles.addSubPointBtnIcon} material-symbols-outlined`}>add</span>
                                 <span>Add Sub-Point</span>
                             </button>

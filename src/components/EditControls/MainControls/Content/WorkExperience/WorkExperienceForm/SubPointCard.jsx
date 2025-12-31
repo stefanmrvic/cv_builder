@@ -10,7 +10,7 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
     // It expands the SubPointCard by default if the user created new SubPoint.
     const persistentIsExpanded = getLocalStorageItem(`isExpanded - SubPoint: ${subPoint.id}`, isNewSubPoint);
-    const [isExpanded, setIsExpanded] = useState(isNewSubPoint);
+    const [isExpanded, setIsExpanded] = useState(persistentIsExpanded);
 
     const persistentIsVisible = getLocalStorageItem(`isVisibleSubPoint - ${subPoint.id}`, true);
     const [isVisible, setIsVisible] = useState(persistentIsVisible);
@@ -109,11 +109,15 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
     const isPlaceholderTitle = subPoint.subPoint.toLowerCase().includes('subpoint');
 
     return (
-        <div className={styles.subPointContainer}>
+        <div aria-expanded={isExpanded} className={styles.subPointContainer}>
             <span className={styles.subPointHeadline}>{`Sub-Point #${index +1}`}</span>
 
             <div className={styles.subPointCardContainer}>
-                <div className={styles.subPointHeaderContainer} onClick={handleCollapsing}>
+                <div 
+                    aria-controls='subpoint-description'
+                    className={styles.subPointHeaderContainer} 
+                    onClick={handleCollapsing}
+                >
                     <span className={`${styles.expandArrowIcon} material-icons`}>
                         {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
                     </span>
@@ -121,20 +125,31 @@ export default function SubPointCard({ subPoint, index, companyID, positionID, p
                     <span className={styles.subPointDescription}>{subPoint.subPoint}</span>
 
                     <div className={styles.subPointBtnContainer}>
-                        <button className={styles.subPointVisibilityBtn} onClick={handleVisibility}>
+                        <button 
+                            aria-label={isVisible ? 'Hide subpoint' : 'Show subpoint'}
+                            className={styles.subPointVisibilityBtn} 
+                            onClick={handleVisibility}
+                        >
                             <span className={`${styles.subPointVisibilityBtnIcon} material-symbols-outlined`}>
                                 {isVisible ? 'visibility' : 'visibility_off'}
                             </span>
                         </button>
 
-                        <button className={styles.subPointDeleteBtn} onClick={handleDelete}>
+                        <button 
+                            aria-label='Delete subpoint'
+                            className={styles.subPointDeleteBtn} 
+                            onClick={handleDelete}
+                        >
                             <span className={`${styles.subPointDeleteBtnIcon} material-icons`}>delete</span>
                         </button>
                     </div>
                 </div>
 
                 {isExpanded && (
-                    <div className={styles.subPointFormContainer}>
+                    <div 
+                        id='subpoint-description'
+                        className={styles.subPointFormContainer}
+                    >
                         <div className={styles.subPointFormGroup}>
                             <label htmlFor="sub-point">Description</label>
                             <textarea type="text" name="sub-point" id="sub-point" autoFocus={isNewSubPoint} value={(isNewSubPoint && isPlaceholderTitle) ? '' : (subPoint?.subPoint || '')} onChange={handleDescription} placeholder="Enter sub-point description..." />

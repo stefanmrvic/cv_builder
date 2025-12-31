@@ -125,7 +125,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
     const company = workExperience.find(item => item.id === experienceFormData.id);
 
     return (
-        <div className={styles.formContainer}>
+        <div id='company-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isExperienceFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>business_center</span>
                 <span className={styles.formHeadline}>
@@ -137,12 +137,12 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
-                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company?.companyName || ' '} onChange={handleCompanyName} placeholder="Enter Company Name" required />
+                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company?.companyName ?? ''} onChange={handleCompanyName} placeholder="Enter Company Name" required />
                 </div>              
 
                 <div className={styles.formGroup}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" name="location" id="location" value={company?.location || ' '} onChange={handleLocation} placeholder="Enter Location" />
+                    <input type="text" name="location" id="location" value={company?.location ?? ''} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
 
                 {/* Render each position in the company */}
@@ -163,7 +163,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
                 )}
 
                 <div className={styles.addPositionBtnContainer}>
-                    <button className={styles.addPositionBtn} onClick={handleAddPosition}>
+                    <button className={styles.addPositionBtn} type='button' onClick={handleAddPosition}>
                         <span className={`${styles.addPositionBtnIcon} material-symbols-outlined`}>add</span>
                         <span>Add Position</span>
                     </button>
@@ -175,7 +175,7 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
                     <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
                     <span className={styles.formBtnDeleteText}>Delete</span>
                 </button>
-                <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
+                <button className={styles.formBtnCancel} type='button' onClick={revertChanges}>Cancel</button>
                 <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
             </div>
         </div>

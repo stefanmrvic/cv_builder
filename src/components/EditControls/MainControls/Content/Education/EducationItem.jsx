@@ -2,7 +2,7 @@ import { useAppContext, useEducation } from '../../../../../AppContext';
 
 import styles from './Education.module.css';
 
-export default function EducationItem({ educationID, isVisible, handleIsFormOpen, handleFormData }) {
+export default function EducationItem({ ariaExpanded, educationID, isVisible, handleIsFormOpen, handleFormData }) {
     const { cvData, setCVData } = useAppContext();
     const education = useEducation();
 
@@ -54,16 +54,22 @@ export default function EducationItem({ educationID, isVisible, handleIsFormOpen
     const schoolName = cvData.education.find(item => item.id === educationID)?.schoolName;
 
     return (
-        <div className={styles.educationItem} onClick={populateForm} role='button'>
+        <div 
+            role='button'
+            aria-expanded={ariaExpanded}
+            aria-controls='education-form' 
+            className={styles.educationItem} 
+            onClick={populateForm} 
+        >
             <span className={styles.educationItemHeadline}>{schoolName}</span>
             <div className={styles.educationBtnContainer}>
-                <button onClick={handleVisibility}>
+                <button onClick={handleVisibility} aria-label={isVisible ? 'Hide education' : 'Show education'}>
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                         {isVisible ? 'visibility' : 'visibility_off'}
                     </span>
                 </button>
                 
-                <button onClick={handleDeleteItem}>
+                <button onClick={handleDeleteItem} aria-label='Delete education'>
                     <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
             </div>

@@ -61,7 +61,7 @@ export default function SkillsForm({ skillsFormData, handleSkillsFormData, isSki
     }
 
     return (
-        <div className={styles.formContainer}>
+        <div id='skills-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isSkillsFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
                 <span className={styles.formHeadline}>Add Skills</span>
@@ -72,7 +72,7 @@ export default function SkillsForm({ skillsFormData, handleSkillsFormData, isSki
                 <div className={styles.addSkillFormGroup}>
                     <label htmlFor="title">Skills</label>
                     <input className={styles.skillInput} autoFocus type="text" name="title" id="title" onChange={handleSkillInput} value={skillInput} placeholder="Enter a skill..." />
-                    <button className={styles.addSkillBtn} onClick={handleAddSkill}>
+                    <button className={styles.addSkillBtn} type='button' onClick={handleAddSkill}>
                         <span className={`${styles.addSkillBtnIcon} material-symbols-outlined`}>add</span>
                         <span className={styles.addSkillBtnText}>Add</span>
                     </button>

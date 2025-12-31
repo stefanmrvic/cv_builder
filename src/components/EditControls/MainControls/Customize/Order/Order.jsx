@@ -8,7 +8,7 @@ export default function Order() {
     const { order } = useAppContext();
 
     return (
-        <div className={styles.orderContainer}>
+        <section className={styles.orderContainer}>
             <div className={styles.orderHeaderContainer}>
                 <h2 className={styles.orderHeadline}>Order</h2>
                 <span className={styles.orderText}>Arrange the sections in the order you want them to appear on your CV.</span>
@@ -25,6 +25,6 @@ export default function Order() {
                     />
                 ))}
             </div>
-        </div>
+        </section>
     )
 }

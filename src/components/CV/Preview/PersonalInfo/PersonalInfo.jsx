@@ -18,7 +18,7 @@ export default function PersonalInfo() {
     const lastInfoItem = nonEmptyInfoFields.length - 1;
 
     return (
-        <div className={`${styles.personalInfo} sectionBottomMargin`}>
+        <section className={`${styles.personalInfo} sectionBottomMargin`}>
             <h1 className={styles.fullName}>{personalInfo.fullName}</h1>
 
             <ul className={styles.details}>
@@ -32,6 +32,6 @@ export default function PersonalInfo() {
                     <li>❖ <a href={personalInfo.linkedin} target='_blank'>LN</a></li>
                 }
             </ul>
-        </div>
+        </section>
     )
 }

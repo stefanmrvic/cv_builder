@@ -186,7 +186,7 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
     const endDateValue = formatEndDate();
 
     return (
-        <div className={styles.positionContainer}>
+        <div aria-expanded={isExpanded} className={styles.positionContainer}>
             <div className={styles.positionCardContainer} onClick={handleCollapsing}>
                 <span className={`${styles.expandArrowIcon} material-icons`}>
                     {isExpanded ? 'arrow_drop_down' : 'arrow_right'}
@@ -195,13 +195,21 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
                 <span className={styles.positionHeadline}>{position ? position.title : 'Position #' + (index +1)}</span>
 
                 <div className={styles.positionBtnContainer}>
-                    <button className={styles.positionVisibilityBtn} onClick={handleVisibility}>
+                    <button 
+                        aria-label={position.isVisible ? 'Hide position' : 'Show position'}
+                        className={styles.positionVisibilityBtn} 
+                        onClick={handleVisibility}
+                    >
                         <span className={`${styles.positionVisibilityBtnIcon} material-symbols-outlined`}>
                             {position.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
                     </button>
 
-                    <button className={styles.positionDeleteBtn} onClick={handleDelete}>
+                    <button 
+                        aria-label='Delete position'
+                        className={styles.positionDeleteBtn} 
+                        onClick={handleDelete}
+                    >
                         <span className={`${styles.positionDeleteBtnIcon} material-icons`}>delete</span>
                     </button>
                 </div>
@@ -250,7 +258,7 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
                     </div>
 
                     <div className={styles.addPointBtnContainer}>
-                        <button className={styles.addPointBtn} onClick={handleAddPoint}>
+                        <button className={styles.addPointBtn} type='button' onClick={handleAddPoint}>
                             <span className={`${styles.addPointBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Add Point</span>
                         </button>

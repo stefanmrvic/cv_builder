@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { useAppContext, usePersonalInfo } from '../../../../../AppContext';
+import { getLocalStorageItem, setLocalStorageItem } from '../../../../../utils/localStorage';
 
 import styles from './PersonalDetails.module.css';
-import { getLocalStorageItem, setLocalStorageItem } from '../../../../../utils/localStorage';
 
 export default function PersonalDetails() {
     const persistentIsExpanded = getLocalStorageItem('isExpanded - PersonalDetails', true);
@@ -70,14 +70,24 @@ export default function PersonalDetails() {
     }
 
     return (
-        <div className={styles.personalDetailsContainer}>
-            <button className={`${styles.personalDetailsHeader} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+        <section className={styles.personalDetailsContainer}>
+            <button 
+                className={`${styles.personalDetailsHeader} ${isExpanded ? styles.active : ''}`} 
+                onClick={toggleCollapsing} 
+                aria-expanded={isExpanded}
+                aria-controls='personal-details-form'
+            >
                 <span className={styles.personalDetailsHeadline}>Personal Details</span>
                 <span className={`${styles.arrowUp} material-symbols-outlined`} ref={arrowUpRef}>keyboard_arrow_up</span>
             </button>
 
             {isExpanded && (
-                <form className={styles.personalDetailsForm} ref={personalDetailsFormRef} action="">
+                <form 
+                    id='personal-details-form'
+                    className={styles.personalDetailsForm} 
+                    ref={personalDetailsFormRef} 
+                    action="#"
+                >
                     <div className={styles.flexContainer}>
                         <label htmlFor="name">Full name</label>
                         <input type="text" id="name" value={personalInfo.fullName} onChange={handleNameChange}/>
@@ -109,6 +119,6 @@ export default function PersonalDetails() {
                     </div>
                 </form>
             )}
-        </div>
+        </section>
     )
 }

@@ -5,13 +5,13 @@ import SkillsToolsInterests from './SkillsToolsInterests/SkillsToolsInterests.js
 
 import styles from './Content.module.css';
 
-export default function Content() {
+export default function Content({ style }) {
     return (
-        <div className={styles.content}>
+        <section id='content-panel' role='tabpanel' className={styles.content} style={style}>
             <PersonalDetails />
             <WorkExperience />
             <SkillsToolsInterests />
             <Education />
-        </div>
+        </section>
     )
 }

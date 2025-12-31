@@ -18,6 +18,7 @@ import styles from './SkillsToolsInterests.module.css';
 
 export default function SkillsToolsInterests() {
     const skillsToolsInterests = useSkills();
+    const { certifications, skills, tools, interests } = useSkills();
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
     const persistentIsExpanded = getLocalStorageItem('isExpanded - Skills', false);
@@ -110,10 +111,15 @@ export default function SkillsToolsInterests() {
     }
 
     return (
-        <div className={styles.skillsToolsInterestsContainer}>
+        <section className={styles.skillsToolsInterestsContainer}>
              {/* Only displays Certifications & Skills or Skills,Tools & Interests header if none of the forms are open. */}
             {(!isCertificationsFormOpen && !isSkillsFormOpen && !isToolsFormOpen && !isInterestsFormOpen) && (
-                <button className={`${styles.skillsToolsInterestsHeader} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+                <button
+                    aria-expanded={isExpanded}
+                    aria-controls='certifications-skills-tools-interests-items' 
+                    className={`${styles.skillsToolsInterestsHeader} ${(isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} 
+                    onClick={toggleCollapsing}
+                >
                     <span className={`${styles.btnIcon} material-icons`}>settings</span>
                     <span className={styles.skillsToolsInterestsHeadline}>Skills, Tools & Interests</span>
                     <span className={`${isExpanded ? styles.active : ''} ${styles.arrowDown} material-symbols-outlined`}>keyboard_arrow_down</span>
@@ -157,24 +163,32 @@ export default function SkillsToolsInterests() {
             )}
 
             {isExpanded && (
-                <div className={`${styles.skillsToolsInterestsCardContainer} ${(isCertificationsFormOpen || isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} ref={skillsToolsInterestsCardContainerRef}>
+                <div 
+                    id='certifications-skills-tools-interests-items' 
+                    className={`${styles.skillsToolsInterestsCardContainer} ${(isCertificationsFormOpen || isSkillsFormOpen || isToolsFormOpen || isInterestsFormOpen) ? styles.hidden : ''}`} 
+                    ref={skillsToolsInterestsCardContainerRef}
+                >
                     <Certifications
+                        ariaExpanded={isCertificationsFormOpen}
                         handleIsCertificationsFormOpen={handleIsCertificationsFormOpen}
                     />
 
                     <Skills
+                        ariaExpanded={isSkillsFormOpen}
                         handleIsSkillsFormOpen={handleIsSkillsFormOpen}
                     />
 
                     <Tools
+                        ariaExpanded={isToolsFormOpen}
                         handleIsToolsFormOpen={handleIsToolsFormOpen}
                     />
                     
                     <Interests
+                        ariaExpanded={isInterestsFormOpen}
                         handleIsInterestsFormOpen={handleIsInterestsFormOpen}
                     />
                 </div>
             )}
-        </div>
+        </section>
     )
 }

@@ -20,7 +20,7 @@ export default function BulletPoints() {
     }
 
     return (
-        <div className={styles.bulletPointsContainer}>
+        <section className={styles.bulletPointsContainer}>
             <div className={styles.bulletPointsHeaderContainer}>
                 <h2 className={styles.bulletPointsHeadline}>Bullet Points</h2>
                 <span className={styles.bulletPointsText}>Choose the bullet point style for your CV sections.</span>
@@ -28,22 +28,22 @@ export default function BulletPoints() {
 
             <div className={styles.bulletPointsStyleContainer}>
                 <div className={styles.bulletPointsMainContainer}>
-                    <h3 className={styles.bulletPointsMainHeadline}>Main Point Style</h3>
+                    <h3 id='main-point-label' className={styles.bulletPointsMainHeadline}>Main Point Style</h3>
 
-                    <div className={styles.bulletPointsMainBtnContainer}>
-                        <button id='circle' className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'circle' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
+                    <div className={styles.bulletPointsMainBtnContainer} role='radiogroup' aria-labelledby='main-point-label'>
+                        <button id='circle' role='radio' aria-checked={bulletPoints.main === 'circle'} className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'circle' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
                             <span className={`${styles.bulletPointsMainBtnIcon} ${styles.circle}`}></span>
                             <span className={styles.bulletPointsMainBtnText}>Circle</span>
                         </button>
-                        <button id='square' className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'square' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
+                        <button id='square' role='radio' aria-checked={bulletPoints.main === 'square'} className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'square' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
                             <span className={`${styles.bulletPointsMainBtnIcon} ${styles.square}`}></span>
                             <span className={styles.bulletPointsMainBtnText}>Square</span>
                         </button>
-                        <button id='triangle' className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'triangle' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
+                        <button id='triangle' role='radio' aria-checked={bulletPoints.main === 'triangle'} className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'triangle' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
                             <span className={`${styles.bulletPointsMainBtnIcon} ${styles.triangle}`}></span>
                             <span className={styles.bulletPointsMainBtnText}>Triangle</span>
                         </button>
-                        <button id='diamond' className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'diamond' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
+                        <button id='diamond' role='radio' aria-checked={bulletPoints.main === 'diamond'} className={`${styles.bulletPointsMainBtn} ${bulletPoints.main === 'diamond' ? styles.active : ''}`} onClick={handleMainBulletPointChange}>
                             <span className={`${styles.bulletPointsMainBtnIcon} ${styles.diamond}`}></span>
                             <span className={styles.bulletPointsMainBtnText}>Diamond</span>
                         </button>
@@ -51,22 +51,22 @@ export default function BulletPoints() {
                 </div>
 
                 <div className={styles.bulletPointsSubContainer}>
-                    <h3 className={styles.bulletPointsSubHeadline}>Sub Point Style</h3>
+                    <h3 id='sub-point-label' className={styles.bulletPointsSubHeadline}>Sub Point Style</h3>
 
-                    <div className={styles.bulletPointsSubBtnContainer}>
-                        <button id='circle' className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'circle' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
+                    <div className={styles.bulletPointsSubBtnContainer} role='radiogroup' aria-labelledby='sub-point-label'>
+                        <button id='circle' role='radio' aria-checked={bulletPoints.sub === 'circle'} className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'circle' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
                             <span className={`${styles.bulletPointsSubBtnIcon} ${styles.circle}`}></span>
                             <span className={styles.bulletPointsSubBtnText}>Circle</span>
                         </button>
-                        <button id='square' className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'square' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
+                        <button id='square' role='radio' aria-checked={bulletPoints.sub === 'square'} className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'square' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
                             <span className={`${styles.bulletPointsSubBtnIcon} ${styles.square}`}></span>
                             <span className={styles.bulletPointsSubBtnText}>Square</span>
                         </button>
-                        <button id='triangle' className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'triangle' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
+                        <button id='triangle' role='radio' aria-checked={bulletPoints.sub === 'triangle'} className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'triangle' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
                             <span className={`${styles.bulletPointsSubBtnIcon} ${styles.triangle}`}></span>
                             <span className={styles.bulletPointsSubBtnText}>Triangle</span>
                         </button>
-                        <button id='diamond' className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'diamond' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
+                        <button id='diamond' role='radio' aria-checked={bulletPoints.sub === 'diamond'} className={`${styles.bulletPointsSubBtn} ${bulletPoints.sub === 'diamond' ? styles.active : ''}`} onClick={handleSubBulletPointChange}>
                             <span className={`${styles.bulletPointsSubBtnIcon} ${styles.diamond}`}></span>
                             <span className={styles.bulletPointsSubBtnText}>Diamond</span>
                         </button>
@@ -100,7 +100,6 @@ export default function BulletPoints() {
                     </li>
                 </ul>
             </div>
-        </div>
-
+        </section>
     )
 }

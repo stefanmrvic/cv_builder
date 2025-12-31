@@ -11,10 +11,10 @@ import styles from './app.module.css'
 export default function App() {
   return (
     <AppContext>
-      <div className={styles.app}>
+      <main className={styles.app}>
         <EditControls />
         <CVPreview />
-      </div>
+      </main>
     </AppContext>
   )
 }

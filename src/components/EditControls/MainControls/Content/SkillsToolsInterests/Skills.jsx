@@ -2,7 +2,7 @@ import { useAppContext, useSkills } from '../../../../../AppContext';
 
 import styles from './SkillsToolsInterests.module.css';
 
-export default function Skills({ handleIsSkillsFormOpen }) {
+export default function Skills({ ariaExpanded, handleIsSkillsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -20,10 +20,20 @@ export default function Skills({ handleIsSkillsFormOpen }) {
     }
 
     return (
-        <div className={styles.skillsContainer} role='button' onClick={() => handleIsSkillsFormOpen(true)}>
+        <div 
+            role='button' 
+            aria-expanded={ariaExpanded}
+            aria-controls='skills-form'
+            className={styles.skillsContainer} 
+            onClick={() => handleIsSkillsFormOpen(true)}
+        >
             <span className={styles.skillsHeadline}>Skills</span>
 
-            <button className={styles.skillsVisibilityBtn} onClick={(handleVisibility)}>
+            <button 
+                aria-label={skills.isVisible ? 'Hide skills' : 'Show skills'}
+                className={styles.skillsVisibilityBtn} 
+                onClick={(handleVisibility)}
+            >
                 <span className={`${styles.skillsVisibilityBtnIcon} material-symbols-outlined`}>
                     {skills.isVisible ? 'visibility' : 'visibility_off'}
                 </span>

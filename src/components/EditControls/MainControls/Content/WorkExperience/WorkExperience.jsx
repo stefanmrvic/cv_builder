@@ -117,10 +117,15 @@ export default function WorkExperience() {
     }
 
     return (
-        <div className={styles.experienceContainer}>
+        <section className={styles.experienceContainer}>
             {/* Only displays Experience header if both Experience and Position forms are closed. */}
             {(!isExperienceFormOpen && !isPositionFormOpen) && (
-                <button className={`${styles.experienceHeaderContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+                <button 
+                    aria-expanded={isExpanded}
+                    aria-controls='work-experience-items'
+                    className={`${styles.experienceHeaderContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} 
+                    onClick={toggleCollapsing}
+                >
                     <span className={`${styles.btnIcon} material-symbols-outlined`}>business_center</span>
                     <span className={styles.experienceHeadline}>Work Experience</span>
                     <span className={`${isExpanded ? styles.active : ''} ${styles.arrowDown} material-symbols-outlined`}>keyboard_arrow_down</span>
@@ -153,11 +158,16 @@ export default function WorkExperience() {
             {/* Always renders the container to avoid layout shift. Content visibility is controlled by isExpanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
-                <div className={`${styles.companyContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.hidden : ''}`} ref={companyContainerRef}>
+                <div 
+                    id='work-experience-items'
+                    className={`${styles.companyContainer} ${(isExperienceFormOpen || isPositionFormOpen) ? styles.hidden : ''}`} 
+                    ref={companyContainerRef}
+                >
                     {workExperience?.map(company => (
                         <Company 
                             key={company.id}
                             company={company}
+                            ariaExpanded={company.id === experienceFormData.id}
                             handleExperienceFormData={handleExperienceFormData}
                             handleIsExperienceFormOpen={handleIsExperienceFormOpen}
                             handlePositionFormData={handlePositionFormData}
@@ -173,6 +183,6 @@ export default function WorkExperience() {
                     </div>
                 </div>
             )}
-        </div>
+        </section>
     )
 }

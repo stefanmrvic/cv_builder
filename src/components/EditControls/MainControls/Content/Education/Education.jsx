@@ -85,9 +85,13 @@ export default function Education() {
     }
 
     return (
-        <div className={styles.educationContainer}>
+        <section className={styles.educationContainer}>
             {!isFormOpen && (
-                <button className={`${styles.educationHeader} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} onClick={toggleCollapsing}>
+                <button 
+                    aria-expanded={isExpanded}
+                    aria-controls='education-items'
+                    className={`${styles.educationHeader} ${isFormOpen ? styles.formOpened : ''} ${isExpanded ? styles.active : ''}`} 
+                    onClick={toggleCollapsing}>
                     <span className={`${styles.btnIcon} material-symbols-outlined`}>school</span>
                     <span className={styles.educationHeadline}>Education</span>
                     <span className={`${styles.arrowDown} material-symbols-outlined`} ref={arrowDownRef}>keyboard_arrow_down</span>
@@ -109,10 +113,15 @@ export default function Education() {
                 of Education items when form opens / closes. Instead, it only checks if Education menu has been expanded. */}
             {isExpanded && (
                 // Hides the button elements if the form is opened
-                <div className={`${styles.educationItemContainer} ${isFormOpen ? styles.hidden : ''}`} ref={educationItemContainerRef}>
+                <div 
+                    id='education-items'
+                    className={`${styles.educationItemContainer} ${isFormOpen ? styles.hidden : ''}`} 
+                    ref={educationItemContainerRef}
+                >
                     {education?.map(item => {
                         return <EducationItem 
                             key={item.id}
+                            ariaExpanded={isFormOpen && item.id === formData.id}
                             educationID={item.id}
                             isVisible={item.isVisible}
                             handleIsFormOpen={handleIsFormOpen}
@@ -131,6 +140,6 @@ export default function Education() {
                     </div>
                 </div>
             )}
-        </div>
+        </section>
     )
 }

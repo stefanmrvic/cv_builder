@@ -40,7 +40,7 @@ export default function CVPreview() {
   const { cvData, order, bulletPoints } = useAppContext();
 
   return (
-    <div className={styles.cvContainer}>
+    <section className={styles.cvContainer} aria-label='CV preview'>
       {/* Using key as Date.now() because there is a bug in react-pdf library which causes <PDFDownloadLink /> component not to
         rerender when the item is removed in the runtime. Ref: https://github.com/diegomura/react-pdf/issues/3153#issuecomment-3124691739 
         P.S. Wrapping map function inside of render prop did not work, so this workaround had to be used as a last resort. */}
@@ -50,9 +50,7 @@ export default function CVPreview() {
         cvData={cvData}
         order={order}
         bulletPoints={bulletPoints}
-      >
-        Download PDF
-      </DownloadButton>
+      />
 
       <div className={styles.cvContentContainer}>
         <PersonalInfo />
@@ -67,6 +65,6 @@ export default function CVPreview() {
           }
         })}
       </div>
-    </div>
+    </section>
   )
 }

@@ -190,7 +190,7 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
     const endDateValue = formatEndDate();
 
     return (
-        <div className={styles.formContainer}>
+        <div id='position-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${styles.formOpened}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>business_center</span>
                 <span className={styles.formHeadline}>
@@ -242,7 +242,7 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
                     </div>
 
                     <div className={styles.addPointBtnContainer}>
-                        <button className={styles.addPointBtn} onClick={handleAddPoint}>
+                        <button className={styles.addPointBtn} type='button' onClick={handleAddPoint}>
                             <span className={`${styles.addPointBtnIcon} material-symbols-outlined`}>add</span>
                             <span>Add Point</span>
                         </button>
@@ -251,11 +251,11 @@ export default function PositionForm({ isNewPosition, handleIsNewPosition, posit
             </form>
 
             <div className={styles.formBtnContainer}>
-                <button className={styles.formBtnDelete} onClick={handleDelete}>
+                <button className={styles.formBtnDelete} type='button' onClick={handleDelete}>
                     <span className={`${styles.formBtnDeleteIcon} material-icons`}>delete</span>
                     <span className={styles.formBtnDeleteText}>Delete</span>
                 </button>
-                <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
+                <button className={styles.formBtnCancel} type='button' onClick={revertChanges}>Cancel</button>
                 <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
             </div>
         </div>

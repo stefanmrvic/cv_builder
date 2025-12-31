@@ -16,7 +16,7 @@ export default function Education() {
     if (visibleEducationItems.length === 0) return null;
 
     return (
-        <div className='sectionBottomMargin'>
+        <section className='sectionBottomMargin'>
             <h1 className='headline'>EDUCATION</h1>
 
             <div className={styles.educationContainer}>
@@ -30,6 +30,6 @@ export default function Education() {
                     })
                 }     
             </div>
-        </div>
+        </section>
     )
 }

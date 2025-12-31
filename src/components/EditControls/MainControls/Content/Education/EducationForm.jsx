@@ -90,7 +90,7 @@ export default function EducationForm({ isNew, handleIsNew, isFormOpen, handleIs
     }
 
     return (
-        <div className={styles.formContainer}>
+        <div id='education-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>school</span>
                 <span className={styles.formHeadline}>

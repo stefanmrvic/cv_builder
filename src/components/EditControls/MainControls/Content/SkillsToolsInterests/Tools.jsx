@@ -2,7 +2,7 @@ import { useAppContext, useSkills } from '../../../../../AppContext';
 
 import styles from './SkillsToolsInterests.module.css';
 
-export default function Tools({ handleIsToolsFormOpen }) {
+export default function Tools({ ariaExpanded, handleIsToolsFormOpen }) {
     const { setCVData } = useAppContext();
     
     const skillsToolsInterests = useSkills();
@@ -20,10 +20,20 @@ export default function Tools({ handleIsToolsFormOpen }) {
     }
 
     return (
-        <div className={styles.toolsContainer} role='button' onClick={() => handleIsToolsFormOpen(true)}>
+        <div 
+            role='button' 
+            aria-expanded={ariaExpanded}
+            aria-controls='tools-form'
+            className={styles.toolsContainer} 
+            onClick={() => handleIsToolsFormOpen(true)}
+        >
             <span className={styles.toolsHeadline}>Tools</span>
 
-            <button className={styles.toolsVisibilityBtn} onClick={(handleVisibility)}>
+            <button 
+                aria-label={tools.isVisible ? 'Hide tools' : 'Show tools'}
+                className={styles.toolsVisibilityBtn} 
+                onClick={(handleVisibility)}
+            >
                 <span className={`${styles.toolsVisibilityBtnIcon} material-symbols-outlined`}>
                     {tools.isVisible ? 'visibility' : 'visibility_off'}
                 </span>

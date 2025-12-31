@@ -2,7 +2,7 @@ import { useAppContext } from '../../../../../AppContext';
 
 import styles from './WorkExperience.module.css';
 
-export default function Position({ position, handleIsPositionFormOpen, handlePositionFormData, companyID }) {
+export default function Position({ position, ariaExpanded, handleIsPositionFormOpen, handlePositionFormData, companyID }) {
     const { setCVData } = useAppContext();
 
     const handleDelete = (e) => {
@@ -59,17 +59,31 @@ export default function Position({ position, handleIsPositionFormOpen, handlePos
     }
 
     return (
-        <div className={styles.positionHeaderContainer} onClick={handleEdit} role='button'>
+        <div 
+            role='button'
+            aria-expanded={ariaExpanded}
+            aria-controls='position-form'
+            className={styles.positionHeaderContainer} 
+            onClick={handleEdit} 
+        >
             <span className={styles.positionHeadline}>{position.title}</span>
 
             <div className={styles.positionHeaderBtnContainer}>
-                <button className={styles.visibilityBtn} onClick={handleVisibility}>
+                <button 
+                    aria-label={position.isVisible ? 'Hide position': 'Show position'}
+                    className={styles.visibilityBtn} 
+                    onClick={handleVisibility}
+                >
                     <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                         {position.isVisible ? 'visibility' : 'visibility_off'}
                     </span>
                 </button>
 
-                <button className={styles.deleteBtn} onClick={handleDelete}>
+                <button 
+                    aria-label="Delete position"
+                    className={styles.deleteBtn} 
+                    onClick={handleDelete}
+                >
                     <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                 </button>
             </div>

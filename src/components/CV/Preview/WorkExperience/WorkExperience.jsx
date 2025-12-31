@@ -16,7 +16,7 @@ export default function WorkExperience() {
     const sortedCompanies = visibleCompanies.sort(sortCompaniesByEmploymentDate);
 
     return (  
-        <div className='sectionBottomMargin'>
+        <section className='sectionBottomMargin'>
             <h1 className='headline'>WORK EXPERIENCE</h1>
 
             {sortedCompanies.map(company => (
@@ -25,6 +25,6 @@ export default function WorkExperience() {
                     company={company}
                 />
             ))}  
-        </div>    
+        </section>    
     )
 }

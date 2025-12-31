@@ -2,10 +2,10 @@ import { useAppContext, useSkills } from '../../../../../AppContext';
 
 import styles from './SkillsToolsInterests.module.css';
 
-export default function Certifications({ handleIsCertificationsFormOpen }) {
+export default function Certifications({ ariaExpanded, handleIsCertificationsFormOpen }) {
     const { setCVData } = useAppContext();
 
-    const skillsToolsInterests = useSkills();
+    const skillsToolsInterests = useSkills({ ariaExpanded });
     const certifications = skillsToolsInterests.certifications;
 
     const handleVisibility = (e) => {
@@ -20,10 +20,20 @@ export default function Certifications({ handleIsCertificationsFormOpen }) {
     }
 
     return (
-        <div className={styles.certificationsContainer} role='button' onClick={() => handleIsCertificationsFormOpen(true)}>
+        <div 
+            role='button' 
+            aria-expanded={ariaExpanded}
+            aria-controls='certifications-form'
+            className={styles.certificationsContainer} 
+            onClick={() => handleIsCertificationsFormOpen(true)}
+        >
             <span className={styles.certificationsHeadline}>Certifications</span>
 
-            <button className={styles.certificationsVisibilityBtn} onClick={(handleVisibility)}>
+            <button 
+                aria-label={certifications.isVisible ? 'Hide certifications' : 'Show certifications'}
+                className={styles.certificationsVisibilityBtn} 
+                onClick={(handleVisibility)}
+            >
                 <span className={`${styles.certificationsVisibilityBtnIcon} material-symbols-outlined`}>
                     {certifications.isVisible ? 'visibility' : 'visibility_off'}
                 </span>

@@ -52,7 +52,7 @@ export default function TopControls() {
 
     return (
         <div className={styles.topControls}>
-            <nav className={styles.topNavbar}>
+            <div className={styles.topNavbar} role='toolbar' aria-label='Resume actions'>
                 <button className={`${styles.btn} ${styles.clearResume}`} onClick={handleCVRemoval}>
                     <span className="material-icons">delete</span>
                     <span>Clear Resume</span>
@@ -60,7 +60,7 @@ export default function TopControls() {
                 <button className={`${styles.btn} ${styles.loadExample}`} onClick={handleLoadDefaultCV}> 
                     <span>Load Example</span>
                 </button>
-            </nav>
+            </div>
         </div>
     )
 }

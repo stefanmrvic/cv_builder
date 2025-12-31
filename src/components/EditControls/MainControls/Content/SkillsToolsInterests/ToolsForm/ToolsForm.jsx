@@ -61,7 +61,7 @@ export default function ToolsForm({ toolsFormData, handleToolsFormData, isToolsF
     }
 
     return (
-        <div className={styles.formContainer}>
+        <div id='tools-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isToolsFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
                 <span className={styles.formHeadline}>Add Tools</span>
@@ -72,7 +72,7 @@ export default function ToolsForm({ toolsFormData, handleToolsFormData, isToolsF
                 <div className={styles.addToolFormGroup}>
                     <label htmlFor="title">Tools</label>
                     <input className={styles.toolInput} autoFocus type="text" name="title" id="title" onChange={handleToolInput} value={toolInput} placeholder="Enter a tool..." />
-                    <button className={styles.addToolBtn} onClick={handleAddTool}>
+                    <button className={styles.addToolBtn} type='button' onClick={handleAddTool}>
                         <span className={`${styles.addToolBtnIcon} material-symbols-outlined`}>add</span>
                         <span className={styles.addToolBtnText}>Add</span>
                     </button>

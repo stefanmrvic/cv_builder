@@ -61,7 +61,7 @@ export default function CertificationsForm({ certificationsFormData, handleCerti
     }
 
     return (
-        <div className={styles.formContainer}>
+        <div id='certifications-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isCertificationsFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
                 <span className={styles.formHeadline}>Add Certifications</span>
@@ -72,7 +72,7 @@ export default function CertificationsForm({ certificationsFormData, handleCerti
                 <div className={styles.addCertificationFormGroup}>
                     <label htmlFor="title">Certifications</label>
                     <input className={styles.certificationInput} autoFocus type="text" name="title" id="title" onChange={handleCertificationInput} value={certificationInput} placeholder="Enter a certification..." />
-                    <button className={styles.addCertificationBtn} onClick={handleAddCertification}>
+                    <button className={styles.addCertificationBtn} type='button' onClick={handleAddCertification}>
                         <span className={`${styles.addCertificationBtnIcon} material-symbols-outlined`}>add</span>
                         <span className={styles.addCertificationBtnText}>Add</span>
                     </button>

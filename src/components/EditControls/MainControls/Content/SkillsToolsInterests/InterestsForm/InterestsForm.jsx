@@ -61,7 +61,7 @@ export default function InterestsForm({ interestsFormData, handleInterestsFormDa
     }
 
     return (
-        <div className={styles.formContainer}>
+        <div id='interests-form' className={styles.formContainer}>
             <div className={`${styles.formHeaderContainer} ${isInterestsFormOpen ? styles.formOpened : ''}`}>
                 <span className={`${styles.formHeaderIcon} material-symbols-outlined`}>settings</span>
                 <span className={styles.formHeadline}>Add Interests</span>
@@ -72,7 +72,7 @@ export default function InterestsForm({ interestsFormData, handleInterestsFormDa
                 <div className={styles.addInterestFormGroup}>
                     <label htmlFor="title">Interests</label>
                     <input className={styles.interestInput} autoFocus type="text" name="title" id="title" onChange={handleInterestInput} value={interestInput} placeholder="Enter a interest..." />
-                    <button className={styles.addInterestBtn} onClick={handleAddInterest}>
+                    <button className={styles.addInterestBtn} type='button' onClick={handleAddInterest}>
                         <span className={`${styles.addInterestBtnIcon} material-symbols-outlined`}>add</span>
                         <span className={styles.addInterestBtnText}>Add</span>
                     </button>

@@ -84,7 +84,13 @@ export default function Company({ company, handleExperienceFormData, handleIsExp
 
     return (
         <div className={styles.companyCard}>
-            <div className={styles.companyHeaderContainer} role='button' onClick={toggleCollapsing}>
+            <div 
+                aria-expanded={isExpanded}
+                aria-controls='position-items'
+                className={styles.companyHeaderContainer} 
+                role='button' 
+                onClick={toggleCollapsing}
+            >
                 <div className={styles.companyHeadlineContainer}>
                     {/* Display an arrow icon if there are positions under given Company. */}
                     {positionCount > 0 && (
@@ -94,17 +100,30 @@ export default function Company({ company, handleExperienceFormData, handleIsExp
                 </div>
 
                 <div className={styles.companyHeaderBtnContainer}>
-                    <button className={styles.visibilityBtn} onClick={handleVisibility}>
+                    <button 
+                        aria-label={company.isVisible ? 'Hide company' : 'Show company'}
+                        className={styles.visibilityBtn} 
+                        onClick={handleVisibility}
+                    >
                         <span className={`${styles.visibilityBtnIcon} material-symbols-outlined`}>
                             {company.isVisible ? 'visibility' : 'visibility_off'}
                         </span>
                     </button>
 
-                    <button className={styles.deleteBtn} onClick={handleDelete}>
+                    <button 
+                        aria-label='Delete company'
+                        className={styles.deleteBtn} 
+                        onClick={handleDelete}
+                    >
                         <span className={`${styles.deleteBtnIcon} material-icons`}>delete</span>
                     </button>
 
-                    <button className={styles.editBtn} onClick={handleEdit}>
+                    <button 
+                        aria-label='Edit company'
+                        aria-controls='company-form'
+                        className={styles.editBtn} 
+                        onClick={handleEdit}
+                    >
                         <span className={`${styles.editBtnIcon} material-symbols-outlined`}>edit_square</span>
                     </button>
                 </div>
@@ -112,7 +131,11 @@ export default function Company({ company, handleExperienceFormData, handleIsExp
 
             {/* Show this section if there are job positions under given Company. */}
             {isExpanded && (
-                <div className={styles.positionsContainer} ref={positionsContainerRef}>
+                <div 
+                    id='position-items'
+                    className={styles.positionsContainer} 
+                    ref={positionsContainerRef}
+                >
                     {company.positions.map(position => (
                         <Position
                             key={position.id}
