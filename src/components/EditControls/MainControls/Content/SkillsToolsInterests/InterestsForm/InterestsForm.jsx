@@ -95,7 +95,7 @@ export default function InterestsForm({ interestsFormData, handleInterestsFormDa
                 </div>
 
                 <div className={styles.formBtnContainer}>
-                    <button className={styles.formBtnCancel} onClick={revertChanges}>Cancel</button>
+                    <button className={styles.formBtnCancel} type='button' onClick={revertChanges}>Cancel</button>
                     <button className={styles.formBtnSave} onClick={handleSubmit}>Save</button>
                 </div>
             </form>
