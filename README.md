@@ -1,18 +1,61 @@
-# React + Vite
+# CV Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A CV builder I made to help with job applications. Build your CV, customize it how you want, and download it as a PDF.
 
-Currently, two official plugins are available:
+<img width="1458" height="1105" alt="2025-12-31_16-12" src="https://github.com/user-attachments/assets/cc1b701e-91d2-41d6-a76a-1f1a82b4e152" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
 
-## React Compiler
+https://cvbuilderr-swart.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features 🚀
 
-## Expanding the ESLint configuration
+- **Smart sorting** - Your work experience automatically shows up with the most recent stuff first, and positions within each company are sorted the same way
+- **Download as PDF** - Get a clean PDF with selectable text (so it works with ATS systems)
+- **Customizable sections order** - Rearrange your CV sections however you want
+- **Customize bullet points** - Pick from different bullet point styles (circles, squares, triangles, diamonds) for your responsibilities
+- **Nothing gets lost** - Everything saves to localStorage so you can close the tab and come back later
+- **Works on mobile** - Responsive design that works on any screen size
+- **Accessibility built in** - Added ARIA attributes and semantic HTML for screen readers
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# cv_builder
-# cv_builder
+## Built with 👨‍💻
+
+- React 19  <img width="18" height="18" alt="image" src="https://github.com/user-attachments/assets/8b5e6a21-c262-49a6-b4e8-08ab5073fa9d" />
+- Vite  <img width="18" height="18" alt="image" src="https://github.com/user-attachments/assets/e7bd7dd6-2187-4d1b-8af4-3ee77a1a957d" />
+- CSS Modules  <img width="18" height="18" alt="image" src="https://github.com/user-attachments/assets/13a46468-a7a0-42f9-87fd-0ba32f6e4bce" />
+
+- Immer for state management ⚡
+- @react-pdf/renderer for PDF generation 📜
+- Context API for global state 🌎
+
+## Running it locally
+```bash
+git clone https://github.com/stefanmrvic/cv_builder.git
+cd cv_builder
+npm install
+npm run dev
+```
+
+## How to use it
+
+1. Fill in your personal info
+2. Add your work experience - you can nest companies, positions, and responsibilities
+3. Add education and skills
+4. Head to the Customize tab to reorder sections and change bullet styles
+5. Download your CV as a PDF
+
+## Stuff I will add very 🔜
+
+- Different CV templates
+- Saving multiple CVs to Node.js backend
+- Redux for state management
+
+## The tricky parts ‎ (╭ರ_•́)
+
+The sorting algorithm was fun to figure out - making sure everything displays in the correct order with recent stuff first. But managing all the nested and global state was the real challenge. Luckily, useImmer helped with its syntax for deeply nested updates (companies → positions → responsibilities → sub-points). Way cleaner than passing setState callbacks everywhere.
+
+PDF generation with @react-pdf/renderer was a nightmare. I built the entire CV layout first, then discovered their library doesn't support Context API. Had to drill props several layers deep just to pass the data through. Lesson learned: research libraries more thoroughly before committing to them.
+
+---
+
+I Made this while job hunting. Hope it helps someone else too. Good luck! 🍀
