@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useAppContext, useWorkExperience } from '../../../../../AppContext.jsx';
 import { setLocalStorageItem, getLocalStorageItem } from '../../../../../utils/localStorage.js';
 
@@ -11,10 +11,6 @@ import styles from './WorkExperience.module.css';
 export default function WorkExperience() {
     const { setCVData } = useAppContext();
     const workExperience = useWorkExperience();
-
-    // Tracks the previous length of workExperience to use it in useEffect hook, in order to detect when the new workExperience gets added, so that it can pass 
-    // updated array of workExperiences.
-    const prevLengthRef = useRef(workExperience.length);
 
     // Utilizing localStorage to perserve state across page reloads in case user accidentally reloads or closes the tab while filling in the fields.
     const persistentIsExpanded = getLocalStorageItem('isExpanded - WorkExperience', false);
@@ -111,26 +107,14 @@ export default function WorkExperience() {
             location: '',
             positions: []
         }
-
+        
+        handleIsNewExperience(true);
+        handleExperienceFormData(newExperience);
         setCVData(draft => {
             draft.workExperience.push(newExperience)
         })
+        handleIsExperienceFormOpen(true);
     }
-
-    useEffect(() => {
-        const prevLength = prevLengthRef.current;
-        const currLength = workExperience.length;
-
-        if (currLength > prevLength) {
-            const newlyAddedExperiencePos = workExperience.length - 1;
-            
-            handleExperienceFormData(workExperience[newlyAddedExperiencePos]);
-            handleIsNewExperience(true);
-            handleIsExperienceFormOpen(true);
-        }
-
-        prevLengthRef.current = workExperience.length;
-    }, [workExperience.length])
 
     return (
         <div className={styles.experienceContainer}>

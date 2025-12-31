@@ -51,9 +51,7 @@ export function AppProvider({ children }) {
   useEffect(() => {
     if (cvDataEffectRan.current) {
       localStorage.setItem('cvData', JSON.stringify(cvData));
-    }
-
-    return () => {
+    } else { 
       cvDataEffectRan.current = true;
     }
   }, [cvData])
@@ -63,9 +61,7 @@ export function AppProvider({ children }) {
   useEffect(() => {
     if (orderEffectRan.current) {
       localStorage.setItem('order', JSON.stringify(order));
-    }
-
-    return () => {
+    } else {
       orderEffectRan.current = true;
     }
   }, [order])
@@ -75,9 +71,7 @@ export function AppProvider({ children }) {
   useEffect(() => {
     if (bulletPointsEffectRan.current) {
       localStorage.setItem('bulletPoints', JSON.stringify(bulletPoints));
-    }
-
-    return () => {
+    } else {
       bulletPointsEffectRan.current = true;
     }
   }, [bulletPoints])

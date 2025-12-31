@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAppContext } from '../../../../../../AppContext.jsx';
 import { setLocalStorageItem, getLocalStorageItem, removeLocalStorageItem } from '../../../../../../utils/localStorage.js';
 
@@ -233,7 +233,6 @@ export default function PositionCard({ position, index, isNewPosition, handleIsN
                     <div className={styles.responsibilitiesContainer}>
                         {position.responsibilities.length > 0 && (
                             position.responsibilities.map((point, index) => {
-                                debugger;
                                 const isNew = isNewPoint && index === position.responsibilities.length - 1;
 
                                 return <PointCard 

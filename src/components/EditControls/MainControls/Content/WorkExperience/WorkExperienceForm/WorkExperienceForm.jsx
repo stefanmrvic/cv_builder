@@ -123,7 +123,6 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
     }
 
     const company = workExperience.find(item => item.id === experienceFormData.id);
-    console.log(workExperience)
 
     return (
         <div className={styles.formContainer}>
@@ -138,17 +137,17 @@ export default function ExperienceForm({ experienceFormData, isNewExperience, ha
             <form className={styles.form} action="#" onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="company">Company Name</label>
-                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company.companyName ?? ''} onChange={handleCompanyName} placeholder="Enter Company Name" required />
+                    <input type="text" name="company" id="company" autoFocus={isNewExperience} value={company?.companyName || ' '} onChange={handleCompanyName} placeholder="Enter Company Name" required />
                 </div>              
 
                 <div className={styles.formGroup}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" name="location" id="location" value={company.location ?? ''} onChange={handleLocation} placeholder="Enter Location" />
+                    <input type="text" name="location" id="location" value={company?.location || ' '} onChange={handleLocation} placeholder="Enter Location" />
                 </div>
 
                 {/* Render each position in the company */}
-                {company.positions.length > 0 && (
-                    company.positions.map((position, index) => {
+                {company?.positions?.length > 0 && (
+                    company?.positions?.map((position, index) => {
                         const isNew = isNewPosition && index === company.positions.length - 1;
 
                         return <PositionCard 
