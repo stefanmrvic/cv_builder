@@ -1,6 +1,6 @@
 # CV Builder
 
-A CV builder I made to help users with job applications. Build your CV, customize it how you want, and download it as a PDF.
+Build your CV, customize it how you want, and download it as a PDF.
 
 <img width="1201" height="1015" alt="2025-12-31_16-12" src="https://github.com/user-attachments/assets/72f43215-d506-4410-bad6-aa8ffb6aef2b" />
 
